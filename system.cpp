@@ -115,6 +115,8 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
     setImportance                           (importanceOrNot);
     setAllEnergies                          (allEnergiesOrNot);
 
+
+
     for (int i = 0; i < m_numberOfMetropolisSteps; i++) {
         
         m_steps += 1;
@@ -176,6 +178,10 @@ void System::setWaveFunction(WaveFunction* waveFunction) {
     m_waveFunction = waveFunction;
 }
 
+void System::setFrequency(double omega) {
+    m_omega = omega;
+}
+
 void System::setInitialState(InitialState* initialState) {
     m_initialState = initialState;
 }
@@ -206,6 +212,6 @@ double System::greensFunctionFraction(std::vector<double> posNew, std::vector<do
     return exp(exponent);
 }
 
-void System::setHardCoreDiameter(double hardCoreDiameter){
-    m_hardCoreDiameter = hardCoreDiameter;
+void System::setSpinFactor(double spinFactor){
+    m_spinFactor = spinFactor;
 }

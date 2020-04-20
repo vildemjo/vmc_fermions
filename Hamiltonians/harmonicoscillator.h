@@ -8,6 +8,7 @@ public:
 
     double              computeKineticEnergy(std::vector<Particle*> particles);
     double              computePotentialEnergy(std::vector<Particle*> particles);
+    double              computeLocalEnergy(std::vector<Particle*> particles);
     std::vector<double> computeQuantumForce(int particleIndex, std::vector<class Particle*> particles);
 
 private:

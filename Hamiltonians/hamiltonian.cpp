@@ -54,9 +54,3 @@ double Hamiltonian::computeDoubleDerivativeNumerically(std::vector<Particle*> pa
  
 }
 
-double Hamiltonian::computeLocalEnergy(std::vector<Particle*> particles){
-    double kineticEnergy = computeKineticEnergy(particles);
-    double localEnergy = computeLocalEnergy(particles);
-
-    return kineticEnergy + localEnergy;
-}

@@ -72,6 +72,13 @@ double HarmonicOscillator::computeKineticEnergy(std::vector<Particle*> particles
     return kineticEnergy;
 }
 
+double HarmonicOscillator::computeLocalEnergy(std::vector<Particle*> particles){
+    double kineticEnergy = computeKineticEnergy(particles);
+    double potentialEnergy = computePotentialEnergy(particles);
+
+    return kineticEnergy + potentialEnergy;
+}
+
 std::vector<double> HarmonicOscillator::computeQuantumForce(int particleIndex, std::vector<class Particle*> particles){
     /* This function calculates the quantum force/drift force with is used for importance
         sampling. The quantum force is given by the derivative of the wavefunction. */

@@ -1,5 +1,5 @@
 #include "simplegaussianinteraction.h"
-#include "ellipticalharmonicoscillator.h"
+#include "interactionharmonicoscillator.h"
 #include <cmath>
 #include <cassert>
 #include "wavefunction.h"
@@ -8,14 +8,15 @@
 #include "InitialStates/initialstate.h"
 #include <iostream>
 
-SimpleGaussianInteraction::SimpleGaussianInteraction(System* system, double alpha, double hardCoreDiameter, double beta) :
+SimpleGaussianInteraction::SimpleGaussianInteraction(System* system, double alpha, double beta, double spinFactor):
         WaveFunction(system) {
     assert(alpha >= 0);
     m_numberOfParameters = 1;
-    m_parameters.reserve(1);
+    m_parameters.reserve(2);
     m_parameters.push_back(alpha);
-    m_system->setHardCoreDiameter(hardCoreDiameter);
-    m_beta = beta;
+    m_parameters.push_back(beta);
+    m_system->setSpinFactor(spinFactor);
+    m_omega = m_system->getFrequency(); // A little bit vounrable because now the hamiltonain has to be added before the wavefunction.
 }
 
 double SimpleGaussianInteraction::evaluate() {
@@ -23,10 +24,12 @@ double SimpleGaussianInteraction::evaluate() {
     with interaction. */
 
     auto rSum = calculatePositionSumSquared();
+    double norm = 1;
 
     double interactionPart = evaluateCorrelationPart();
 
-    return exp(-m_parameters[0]*rSum)*interactionPart;
+
+    return norm*exp(-0.5*m_parameters[0]*m_omega*rSum)*interactionPart;
 
 }
 
@@ -34,37 +37,20 @@ double SimpleGaussianInteraction::evaluateCorrelationPart() {
     /* This function calculates the correlation/interaction part of the 
     trial wavefunction. */
 
-    int     numberOfParticles       = m_system->getNumberOfParticles();
-    int     uSumCheck               = 0;
-    double  correlationPart         = 1;
-    double  uSum                    = 0;
-    double  distances_j1_j2         = 0;
-    auto    a                       = m_system->getHardCoreDiameter();
-    // The interparticle distances is calculated when the distances is needed
-    auto    distances               = getDistances(m_system->getParticles());
-    
-    // Here the function u is evaluated
-    for (int j1 = 0; j1 < numberOfParticles-1; j1++){
+    double correlationPart = 0;
+  
+    auto a = m_system->getSpinFactor();
 
-        for (int j2 = j1+1; j2 <numberOfParticles; j2++){
-            distances_j1_j2 = distances[j1][j2];
-            
-            if ( distances_j1_j2 <= a ) {
-                uSumCheck += 1;
-            }else{
-                uSum += log(1-a/distances_j1_j2);
-            }
+    auto distances = getDistances(m_system->getParticles());
+
+    int numberOfParticles = m_system->getNumberOfParticles();
+
+    for (int j7 = 0; j7<numberOfParticles-1; j7++){
+        for (int j8 = j7+1; j8<numberOfParticles; j8++){
+            correlationPart *= exp(a*distances[j7][j8]/(1+m_parameters[1]*distances[j7][j8]));
         }
     }
     
-    // Here the interaction part is set to zero directly (instead of exp(-infty))
-    // if one of the distances are less than a
-    if (uSumCheck > 0){
-        correlationPart = 0;
-    }else{
-        correlationPart = exp(uSum);
-    }
-
     return correlationPart;
 
 }
@@ -78,19 +64,10 @@ double SimpleGaussianInteraction::computeDoubleDerivative() {
 
     auto rSum2 = calculatePositionSumSquared();
 
-    // if ( m_system->getSteps() == 4533+(int)1e5){
-    //     std::cout << "step: " << m_system->getSteps()-1e5 << std::endl;
-    //     std::cout << "rSum2: " << rSum2 << std::endl;
-    // }
-
     interactionPart = computeInteractionPartOfDoubleDerivative();
-
-    // if (m_system->getSteps() == 4533+(int)1e5){
-    //     std::cout << "step: " << m_system->getSteps()-1e5 << std::endl;
-    //     std::cout << "Interaction part: " << interactionPart << std::endl;
-    // }
     
-    return (-2*m_parameters[0]*numberOfParticles*numberOfDimensions + 4*m_parameters[0]*m_parameters[0]*rSum2) + interactionPart;
+    return (-m_omega*m_parameters[0]*numberOfParticles*numberOfDimensions 
+                        + m_omega*m_omega*m_parameters[0]*m_parameters[0]*rSum2) + interactionPart;
 }
 
 std::vector<double> SimpleGaussianInteraction::computeDerivative(int particleIndex){
@@ -105,17 +82,14 @@ std::vector<double> SimpleGaussianInteraction::computeDerivative(int particleInd
     auto m_particles         = m_system->getParticles();
     auto ri                  = m_particles[particleIndex]->getPosition();
 
+
     // The derivative of the interaction part is calculated in
     // another function, because the same expression is used to 
     // evaluate the double derivative.
     auto derivative_psi_in   = computeDerivativeOfu(particleIndex);
 
     for (int n8=0; n8<numberOfDimensions; n8++){
-        if (n8 == 2){
-            derivative_psi_ob = -2*getParameters()[0]*ri[n8]*m_beta;
-        }else{
-            derivative_psi_ob = -2*getParameters()[0]*ri[n8];
-        }
+        derivative_psi_ob = -getParameters()[0]*m_omega*ri[n8];
         vectorWithInteraction[n8] = derivative_psi_ob + derivative_psi_in[n8];
     }
 
@@ -131,7 +105,32 @@ double SimpleGaussianInteraction::computeAlphaDerivative(){
 
     auto vectorSumSquared =  calculatePositionSumSquared();
 
-    return (-1)*vectorSumSquared; // No interaction part because it is divided away.
+    return (-0.5)*m_omega*vectorSumSquared; // No interaction part because it is divided away.
+
+}
+
+double SimpleGaussianInteraction::computeBetaDerivative(){
+    /* This function calculates the normalized derivative of the wavefunction 
+    with regards to the parameter alpha. This is used to perform optimization
+    by the use of gradient descent methods.*/
+
+    auto m_particles = m_system->getParticles();
+    double factorSum = 0;
+    int numberOfParticles = m_system->getNumberOfParticles();
+    auto distances = getDistances(m_system->getParticles());
+    auto a = m_system->getSpinFactor();
+
+
+    for (int j9 = 0; j9<numberOfParticles-1; j9++){
+        for (int j10 = j10+1; j10<numberOfParticles; j10++){
+            auto rLength = distances[j9][j10];
+            double factor = (1+m_parameters[1]*rLength);
+            factorSum += -a*rLength*rLength/(factor*factor);
+        }
+    }
+
+
+    return factorSum; 
 
 }
 
@@ -181,7 +180,7 @@ std::vector <double> SimpleGaussianInteraction::computeDerivativeOfu(int particl
     int                     numberOfParticles       = m_system->getNumberOfParticles();
     int                     numberOfDimentions      = m_system->getNumberOfDimensions();
     double                  uDerivative             = 0;
-    double                  a                       = m_system->getHardCoreDiameter();
+    double                  a                       = m_system->getSpinFactor();
     double                  uDoubleDerivative       = 0;
     double                  uTotalDoubleDerivative  = 0;
     std::vector <double>    uTotalDerivative        (numberOfDimentions);
@@ -200,17 +199,10 @@ std::vector <double> SimpleGaussianInteraction::computeDerivativeOfu(int particl
             // Here sum u'(r_ij) is determined based on the relationship 
             // between r_ij (distance between particles) and a (hard core diameter)
 
-            if (rLength <= a){ // this case should not happen because the wavefuntion is 0 if
-                               // an interparticle distance is smaller than a. And then the energy
-                               // is not sampled.
-
-                uDerivative = -1e50;
-                uDoubleDerivative = -1e50;
-                std::cout << "r_ij < a in computeDerivativeOfu" << std::endl;
-            }else{
-                uDerivative = -a/(a*rLength-rLength*rLength);
-                uDoubleDerivative = a*(a-2*rLength)/(rLength*rLength*(a-rLength)*(a-rLength));
-            }
+            auto factor = (1+m_parameters[1]*rLength);
+            uDerivative = a/(factor*factor);
+            uDoubleDerivative = -2*a*m_parameters[1]/(factor*factor*factor);
+       
 
             for (int l3 = 0; l3<numberOfDimentions; l3++){
                 uTotalDerivative[l3] += ((ri[l3]-rj[l3])/rLength)*uDerivative;
@@ -240,11 +232,7 @@ std::vector<double> SimpleGaussianInteraction::computeDerivativeOneParticle(int 
     auto r = m_particles[particleIndex]->getPosition();
 
     for (int j3=0; j3<numberOfDimensions; j3++){
-        if (j3 == 2){
-            derivativeVector[j3] = -2*getParameters()[0]*m_beta*r[j3];
-        }else{
-            derivativeVector[j3] = -2*getParameters()[0]*r[j3];
-        }
+        derivativeVector[j3] = -getParameters()[0]*m_omega*r[j3];
     }
 
     return derivativeVector;
@@ -257,7 +245,7 @@ bool SimpleGaussianInteraction::calculateInterparticleDistances(std::vector <cla
 
     std::vector <std::vector <double> > distances(numberOfParticles, std::vector<double>(numberOfParticles, (double) 0)); // a matrix of the distance between all particles 
     
-    double a = m_system->getHardCoreDiameter();
+    double a = m_system->getSpinFactor();
     
     std::vector <class Particle*> m_particles = particles;
 
@@ -302,29 +290,4 @@ bool SimpleGaussianInteraction::calculateInterparticleDistances(std::vector <cla
 
 void SimpleGaussianInteraction::setDistances(std::vector<std::vector<double>> distances){
     m_distances = distances;
-}
-
-double SimpleGaussianInteraction::calculatePositionSumSquared(){
-    /* This function calcualtes the positions squared and summed over all
-    particles. This is used in several of the functions in this class. */
-
-    double vectorSumSquared = 0.0;
-    auto m_particles = m_system->getParticles();
-    
-    int numberOfParticles = m_system->getNumberOfParticles();
-    int numberOfDimensions = m_system->getNumberOfDimensions();
-
-    for (int i10 = 0; i10<numberOfParticles;i10++){
-        auto r = m_particles[i10]->getPosition();
-        for (int n10=0; n10<numberOfDimensions; n10++){
-            if (n10 == 2){
-                vectorSumSquared += m_beta*r[n10]*r[n10];
-            }else{
-                vectorSumSquared += r[n10]*r[n10];
-            }
-        }
-    }
-
-
-    return vectorSumSquared;
 }

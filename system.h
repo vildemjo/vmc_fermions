@@ -19,12 +19,14 @@ public:
     void setImportance              (bool statement);
     void setAllEnergies             (bool statement);
     void setFileName                (std::string filename) {m_filename = filename;}
-    void setHardCoreDiameter        (double hardCoreDiameter);
-    class WaveFunction*             getWaveFunction()   { return m_waveFunction; }
-    class Hamiltonian*              getHamiltonian()    { return m_hamiltonian; }
-    class Sampler*                  getSampler()        { return m_sampler; }
-    class InitialState*             getInitialState()   { return m_initialState; }
-    std::vector<class Particle*>    getParticles()      { return m_particles; }
+    void setSpinFactor              (double spinFactor);
+    class WaveFunction*              getWaveFunction()   { return m_waveFunction; }
+    class Hamiltonian*               getHamiltonian()    { return m_hamiltonian; }
+    class Sampler*                   getSampler()        { return m_sampler; }
+    class InitialState*              getInitialState()   { return m_initialState; }
+    std::vector<class Particle*>     getParticles()      { return m_particles; }
+    std::vector<std::vector<double>> getDistances()      { return m_waveFunction->getDistances(m_particles); }
+    std::string getFileName()                            { return m_filename; }
     int getNumberOfParticles()          { return m_numberOfParticles; }
     int getNumberOfDimensions()         { return m_numberOfDimensions; }
     int getNumberOfMetropolisSteps()    { return m_numberOfMetropolisSteps; }
@@ -34,30 +36,31 @@ public:
     bool getAllEnergies()               { return m_allEnergies;}
     double getStepLength()              { return m_stepLength; }
     double getEquilibration()           { return m_equilibration; }
-    double getHardCoreDiameter()        { return m_hardCoreDiameter; }
+    double getSpinFactor()              { return m_spinFactor; }
     double getFrequency()               { return m_omega; }
-    std::string getFileName()                { return m_filename; }
+
+
     double greensFunctionFraction(std::vector<double> posNew, std::vector<double> posOld, std::vector<double> forceNew, std::vector<double> forceOld);
 
 private:
-    int                             m_numberOfParticles = 0;
-    int                             m_numberOfDimensions = 0;
-    int                             m_numberOfMetropolisSteps = 0;
-    int                             m_steps = 0;
-    bool                            m_analytical = false;
-    bool                            m_importance = false;
-    bool                            m_allEnergies = false;
-    double                          m_diffConstant = 0.5;
-    int                             m_equilibration = 0;
-    double                          m_stepLength = 0.1;
-    double                          m_timeStep   = 0.1;
-    double                          m_hardCoreDiameter = 0.5;
-    double                          m_omega = 1.0;
-    std::string                     m_filename = "Output/no_name_specified";
-    class WaveFunction*             m_waveFunction = nullptr;
-    class Hamiltonian*              m_hamiltonian = nullptr;
-    class InitialState*             m_initialState = nullptr;
-    class Sampler*                  m_sampler = nullptr;
-    std::vector<class Particle*>    m_particles = std::vector<class Particle*>();
+    int                              m_numberOfParticles = 0;
+    int                              m_numberOfDimensions = 0;
+    int                              m_numberOfMetropolisSteps = 0;
+    int                              m_steps = 0;
+    bool                             m_analytical = false;
+    bool                             m_importance = false;
+    bool                             m_allEnergies = false;
+    double                           m_diffConstant = 0.5;
+    int                              m_equilibration = 0;
+    double                           m_stepLength = 0.1;
+    double                           m_timeStep   = 0.1;
+    double                           m_spinFactor = 0.5;
+    double                           m_omega = 1.0;
+    std::string                      m_filename = "Output/no_name_specified";
+    class WaveFunction*              m_waveFunction = nullptr;
+    class Hamiltonian*               m_hamiltonian = nullptr;
+    class InitialState*              m_initialState = nullptr;
+    class Sampler*                   m_sampler = nullptr;
+    std::vector<class Particle*>     m_particles = std::vector<class Particle*>(); 
 };
 
