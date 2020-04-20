@@ -25,7 +25,6 @@ public:
     class Sampler*                   getSampler()        { return m_sampler; }
     class InitialState*              getInitialState()   { return m_initialState; }
     std::vector<class Particle*>     getParticles()      { return m_particles; }
-    std::vector<std::vector<double>> getDistances()      { return m_waveFunction->getDistances(m_particles); }
     std::string getFileName()                            { return m_filename; }
     int getNumberOfParticles()          { return m_numberOfParticles; }
     int getNumberOfDimensions()         { return m_numberOfDimensions; }

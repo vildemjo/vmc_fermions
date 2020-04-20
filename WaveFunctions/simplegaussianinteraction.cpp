@@ -41,7 +41,7 @@ double SimpleGaussianInteraction::evaluateCorrelationPart() {
   
     auto a = m_system->getSpinFactor();
 
-    auto distances = getDistances(m_system->getParticles());
+    auto distances = calculateInterparticleDistances(m_system->getParticles());
 
     int numberOfParticles = m_system->getNumberOfParticles();
 
@@ -117,7 +117,7 @@ double SimpleGaussianInteraction::computeBetaDerivative(){
     auto m_particles = m_system->getParticles();
     double factorSum = 0;
     int numberOfParticles = m_system->getNumberOfParticles();
-    auto distances = getDistances(m_system->getParticles());
+    auto distances = calculateInterparticleDistances(m_particles);
     auto a = m_system->getSpinFactor();
 
 
@@ -186,9 +186,12 @@ std::vector <double> SimpleGaussianInteraction::computeDerivativeOfu(int particl
     std::vector <double>    uTotalDerivative        (numberOfDimentions);
     std::vector <double>    uAllStuff               (numberOfDimentions+1);
 
+
     auto m_particles = m_system->getParticles();
-    auto ri         = m_particles[particleNumber]->getPosition();        
-    auto difference = getDistances(m_particles);
+    auto ri         = m_particles[particleNumber]->getPosition();   
+
+    auto difference = calculateInterparticleDistances(m_particles);
+
     
 
     for (int l1 = 0; l1 < numberOfParticles; l1++){
@@ -239,13 +242,11 @@ std::vector<double> SimpleGaussianInteraction::computeDerivativeOneParticle(int 
     
 }
 
-bool SimpleGaussianInteraction::calculateInterparticleDistances(std::vector <class Particle*> particles){
+std::vector <std::vector <double> >  SimpleGaussianInteraction::calculateInterparticleDistances(std::vector <class Particle*> particles){
     int numberOfParticles = m_system->getNumberOfParticles();
     int numberOfDimensions = m_system->getNumberOfDimensions();
 
     std::vector <std::vector <double> > distances(numberOfParticles, std::vector<double>(numberOfParticles, (double) 0)); // a matrix of the distance between all particles 
-    
-    double a = m_system->getSpinFactor();
     
     std::vector <class Particle*> m_particles = particles;
 
@@ -260,34 +261,17 @@ bool SimpleGaussianInteraction::calculateInterparticleDistances(std::vector <cla
         
         for (int k2 = 0; k2 <numberOfParticles; k2++){
             
-             if (k1 != k2){
+            if (k1 != k2){
                 r2 = m_particles[k2]->getPosition();
                 for (int k3 = 0; k3<numberOfDimensions; k3++){
                     distances[k1][k2] +=  (r1[k3]-r2[k3])*(r1[k3]-r2[k3]);    
                 }
                 distances[k1][k2] = sqrt(distances[k1][k2]);      
-               
-                if (distances[k1][k2] < a){
-                     distanceCheck +=1;
-                }
             }else{
                 distances[k1][k2] = 0;
             }
         }
     }
 
-    setDistances(distances);
-
-    // Here the function returns false if any of the particles are closer
-    // to each other than a. This is used in the initializing of the particle
-    // positions, so that we start with particles that are far enough apart.
-    if (distanceCheck > 0){
-        return false;
-    }
- 
-    return true;
-}
-
-void SimpleGaussianInteraction::setDistances(std::vector<std::vector<double>> distances){
-    m_distances = distances;
+    return distances;
 }
