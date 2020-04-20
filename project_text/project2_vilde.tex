@@ -1,0 +1,81 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{setspace}\setstretch{1.1}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{subcaption}
+%\usepackage[Conny]{fncychap}
+\usepackage{amsmath,amssymb}
+\usepackage{fullpage}
+\usepackage{ragged2e}
+\usepackage{rotating}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{nicefrac}
+\usepackage{titling}
+%\numberwithin{figure}{section}
+\usepackage{adjustbox}
+\usepackage{parskip}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[final]{pdfpages}
+\usepackage[toc,page]{appendix}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{gensymb}
+\usepackage{tgbonum}	      % a font package
+\usepackage{booktabs}       % making tables prettier
+\renewcommand{\arraystretch}{1.3}
+
+
+%\color{violet}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\captionsetup{font=footnotesize, labelfont={bf,sf}}
+
+\raggedbottom
+
+%\def\ga2o3{Ga$_2$O$_3$}
+\def\ga2o3{$\beta$-Ga$_2$O$_3$}
+\def\cheq{\leftrightharpoons}
+\def\deg{$^\circ$C$_{}$}
+\date{}
+\author{Vilde Mari Reinertsen}
+
+\title{Project 2}
+
+\begin{document}
+\begingroup
+\let\center\flushleft
+\let\endcenter\endflushleft
+\maketitle
+\endgroup
+
+\begin{abstract}
+This is the abstract.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+\input{intro.tex}
+
+\section{Theory and method}
+\input{theory.tex}
+
+\section{Results and discussion}
+\input{results.tex}
+
+\begin{appendices}
+\input{appendix.tex}
+\end{appendices}
+
+
+\newpage
+%\begin{multicols}{2}\footnotesize
+\bibliographystyle{unsrt}%unsrt
+\bibliography{References}
+%\end{multicols}
+\end{document}
