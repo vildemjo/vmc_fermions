@@ -41,7 +41,7 @@ double SimpleGaussianInteraction::evaluateCorrelationPart() {
   
     auto a = m_system->getSpinFactor();
 
-    auto distances = calculateInterparticleDistances(m_system->getParticles());
+    auto distances = calculateInterparticleDistances();
 
     int numberOfParticles = m_system->getNumberOfParticles();
 
@@ -65,7 +65,7 @@ double SimpleGaussianInteraction::computeDoubleDerivative() {
     auto rSum2 = calculatePositionSumSquared();
 
     interactionPart = computeInteractionPartOfDoubleDerivative();
-    
+
     return (-m_omega*m_parameters[0]*numberOfParticles*numberOfDimensions 
                         + m_omega*m_omega*m_parameters[0]*m_parameters[0]*rSum2) + interactionPart;
 }
@@ -117,12 +117,12 @@ double SimpleGaussianInteraction::computeBetaDerivative(){
     auto m_particles = m_system->getParticles();
     double factorSum = 0;
     int numberOfParticles = m_system->getNumberOfParticles();
-    auto distances = calculateInterparticleDistances(m_particles);
+    auto distances = calculateInterparticleDistances();
     auto a = m_system->getSpinFactor();
 
 
     for (int j9 = 0; j9<numberOfParticles-1; j9++){
-        for (int j10 = j10+1; j10<numberOfParticles; j10++){
+        for (int j10 = j9+1; j10<numberOfParticles; j10++){
             auto rLength = distances[j9][j10];
             double factor = (1+m_parameters[1]*rLength);
             factorSum += -a*rLength*rLength/(factor*factor);
@@ -159,7 +159,9 @@ double SimpleGaussianInteraction::computeInteractionPartOfDoubleDerivative(){
         // double derivative of the interaction part of the trial
         // wavefunction. 
         // See computeDerivativeOfu for more details.
-        auto uPart = computeDerivativeOfu(l5);
+std::cout << "pointer ok here" << std::endl;
+        std::vector<double> uPart = computeDerivativeOfu(l5);
+std::cout << "pointer ok here too" << std::endl;
 
         for (int l4 = 0; l4<numberOfDimensions; l4++){
             firstTerm += derivativePhi[l4]*uPart[l4];
@@ -188,9 +190,9 @@ std::vector <double> SimpleGaussianInteraction::computeDerivativeOfu(int particl
 
 
     auto m_particles = m_system->getParticles();
-    auto ri         = m_particles[particleNumber]->getPosition();   
+    auto ri          = m_particles[particleNumber]->getPosition();   
 
-    auto difference = calculateInterparticleDistances(m_particles);
+    auto difference = calculateInterparticleDistances();
 
     
 
@@ -219,7 +221,7 @@ std::vector <double> SimpleGaussianInteraction::computeDerivativeOfu(int particl
         uAllStuff[l4] = uTotalDerivative[l4];
     }
     uAllStuff[numberOfDimentions+1] = uTotalDoubleDerivative;
-
+                
     return uAllStuff;
 }
 
@@ -242,18 +244,14 @@ std::vector<double> SimpleGaussianInteraction::computeDerivativeOneParticle(int 
     
 }
 
-std::vector <std::vector <double> >  SimpleGaussianInteraction::calculateInterparticleDistances(std::vector <class Particle*> particles){
+std::vector <std::vector <double> >  SimpleGaussianInteraction::calculateInterparticleDistances(){
     int numberOfParticles = m_system->getNumberOfParticles();
     int numberOfDimensions = m_system->getNumberOfDimensions();
+    auto m_particles = m_system->getParticles();
 
     std::vector <std::vector <double> > distances(numberOfParticles, std::vector<double>(numberOfParticles, (double) 0)); // a matrix of the distance between all particles 
     
-    std::vector <class Particle*> m_particles = particles;
-
-    int distanceCheck = 0;
     std::vector <double> r1(numberOfDimensions), r2(numberOfDimensions);
-
-    int times = 0;
 
     for (int k1 = 0; k1 < numberOfParticles; k1++){
 

@@ -30,23 +30,27 @@ bool System::metropolisStep() {
     int      randomParticleIndex  = Random::nextInt(m_numberOfParticles);
 
 
+
     for(int m1=0;m1<m_numberOfDimensions; m1++){
         randomAmount[m1] = m_stepLength*(Random::nextDouble()-0.5);
         m_particles[randomParticleIndex]->adjustPosition(randomAmount[m1], m1);
     }
 
+
     double newWaveFunction = m_waveFunction->evaluate();
+
 
     // Determening if step is accepted (return true) or not (move particle back and return false)
     if (Random::nextDouble() <= newWaveFunction*newWaveFunction
                                 /(oldWaveFunction*oldWaveFunction)){
+                                    cout << "ok" << endl;
         return true;
         }
 
     for(int m2=0;m2<m_numberOfDimensions; m2++){
         m_particles[randomParticleIndex]->adjustPosition(-randomAmount[m2], m2);
     }
-    
+    cout << "no move" << endl;
     return false;
 }
 
@@ -69,7 +73,7 @@ bool System::metropolisStepImportance() {
     int particleIndex = Random::nextInt(m_numberOfParticles);
 
     double oldWaveFunction    = m_waveFunction->evaluate();
-    auto   oldQuantumForce    = m_hamiltonian->computeQuantumForce(particleIndex, m_particles);
+    auto   oldQuantumForce    = m_hamiltonian->computeQuantumForce(particleIndex);
     auto   oldPosition        = m_particles[particleIndex]->getPosition();
 
     for(int m1=0;m1<m_numberOfDimensions; m1++){
@@ -78,7 +82,7 @@ bool System::metropolisStepImportance() {
     }
  
     double newWaveFunction  = m_waveFunction->evaluate();
-    auto   newQuantumForce  = m_hamiltonian->computeQuantumForce(particleIndex, m_particles);
+    auto   newQuantumForce  = m_hamiltonian->computeQuantumForce(particleIndex);
     auto   newPosition      = m_particles[particleIndex]->getPosition();
 
     double greensFunctionFrac = greensFunctionFraction(oldPosition, oldQuantumForce,

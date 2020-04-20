@@ -92,6 +92,7 @@ int main() {
     importanceOrNot = false;
     stepLength = 0.5;
     inititalizingStep = stepLength;
+    allEnergiesOrNot = false;
 
     spinFactor  = 1.0;
     // numberOfBins = 800;
@@ -108,12 +109,14 @@ int main() {
     System* system = new System();
     system->setHamiltonian                (new InteractionHarmonicOscillator(system, omega));
     system->setWaveFunction               (new SimpleGaussianInteraction(system, alpha, beta, spinFactor));
+
     system->setInitialState               (new RandomUniform(system, numberOfDimensions, 
                                                 numberOfParticles, inititalizingStep));
     system->setEquilibration              (equilibration);
     system->setAnalytical                 (analyticOrNot);
     // system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
     system->setFileName                   ("Output/test_");
+
     system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
                                                             allEnergiesOrNot, stepLength);
 

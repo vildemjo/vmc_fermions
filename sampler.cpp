@@ -39,7 +39,8 @@ void Sampler::sample(bool acceptedStep) {
         // Counting number of accepted steps
         if (acceptedStep == 1) { m_numberOfAcceptedSteps += 1; }
 
-        localEnergy = m_system->getHamiltonian()->computeLocalEnergy(m_system->getParticles());
+        localEnergy = m_system->getHamiltonian()->computeLocalEnergy();
+
         m_cumulativeEnergy  += localEnergy;
         m_cumulativeEnergySquared += localEnergy*localEnergy;
         m_cumulativeEnergyDerivative += localEnergy*m_system->getWaveFunction()
@@ -68,7 +69,7 @@ void Sampler::sampleAllEnergies(bool acceptedStep) {
         // When all energies are saved, the one-body density data is also acquired 
         m_system->getWaveFunction()->updateOneBodyDensity();
 
-        double localEnergy = m_system->getHamiltonian()->computeLocalEnergy(m_system->getParticles());
+        double localEnergy = m_system->getHamiltonian()->computeLocalEnergy();
         
         m_cumulativeEnergy  += localEnergy;
         m_localEnergyVector.push_back(localEnergy);

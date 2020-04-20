@@ -33,7 +33,6 @@ double SimpleGaussian::computeDoubleDerivative() {
     int         numberOfParticles   = m_system->getNumberOfParticles();
     int         numberOfDimensions  = m_system->getNumberOfDimensions();
     double      omega               = m_system->getFrequency();
-    double      norm                = 1;
 
     auto rSum2 = calculatePositionSumSquared(); 
     

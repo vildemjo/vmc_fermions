@@ -8,5 +8,5 @@ public:
     double computeDoubleDerivative();
     std::vector<double> computeDerivative(int particleIndex);
     double computeAlphaDerivative();
-    bool getDistanceCheck(std::vector <class Particle*> particles){ return true; };
+
 };
