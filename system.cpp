@@ -143,7 +143,7 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
             m_sampler->sample(acceptedStep);
         }
     }
-    std::cout << "finished MC loop for alpha "<< getWaveFunction()->getParameters()[0] << std::endl;
+    // std::cout << "finished MC loop for alpha "<< getWaveFunction()->getParameters()[0] << std::endl;
     
     m_sampler->computeAverages();
 
@@ -152,7 +152,7 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
         m_sampler->printOneBodyDensityToFile();
     }
 
-    m_sampler->printOutputToTerminal();
+    // m_sampler->printOutputToTerminal();
 
 }
 
