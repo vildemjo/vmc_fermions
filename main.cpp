@@ -14,7 +14,7 @@
 #include "InitialStates/gaussiandistribution.h"
 #include "Math/random.h"
 #include <string>
-#include <omp.h>
+// #include <mpi.h>
 #include <cmath>
 
 using namespace std;
@@ -24,23 +24,20 @@ string setMethodName(bool analyticOrNot);
 
 int main() {
 
-// omp_set_num_threads(4);
-// int thread_num = omp_get_max_threads ();
-
 /* The standard set-up */
 
     bool analyticOrNot       = true;
     bool importanceOrNot     = true;
     bool allEnergiesOrNot    = true;
-    int equilibration        = 0;          // Number of the total steps used for equilibration
+    int equilibration        = 1e5;          // Number of the total steps used for equilibration
     int numberOfDimensions   = 2;
     int numberOfParticles    = 2;
-    int numberOfSteps        = (int) pow(2.0,19.0);
-    double omega             = 2.0;          // Oscillator frequency.
-    double stepLength        = 0.5;          // Metropolis step length.
+    int numberOfSteps        = (int) pow(2.0,21.0);
+    double omega             = 1.0;          // Oscillator frequency.
+    double stepLength        = 0.05;          // Metropolis step length.
     int firstCriteria        = 0;            // print header in file
     double alpha             = 1.0;
-    double beta              = 1.0;   
+    double beta              = 2.0;   
     double inititalizingStep = stepLength;
 
     double spinFactor  = 1;
@@ -53,6 +50,7 @@ int main() {
     /* Set-up to run and save local energies for every step to file*/
 
     // allEnergiesOrNot    = false;
+    // importanceOrNot     = true;
 
     // clock_t start, end;
     // // Recording the starting clock tick.
@@ -63,7 +61,7 @@ int main() {
     // system->setHamiltonian                (new HarmonicOscillator(system, omega));
     // system->setWaveFunction               (new SimpleGaussian(system, alpha));
 
-    // system->setInitialState               (new RandomUniform(system, numberOfDimensions, 
+    // system->setInitialState               (new GaussianDistribution(system, numberOfDimensions, 
     //                                             numberOfParticles, inititalizingStep));
 
     // system->setEquilibration              (equilibration);
@@ -78,8 +76,6 @@ int main() {
 
     // cout << "number of steps: " << numberOfSteps << endl;
 
-    // cout << "energy: " << system->getSampler()->getEnergy()/((double) numberOfParticles*numberOfDimensions) << endl;
-   
     // end = clock();
     // double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
     // cout << "CPU time: " << time_taken << " seconds" << endl;
@@ -99,7 +95,7 @@ int main() {
     // densityLength = 10.0;
 
     // interaction or spherical trap (2.82843 or 1.0)
-    beta = 1.0;    // omega_normal^2/omega_ho^2
+    beta = 0.5;    // omega_normal^2/omega_ho^2
 
     clock_t start, end;
     // Recording the starting clock tick.
@@ -125,6 +121,11 @@ int main() {
     end = clock();
     double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
     cout << "CPU time: " << time_taken << " seconds" << endl;
+
+
+
+
+
 
 
 

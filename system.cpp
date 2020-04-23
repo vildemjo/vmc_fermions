@@ -43,14 +43,14 @@ bool System::metropolisStep() {
     // Determening if step is accepted (return true) or not (move particle back and return false)
     if (Random::nextDouble() <= newWaveFunction*newWaveFunction
                                 /(oldWaveFunction*oldWaveFunction)){
-                                    cout << "ok" << endl;
+                                    // cout << "ok" << endl;
         return true;
         }
 
     for(int m2=0;m2<m_numberOfDimensions; m2++){
         m_particles[randomParticleIndex]->adjustPosition(-randomAmount[m2], m2);
     }
-    cout << "no move" << endl;
+    // cout << "no move" << endl;
     return false;
 }
 
@@ -151,6 +151,8 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
         m_sampler->printOutputToEnergyFile();
         m_sampler->printOneBodyDensityToFile();
     }
+
+    m_sampler->printOutputToTerminal();
 
 }
 

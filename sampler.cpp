@@ -29,6 +29,7 @@ void Sampler::sample(bool acceptedStep) {
         m_cumulativeEnergySquared = 0;
         m_cumulativeEnergyDerivative = 0;
         m_cumulativeAlphaDerivative = 0;
+        m_cumulativeDistance = 0;
     }
 
     double localEnergy = 0;
@@ -40,6 +41,7 @@ void Sampler::sample(bool acceptedStep) {
         if (acceptedStep == 1) { m_numberOfAcceptedSteps += 1; }
 
         localEnergy = m_system->getHamiltonian()->computeLocalEnergy();
+        // m_cumulativeDistance += m_system->getHamiltonian;
 
         m_cumulativeEnergy  += localEnergy;
         m_cumulativeEnergySquared += localEnergy*localEnergy;
@@ -106,8 +108,8 @@ void Sampler::printOutputToTerminal() {
     cout << endl;
     cout << "  -- Wave function parameters -- " << endl;
     cout << " Number of parameters : " << p << endl;
-    for (int i=0; i < p; i++) {
-        cout << " Parameter " << i+1 << " : " << pa.at(i) << endl;
+    for (int o=0; o < p; o++) {
+        cout << " Parameter " << o+1 << " : " << pa.at(o) << endl;
     }
     cout << endl;
     cout << "  -- Results -- " << endl;

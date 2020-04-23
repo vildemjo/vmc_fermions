@@ -1,0 +1,153 @@
+\section{Dealing with the Slater determinant efficiently}
+
+In the metropolis test we calculate the ratio bewteen the wavefunction before and after a proposed move, but now the wavefunction includes a determinant which is costly to calculate. We therefore want to utilize some relations from linear algebra to simplify the ratio and make the algorithm more efficent. The ratio between the Slater determinant part of the wavefunction, $\psi_{SD}$, is
+\begin{equation}\label{eq:metropolis_ratio}
+R = \frac{\psi_{SD}(\bm{r}^{new})}{\psi_{SD}(\bm{r}^{old})} = \frac{\sum_i^N d_{ij}(\bm{r}^{new})C_{ij}(\bm{r}^{new})}{\sum_i^N d_{ij}(\bm{r}^{old})C_{ij}(\bm{r}^{old})}.
+\end{equation} where $d_{ij} = \psi_i(j)$
+
+Here we have used the fact that when you calculate a determinant, you break it down into a sum of smaller determinants times a factor:
+
+\begin{equation*}
+D = 
+ \begin{vmatrix}
+  d_{11} & d_{12} & \cdots & d_{1N} \\
+  d_{21} & d_{22} & \cdots & d_{2N} \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  d_{N1} & d_{N2} & \cdots & d_{NN} 
+\end{vmatrix} = \sum_i^N d_{ij}C_{ij}. %= \sum_i^Nd_{ij}(-1)^{i+j}M_{ij}.
+\end{equation*}
+
+So if $d{ij} = d_{11}$ then 
+\begin{equation*}
+C_{11} = 
+ \begin{vmatrix}
+ d_{22} & d_{23} & \cdots & d_{2N} \\
+  d_{32} & d_{33} & \cdots & d_{3N} \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  d_{N2} & d_{N3} & \cdots & d_{NN} 
+ \end{vmatrix}.
+\end{equation*}
+
+%This matrix can also be expressed using what is called minors. The minor, $M_{23}$, of a matrix, $M$ is the determinant of the matrix $M$, where row 2 and coloumn 3 is removed. The determinant $C$ from above can be expressed in minors as
+%$ C_{ij} = (-1)^{j+i}M_{ij}$ where the factor $(-1)^{j+i}$ ensures the correct sign.
+
+We observe in Eq. \ref{eq:metropolis_ratio} that if we move particle $j$ from $r_j^{old}$ to $r_j^{new}$ the matrix $C_{ij}$ is unchanged, we have only changed the $d_{ij}$ in the original determinant $D$ that is not included in $C_{ij}$. Equation \ref{eq:metropolis_ratio} is then
+
+\begin{equation}
+R = \frac{\sum_i^N d_{ij}(\bm{r}^{new})}{\sum_i^N d_{ij}(\bm{r}^{old})}
+\end{equation}
+
+We can simplify this even further with the relation
+
+\begin{equation}
+\sum_{k=1}^N d_{ik}^{}d_{kj}^{-1} = \delta_{ij} = \left\{ \begin{matrix}
+0 \quad \text{ if } i \neq j \\
+1 \quad \text{ if } i = j
+\end{matrix} \right. 
+\end{equation}
+
+The ratio can be rewritten as
+
+\begin{equation}
+R = \frac{\sum_i^N d_{ij}(\bm{r}^{new})d_{ij}(\bm{r}^{old})^{-1}}{\sum_i^N d_{ij}(\bm{r}^{old})d_{ij}(\bm{r}^{old})^{-1}} = \sum_i^N d_{ij}(\bm{r}^{new})d_{ij}(\bm{r}^{old})^{-1}.
+\end{equation}
+
+The consequence of these calculations are that we now only have to calculate the invers values of the determinant once to know the values for $d_{ij}(\bm{r}^{old})^{-1}$ and then update the row that is changed if the move is accepted.
+
+\section{Energies}
+
+\begin{equation}
+E_{n_xn_y} = \hbar \omega (n_x + n_y + \frac{d}{2})
+\end{equation} where $d$ is the number of dimensions. In this project $d=2$.
+
+\begin{table}[H]\caption{The exact energies for the non-interacting case with different number of particles in a closed shell system.}\label{tab:exact_energies_non_interacting}
+\center
+\begin{tabular}{l|r}
+Energies & \\ \hline
+$E_{00}$ & $ \hbar \omega$ \\
+$E_{10} = E_{01}$ & $2 \hbar \omega$\\
+$E_{20} = E_{02} = E_{11}$ & $3 \hbar \omega$\\
+$E_{30} = E_{03} = E_{21}= E_{12}$ & $4 \hbar \omega$\\ \hline
+$E_{N=2} = 2E_{00}$ & $2 \hbar \omega$\\
+$E_{N=6} = E_{N=2} + 2E_{10} + 2E_{01}$ &$ 10 \hbar \omega$\\
+$E_{N=12} = E_{N=6} + 2E_{20} +2 E_{02} + 2E_{11}$ &$ 28 \hbar \omega$\\
+$E_{N=20} = E_{N=12} + 2E_{30} + 2E_{03} + 2E_{21}+ 2E_{12}$ &$ 60 \hbar \omega$\\
+\end{tabular}
+\end{table}
+
+\section{Hermite polynomials the wavefunction derivatives}
+
+\begin{table}[H]
+\center
+\begin{tabular}{l}
+The relevant Hermite polynomials \\ \hline
+\end{tabular}\\
+\begin{tabular}{l|l}
+$H_0(\sqrt{\omega}x)$ & $1$ \\
+$H_1(\sqrt{\omega}x)$ & $2\sqrt{\omega}x$ \\
+$H_2(\sqrt{\omega}x)$ & $4\omega x^2 -2 $ \\
+$H_3(\sqrt{\omega}x)$ & $8\omega\sqrt{\omega}x^3 - 12\sqrt{\omega}x $ \\
+\end{tabular}
+\end{table}
+
+\begin{equation*}
+\phi_{n_x,n_y}(x,y) = A H_{n_x}(\sqrt{\omega}x)H_{n_y}(\sqrt{\omega}y)\exp{(-\omega(x^2+y^2)/2}.
+\end{equation*}
+
+\begin{table}[H]\caption{$\psi_{n_xn_y}$}\label{tab:single_particle_trial_wavefunctions}
+\begin{tabular}{l}
+Trial wavefunctions for the different states\\ \hline
+\end{tabular}\\
+\begin{tabular}{l|r}
+\large $\psi_{00}$ & \large $A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\psi_{01}$ & \large $2\sqrt{\omega}xA\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\psi_{10}$ & \large $2\sqrt{\omega}yA\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\psi_{20}$ & \large $(4\omega x^2-2)A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\psi_{02}$ & \large $(4\omega y^2-2)A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\psi_{11}$ & \large $4\omega xyA\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\psi_{30}$ & \large $(8\omega\sqrt{\omega}x^3 - 12\sqrt{\omega}x)A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\psi_{03}$ & \large $(8\omega\sqrt{\omega}y^3 - 12\sqrt{\omega}y)A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\psi_{21}$ & \large $(8\omega\sqrt{\omega} x^2y-4\sqrt{\omega}y)A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\psi_{12}$ & \large $(8\omega\sqrt{\omega} xy^2-4\sqrt{\omega}x)A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\end{tabular}
+\end{table}
+
+% Δ(e^(-1/2 a r^2 w) (8 w^(3/2) x^2 y - 4 sqrt(w) x)) = 4 w^(3/2) (a^2 w x (x^2 + y^2) (2 w x y - 1) + 4 a x (1 - 4 w x y) + 4 y)
+
+
+
+\begin{table}[H]\caption{$\psi_{n_xn_y}$}\label{tab:derivative_single_particle_trial_wavefunctions}
+\begin{tabular}{l}
+The derivative of the trial wavefunctions for the different states\\ \hline
+\end{tabular}\\
+\begin{tabular}{l|r}
+\large $\nabla \psi_{00}$ &  $(-\alpha \omega x,-\alpha \omega y) A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla \psi_{01}$ &  $-(\sqrt{\omega}(a\omega x^2-1),\alpha \omega^{\nicefrac{3}{2}}xy)2A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla \psi_{10}$ &  $-(\alpha \omega^{\nicefrac{3}{2}}xy,\sqrt{\omega}(a\omega y^2-1))2A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla \psi_{20}$ &  $-( 2\alpha \omega^2 x^3 - \alpha\omega x-4\omega x,2\alpha\omega^2x^2y-\alpha \omega y)2A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla \psi_{02}$ & $-(2\alpha\omega^2xy^2-\alpha \omega x, 2\alpha \omega^2 y^3 - \alpha\omega y-4\omega y)2A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla \psi_{11}$ & $(-4\omega y (\alpha \omega x^2 -1),-4\omega x (\alpha \omega y^2 -1))A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla \psi_{30}$ &  $(-4 \sqrt{\omega} (2 \alpha \omega^2 x^4 - 3 (\alpha + 2) \omega x^2 + 3),-4 \alpha \omega^{\nicefrac{3}{2}} x y (2 \omega x^2 - 3))A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla \psi_{03}$ &  $(-4 \sqrt{\omega} (-4 \alpha \omega^{\nicefrac{3}{2}} x y (2 \omega y^2 - 3),2 \alpha \omega^2 y^4 - 3 (\alpha + 2) \omega y^2 + 3))A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla \psi_{21}$ &  $(-4  \sqrt{\omega} (\alpha  \omega x^2 (2  \omega x y - 1) - 4  \omega x y + 1), -4 \omega^{\nicefrac{3}{2}} x (2 x (\alpha  \omega y^2 - 1) - \alpha y))A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla \psi_{12}$ &  $(-4 \omega^{\nicefrac{3}{2}} y (2 y (\alpha  \omega x^2 - 1) - \alpha x),-4  \sqrt{\omega} (\alpha  \omega y^2 (2  \omega x y - 1) - 4  \omega x y + 1))A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\end{tabular}
+\end{table}
+
+\begin{table}[H]\caption{$\psi_{n_xn_y}$}\label{tab:doble_derivative_single_particle_trial_wavefunctions}
+\begin{tabular}{l}
+The double derivative of the trial wavefunctions for the different states\\ \hline
+\end{tabular}\\
+\begin{tabular}{l|r}
+\large $\nabla^2 \psi_{00}$ & \large $ (\alpha^2\omega^2 r^2-\alpha\omega) A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla^2 \psi_{01}$ & \large $2\alpha \omega^{\nicefrac{3}{2}} x (\alpha \omega r^2 -4)A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla^2 \psi_{10}$ & \large $2\alpha \omega^{\nicefrac{3}{2}} y (\alpha \omega r^2 -4)A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla^2 \psi_{20}$ & \large $2\omega(\alpha^2 \omega (2\omega x^2 -1)r^2 + \alpha (2-12 \omega x^2) + 4)) A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla^2 \psi_{02}$ & \large $2\omega(\alpha^2 \omega (2\omega y^2 -1)r^2 + \alpha (2-12 \omega y^2) + 4)) A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla^2 \psi_{11}$ & \large $4\alpha \omega^2 xy(\alpha \omega r^2 - 6)A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla^2 \psi_{30}$ & \large $ 4 \omega^{\nicefrac{3}{2}} x (\alpha^2 \omega (2 \omega x^2 - 3) r^2 - 4 \alpha (4 \omega x^2 - 3) + 12) A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla^2 \psi_{03}$ & \large$ 4 \omega^{\nicefrac{3}{2}} y (\alpha^2 \omega (2 \omega y^2 - 3) r^2 - 4 \alpha (4 \omega y^2 - 3) + 12) A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla^2 \psi_{21}$ & \large $4 \omega^{\nicefrac{3}{2}} (\alpha^2 \omega x r^2 (2 \omega x y - 1) + 4 \alpha x (1 - 4\omega x y) + 4 y)A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\large $\nabla^2 \psi_{12}$ & \large $4 \omega^{\nicefrac{3}{2}} (\alpha^2 \omega y r^2 (2 \omega x y - 1) + 4 \alpha y (1 - 4\omega x y) + 4 x)A\exp\left({\frac{-\alpha\omega r^2}{2}}\right)$\\
+\end{tabular}
+\end{table}

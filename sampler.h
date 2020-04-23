@@ -23,10 +23,12 @@ private:
     double  m_energy = 0;
     double  m_energySquared = 0;
     double  m_derivative = 0;
+    double  m_distance = 0;
     double  m_cumulativeEnergy = 0;
     double  m_cumulativeEnergySquared = 0;
     double  m_cumulativeEnergyDerivative = 0;
     double  m_cumulativeAlphaDerivative = 0;
+    double  m_cumulativeDistance = 0;
     int     m_numberOfAcceptedSteps = 0;
     int     m_numberOfCyclesIncluded = 0;
     int     m_firstCriteria = 1;

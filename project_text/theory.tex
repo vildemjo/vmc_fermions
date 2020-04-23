@@ -1,0 +1,53 @@
+\begin{equation}
+\label{eq:finalH}
+\hat{H}=\sum_{i=1}^{N} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right)+\sum_{i<j}\frac{1}{r_{ij}},
+\end{equation}
+
+$$\hat{H}_0=\sum_{i=1}^{N} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right)$$
+
+\begin{equation*}
+\hat{H}_1=\sum_{i<j}\frac{1}{r_{ij}},
+\end{equation*}
+
+\begin{equation*}
+\phi_{n_x,n_y}(x,y) = A H_{n_x}(\sqrt{\omega}x)H_{n_y}(\sqrt{\omega}y)\exp{(-\omega(x^2+y^2)/2}.
+\end{equation*}
+The functions $H_{n_x}(\sqrt{\omega}x)$ are so-called Hermite polynomials, discussed in connection with project 1  while $A$ is a normalization constant. 
+For the lowest-lying state we have $n_x=n_y=0$ and an energy $\epsilon_{n_x,n_y}=\omega(n_x+n_y+1) = \omega$.
+Convince yourself that the lowest-lying energy for the two-electron system  is simply $2\omega$.
+
+\begin{equation*}
+\Phi(\bm{r}_1,\bm{r}_2) = C\exp{\left(-\omega(r_1^2+r_2^2)/2\right)},
+\end{equation*}
+
+\begin{equation}
+   \psi_{T}(\bm{r}_1,\bm{r}_2) = 
+   C\exp{\left(-\alpha\omega(r_1^2+r_2^2)/2\right)}
+   \exp{\left(\frac{ar_{12}}{(1+\beta r_{12})}\right)}, 
+\label{eq:trial}
+\end{equation}
+
+\begin{equation}
+   \langle E \rangle =
+   \frac{\int d\bm{r}_1d\bm{r}_2\psi^{\ast}_T(\bm{r}_1,\bm{r}_2)\hat{H}(\bm{r}_1,\bm{r}_2)\psi_T(\bm{r}_1,\bm{r}_2)}
+        {\int d\bm{r}_1d\bm{r}_2\psi^{\ast}_T(\bm{r}_1,\bm{r}_2)\psi_T(\bm{r}_1,\bm{r}_2)}.
+\end{equation}
+
+$r_{12}=\vert \bm{r}_1-\bm{r}_2\vert$ (with $r_i = \sqrt{r_{i_x}^2+r_{i_y}^2}$)
+
+
+\begin{equation}
+   \psi_{T}(\bm{r}_1,\bm{r}_2,\dots, \bm{r}_6) = 
+   Det\left(\phi_{1}(\bm{r}_1),\phi_{2}(\bm{r}_2),
+   \dots,\phi_{6}(\bm{r}_6)\right)
+   \prod_{i<j}^{6}\exp{\left(\frac{a r_{ij}}{(1+\beta r_{ij})}\right)}, 
+\end{equation}
+
+
+\begin{equation}
+   \psi_{T}(\bm{r}_1,\bm{r}_2, \dots,\bm{r}_{12}) = 
+   Det\left(\phi_{1}(\bm{r}_1),\phi_{2}(\bm{r}_2),
+   \dots,\phi_{12}(\bm{r}_{12})\right)
+   \prod_{i<j}^{12}\exp{\left(\frac{ar_{ij}}{(1+\beta r_{ij})}\right)}, 
+\end{equation}
+

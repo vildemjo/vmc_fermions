@@ -11,12 +11,12 @@
 SimpleGaussianInteraction::SimpleGaussianInteraction(System* system, double alpha, double beta, double spinFactor):
         WaveFunction(system) {
     assert(alpha >= 0);
-    m_numberOfParameters = 1;
+    m_numberOfParameters = 2;
     m_parameters.reserve(2);
     m_parameters.push_back(alpha);
     m_parameters.push_back(beta);
     m_system->setSpinFactor(spinFactor);
-    m_omega = m_system->getFrequency(); // A little bit vounrable because now the hamiltonain has to be added before the wavefunction.
+    m_omega = m_system->getFrequency(); // A little bit vonrable because now the hamiltonain has to be added before the wavefunction.
 }
 
 double SimpleGaussianInteraction::evaluate() {
@@ -145,6 +145,7 @@ double SimpleGaussianInteraction::computeInteractionPartOfDoubleDerivative(){
     int         numberOfParticles = m_system->getNumberOfParticles();
     int         numberOfDimensions = m_system->getNumberOfDimensions();
     auto        m_particles = m_system->getParticles();
+    std::vector<double> uPart(numberOfDimensions+1);
 
 
     for(int l5 = 0; l5 < numberOfParticles; l5++){ 
@@ -159,9 +160,9 @@ double SimpleGaussianInteraction::computeInteractionPartOfDoubleDerivative(){
         // double derivative of the interaction part of the trial
         // wavefunction. 
         // See computeDerivativeOfu for more details.
-std::cout << "pointer ok here" << std::endl;
-        std::vector<double> uPart = computeDerivativeOfu(l5);
-std::cout << "pointer ok here too" << std::endl;
+
+         uPart = computeDerivativeOfu(l5);
+
 
         for (int l4 = 0; l4<numberOfDimensions; l4++){
             firstTerm += derivativePhi[l4]*uPart[l4];
@@ -180,19 +181,20 @@ std::vector <double> SimpleGaussianInteraction::computeDerivativeOfu(int particl
     derivative with regards to one particle. */
 
     int                     numberOfParticles       = m_system->getNumberOfParticles();
-    int                     numberOfDimentions      = m_system->getNumberOfDimensions();
+    int                     numberOfDimensions      = m_system->getNumberOfDimensions();
     double                  uDerivative             = 0;
     double                  a                       = m_system->getSpinFactor();
     double                  uDoubleDerivative       = 0;
     double                  uTotalDoubleDerivative  = 0;
-    std::vector <double>    uTotalDerivative        (numberOfDimentions);
-    std::vector <double>    uAllStuff               (numberOfDimentions+1);
+    std::vector <double>    uTotalDerivative        (numberOfDimensions);
+    std::vector <double>    uAllStuff               (numberOfDimensions+1);
 
 
     auto m_particles = m_system->getParticles();
     auto ri          = m_particles[particleNumber]->getPosition();   
 
     auto difference = calculateInterparticleDistances();
+
 
     
 
@@ -209,24 +211,25 @@ std::vector <double> SimpleGaussianInteraction::computeDerivativeOfu(int particl
             uDoubleDerivative = -2*a*m_parameters[1]/(factor*factor*factor);
        
 
-            for (int l3 = 0; l3<numberOfDimentions; l3++){
+            for (int l3 = 0; l3<numberOfDimensions; l3++){
                 uTotalDerivative[l3] += ((ri[l3]-rj[l3])/rLength)*uDerivative;
             }
 
-            uTotalDoubleDerivative += uDoubleDerivative + ((numberOfDimentions-1)/rLength)*uDerivative;
+            uTotalDoubleDerivative += uDoubleDerivative + ((numberOfDimensions-1)/rLength)*uDerivative;
         }
     }
 
-    for (int l4 = 0; l4<numberOfDimentions; l4++){
+    for (int l4 = 0; l4<numberOfDimensions; l4++){
         uAllStuff[l4] = uTotalDerivative[l4];
     }
-    uAllStuff[numberOfDimentions+1] = uTotalDoubleDerivative;
+    uAllStuff[numberOfDimensions] = uTotalDoubleDerivative;
                 
+
     return uAllStuff;
 }
 
 std::vector<double> SimpleGaussianInteraction::computeDerivativeOneParticle(int particleIndex){
-    /* This function calcualtes the derivative of the not interacting term of the 
+    /* This function calculates the derivative of the not interacting term of the 
     trial wavefunction with regards to one particle. This is used to calculate the double
     derivative. */
 
