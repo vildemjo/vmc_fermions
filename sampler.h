@@ -14,7 +14,7 @@ public:
     void printOutputToEnergyFile();
     void printOneBodyDensityToFile();
     double getEnergy()          { return m_energy; }
-    double getDerivative()      { return m_derivative; }
+    std::vector<double> getDerivative()      { return m_derivative; }
     double getAcceptance()      { return 100*(double)m_numberOfAcceptedSteps/(double)m_numberOfCyclesIncluded; }
 
 private:
@@ -22,12 +22,16 @@ private:
     int     m_stepNumber = 0;
     double  m_energy = 0;
     double  m_energySquared = 0;
-    double  m_derivative = 0;
+    double  m_derivativeAlpha = 0;
+    double  m_derivativeBeta = 0;
+    std::vector<double>  m_derivative = std::vector <double>();
     double  m_distance = 0;
     double  m_cumulativeEnergy = 0;
     double  m_cumulativeEnergySquared = 0;
-    double  m_cumulativeEnergyDerivative = 0;
+    double  m_cumulativeEnergyDerivativeAlpha = 0;
+    double  m_cumulativeEnergyDerivativeBeta = 0;
     double  m_cumulativeAlphaDerivative = 0;
+    double  m_cumulativeBetaDerivative = 0;
     double  m_cumulativeDistance = 0;
     int     m_numberOfAcceptedSteps = 0;
     int     m_numberOfCyclesIncluded = 0;

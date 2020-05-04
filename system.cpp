@@ -152,7 +152,7 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
         m_sampler->printOneBodyDensityToFile();
     }
 
-    // m_sampler->printOutputToTerminal();
+    m_sampler->printOutputToTerminal();
 
 }
 

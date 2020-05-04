@@ -13,6 +13,7 @@ public:
     virtual double computeDoubleDerivative() = 0;
     virtual std::vector<double> computeDerivative(int particleIndex) = 0;
     virtual double computeAlphaDerivative() = 0;
+    virtual double computeBetaDerivative() = 0;
     std::vector <std::vector<double> > getOneBodyDensity(){ return m_oneBodyDensity; };
     void setOneBodyDensityBins(int numberOfBins, double densityLength);
     

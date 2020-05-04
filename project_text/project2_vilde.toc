@@ -10,6 +10,7 @@
 \contentsline {subsubsection}{\numberline {3.2.1}Six particles}{3}
 \contentsline {subsubsection}{\numberline {3.2.2}Twelve particles}{3}
 \contentsline {section}{Appendices}{3}
-\contentsline {section}{\numberline {A}Dealing with the Slater determinant efficiently}{3}
-\contentsline {section}{\numberline {B}Energies}{4}
-\contentsline {section}{\numberline {C}Hermite polynomials the wavefunction derivatives}{5}
+\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{3}
+\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{3}
+\contentsline {section}{\numberline {C}Energies}{4}
+\contentsline {section}{\numberline {D}Hermite polynomials the wavefunction derivatives}{5}

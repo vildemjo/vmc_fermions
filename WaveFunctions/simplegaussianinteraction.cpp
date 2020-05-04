@@ -105,13 +105,13 @@ double SimpleGaussianInteraction::computeAlphaDerivative(){
 
     auto vectorSumSquared =  calculatePositionSumSquared();
 
-    return (-0.5)*m_omega*vectorSumSquared; // No interaction part because it is divided away.
+    return (-0.5)*m_omega*vectorSumSquared;
 
 }
 
 double SimpleGaussianInteraction::computeBetaDerivative(){
     /* This function calculates the normalized derivative of the wavefunction 
-    with regards to the parameter alpha. This is used to perform optimization
+    with regards to the parameter beta. This is used to perform optimization
     by the use of gradient descent methods.*/
 
     auto m_particles = m_system->getParticles();
@@ -128,7 +128,6 @@ double SimpleGaussianInteraction::computeBetaDerivative(){
             factorSum += -a*rLength*rLength/(factor*factor);
         }
     }
-
 
     return factorSum; 
 

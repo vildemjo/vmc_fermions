@@ -1,3 +1,13 @@
+\section{Iteration - derivatives with regards to parameters}
+
+\begin{equation}
+\frac{\partial \psi_T}{\partial \alpha} = -\frac{\omega}{2}\sum_i^N r_i^2
+\end{equation}
+
+\begin{equation}
+\frac{\partial \psi_T}{\partial \beta} = - \sum_{i<j}^N \frac{a_{ij}r_{ij}^2}{(1+\beta r_{ij})^2}
+\end{equation}
+
 \section{Dealing with the Slater determinant efficiently}
 
 In the metropolis test we calculate the ratio bewteen the wavefunction before and after a proposed move, but now the wavefunction includes a determinant which is costly to calculate. We therefore want to utilize some relations from linear algebra to simplify the ratio and make the algorithm more efficent. The ratio between the Slater determinant part of the wavefunction, $\psi_{SD}$, is

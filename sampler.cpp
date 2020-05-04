@@ -27,8 +27,10 @@ void Sampler::sample(bool acceptedStep) {
     if (m_stepNumber == 0) {
         m_cumulativeEnergy = 0;
         m_cumulativeEnergySquared = 0;
-        m_cumulativeEnergyDerivative = 0;
+        m_cumulativeEnergyDerivativeAlpha = 0;
+        m_cumulativeEnergyDerivativeBeta = 0;
         m_cumulativeAlphaDerivative = 0;
+        m_cumulativeBetaDerivative = 0;
         m_cumulativeDistance = 0;
     }
 
@@ -45,9 +47,13 @@ void Sampler::sample(bool acceptedStep) {
 
         m_cumulativeEnergy  += localEnergy;
         m_cumulativeEnergySquared += localEnergy*localEnergy;
-        m_cumulativeEnergyDerivative += localEnergy*m_system->getWaveFunction()
-                                                        ->computeAlphaDerivative();
-        m_cumulativeAlphaDerivative += m_system->getWaveFunction()->computeAlphaDerivative();
+        // m_cumulativeEnergyDerivativeAlpha += localEnergy*m_system->getWaveFunction()
+        //                                                 ->computeAlphaDerivative();
+                                                        
+        // m_cumulativeEnergyDerivativeBeta += localEnergy*m_system->getWaveFunction()
+        //                                                 ->computeBetaDerivative();
+        // m_cumulativeAlphaDerivative += m_system->getWaveFunction()->computeAlphaDerivative();
+        // m_cumulativeBetaDerivative += m_system->getWaveFunction()->computeBetaDerivative();
     }
 
     m_stepNumber++;
@@ -57,8 +63,10 @@ void Sampler::sampleAllEnergies(bool acceptedStep) {
     if (m_stepNumber == 0) {
         m_cumulativeEnergy = 0;
         m_cumulativeEnergySquared = 0;
-        m_cumulativeEnergyDerivative = 0;
+        m_cumulativeEnergyDerivativeAlpha = 0;
+        m_cumulativeEnergyDerivativeBeta = 0;
         m_cumulativeAlphaDerivative = 0;
+        m_cumulativeBetaDerivative = 0;
         m_localEnergyVector = std::vector <double>();
     }
     
@@ -76,8 +84,13 @@ void Sampler::sampleAllEnergies(bool acceptedStep) {
         m_cumulativeEnergy  += localEnergy;
         m_localEnergyVector.push_back(localEnergy);
         m_cumulativeEnergySquared += localEnergy*localEnergy;
-        m_cumulativeEnergyDerivative += localEnergy*m_system->getWaveFunction()->
-                                        computeAlphaDerivative();
+        m_cumulativeEnergyDerivativeAlpha += localEnergy*m_system->getWaveFunction()
+                                                        ->computeAlphaDerivative();
+                                                        
+        m_cumulativeEnergyDerivativeBeta += localEnergy*m_system->getWaveFunction()
+                                                        ->computeBetaDerivative();
+        m_cumulativeAlphaDerivative += m_system->getWaveFunction()->computeAlphaDerivative();
+        m_cumulativeBetaDerivative += m_system->getWaveFunction()->computeBetaDerivative();
         m_cumulativeAlphaDerivative += m_system->getWaveFunction()->computeAlphaDerivative();
         
     }
@@ -220,8 +233,12 @@ void Sampler::computeAverages() {
     m_energySquared = m_cumulativeEnergySquared / (double) m_numberOfCyclesIncluded;
 
     // The derivative is used by the gradient descent methods
-    m_derivative = 2* m_cumulativeEnergyDerivative / (double) m_numberOfCyclesIncluded
-                    - 2*(m_cumulativeAlphaDerivative / (double) m_numberOfCyclesIncluded)*m_energy;
+    // m_derivativeAlpha = 2* m_cumulativeEnergyDerivativeAlpha / (double) m_numberOfCyclesIncluded
+                    // - 2*(m_cumulativeAlphaDerivative / (double) m_numberOfCyclesIncluded)*m_energy;
+    // m_derivativeBeta =  2* m_cumulativeEnergyDerivativeBeta / (double) m_numberOfCyclesIncluded
+                    // - 2*(m_cumulativeBetaDerivative / (double) m_numberOfCyclesIncluded)*m_energy;
+    // m_derivative[0] = m_derivativeAlpha;
+    // m_derivative[1] = m_derivativeBeta;
 }
 
 void Sampler::setFileOutput(int firstCriteria){
