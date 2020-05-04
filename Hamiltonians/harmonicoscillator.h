@@ -8,6 +8,7 @@ public:
 
     double              computeKineticEnergy();
     double              computePotentialEnergy();
+    double              computeInteractionEnergy(){return 0;};
     double              computeLocalEnergy();
     std::vector<double> computeQuantumForce(int particleIndex);
 

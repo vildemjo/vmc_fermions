@@ -28,8 +28,7 @@ double SimpleGaussianInteraction::evaluate() {
 
     double interactionPart = evaluateCorrelationPart();
 
-
-    return norm*exp(-0.5*m_parameters[0]*m_omega*rSum)*interactionPart;
+    return norm*exp(-0.5*m_parameters[0]*m_omega*rSum);//*interactionPart;
 
 }
 
@@ -47,11 +46,11 @@ double SimpleGaussianInteraction::evaluateCorrelationPart() {
 
     for (int j7 = 0; j7<numberOfParticles-1; j7++){
         for (int j8 = j7+1; j8<numberOfParticles; j8++){
-            correlationPart *= exp(a*distances[j7][j8]/(1+m_parameters[1]*distances[j7][j8]));
+            correlationPart += a*distances[j7][j8]/(1+m_parameters[1]*distances[j7][j8]);
         }
     }
     
-    return correlationPart;
+    return exp(correlationPart);
 
 }
 
@@ -105,6 +104,8 @@ double SimpleGaussianInteraction::computeAlphaDerivative(){
 
     auto vectorSumSquared =  calculatePositionSumSquared();
 
+    // std::cout << "vector sum sq.: " << vectorSumSquared << std::endl;
+
     return (-0.5)*m_omega*vectorSumSquared;
 
 }
@@ -128,6 +129,8 @@ double SimpleGaussianInteraction::computeBetaDerivative(){
             factorSum += -a*rLength*rLength/(factor*factor);
         }
     }
+
+    // std::cout << "factor sum: " << factorSum << std::endl;
 
     return factorSum; 
 

@@ -43,7 +43,6 @@ double InteractionHarmonicOscillator::computePotentialEnergy() {
 
     potentialEnergy = 0.5*m*m_omega*m_omega*rSum2;
 
-
     return potentialEnergy;
 }
 

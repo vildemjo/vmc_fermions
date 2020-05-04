@@ -42,6 +42,7 @@ void RandomUniform::setupInitialState() {
         m_particles.at(m3)->setNumberOfDimensions(m_numberOfDimensions);
         m_particles.at(m3)->setPosition(position);
         m_particles.at(m3)->setParticleIndex(m3);
+        // std::cout << "position: " << position[0] << " , " << position[1] << std::endl;
     }
 
   

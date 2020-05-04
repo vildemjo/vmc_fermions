@@ -47,13 +47,18 @@ void Sampler::sample(bool acceptedStep) {
 
         m_cumulativeEnergy  += localEnergy;
         m_cumulativeEnergySquared += localEnergy*localEnergy;
-        // m_cumulativeEnergyDerivativeAlpha += localEnergy*m_system->getWaveFunction()
-        //                                                 ->computeAlphaDerivative();
-                                                        
-        // m_cumulativeEnergyDerivativeBeta += localEnergy*m_system->getWaveFunction()
-        //                                                 ->computeBetaDerivative();
-        // m_cumulativeAlphaDerivative += m_system->getWaveFunction()->computeAlphaDerivative();
-        // m_cumulativeBetaDerivative += m_system->getWaveFunction()->computeBetaDerivative();
+
+        m_cumulativeKineticEnergy += m_system->getHamiltonian()->computeKineticEnergy();
+        m_cumulativePotentialEnergy += m_system->getHamiltonian()->computePotentialEnergy();
+        m_cumulativeInteractionEnergy += m_system->getHamiltonian()->computeInteractionEnergy();
+
+
+        m_cumulativeEnergyDerivativeAlpha += localEnergy*m_system->getWaveFunction()
+                                                        ->computeAlphaDerivative();     
+        m_cumulativeEnergyDerivativeBeta += localEnergy*m_system->getWaveFunction()
+                                                        ->computeBetaDerivative();
+        m_cumulativeAlphaDerivative += m_system->getWaveFunction()->computeAlphaDerivative();
+        m_cumulativeBetaDerivative += m_system->getWaveFunction()->computeBetaDerivative();
     }
 
     m_stepNumber++;
@@ -232,13 +237,20 @@ void Sampler::computeAverages() {
     m_energy = (m_cumulativeEnergy / (double) m_numberOfCyclesIncluded);
     m_energySquared = m_cumulativeEnergySquared / (double) m_numberOfCyclesIncluded;
 
+    m_kineticEnergy = m_cumulativeKineticEnergy / (double) m_numberOfCyclesIncluded;
+    m_potentialEnergy = m_cumulativePotentialEnergy / (double) m_numberOfCyclesIncluded;
+    m_interactionEnergy = m_cumulativeInteractionEnergy / (double) m_numberOfCyclesIncluded;
+
     // The derivative is used by the gradient descent methods
-    // m_derivativeAlpha = 2* m_cumulativeEnergyDerivativeAlpha / (double) m_numberOfCyclesIncluded
-                    // - 2*(m_cumulativeAlphaDerivative / (double) m_numberOfCyclesIncluded)*m_energy;
-    // m_derivativeBeta =  2* m_cumulativeEnergyDerivativeBeta / (double) m_numberOfCyclesIncluded
-                    // - 2*(m_cumulativeBetaDerivative / (double) m_numberOfCyclesIncluded)*m_energy;
-    // m_derivative[0] = m_derivativeAlpha;
-    // m_derivative[1] = m_derivativeBeta;
+    m_derivativeAlpha = 2* m_cumulativeEnergyDerivativeAlpha / (double) m_numberOfCyclesIncluded
+                    - 2*(m_cumulativeAlphaDerivative / (double) m_numberOfCyclesIncluded)*m_energy;
+
+    m_derivativeBeta =  2* m_cumulativeEnergyDerivativeBeta / (double) m_numberOfCyclesIncluded
+                    - 2*(m_cumulativeBetaDerivative / (double) m_numberOfCyclesIncluded)*m_energy;
+  
+    m_derivative[0] = m_derivativeAlpha;
+
+    m_derivative[1] = m_derivativeBeta;
 }
 
 void Sampler::setFileOutput(int firstCriteria){

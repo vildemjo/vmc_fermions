@@ -28,7 +28,7 @@ bool System::metropolisStep() {
     std::vector<double> randomAmount(m_numberOfDimensions);
     double   oldWaveFunction      = m_waveFunction->evaluate();
     int      randomParticleIndex  = Random::nextInt(m_numberOfParticles);
-
+    // std::cout << "Old wavefunction: " << oldWaveFunction << endl;
 
 
     for(int m1=0;m1<m_numberOfDimensions; m1++){
@@ -38,7 +38,7 @@ bool System::metropolisStep() {
 
 
     double newWaveFunction = m_waveFunction->evaluate();
-
+    // std::cout << "New wavefunction: " << newWaveFunction << endl;
 
     // Determening if step is accepted (return true) or not (move particle back and return false)
     if (Random::nextDouble() <= newWaveFunction*newWaveFunction
@@ -147,12 +147,14 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
     
     m_sampler->computeAverages();
 
+    //  std::cout << "computes averages" << std::endl;
+
     if (getAllEnergies() == true){
         m_sampler->printOutputToEnergyFile();
         // m_sampler->printOneBodyDensityToFile();
     }
 
-    m_sampler->printOutputToTerminal();
+    // m_sampler->printOutputToTerminal();
 
 }
 
