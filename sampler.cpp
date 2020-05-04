@@ -78,7 +78,7 @@ void Sampler::sampleAllEnergies(bool acceptedStep) {
         if (acceptedStep == 1) { m_numberOfAcceptedSteps += 1; }
 
         // When all energies are saved, the one-body density data is also acquired 
-        m_system->getWaveFunction()->updateOneBodyDensity();
+        // m_system->getWaveFunction()->updateOneBodyDensity();
 
         double localEnergy = m_system->getHamiltonian()->computeLocalEnergy();
         

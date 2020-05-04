@@ -149,7 +149,7 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
 
     if (getAllEnergies() == true){
         m_sampler->printOutputToEnergyFile();
-        m_sampler->printOneBodyDensityToFile();
+        // m_sampler->printOneBodyDensityToFile();
     }
 
     m_sampler->printOutputToTerminal();
