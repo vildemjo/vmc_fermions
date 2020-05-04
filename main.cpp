@@ -112,7 +112,7 @@ int main() {
     // system->setEquilibration              (equilibration);
     // system->setAnalytical                 (analyticOrNot);
     // // system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
-    // system->setFileName                   ("Output/test_");
+    // system->setFileName                   ("Output/test_interaction");
 
     // system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
     //                                                         allEnergiesOrNot, stepLength);
@@ -127,7 +127,7 @@ int main() {
 
 /* Gradient descent */
 
-    ofstream  file2; //, file;
+    ofstream  file2, file;
 
     double energyChange = 1.0;
     double stopCriteria = 1e-6;
@@ -137,7 +137,7 @@ int main() {
     double betaNew = 0;
     double minimizationRate = 0.05;
     allEnergiesOrNot = false;
-    importanceOrNot = false;
+    importanceOrNot = true;
     alpha = 0.9;
     beta = 0.1;
     stepLength = 0.5;
@@ -149,13 +149,13 @@ int main() {
     numberOfParticles   = 2;
     numberOfSteps       = (int) std::pow(2,19.0);
 
-    string file_name = "Output/test_gradient_descent_below.txt";
-    string energy_file = "Output/test_energy_descent.txt";
+    string file_name = "Output/test_gradient_descent_imp.txt";
+    string energy_file = "Output/test_energy_descent_imp.txt";
 
-    // file.open (file_name, ios::out | ios::trunc);
-    // file << "Alpha: \t Beta: \t Energy: \t Derivative (alpha): \t Derivative (beta): \n";
-    // file.close();
-    // cout << "Alpha: \t Beta: \t Energy: \t Derivative (alpha): \t Derivative (beta): \n";
+    file.open (file_name, ios::out | ios::trunc);
+    file << "Alpha: \t Beta: \t Energy: \t Derivative (alpha): \t Derivative (beta): \n";
+    file.close();
+    cout << "Alpha: \t Beta: \t Energy: \t Derivative (alpha): \t Derivative (beta): \n";
 
     file2.open (energy_file, ios::out | ios::trunc);
     file2 << "Alpha: \t Beta: \t Energy: \t Kinetic Energy: \t Potential Energy:  \t Interaction Energy:\n";
@@ -179,12 +179,12 @@ int main() {
         energyNew = system->getSampler()->getEnergy();
         energyDerivative = system->getSampler()->getDerivative();
         alphaNew = alpha - minimizationRate*energyDerivative[0]/numberOfParticles;
-        betaNew = beta - minimizationRate*energyDerivative[1]/numberOfParticles;
+        betaNew = beta - 2*minimizationRate*energyDerivative[1]/numberOfParticles;
 
         
-        // file.open (file_name, ios::out | ios::app);
-        // file << alpha << "\t" << beta << "\t" << energy << "\t" << energyDerivative[0] << "\t" << energyDerivative[1] << "\n";
-        // file.close();
+        file.open (file_name, ios::out | ios::app);
+        file << alpha << "\t" << beta << "\t" << energy << "\t" << energyDerivative[0] << "\t" << energyDerivative[1] << "\n";
+        file.close();
 
         file2.open (energy_file, ios::out | ios::app);
         file2 << alpha << "\t" << beta << "\t" << energy << "\t" << system->getSampler()->getKineticEnergy() 
