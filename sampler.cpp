@@ -68,6 +68,7 @@ void Sampler::sampleAllEnergies(bool acceptedStep) {
         m_cumulativeAlphaDerivative = 0;
         m_cumulativeBetaDerivative = 0;
         m_localEnergyVector = std::vector <double>();
+        m_localEnergyVector.reserve(m_numberOfMetropolisSteps);
     }
     
     // Sampling if the equilibrium stage is passed
@@ -84,14 +85,13 @@ void Sampler::sampleAllEnergies(bool acceptedStep) {
         m_cumulativeEnergy  += localEnergy;
         m_localEnergyVector.push_back(localEnergy);
         m_cumulativeEnergySquared += localEnergy*localEnergy;
-        m_cumulativeEnergyDerivativeAlpha += localEnergy*m_system->getWaveFunction()
-                                                        ->computeAlphaDerivative();
+        // m_cumulativeEnergyDerivativeAlpha += localEnergy*m_system->getWaveFunction()
+        //                                                 ->computeAlphaDerivative();
                                                         
-        m_cumulativeEnergyDerivativeBeta += localEnergy*m_system->getWaveFunction()
-                                                        ->computeBetaDerivative();
-        m_cumulativeAlphaDerivative += m_system->getWaveFunction()->computeAlphaDerivative();
-        m_cumulativeBetaDerivative += m_system->getWaveFunction()->computeBetaDerivative();
-        m_cumulativeAlphaDerivative += m_system->getWaveFunction()->computeAlphaDerivative();
+        // m_cumulativeEnergyDerivativeBeta += localEnergy*m_system->getWaveFunction()
+        //                                                 ->computeBetaDerivative();
+        // m_cumulativeAlphaDerivative += m_system->getWaveFunction()->computeAlphaDerivative();
+        // m_cumulativeBetaDerivative += m_system->getWaveFunction()->computeBetaDerivative();
         
     }
 

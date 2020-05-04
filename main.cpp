@@ -49,79 +49,79 @@ int main() {
 
     /* Set-up to run and save local energies for every step to file*/
 
-    // allEnergiesOrNot    = false;
-    // importanceOrNot     = true;
+    allEnergiesOrNot    = true;
+    importanceOrNot     = true;
 
-    // clock_t start, end;
-    // // Recording the starting clock tick.
-    // start = clock();
+    clock_t start, end;
+    // Recording the starting clock tick.
+    start = clock();
 
     
-    // System* system = new System();
-    // system->setHamiltonian                (new HarmonicOscillator(system, omega));
-    // system->setWaveFunction               (new SimpleGaussian(system, alpha));
+    System* system = new System();
+    system->setHamiltonian                (new HarmonicOscillator(system, omega));
+    system->setWaveFunction               (new SimpleGaussian(system, alpha));
 
-    // system->setInitialState               (new GaussianDistribution(system, numberOfDimensions, 
-    //                                             numberOfParticles, inititalizingStep));
+    system->setInitialState               (new GaussianDistribution(system, numberOfDimensions, 
+                                                numberOfParticles, inititalizingStep));
 
-    // system->setEquilibration              (equilibration);
+    system->setEquilibration              (equilibration);
 
-    // system->setAnalytical                 (analyticOrNot);
+    system->setAnalytical                 (analyticOrNot);
 
-    // // system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
-    // system->setFileName                   ("Output/test");
+    // system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
+    system->setFileName                   ("Output/test_normal");
 
-    // system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
-    //                                                         allEnergiesOrNot, stepLength);
+    system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
+                                                            allEnergiesOrNot, stepLength);
 
-    // cout << "number of steps: " << numberOfSteps << endl;
+    cout << "number of steps: " << numberOfSteps << endl;
 
-    // end = clock();
-    // double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
-    // cout << "CPU time: " << time_taken << " seconds" << endl;
+    end = clock();
+    double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
+    cout << "CPU time: " << time_taken << " seconds" << endl;
 
 
 
     /* Same but for the interacting case */   
 
 
-    importanceOrNot = false;
-    stepLength = 0.5;
-    inititalizingStep = stepLength;
-    allEnergiesOrNot = false;
+    // importanceOrNot = false;
+    // stepLength = 0.5;
+    // inititalizingStep = stepLength;
+    // allEnergiesOrNot = false;
 
-    spinFactor  = 1.0;
-    // numberOfBins = 800;
-    // densityLength = 10.0;
+    // spinFactor  = 1.0;
+    // // numberOfBins = 800;
+    // // densityLength = 10.0;
 
-    // interaction or spherical trap (2.82843 or 1.0)
-    beta = 0.3474;    // omega_normal^2/omega_ho^2
-    alpha = 1.0009;
+    // // interaction or spherical trap (2.82843 or 1.0)
+    // beta = 0.3474;    // omega_normal^2/omega_ho^2
+    // alpha = 1.0009;
 
-    clock_t start, end;
-    // Recording the starting clock tick.
-    start = clock();
+    // clock_t start, end;
+    // // Recording the starting clock tick.
+    // start = clock();
 
 
-    System* system = new System();
-    system->setHamiltonian                (new InteractionHarmonicOscillator(system, omega));
-    system->setWaveFunction               (new SimpleGaussianInteraction(system, alpha, beta, spinFactor));
+    // System* system = new System();
+    // system->setHamiltonian                (new InteractionHarmonicOscillator(system, omega));
+    // system->setWaveFunction               (new SimpleGaussianInteraction(system, alpha, beta, spinFactor));
 
-    system->setInitialState               (new RandomUniform(system, numberOfDimensions, 
-                                                numberOfParticles, inititalizingStep));
-    system->setEquilibration              (equilibration);
-    system->setAnalytical                 (analyticOrNot);
-    // system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
-    system->setFileName                   ("Output/test_");
+    // system->setInitialState               (new RandomUniform(system, numberOfDimensions, 
+    //                                             numberOfParticles, inititalizingStep));
+    // system->setEquilibration              (equilibration);
+    // system->setAnalytical                 (analyticOrNot);
+    // // system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
+    // system->setFileName                   ("Output/test_");
 
-    system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
-                                                            allEnergiesOrNot, stepLength);
+    // system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
+    //                                                         allEnergiesOrNot, stepLength);
 
-    // cout << "energy: " << system->getSampler()->getEnergy() << endl;
+    // // cout << "energy: " << system->getSampler()->getEnergy() << endl;
 
-    end = clock();
-    double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
-    cout << "CPU time: " << time_taken << " seconds" << endl;
+    // end = clock();
+    // double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
+    // cout << "CPU time: " << time_taken << " seconds" << endl;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
