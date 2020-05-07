@@ -16,6 +16,7 @@ public:
     virtual double computeBetaDerivative() = 0;
     std::vector <std::vector<double> > getOneBodyDensity(){ return m_oneBodyDensity; };
     void setOneBodyDensityBins(int numberOfBins, double densityLength);
+    virtual double getDistance() = 0;
     
 protected:
     int     m_numberOfParameters = 0;

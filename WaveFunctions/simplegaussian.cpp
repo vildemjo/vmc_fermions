@@ -72,3 +72,13 @@ double SimpleGaussian::computeAlphaDerivative(){
     return (-0.5)*omega*vectorSumSquared;
 
 }
+
+double SimpleGaussian::getDistance(){
+    auto m_particles = m_system->getParticles();
+    auto r0 = m_particles[0]->getPosition();
+    auto r1 = m_particles[1]->getPosition();
+
+    double rLength = sqrt((r0[0]-r1[0])*(r0[0]-r1[0]) + (r0[1]-r1[1])*(r0[1]-r1[1]));
+
+    return rLength;
+}

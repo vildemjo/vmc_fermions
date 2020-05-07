@@ -10,6 +10,40 @@
 
 \section{Dealing with the Slater determinant efficiently}
 
+Determening a determinant numerically is a costly operation, so we want to do some alteration to increase the efficency of the code.
+
+\subsection{Slater determinant}
+
+The Slater determinant is contain the single-particle wave function of the number of particles included in the system evaluated at the posistion for all particles included because electrons are indistinguishable. The determinant is written as
+
+$$ D = Det\left(\phi_{1}(\bm{r}_1),\phi_{2}(\bm{r}_2),
+   \dots,\phi_{N}(\bm{r}_N)\right) =  \begin{vmatrix}
+  \phi_{1}(\bm{r}_1) & \phi_{2}(\bm{r}_1) & \cdots & \phi_{N}(\bm{r}_1) \\
+  \phi_{1}(\bm{r}_2) & \phi_{2}(\bm{r}_2) & \cdots & \phi_{N}(\bm{r}_2) \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  \phi_{1}(\bm{r}_N) & \phi_{2}(\bm{r}_N) & \cdots & \phi_{N}(\bm{r}_N).
+\end{vmatrix}$$
+
+Hence the rows represent different positions, $r_i$, and the coloumns represent different states. To simplify the calcualtions we want to have all states with spin up in one determinant and all states with spin down in another determinant. For six particles we then get
+
+$$ D = D_\uparrow D_\downarrow = \begin{vmatrix}
+  \phi_{1}(\bm{r}_1) & \phi_{3}(\bm{r}_1) & \phi_{5}(\bm{r}_1) \\
+  \phi_{1}(\bm{r}_2) & \phi_{3}(\bm{r}_2) &  \phi_{5}(\bm{r}_2) \\
+  \phi_{1}(\bm{r}_3) & \phi_{3}(\bm{r}_3) & \phi_{5}(\bm{r}_3)
+\end{vmatrix}\begin{vmatrix}
+  \phi_{2}(\bm{r}_4) & \phi_{4}(\bm{r}_4) & \phi_{6}(\bm{r}_4) \\
+  \phi_{2}(\bm{r}_5) & \phi_{4}(\bm{r}_5) &  \phi_{6}(\bm{r}_5) \\
+  \phi_{2}(\bm{r}_6) & \phi_{4}(\bm{r}_6) & \phi_{6}(\bm{r}_6)
+\end{vmatrix}.
+$$
+We see this from Tab. \ref{tab:notation_wavefunctions} and Eq. \ref{eq:single_particle_wf}.
+\textit{Mister anti-symmertrien, men expectation value er lik. } 
+
+The trial wavefunction can therefore be rewritten to 
+$$ \psi_T = D_\uparrow D_\downarrow \psi_C $$ where $\psi_C$ is the correlation part of the trial wavefunction. Now we only have to update one of these matrises when we move a particle, depending on which spin the particle has. 
+ 
+\subsection{The Metropolis ratio}
+
 In the metropolis test we calculate the ratio bewteen the wavefunction before and after a proposed move, but now the wavefunction includes a determinant which is costly to calculate. We therefore want to utilize some relations from linear algebra to simplify the ratio and make the algorithm more efficent. The ratio between the Slater determinant part of the wavefunction, $\psi_{SD}$, is
 \begin{equation}\label{eq:metropolis_ratio}
 R = \frac{\psi_{SD}(\bm{r}^{new})}{\psi_{SD}(\bm{r}^{old})} = \frac{\sum_i^N d_{ij}(\bm{r}^{new})C_{ij}(\bm{r}^{new})}{\sum_i^N d_{ij}(\bm{r}^{old})C_{ij}(\bm{r}^{old})}.
@@ -62,7 +96,18 @@ The ratio can be rewritten as
 R = \frac{\sum_i^N d_{ij}(\bm{r}^{new})d_{ij}(\bm{r}^{old})^{-1}}{\sum_i^N d_{ij}(\bm{r}^{old})d_{ij}(\bm{r}^{old})^{-1}} = \sum_i^N d_{ij}(\bm{r}^{new})d_{ij}(\bm{r}^{old})^{-1}.
 \end{equation}
 
-The consequence of these calculations are that we now only have to calculate the invers values of the determinant once to know the values for $d_{ij}(\bm{r}^{old})^{-1}$ and then update the row that is changed if the move is accepted.
+The consequence of these calculations are that we now only have to calculate the invers values of the determinant once to know the values for $d_{ij}(\bm{r}^{old})^{-1}$ and then update only the row of the position that was changed in the Slater determinant and calculate the invers of the determinant again only if the move is accepted. 
+
+\subsection{Updating the inverse of the Slater determinant}
+
+After a move is accepted in the Metropolis test, the row in the Slater determinant representing that particle is updated, but the inverse of the Slater determinant also needs to be updated because the Slater determinant has changed. This could be done by simply calculating the inverse of the determinant, but this is costly and there is a more efficient way. The elements of the determinant $d_{kj}^{-1}$ (\textit{hva betyr den $^{-1}$? At den skal opphøyes i minus 1 eller er det notasjon på at det er et element i den inverse matrisen?}) can be found through
+
+$$ d_{kj}^{-1}(\bm{r}^{new}) = \left\{ \begin{matrix}
+d_{kj}^{-1}(\bm{r}^{old})- \frac{d_{kj}^{-1}(\bm{r}^{old})}{R}\sum_{l=1}^N d_{il}^{-1}(\bm{r}^{new})d_{lj}^{-1}(\bm{r}^{old}) &\quad \text{ if } i \neq j \\
+\frac{d_{kj}^{-1}(\bm{r}^{old})}{R}\sum_{l=1}^N d_{il}^{-1}(\bm{r}^{old})d_{lj}^{-1}(\bm{r}^{old}) &\quad \text{ if } i = j
+\end{matrix} \right. , $$
+
+where $i$ is the number of the row representing the particle that was moved. 
 
 \section{Energies}
 
@@ -85,7 +130,7 @@ $E_{N=20} = E_{N=12} + 2E_{30} + 2E_{03} + 2E_{21}+ 2E_{12}$ &$ 60 \hbar \omega$
 \end{tabular}
 \end{table}
 
-\section{Hermite polynomials the wavefunction derivatives}
+\section{Hermite polynomials and the wavefunction derivatives}\label{app:hermite_and_derivatives}
 
 \begin{table}[H]
 \center

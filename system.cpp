@@ -28,7 +28,7 @@ bool System::metropolisStep() {
     std::vector<double> randomAmount(m_numberOfDimensions);
     double   oldWaveFunction      = m_waveFunction->evaluate();
     int      randomParticleIndex  = Random::nextInt(m_numberOfParticles);
-    // std::cout << "Old wavefunction: " << oldWaveFunction << endl;
+
 
 
     for(int m1=0;m1<m_numberOfDimensions; m1++){
@@ -71,6 +71,8 @@ bool System::metropolisStepImportance() {
     std::vector<double> importanceAmount(m_numberOfDimensions);
 
     int particleIndex = Random::nextInt(m_numberOfParticles);
+
+    // std::cout << "Particle index: " << particleIndex << endl;
 
     double oldWaveFunction    = m_waveFunction->evaluate();
     auto   oldQuantumForce    = m_hamiltonian->computeQuantumForce(particleIndex);
@@ -151,10 +153,11 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
 
     if (getAllEnergies() == true){
         m_sampler->printOutputToEnergyFile();
-        // m_sampler->printOneBodyDensityToFile();
+        m_sampler->printOneBodyDensityToFile();
+        m_sampler->printOutputToTerminal();
     }
 
-    m_sampler->printOutputToTerminal();
+    
 
 }
 

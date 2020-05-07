@@ -25,7 +25,7 @@ void WaveFunction::setOneBodyDensityBins(int numberOfBins, double densityLength)
 
     for (int n3 = 0; n3<numberOfBins; n3++){
         bins[n3] = 0;
-        binStartValue[n3] = (-m_numberOfBins/2+n3)*(densityLength/(double)numberOfBins);
+        binStartValue[n3] = n3*(m_densityLength/(double) m_numberOfBins);// (-m_numberOfBins/2+n3)*(densityLength/(double)numberOfBins);
     }
     // Creating an array to have control over what values the bins represent
     m_oneBodyDensity.push_back(binStartValue);
@@ -47,28 +47,49 @@ void WaveFunction::updateOneBodyDensity(){
     double binLength = m_densityLength/(double) m_numberOfBins;
 
 
-    for (int l = 0; l < numberOfParticles; l++){
+    // for (int l = 0; l < numberOfParticles; l++){
+
+    //     auto r = m_particles[l]->getPosition();
+
+    //     for (int j3 = 0; j3 < numberOfDimensions; j3++){
+              
+    //         for (int j5 = -m_numberOfBins/2; j5 < m_numberOfBins/2; j5++){
+            
+    //             if (j5 < 0){
+    //                 if (r[j3] > (j5)*binLength && r[j3] <= (j5+1)*binLength){
+                        
+    //                     m_oneBodyDensity[j3+1][j5+m_numberOfBins/2] += 1;
+    //                 }
+    //             }else{
+    //                 if (r[j3] >= (j5)*binLength && r[j3] < (j5+1)*binLength){
+    //                     m_oneBodyDensity[j3+1][j5+m_numberOfBins/2] += 1;
+    //                 }
+    //             }
+               
+    //         }
+    //     }
+    // }
+
+        for (int l = 0; l < numberOfParticles; l++){
 
         auto r = m_particles[l]->getPosition();
+        double rLength = 0;
 
         for (int j3 = 0; j3 < numberOfDimensions; j3++){
-              
-            for (int j5 = -m_numberOfBins/2; j5 < m_numberOfBins/2; j5++){
-            
-                if (j5 < 0){
-                    if (r[j3] > (j5)*binLength && r[j3] <= (j5+1)*binLength){
-                        
-                        m_oneBodyDensity[j3+1][j5+m_numberOfBins/2] += 1;
-                    }
-                }else{
-                    if (r[j3] >= (j5)*binLength && r[j3] < (j5+1)*binLength){
-                        m_oneBodyDensity[j3+1][j5+m_numberOfBins/2] += 1;
-                    }
-                }
-               
-            }
+            rLength += r[j3]*r[j3];
         }
+        rLength = sqrt(rLength);
+
+        for (int j5 = 0; j5 < m_numberOfBins; j5++){
+            if (rLength > (j5)*binLength && rLength <= (j5+1)*binLength){    
+                m_oneBodyDensity[1][j5] += 1;
+            }
+            
+        }
+        
     }
+
+
 }
 
 double WaveFunction::calculatePositionSumSquared(){

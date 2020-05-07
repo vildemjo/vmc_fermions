@@ -43,7 +43,7 @@ void Sampler::sample(bool acceptedStep) {
         if (acceptedStep == 1) { m_numberOfAcceptedSteps += 1; }
 
         localEnergy = m_system->getHamiltonian()->computeLocalEnergy();
-        // m_cumulativeDistance += m_system->getHamiltonian;
+        m_cumulativeDistance += m_system->getWaveFunction()->getDistance();
 
         m_cumulativeEnergy  += localEnergy;
         m_cumulativeEnergySquared += localEnergy*localEnergy;
@@ -72,6 +72,7 @@ void Sampler::sampleAllEnergies(bool acceptedStep) {
         m_cumulativeEnergyDerivativeBeta = 0;
         m_cumulativeAlphaDerivative = 0;
         m_cumulativeBetaDerivative = 0;
+        m_cumulativeDistance = 0;
         m_localEnergyVector = std::vector <double>();
         m_localEnergyVector.reserve(m_numberOfMetropolisSteps);
     }
@@ -83,21 +84,18 @@ void Sampler::sampleAllEnergies(bool acceptedStep) {
         if (acceptedStep == 1) { m_numberOfAcceptedSteps += 1; }
 
         // When all energies are saved, the one-body density data is also acquired 
-        // m_system->getWaveFunction()->updateOneBodyDensity();
+        m_system->getWaveFunction()->updateOneBodyDensity();
 
         double localEnergy = m_system->getHamiltonian()->computeLocalEnergy();
+
+        m_cumulativeKineticEnergy += m_system->getHamiltonian()->computeKineticEnergy();
+        m_cumulativePotentialEnergy += m_system->getHamiltonian()->computePotentialEnergy();
+        m_cumulativeInteractionEnergy += m_system->getHamiltonian()->computeInteractionEnergy();
         
         m_cumulativeEnergy  += localEnergy;
         m_localEnergyVector.push_back(localEnergy);
         m_cumulativeEnergySquared += localEnergy*localEnergy;
-        // m_cumulativeEnergyDerivativeAlpha += localEnergy*m_system->getWaveFunction()
-        //                                                 ->computeAlphaDerivative();
-                                                        
-        // m_cumulativeEnergyDerivativeBeta += localEnergy*m_system->getWaveFunction()
-        //                                                 ->computeBetaDerivative();
-        // m_cumulativeAlphaDerivative += m_system->getWaveFunction()->computeAlphaDerivative();
-        // m_cumulativeBetaDerivative += m_system->getWaveFunction()->computeBetaDerivative();
-        
+        m_cumulativeDistance += m_system->getWaveFunction()->getDistance();
     }
 
     m_stepNumber++;
@@ -133,6 +131,12 @@ void Sampler::printOutputToTerminal() {
     cout << "  -- Results -- " << endl;
     cout << " Energy : " << m_energy << endl;
     cout << " Variance : " <<  m_energySquared - m_energy*m_energy << endl;
+    cout << "  ------- " << endl;
+    cout << " Mean distance: " << m_distance << endl;
+    cout << " Kinetic energy: " << m_kineticEnergy << endl;
+    cout << " Potential energy: " << m_potentialEnergy << endl;
+    cout << " Interaction energy: " << m_interactionEnergy << endl;
+
     cout << endl;
 }
 
@@ -218,7 +222,7 @@ void Sampler::printOneBodyDensityToFile(){
     for (int n5 = 0; n5 < (int)oneBodyDensity[0].size(); n5++){
         myfile << oneBodyDensity[0][n5] << "\t";
         for (int m5 = 1; m5 < m_system->getNumberOfDimensions()+1; m5++){
-            myfile << oneBodyDensity[m5][n5]/((double) m_numberOfCyclesIncluded*(double) numberOfParticles) << "\t";
+            myfile << oneBodyDensity[m5][n5]/((double) m_numberOfCyclesIncluded) << "\t";
         }
         myfile << "\n";
     }
@@ -249,8 +253,9 @@ void Sampler::computeAverages() {
                     - 2*(m_cumulativeBetaDerivative / (double) m_numberOfCyclesIncluded)*m_energy;
   
     m_derivative[0] = m_derivativeAlpha;
-
     m_derivative[1] = m_derivativeBeta;
+
+    m_distance = m_cumulativeDistance / (double) m_numberOfCyclesIncluded;
 }
 
 void Sampler::setFileOutput(int firstCriteria){
