@@ -23,7 +23,6 @@ GaussianDistribution::GaussianDistribution(System*    system,
     m_system->setNumberOfDimensions(numberOfDimensions);
     m_system->setNumberOfParticles(numberOfParticles);
     setupInitialState();
- 
 }
 
 void GaussianDistribution::setupInitialState() {

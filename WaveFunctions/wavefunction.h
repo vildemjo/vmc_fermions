@@ -17,6 +17,9 @@ public:
     std::vector <std::vector<double> > getOneBodyDensity(){ return m_oneBodyDensity; };
     void setOneBodyDensityBins(int numberOfBins, double densityLength);
     virtual double getDistance() = 0;
+    virtual double computeRatio(double oldWaveFunction, double newWaveFunction) = 0;
+    virtual void updateSlaterRelatedThings(int particleNumber) = 0;
+    virtual void setupSlaterRelatedThings() = 0;
     
 protected:
     int     m_numberOfParameters = 0;

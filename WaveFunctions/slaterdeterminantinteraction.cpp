@@ -1,4 +1,4 @@
-#include "simplegaussianinteraction.h"
+#include "slaterdeterminantinteraction.h"
 #include "interactionharmonicoscillator.h"
 #include <cmath>
 #include <cassert>
@@ -8,7 +8,7 @@
 #include "InitialStates/initialstate.h"
 #include <iostream>
 
-SimpleGaussianInteraction::SimpleGaussianInteraction(System* system, double alpha, double beta, double spinFactor):
+SlaterDeterminantInteraction::SlaterDeterminantInteraction(System* system, double alpha, double beta, double spinFactor):
         WaveFunction(system) {
     assert(alpha >= 0);
     m_numberOfParameters = 2;
@@ -19,7 +19,7 @@ SimpleGaussianInteraction::SimpleGaussianInteraction(System* system, double alph
     m_omega = m_system->getFrequency(); // A little bit vonrable because now the hamiltonain has to be added before the wavefunction.
 }
 
-double SimpleGaussianInteraction::evaluate() {
+double SlaterDeterminantInteraction::evaluate() {
     /* This function calculated the trial wavefuntion in the case 
     with interaction. */
 
@@ -28,12 +28,14 @@ double SimpleGaussianInteraction::evaluate() {
 
     double interactionPart = evaluateCorrelationPart();
 
-
-    return norm*exp(-0.5*m_parameters[0]*m_omega*rSum)*interactionPart;
-
+    if (m_system->getNumberOfParticles() == 2){
+        return norm*exp(-0.5*m_parameters[0]*m_omega*rSum)*interactionPart;
+    }else{
+        return m_slaterDeterminantSpinUp*m_slaterDeterminantSpinDown*interactionPart;
+    }
 }
 
-double SimpleGaussianInteraction::evaluateCorrelationPart() {
+double SlaterDeterminantInteraction::evaluateCorrelationPart() {
     /* This function calculates the correlation/interaction part of the 
     trial wavefunction. */
 
@@ -55,7 +57,7 @@ double SimpleGaussianInteraction::evaluateCorrelationPart() {
 
 }
 
-double SimpleGaussianInteraction::computeDoubleDerivative() {
+double SlaterDeterminantInteraction::computeDoubleDerivative() {
 
     int numberOfParticles = m_system->getNumberOfParticles();
     int numberOfDimensions = m_system->getNumberOfDimensions();
@@ -70,7 +72,7 @@ double SimpleGaussianInteraction::computeDoubleDerivative() {
                         + m_omega*m_omega*m_parameters[0]*m_parameters[0]*rSum2) + interactionPart;
 }
 
-std::vector<double> SimpleGaussianInteraction::computeDerivative(int particleIndex){
+std::vector<double> SlaterDeterminantInteraction::computeDerivative(int particleIndex){
     /* This function calculates the derivative of the trial wavefunction with 
     interaction with regards to one particle. */
 
@@ -96,7 +98,7 @@ std::vector<double> SimpleGaussianInteraction::computeDerivative(int particleInd
     return vectorWithInteraction;
 }
 
-double SimpleGaussianInteraction::computeAlphaDerivative(){
+double SlaterDeterminantInteraction::computeAlphaDerivative(){
     /* This function calculates the normalized derivative of the wavefunction 
     with regards to the parameter alpha. This is used to perform optimization
     by the use of gradient descent methods.*/
@@ -111,7 +113,7 @@ double SimpleGaussianInteraction::computeAlphaDerivative(){
 
 }
 
-double SimpleGaussianInteraction::computeBetaDerivative(){
+double SlaterDeterminantInteraction::computeBetaDerivative(){
     /* This function calculates the normalized derivative of the wavefunction 
     with regards to the parameter beta. This is used to perform optimization
     by the use of gradient descent methods.*/
@@ -137,7 +139,7 @@ double SimpleGaussianInteraction::computeBetaDerivative(){
 
 }
 
-double SimpleGaussianInteraction::computeInteractionPartOfDoubleDerivative(){
+double SlaterDeterminantInteraction::computeInteractionPartOfDoubleDerivative(){
     /* This function calculates the interaction part of the double derivative
     when it is evaluated analytically. */
 
@@ -178,7 +180,7 @@ double SimpleGaussianInteraction::computeInteractionPartOfDoubleDerivative(){
     return 2*firstTerm + secondTerm + thirdTerm;
 }
 
-std::vector <double> SimpleGaussianInteraction::computeDerivativeOfu(int particleNumber){
+std::vector <double> SlaterDeterminantInteraction::computeDerivativeOfu(int particleNumber){
     /* This function calcualtes the derivative and double derivative of the interation term 
     in the trial wavefunction which are used in calcualting the double derivative and the 
     derivative with regards to one particle. */
@@ -231,7 +233,7 @@ std::vector <double> SimpleGaussianInteraction::computeDerivativeOfu(int particl
     return uAll;
 }
 
-std::vector<double> SimpleGaussianInteraction::computeDerivativeOneParticle(int particleIndex){
+std::vector<double> SlaterDeterminantInteraction::computeDerivativeOneParticle(int particleIndex){
     /* This function calculates the derivative of the not interacting term of the 
     trial wavefunction with regards to one particle. This is used to calculate the double
     derivative. */
@@ -250,7 +252,7 @@ std::vector<double> SimpleGaussianInteraction::computeDerivativeOneParticle(int 
     
 }
 
-std::vector <std::vector <double> >  SimpleGaussianInteraction::calculateInterparticleDistances(){
+std::vector <std::vector <double> >  SlaterDeterminantInteraction::calculateInterparticleDistances(){
     int numberOfParticles = m_system->getNumberOfParticles();
     int numberOfDimensions = m_system->getNumberOfDimensions();
     auto m_particles = m_system->getParticles();
@@ -282,11 +284,11 @@ std::vector <std::vector <double> >  SimpleGaussianInteraction::calculateInterpa
     return distances;
 }
 
-void SimpleGaussianInteraction::setupSlaterDeterminant(){
+void SlaterDeterminantInteraction::setupSlaterMatrix(){
     int numberOfParticles = m_system->getNumberOfParticles();
 
-    std::vector <std::vector <double> > slaterDeterminantSpinUp(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
-    std::vector <std::vector <double> > slaterDeterminantSpinDown(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
+    std::vector <std::vector <double> > slaterMatrixSpinUp(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
+    std::vector <std::vector <double> > slaterMatrixSpinDown(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
     // Test if number of particles are 2, 6 or 12?
 
 
@@ -298,32 +300,32 @@ void SimpleGaussianInteraction::setupSlaterDeterminant(){
             auto phi_00_m3 = phi_00(m3);
             
             if (m1 == 0){
-                slaterDeterminantSpinUp[m1][m2] = phi_00_m2;
-                slaterDeterminantSpinDown[m1][m2] = phi_00_m3;
+                slaterMatrixSpinUp[m1][m2] = phi_00_m2;
+                slaterMatrixSpinDown[m1][m2] = phi_00_m3;
             }if(m1 == 1){
-                slaterDeterminantSpinUp[m1][m2] = phi_10(m2, 0)*phi_00_m2;
-                slaterDeterminantSpinDown[m1][m2] = phi_10(m3, 0)*phi_00_m3;
+                slaterMatrixSpinUp[m1][m2] = phi_10(m2, 0)*phi_00_m2;
+                slaterMatrixSpinDown[m1][m2] = phi_10(m3, 0)*phi_00_m3;
             }if(m1 == 2){
-                slaterDeterminantSpinUp[m1][m2] = phi_10(m2,1)*phi_00_m2;
-                slaterDeterminantSpinDown[m1][m2] = phi_10(m3,1)*phi_00_m3;
+                slaterMatrixSpinUp[m1][m2] = phi_10(m2,1)*phi_00_m2;
+                slaterMatrixSpinDown[m1][m2] = phi_10(m3,1)*phi_00_m3;
             }if(m1 == 3){
-                slaterDeterminantSpinUp[m1][m2] = phi_20(m2,0)*phi_00_m2;
-                slaterDeterminantSpinDown[m1][m2] = phi_20(m3,0)*phi_00_m3;
+                slaterMatrixSpinUp[m1][m2] = phi_20(m2,0)*phi_00_m2;
+                slaterMatrixSpinDown[m1][m2] = phi_20(m3,0)*phi_00_m3;
             }if(m1 == 4){
-                slaterDeterminantSpinUp[m1][m2] = phi_11(m2)*phi_00_m2;
-                slaterDeterminantSpinDown[m1][m2] = phi_11(m3)*phi_00_m3;
+                slaterMatrixSpinUp[m1][m2] = phi_11(m2)*phi_00_m2;
+                slaterMatrixSpinDown[m1][m2] = phi_11(m3)*phi_00_m3;
             }if(m1 == 5){
-                slaterDeterminantSpinUp[m1][m2] = phi_20(m2,1)*phi_00_m2;
-                slaterDeterminantSpinDown[m1][m2] = phi_20(m3,1)*phi_00_m3;
+                slaterMatrixSpinUp[m1][m2] = phi_20(m2,1)*phi_00_m2;
+                slaterMatrixSpinDown[m1][m2] = phi_20(m3,1)*phi_00_m3;
             }
         }
     }
 
-    m_slaterDeterminantSpinDown = slaterDeterminantSpinDown;
-    m_slaterDeterminantSpinUp = slaterDeterminantSpinUp;
+    m_slaterMatrixSpinDown = slaterMatrixSpinDown;
+    m_slaterMatrixSpinUp = slaterMatrixSpinUp;
 }
 
-double SimpleGaussianInteraction::phi_00(int particleNumber){
+double SlaterDeterminantInteraction::phi_00(int particleNumber){
     double A = 1;
     double factor = 0;
     int numberOfDimensions = m_system->getNumberOfDimensions();
@@ -342,40 +344,41 @@ double SimpleGaussianInteraction::phi_00(int particleNumber){
     return A*exp(factor);
 }
 
-double SimpleGaussianInteraction::phi_10(int particleNumber, int dimension){
+double SlaterDeterminantInteraction::phi_10(int particleNumber, int dimension){
     auto m_particles = m_system->getParticles();
     auto r = m_particles[particleNumber]->getPosition();
 
     return 2*sqrt(m_omega)*r[dimension];
 }
 
-double SimpleGaussianInteraction::phi_20(int particleNumber, int dimension){
+double SlaterDeterminantInteraction::phi_20(int particleNumber, int dimension){
     auto m_particles = m_system->getParticles();
     auto r = m_particles[particleNumber]->getPosition();
 
     return 4*m_omega*r[dimension]*r[dimension]-2;
 }
 
-double SimpleGaussianInteraction::phi_11(int particleNumber){
+double SlaterDeterminantInteraction::phi_11(int particleNumber){
     auto m_particles = m_system->getParticles();
     auto r = m_particles[particleNumber]->getPosition();
 
     return 4*m_omega*r[0]*r[1];
 }
 
-void SimpleGaussianInteraction::updateSlaterDeterminant(int particleNumber){
+void SlaterDeterminantInteraction::updateSlaterMatrix(int particleNumber){
     int numberOfParticles = m_system->getNumberOfParticles();
-    std::vector <std::vector <double> > m_slaterDeterminant(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
+    std::vector <std::vector <double> > m_slaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
     int correction;
     int pN = particleNumber;
+    double determinant = 0;
 
     if(particleNumber < numberOfParticles/2){
-        m_slaterDeterminant = m_slaterDeterminantSpinUp;
-        m_oldSlaterDeterminantSpinUp = m_slaterDeterminantSpinUp; // saving the "old" one to calculate the inverse
+        m_slaterMatrix = m_slaterMatrixSpinUp;
+        m_oldSlaterMatrixSpinUp = m_slaterMatrixSpinUp; // saving the "old" one to calculate the inverse
         correction = 0;
     }else{
-        m_slaterDeterminant = m_slaterDeterminantSpinDown;
-        m_oldSlaterDeterminantSpinDown = m_slaterDeterminantSpinDown; // saving the "old" one to calculate the inverse
+        m_slaterMatrix = m_slaterMatrixSpinDown;
+        m_oldSlaterMatrixSpinDown = m_slaterMatrixSpinDown; // saving the "old" one to calculate the inverse
         pN = particleNumber - numberOfParticles/2;
         correction = numberOfParticles/2;
     }
@@ -383,29 +386,48 @@ void SimpleGaussianInteraction::updateSlaterDeterminant(int particleNumber){
     for (int m3 = 0; m3 < numberOfParticles; m3++){
         auto phi_00_pN = phi_00(pN+correction);
         if (m3 == 0){
-            m_slaterDeterminant[m3][pN] = phi_00_pN;
+            m_slaterMatrix[m3][pN] = phi_00_pN;
         }if(m3 == 1){
-            m_slaterDeterminant[m3][pN] = phi_10(pN+correction,0)*phi_00_pN;
+            m_slaterMatrix[m3][pN] = phi_10(pN+correction,0)*phi_00_pN;
         }if(m3 == 2){
-            m_slaterDeterminant[m3][pN] = phi_10(pN+correction,1)*phi_00_pN;
+            m_slaterMatrix[m3][pN] = phi_10(pN+correction,1)*phi_00_pN;
         }if(m3 == 3){
-            m_slaterDeterminant[m3][pN] = phi_20(pN+correction,0)*phi_00_pN;
+            m_slaterMatrix[m3][pN] = phi_20(pN+correction,0)*phi_00_pN;
         }if(m3 == 4){
-            m_slaterDeterminant[m3][pN] = phi_11(pN+correction)*phi_00_pN;
+            m_slaterMatrix[m3][pN] = phi_11(pN+correction)*phi_00_pN;
         }if(m3 == 5){
-            m_slaterDeterminant[m3][pN] = phi_20(pN+correction,1)*phi_00_pN;
+            m_slaterMatrix[m3][pN] = phi_20(pN+correction,1)*phi_00_pN;
         }
     }
 
+    for(int i_ = 0; i_ < numberOfParticles/2; i_++){
+        determinant = determinant + (m_slaterMatrix[0][i_] * (m_slaterMatrix[1][(i_+1)%3] *m_slaterMatrix[2][(i_+2)%3] 
+        - m_slaterMatrix[1][(i_+2)%3] * m_slaterMatrix[2][(i_+1)%3]));
+    }
+
     if(particleNumber < numberOfParticles/2){
-        m_slaterDeterminantSpinUp = m_slaterDeterminant;
+        m_slaterMatrixSpinUp = m_slaterMatrix;
+        m_slaterDeterminantSpinUp = determinant;
     }else{
-        m_slaterDeterminantSpinDown = m_slaterDeterminant;
+        m_slaterMatrixSpinDown = m_slaterMatrix;
+        m_slaterDeterminantSpinDown = determinant;
     }
 
 }
 
-void SimpleGaussianInteraction::calculateInverseSlaterDeterminant(){
+void SlaterDeterminantInteraction::updateSlaterRelatedThings(int particleNumber){
+    updateSlaterMatrix(particleNumber);
+    calculateInverseSlaterMatrix();
+}
+
+void SlaterDeterminantInteraction::setupSlaterRelatedThings(){
+    setupSlaterMatrix();
+    calculateInverseSlaterMatrix();
+}
+
+
+
+void SlaterDeterminantInteraction::calculateInverseSlaterMatrix(){
     // Need to find out how to calculate this.
     // Should I do this in the initiation of this class?
     // Should I have another class for the slater determinant parts?
@@ -413,8 +435,8 @@ void SimpleGaussianInteraction::calculateInverseSlaterDeterminant(){
     int i_, j_;
 
     std::vector <std::vector <double> > mat(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
-    std::vector <std::vector <double> > m_slaterDeterminant(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
-    std::vector <std::vector <double> > m_inverseSlaterDeterminant(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
+    std::vector <std::vector <double> > m_slaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
+    std::vector <std::vector <double> > m_inverseSlaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
 	float determinant = 0;
 	
   
@@ -422,18 +444,18 @@ void SimpleGaussianInteraction::calculateInverseSlaterDeterminant(){
     for (int s = 0; s < 2; s++){
 
         if (s == 0){
-            m_slaterDeterminant = m_slaterDeterminantSpinUp;
-            m_oldInverseSlaterDeterminantSpinUp = m_inverseSlaterDeterminantSpinUp; // saving the old one
+            m_slaterMatrix = m_slaterMatrixSpinUp;
+            m_oldInverseSlaterMatrixSpinUp = m_inverseSlaterMatrixSpinUp; // saving the old one
         }else{
-            m_slaterDeterminant = m_slaterDeterminantSpinDown;
-            m_oldInverseSlaterDeterminantSpinDown = m_inverseSlaterDeterminantSpinDown; // saving the old one
+            m_slaterMatrix = m_slaterMatrixSpinDown;
+            m_oldInverseSlaterMatrixSpinDown = m_inverseSlaterMatrixSpinDown; // saving the old one
         }
 
 
         for(i_ = 0; i_ < numberOfParticles/2; i_++){
             std::cout << "\n";
             for(j_ = 0; j_ < numberOfParticles/2; j_++){
-                mat[i_][j_] = m_slaterDeterminant[i_][j_];
+                mat[i_][j_] = m_slaterMatrix[i_][j_];
                 std::cout << mat[i_][j_] << "\t";
             }
         }
@@ -447,17 +469,19 @@ void SimpleGaussianInteraction::calculateInverseSlaterDeterminant(){
         for(i_ = 0; i_ < numberOfParticles/2; i_++){
             std::cout << "\n";
             for(j_ = 0; j_ < numberOfParticles/2; j_++){
-                m_inverseSlaterDeterminant[i_][j_] = ((mat[(j_+1)%3][(i_+1)%3] * mat[(j_+2)%3][(i_+2)%3]) - (mat[(j_+1)%3][(i_+2)%3] * mat[(j_+2)%3][(i_+1)%3]))/ determinant;
-                std::cout << m_inverseSlaterDeterminant[i_][j_] << "\t";
+                m_inverseSlaterMatrix[i_][j_] = ((mat[(j_+1)%3][(i_+1)%3] * mat[(j_+2)%3][(i_+2)%3]) - (mat[(j_+1)%3][(i_+2)%3] * mat[(j_+2)%3][(i_+1)%3]))/ determinant;
+                std::cout << m_inverseSlaterMatrix[i_][j_] << "\t";
             }
         }
     
         if (s == 0){
-            m_slaterDeterminantSpinUp = m_slaterDeterminant;
-            m_inverseSlaterDeterminantSpinUp = m_inverseSlaterDeterminant;
+            m_slaterMatrixSpinUp = m_slaterMatrix;
+            m_inverseSlaterMatrixSpinUp = m_inverseSlaterMatrix;
+            m_slaterDeterminantSpinUp = determinant;
         }else{
-            m_slaterDeterminantSpinDown = m_slaterDeterminant;
-            m_inverseSlaterDeterminantSpinDown = m_inverseSlaterDeterminant;
+            m_slaterMatrixSpinDown = m_slaterMatrix;
+            m_inverseSlaterMatrixSpinDown = m_inverseSlaterMatrix;
+            m_slaterDeterminantSpinDown = determinant;
         }
     
 
@@ -466,7 +490,9 @@ void SimpleGaussianInteraction::calculateInverseSlaterDeterminant(){
 
 }
 
-// void SimpleGaussianInteraction::updateInverseSlaterDeterminant(int particleNumber){
+
+
+// void SlaterDeterminantInteraction::updateInverseSlaterMatrix(int particleNumber){
 //     int pN = particleNumber;
 //     int numberOfParticles = m_system->getNumberOfParticles();
 //     std::vector<double> S(numberOfParticles, 0);
@@ -476,12 +502,16 @@ void SimpleGaussianInteraction::calculateInverseSlaterDeterminant(){
 //     for (int row = 0; row < numberOfParticles; row++){
 //         for (int col = 0; col < numberOfParticles; col++){
 //                 for (int l = 0; l <numberOfParticles; l++){
-//                     S[col] += m_oldSlaterDeterminant[pN][l];
+//                     S[col] += m_oldSlaterMatrix[pN][l];
 //                 }
 //             if (row != col){
-//                 m_inverseSlaterDeterminant[col][row] = m_oldInverseSlaterDeterminant[col][row] - S[col]/R*m_oldInverseSlaterDeterminant[pN][row];
+//                 m_inverseSlaterMatrix[col][row] = m_oldInverseSlaterMatrix[col][row] - S[col]/R*m_oldInverseSlaterDeterminant[pN][row];
 //             } // Jeg trenger både den gamle Slater-determinanten og den nye... Skal jeg lagre to stykker?
 //         }
 //     }
 
 // }
+
+double SlaterDeterminantInteraction::computeRatio(double oldWaveFunction, double newWaveFunction){
+    return newWaveFunction*newWaveFunction/(oldWaveFunction*oldWaveFunction);
+}

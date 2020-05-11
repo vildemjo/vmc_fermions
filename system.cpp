@@ -37,12 +37,16 @@ bool System::metropolisStep() {
     }
 
 
+    m_waveFunction->updateSlaterRelatedThings(randomParticleIndex);
+
+    // cout << "ok after update \n";
+
     double newWaveFunction = m_waveFunction->evaluate();
+    
     // std::cout << "New wavefunction: " << newWaveFunction << endl;
 
     // Determening if step is accepted (return true) or not (move particle back and return false)
-    if (Random::nextDouble() <= newWaveFunction*newWaveFunction
-                                /(oldWaveFunction*oldWaveFunction)){
+    if (Random::nextDouble() <= m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction)){
                                     // cout << "ok" << endl;
         return true;
         }
@@ -50,6 +54,8 @@ bool System::metropolisStep() {
     for(int m2=0;m2<m_numberOfDimensions; m2++){
         m_particles[randomParticleIndex]->adjustPosition(-randomAmount[m2], m2);
     }
+
+    m_waveFunction->updateSlaterRelatedThings(randomParticleIndex);
     // cout << "no move" << endl;
     return false;
 }
@@ -83,15 +89,16 @@ bool System::metropolisStepImportance() {
         m_particles[particleIndex]->adjustPosition(importanceAmount[m1], m1);
     }
  
+    m_waveFunction->updateSlaterRelatedThings(particleIndex);
     double newWaveFunction  = m_waveFunction->evaluate();
     auto   newQuantumForce  = m_hamiltonian->computeQuantumForce(particleIndex);
     auto   newPosition      = m_particles[particleIndex]->getPosition();
+    
 
     double greensFunctionFrac = greensFunctionFraction(oldPosition, oldQuantumForce,
                                                          newPosition, newQuantumForce);
     // Determening if step is accepted (return true) or not (move particle back and return false)
-    if (Random::nextDouble() <= greensFunctionFrac*newWaveFunction*newWaveFunction
-                                            /(oldWaveFunction*oldWaveFunction)){
+    if (Random::nextDouble() <= greensFunctionFrac*m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction)){
         return true;
         }
 
@@ -99,6 +106,8 @@ bool System::metropolisStepImportance() {
     for(int m4=0;m4<m_numberOfDimensions; m4++){
         m_particles[particleIndex]->adjustPosition(-importanceAmount[m4], m4);
     }
+
+    m_waveFunction->updateSlaterRelatedThings(particleIndex);
 
     return false;
 }
@@ -120,6 +129,9 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
     m_sampler->setFileOutput                (firstCriteria);
     setImportance                           (importanceOrNot);
     setAllEnergies                          (allEnergiesOrNot);
+    m_waveFunction->setupSlaterRelatedThings();
+
+ 
 
 
 
@@ -153,11 +165,10 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
 
     if (getAllEnergies() == true){
         m_sampler->printOutputToEnergyFile();
-        m_sampler->printOneBodyDensityToFile();
+        // m_sampler->printOneBodyDensityToFile();
+    }else{
         m_sampler->printOutputToTerminal();
     }
-
-    
 
 }
 

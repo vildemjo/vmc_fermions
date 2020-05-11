@@ -94,7 +94,7 @@ void WaveFunction::updateOneBodyDensity(){
 
 double WaveFunction::calculatePositionSumSquared(){
     /* This function calcualtes the positions squared and summed over all
-    particles. This is used in several of the functions in the SimpleGaussian 
+    particles. This is used in several of the functions in the SlaterDeterminant 
     class. The other have it's own to include beta.*/
 
     double rSum = 0.0;
