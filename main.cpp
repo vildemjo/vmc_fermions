@@ -22,12 +22,7 @@ using namespace std;
 void alphaListRun(string filename, int numberOfP);
 string setMethodName(bool analyticOrNot);
 
-int main() { //(int nargs, char* args[]) {
-    // int numprocs, my_rank;
-    // MPI_Init (&nargs, &args);
-    // MPI_Comm_size (MPI_COMM_WORLD, &numprocs);
-    // MPI_Comm_rank (MPI_COMM_WoLRD, &my_rank);
-
+int main() {
 /* The standard set-up */
 
     bool analyticOrNot       = true;
@@ -41,11 +36,11 @@ int main() { //(int nargs, char* args[]) {
     double stepLength        = 0.5;          // Metropolis step length.
     int firstCriteria        = 0;            // print header in file
     double alpha             = 1.0;
-    double beta              = 0;   
+    // double beta              = 0;   
     double inititalizingStep = stepLength;
-    int my_rank = 0;
+    // int my_rank = 0;
 
-    double spinFactor  = 1;
+    // double spinFactor  = 1;
     // int numberOfBins = 400;
     // double densityLength = 5.0;
 
@@ -54,7 +49,7 @@ int main() { //(int nargs, char* args[]) {
 
    /* Set-up to run and save local energies for every step to file*/
 
-    allEnergiesOrNot    = false;
+    allEnergiesOrNot    = true;
     importanceOrNot     = false;
 
     clock_t start, end;
@@ -74,7 +69,7 @@ int main() { //(int nargs, char* args[]) {
     system->setAnalytical                 (analyticOrNot);
 
     // system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
-    system->setFileName                   ("Output/test_0");
+    system->setFileName                   ("Output/slater_test");
 
     system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
                                                             allEnergiesOrNot, stepLength);

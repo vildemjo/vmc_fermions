@@ -62,11 +62,11 @@ double SlaterDeterminant::computeDoubleDerivative() {
                     doubleDerivative += phi_20_double_der(p0,0)*m_inverseSlaterMatrixSpinUp[p0][p1];
                     doubleDerivative += phi_20_double_der(p0_,0)*m_inverseSlaterMatrixSpinDown[p0][p1];
                 }if (p1 == 4){
-                    doubleDerivative += phi_20_double_der(p0,1)*m_inverseSlaterMatrixSpinUp[p0][p1];
-                    doubleDerivative += phi_20_double_der(p0_,1)*m_inverseSlaterMatrixSpinDown[p0][p1];
-                }if (p1 == 5){
                     doubleDerivative += phi_11_double_der(p0)*m_inverseSlaterMatrixSpinUp[p0][p1];
                     doubleDerivative += phi_11_double_der(p0_)*m_inverseSlaterMatrixSpinDown[p0][p1];
+                }if (p1 == 5){
+                    doubleDerivative += phi_20_double_der(p0, 1)*m_inverseSlaterMatrixSpinUp[p0][p1];
+                    doubleDerivative += phi_20_double_der(p0_,1)*m_inverseSlaterMatrixSpinDown[p0][p1];
                 }
             }
         }
@@ -125,9 +125,9 @@ std::vector<double> SlaterDeterminant::computeDerivative(int particleIndex){
                 }if (p1 == 3){
                     vectorSum[p3] += R_inv*phi_20_der(pI+cor,0)[p3]*m_inverseSlaterMatrix[pI][p1];
                 }if (p1 == 4){
-                    vectorSum[p3] += R_inv*phi_20_der(pI+cor,1)[p3]*m_inverseSlaterMatrix[pI][p1];
-                }if (p1 == 5){
                     vectorSum[p3] += R_inv*phi_11_der(pI+cor)[p3]*m_inverseSlaterMatrix[pI][p1];
+                }if (p1 == 5){
+                    vectorSum[p3] += R_inv*phi_20_der(pI+cor,1)[p3]*m_inverseSlaterMatrix[pI][p1];
                 }
             }
         }
@@ -151,7 +151,7 @@ double SlaterDeterminant::computeAlphaDerivative(){
 double SlaterDeterminant::getDistance(){
     auto m_particles = m_system->getParticles();
     auto r0 = m_particles[0]->getPosition();
-    auto r1 = m_particles[1]->getPosition();
+    auto r1 = m_particles[3]->getPosition();
 
     double rLength = sqrt((r0[0]-r1[0])*(r0[0]-r1[0]) + (r0[1]-r1[1])*(r0[1]-r1[1]));
 
@@ -250,7 +250,7 @@ void SlaterDeterminant::updateSlaterMatrix(int particleNumber){
             // std::cout << "update ok \n";
 
     for(int i_ = 0; i_ < numberOfParticles/2; i_++){
-        determinant = determinant + (m_slaterMatrix[0][i_] * (m_slaterMatrix[1][(i_+1)%3] *m_slaterMatrix[2][(i_+2)%3] 
+        determinant += (m_slaterMatrix[0][i_] * (m_slaterMatrix[1][(i_+1)%3] *m_slaterMatrix[2][(i_+2)%3] 
         - m_slaterMatrix[1][(i_+2)%3] * m_slaterMatrix[2][(i_+1)%3]));
     }
 
@@ -313,7 +313,7 @@ void SlaterDeterminant::calculateInverseSlaterMatrix(){
         for(i_ = 0; i_ < numberOfParticles/2; i_++)
             determinant = determinant + (mat[0][i_] * (mat[1][(i_+1)%3] * mat[2][(i_+2)%3] - mat[1][(i_+2)%3] * mat[2][(i_+1)%3]));
 
-        // std::cout << "\n\n determinant: " << determinant << "\n";
+        // std::cout << "\n ------- \n determinant: " << determinant << "\n ---------- \n";
 
         for(i_ = 0; i_ < numberOfParticles/2; i_++){
             // std::cout << "\n";
@@ -357,12 +357,7 @@ double SlaterDeterminant::phi_00(int particleNumber){
 
     auto m_alpha = m_system->getWaveFunction()->getParameters()[0];
    
-    auto r = m_system->getParticles()[0]->getPosition();
-
-
-        // std::cout << "ok here \n";
-
-    
+    auto r = m_system->getParticles()[particleNumber]->getPosition();
 
     for (int b0 = 0; b0 < numberOfDimensions; b0++){
         rSquared += r[b0]*r[b0];
@@ -398,7 +393,6 @@ double SlaterDeterminant::phi_11(int particleNumber){
 
 std::vector<double> SlaterDeterminant::phi_00_der(int particleNumber){
     int numberOfDimensions = m_system->getNumberOfDimensions();
-    double rSquared = 0;
     std::vector<double> derivativeVector(numberOfDimensions);
 
     auto m_particles = m_system->getParticles();
@@ -413,7 +407,6 @@ std::vector<double> SlaterDeterminant::phi_00_der(int particleNumber){
 
 std::vector<double> SlaterDeterminant::phi_10_der(int particleNumber, int dimension){
     int numberOfDimensions = m_system->getNumberOfDimensions();
-    double rSquared = 0;
     std::vector<double> derivativeVector(numberOfDimensions);
 
     auto m_particles = m_system->getParticles();

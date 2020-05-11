@@ -139,6 +139,10 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
         
         m_steps += 1;
 
+        if (m_steps > 1e4 && m_steps < 1e4+20 ){
+                std::cout << getParticles()[4]->getPosition()[0] << "\n";
+        }
+
         bool acceptedStep;
 
         if (getImportance() == true){

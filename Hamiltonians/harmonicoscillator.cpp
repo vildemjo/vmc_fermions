@@ -27,7 +27,7 @@ double HarmonicOscillator::computePotentialEnergy() {
 
     auto m_particles = m_system->getParticles();
 
-    int numberOfParticles = m_system->getNumberOfParticles();
+    int numberOfParticles = (int) m_system->getNumberOfParticles();
     int numberOfDimensions = m_system->getNumberOfDimensions();
 
     std::vector <double> particlePosition(numberOfDimensions);

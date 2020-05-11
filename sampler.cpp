@@ -192,7 +192,7 @@ void Sampler::printOutputToEnergyFile(){
     // adding some extra information to the energy file
     myfile << " # mean: " << m_energy << "\n";
     myfile << " # std: " << "sqrt(" << m_energySquared << " - " << m_energy << "^2) = " << sqrt(m_energySquared - m_energy*m_energy) << "\n";
-
+    myfile << "energy: \n";
 
     for (int n3 = 0; n3<(int) m_localEnergyVector.size(); n3++){
         myfile << m_localEnergyVector[n3] << "\n";
@@ -217,7 +217,7 @@ void Sampler::printOneBodyDensityToFile(){
 
     myfile.open (filename, ios::out | ios::trunc);
 
-    int numberOfParticles = (double) m_system->getNumberOfParticles();
+    // int numberOfParticles = (double) m_system->getNumberOfParticles();
 
     for (int n5 = 0; n5 < (int)oneBodyDensity[0].size(); n5++){
         myfile << oneBodyDensity[0][n5] << "\t";
