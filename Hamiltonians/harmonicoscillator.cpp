@@ -60,8 +60,11 @@ double HarmonicOscillator::computeKineticEnergy() {
 
     auto m_particles = m_system->getParticles();
 
+    // std::cout << "until kinetic ok \n";
+
     if (m_system->getAnalytical() == true){
         doubleDerivative = m_system->getWaveFunction()->computeDoubleDerivative();
+        // std::cout << "double deriv ok in hamilton \n";
     }else{
         doubleDerivative = computeDoubleDerivativeNumerically();
     }

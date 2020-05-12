@@ -139,9 +139,6 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
         
         m_steps += 1;
 
-        if (m_steps > 1e4 && m_steps < 1e4+20 ){
-                std::cout << getParticles()[4]->getPosition()[0] << "\n";
-        }
 
         bool acceptedStep;
 
@@ -159,6 +156,7 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
             m_sampler->sampleAllEnergies(acceptedStep);
         }else{
             m_sampler->sample(acceptedStep);
+            // std::cout << "sample ok: " << m_hamiltonian->computeLocalEnergy() << " \n";
         }
     }
     // std::cout << "finished MC loop for alpha "<< getWaveFunction()->getParameters()[0] << std::endl;
@@ -194,6 +192,7 @@ void System::setStepLength(double stepLength) {
 void System::setEquilibration(double equilibration) {
     assert(equilibration >= 0);
     m_equilibration = equilibration;
+            // std::cout << "eq:" << m_equilibration <<" \n";
 }
 
 void System::setHamiltonian(Hamiltonian* hamiltonian) {

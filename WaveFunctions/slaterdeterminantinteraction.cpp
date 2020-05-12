@@ -8,7 +8,7 @@
 #include "InitialStates/initialstate.h"
 #include <iostream>
 
-SlaterDeterminantInteraction::SlaterDeterminantInteraction(System* system, double alpha, double beta, double spinFactor):
+SlaterDeterminantInteraction::SlaterDeterminantInteraction(System* system, double alpha, double beta, double spinFactor) :
         WaveFunction(system) {
     assert(alpha >= 0);
     m_numberOfParameters = 2;

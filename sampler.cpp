@@ -35,13 +35,13 @@ void Sampler::sample(bool acceptedStep) {
     }
 
     double localEnergy = 0;
-
+        // std::cout << "in sample \n";
     // Sampling if the equilibrium stage is passed
     if (m_stepNumber > m_system->getEquilibration()){
-        
+
         // Counting number of accepted steps
         if (acceptedStep == 1) { m_numberOfAcceptedSteps += 1; }
-
+        // std::cout << "until localEnergy ok \n";
         localEnergy = m_system->getHamiltonian()->computeLocalEnergy();
         m_cumulativeDistance += m_system->getWaveFunction()->getDistance();
 

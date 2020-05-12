@@ -14,7 +14,6 @@
 #include "InitialStates/gaussiandistribution.h"
 #include "Math/random.h"
 #include <string>
-// #include <mpi.h>
 #include <cmath>
 
 using namespace std;
@@ -30,7 +29,7 @@ int main() {
     bool allEnergiesOrNot    = true;
     int equilibration        = 1e5;          // Number of the total steps used for equilibration
     int numberOfDimensions   = 2;
-    int numberOfParticles    = 6;
+    int numberOfParticles    = 2;
     int numberOfSteps        = (int) pow(2.0,20.0);
     double omega             = 1.0;          // Oscillator frequency.
     double stepLength        = 0.5;          // Metropolis step length.
@@ -49,7 +48,7 @@ int main() {
 
    /* Set-up to run and save local energies for every step to file*/
 
-    allEnergiesOrNot    = true;
+    allEnergiesOrNot    = false;
     importanceOrNot     = false;
 
     clock_t start, end;
@@ -65,9 +64,7 @@ int main() {
                                                 numberOfParticles, inititalizingStep));
 
     system->setEquilibration              (equilibration);
-
     system->setAnalytical                 (analyticOrNot);
-
     // system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
     system->setFileName                   ("Output/slater_test");
 
