@@ -25,25 +25,22 @@ int main() {
 /* The standard set-up */
 
     bool analyticOrNot       = true;
-    bool importanceOrNot     = true;
+    bool importanceOrNot     = false;
     bool allEnergiesOrNot    = true;
     int equilibration        = 1e5;          // Number of the total steps used for equilibration
     int numberOfDimensions   = 2;
-    int numberOfParticles    = 2;
+    int numberOfParticles    = 6;
     int numberOfSteps        = (int) pow(2.0,20.0);
     double omega             = 1.0;          // Oscillator frequency.
     double stepLength        = 0.5;          // Metropolis step length.
     int firstCriteria        = 0;            // print header in file
     double alpha             = 1.0;
-    // double beta              = 0;   
+    double beta              = 0;   
     double inititalizingStep = stepLength;
-    // int my_rank = 0;
 
     // double spinFactor  = 1;
-    // int numberOfBins = 400;
-    // double densityLength = 5.0;
-
-    // interaction or spherical trap (2.82843 or 1.0)
+    // int numberOfBins = 500;
+    // double densityLength = 4.0;
  
 
    /* Set-up to run and save local energies for every step to file*/
@@ -66,7 +63,7 @@ int main() {
     system->setEquilibration              (equilibration);
     system->setAnalytical                 (analyticOrNot);
     // system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
-    system->setFileName                   ("Output/slater_test");
+    system->setFileName                   ("Output/slater_6_test");
 
     system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
                                                             allEnergiesOrNot, stepLength);
@@ -88,7 +85,7 @@ int main() {
     // allEnergiesOrNot = true;
 
     // spinFactor  = 1.0;
-    // string file_name = "Output/test_interaction_" + to_string(my_rank);
+    // string file_name = "Output/test_interaction";
 
     // // interaction or spherical trap (2.82843 or 1.0)
     // beta = 0.380869;    // omega_normal^2/omega_ho^2
@@ -104,7 +101,7 @@ int main() {
     // system2->setHamiltonian                (new InteractionHarmonicOscillator(system2, omega));
     // system2->setWaveFunction               (new SlaterDeterminantInteraction(system2, alpha, beta, spinFactor));
 
-    // system2->setInitialState               (new GaussianDistribution(system2, numberOfDimensions, 
+    // system2->setInitialState               (new RandomUniform(system2, numberOfDimensions, 
     //                                             numberOfParticles, inititalizingStep));
     // system2->setEquilibration              (equilibration);
     // system2->setAnalytical                 (analyticOrNot);
@@ -114,13 +111,13 @@ int main() {
     // system2->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
     //                                                         allEnergiesOrNot, stepLength);
 
-    // // cout << "energy: " << system->getSampler()->getEnergy() << endl;
+    // cout << "energy: " << system2->getSampler()->getEnergy() << endl;
 
     // end2 = clock();
     // double time_taken2 = double(end2 - start2) / double(CLOCKS_PER_SEC); 
     // cout << "CPU time: " << time_taken2 << " seconds" << endl;
 
-    // MPI_Finilize();
+
 
 // ---------------------------------------------------------------------------------------------------------------------
 

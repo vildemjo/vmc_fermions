@@ -84,7 +84,7 @@ void Sampler::sampleAllEnergies(bool acceptedStep) {
         if (acceptedStep == 1) { m_numberOfAcceptedSteps += 1; }
 
         // When all energies are saved, the one-body density data is also acquired 
-        // m_system->getWaveFunction()->updateOneBodyDensity();
+        m_system->getWaveFunction()->updateOneBodyDensity();
 
         double localEnergy = m_system->getHamiltonian()->computeLocalEnergy();
 
@@ -221,8 +221,8 @@ void Sampler::printOneBodyDensityToFile(){
 
     for (int n5 = 0; n5 < (int)oneBodyDensity[0].size(); n5++){
         myfile << oneBodyDensity[0][n5] << "\t";
-        for (int m5 = 1; m5 < m_system->getNumberOfDimensions()+1; m5++){
-            myfile << oneBodyDensity[m5][n5]/((double) m_numberOfCyclesIncluded) << "\t";
+        for (int m5 = 0; m5 < (int)oneBodyDensity[0].size() ; m5++){
+            myfile << oneBodyDensity[m5][n5] << "\t";
         }
         myfile << "\n";
     }

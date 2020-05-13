@@ -20,9 +20,10 @@ private:
     double computeInteractionPartOfDoubleDerivative();
     std::vector <std::vector <double> >  calculateInterparticleDistances();
     std::vector <double> computeDerivativeOfu( int particleNumber);
-    std::vector <double> computeDerivativeOneParticle( int particleIndex);
+    std::vector <double> computeDerivativePhiOB( int particleIndex);
     double m_omega = 1.0;
     double m_distance = 0;
+    double m_alpha = 1;
 
     double m_slaterDeterminantSpinUp = 0;
     double m_slaterDeterminantSpinDown = 0;
@@ -43,6 +44,18 @@ private:
     double phi_20(int particleNumber, int dimension);
     double phi_11(int particleNumber);
 
+    std::vector<double> phi_00_der(int particleNumber);
+    std::vector<double> phi_10_der(int particleNumber, int dimension);
+    std::vector<double> phi_20_der(int particleNumber, int dimension);
+    std::vector<double> phi_11_der(int particleNumber);
+
+    double phi_00_double_der(int particleNumber);
+    double phi_10_double_der(int particleNumber, int dimension);
+    double phi_20_double_der(int particleNumber, int dimension);
+    double phi_11_double_der(int particleNumber);
+
     void calculateInverseSlaterMatrix();
     void updateInverseSlaterMatrix(int particleNumber);
+
+    double m_metropolisRatio = 1;
 };

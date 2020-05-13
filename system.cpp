@@ -28,7 +28,7 @@ bool System::metropolisStep() {
     std::vector<double> randomAmount(m_numberOfDimensions);
     double   oldWaveFunction      = m_waveFunction->evaluate();
     int      randomParticleIndex  = Random::nextInt(m_numberOfParticles);
-
+    std::cout << "Old wavefunction: " << oldWaveFunction << endl;
 
 
     for(int m1=0;m1<m_numberOfDimensions; m1++){
@@ -36,14 +36,15 @@ bool System::metropolisStep() {
         m_particles[randomParticleIndex]->adjustPosition(randomAmount[m1], m1);
     }
 
-
     m_waveFunction->updateSlaterRelatedThings(randomParticleIndex);
 
     // cout << "ok after update \n";
 
     double newWaveFunction = m_waveFunction->evaluate();
     
-    // std::cout << "New wavefunction: " << newWaveFunction << endl;
+    std::cout << "New wavefunction: " << newWaveFunction << endl;
+    std::cout << "Particle index: " << randomParticleIndex << "\n ------------ " << endl;
+    
 
     // Determening if step is accepted (return true) or not (move particle back and return false)
     if (Random::nextDouble() <= m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction)){
@@ -129,8 +130,9 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
     m_sampler->setFileOutput                (firstCriteria);
     setImportance                           (importanceOrNot);
     setAllEnergies                          (allEnergiesOrNot);
+    //  std::cout << "ok before setup";
     m_waveFunction->setupSlaterRelatedThings();
-
+    //  std::cout << "ok after setup"<< " \n";
  
 
 
@@ -167,7 +169,7 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
 
     if (getAllEnergies() == true){
         m_sampler->printOutputToEnergyFile();
-        // m_sampler->printOneBodyDensityToFile();
+        m_sampler->printOneBodyDensityToFile();
     }else{
         m_sampler->printOutputToTerminal();
     }
