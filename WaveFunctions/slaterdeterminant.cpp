@@ -214,6 +214,7 @@ void SlaterDeterminant::updateSlaterMatrix(int particleNumber){
         m_oldSlaterMatrixSpinUp = m_slaterMatrixSpinUp; // saving the "old" one to calculate the inverse
         correction = 0;
     }else{
+        std::cout << "in here \n";
         m_slaterMatrix = m_slaterMatrixSpinDown;
         m_oldSlaterMatrixSpinDown = m_slaterMatrixSpinDown; // saving the "old" one to calculate the inverse
         pN = particleNumber - numberOfParticles/2;
