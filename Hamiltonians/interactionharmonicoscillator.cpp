@@ -109,19 +109,6 @@ double InteractionHarmonicOscillator::computeLocalEnergy(){
 }
 
 
-std::vector<double> InteractionHarmonicOscillator::computeQuantumForce(int particleIndex){
-    /* This function calculates the quantum force/drift force with is used for importance
-        sampling. The quantum force is given by the derivative of the wavefunction. */
-    
-     auto derivative = m_system->getWaveFunction()->computeDerivative(particleIndex);
-
-    for (int m=0;m<m_system->getNumberOfDimensions();m++){
-        derivative[m] *= 2;
-    }
-
-    return derivative;
-}
-
 std::vector <std::vector <double> >  InteractionHarmonicOscillator::calculateInterparticleDistances(){
     int numberOfParticles = m_system->getNumberOfParticles();
     int numberOfDimensions = m_system->getNumberOfDimensions();

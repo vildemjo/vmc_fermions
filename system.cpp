@@ -28,7 +28,9 @@ bool System::metropolisStep() {
     std::vector<double> randomAmount(m_numberOfDimensions);
     double   oldWaveFunction      = m_waveFunction->evaluate();
     int      randomParticleIndex  = Random::nextInt(m_numberOfParticles);
-    std::cout << "Old wavefunction: " << oldWaveFunction << endl;
+
+    // std::cout << "\n ------------- \n Particle index: " << randomParticleIndex << "\n ------------ " << endl;
+    // std::cout << "Old wavefunction: " << oldWaveFunction << endl;
 
 
     for(int m1=0;m1<m_numberOfDimensions; m1++){
@@ -42,9 +44,9 @@ bool System::metropolisStep() {
 
     double newWaveFunction = m_waveFunction->evaluate();
     
-    std::cout << "New wavefunction: " << newWaveFunction << endl;
-    std::cout << "Particle index: " << randomParticleIndex << "\n ------------ " << endl;
+    // std::cout << "New wavefunction: " << newWaveFunction << endl;
     
+
 
     // Determening if step is accepted (return true) or not (move particle back and return false)
     if (Random::nextDouble() <= m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction)){
@@ -82,7 +84,7 @@ bool System::metropolisStepImportance() {
     // std::cout << "Particle index: " << particleIndex << endl;
 
     double oldWaveFunction    = m_waveFunction->evaluate();
-    auto   oldQuantumForce    = m_hamiltonian->computeQuantumForce(particleIndex);
+    auto   oldQuantumForce    = m_waveFunction->computeQuantumForce(particleIndex, true); // true = old quantum force
     auto   oldPosition        = m_particles[particleIndex]->getPosition();
 
     for(int m1=0;m1<m_numberOfDimensions; m1++){
@@ -92,7 +94,7 @@ bool System::metropolisStepImportance() {
  
     m_waveFunction->updateSlaterRelatedThings(particleIndex);
     double newWaveFunction  = m_waveFunction->evaluate();
-    auto   newQuantumForce  = m_hamiltonian->computeQuantumForce(particleIndex);
+    auto   newQuantumForce  = m_waveFunction->computeQuantumForce(particleIndex, false); // false = new quantum force
     auto   newPosition      = m_particles[particleIndex]->getPosition();
     
 
@@ -170,6 +172,7 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
     if (getAllEnergies() == true){
         m_sampler->printOutputToEnergyFile();
         m_sampler->printOneBodyDensityToFile();
+        m_sampler->printOutputToTerminal();
     }else{
         m_sampler->printOutputToTerminal();
     }

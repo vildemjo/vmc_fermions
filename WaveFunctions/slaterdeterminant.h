@@ -13,6 +13,7 @@ public:
     double computeRatio(double oldWaveFunction, double newWaveFunction);
     void updateSlaterRelatedThings(int particleNumber);
     void setupSlaterRelatedThings();
+    std::vector<double> computeQuantumForce(int particleIndex, bool oldOrNew);
 
 private:
     double m_omega = 1;

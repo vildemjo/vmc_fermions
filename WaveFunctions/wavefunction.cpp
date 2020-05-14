@@ -153,3 +153,4 @@ double WaveFunction::calculatePositionSumSquared(){
 
     return rSum;
 }
+

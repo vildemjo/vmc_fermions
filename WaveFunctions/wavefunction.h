@@ -20,6 +20,7 @@ public:
     virtual double computeRatio(double oldWaveFunction, double newWaveFunction) = 0;
     virtual void updateSlaterRelatedThings(int particleNumber) = 0;
     virtual void setupSlaterRelatedThings() = 0;
+    virtual std::vector<double> computeQuantumForce(int particleIndex, bool oldOrNew) = 0;
     
 protected:
     int     m_numberOfParameters = 0;

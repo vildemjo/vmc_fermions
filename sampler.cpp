@@ -131,11 +131,13 @@ void Sampler::printOutputToTerminal() {
     cout << "  -- Results -- " << endl;
     cout << " Energy : " << m_energy << endl;
     cout << " Variance : " <<  m_energySquared - m_energy*m_energy << endl;
-    cout << "  ------- " << endl;
+    cout << "  ----------- " << endl;
     cout << " Mean distance: " << m_distance << endl;
+    cout << "  ----------- " << endl;
     cout << " Kinetic energy: " << m_kineticEnergy << endl;
     cout << " Potential energy: " << m_potentialEnergy << endl;
     cout << " Interaction energy: " << m_interactionEnergy << endl;
+    cout << "  ----------- " << endl;
 
     cout << endl;
 }

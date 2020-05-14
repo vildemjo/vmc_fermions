@@ -13,6 +13,7 @@ public:
     double computeRatio(double oldWaveFunction, double newWaveFunction);
     void updateSlaterRelatedThings(int particleNumber);
     void setupSlaterRelatedThings();
+    std::vector<double> computeQuantumForce(int particleIndex, bool oldOrNew);
 
 
 private:
@@ -20,7 +21,7 @@ private:
     double computeInteractionPartOfDoubleDerivative();
     std::vector <std::vector <double> >  calculateInterparticleDistances();
     std::vector <double> computeDerivativeOfu( int particleNumber);
-    std::vector <double> computeDerivativePhiOB( int particleIndex);
+    std::vector <double> computeDerivativePsi_SD( int particleIndex);
     double m_omega = 1.0;
     double m_distance = 0;
     double m_alpha = 1;

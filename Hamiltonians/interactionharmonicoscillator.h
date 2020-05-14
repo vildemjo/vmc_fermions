@@ -10,7 +10,6 @@ public:
     double                  computePotentialEnergy();
     double                  computeInteractionEnergy();
     double                  computeLocalEnergy();
-    std::vector<double>     computeQuantumForce         (int particleIndex);
 
 private:
     double                  m_omega = 0;
