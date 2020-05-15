@@ -3,7 +3,7 @@
 
 class SlaterDeterminantInteraction : public WaveFunction {
 public:
-    SlaterDeterminantInteraction(class System* system, double alpha, double beta, double SpinFactor);
+    SlaterDeterminantInteraction(class System* system, double alpha, double beta);
     double evaluate();
     double computeDoubleDerivative();
     std::vector<double> computeDerivative(int particleIndex);

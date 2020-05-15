@@ -477,7 +477,9 @@ std::vector<double> SlaterDeterminant::computeQuantumForce(int particleIndex, bo
 
     for (int m=0;m<m_system->getNumberOfDimensions();m++){
         derivative[m] *= 2;
+        // std::cout << derivative[m] << "\n";
     }
+
 
     return derivative;
 }

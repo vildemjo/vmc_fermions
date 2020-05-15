@@ -36,7 +36,7 @@ void RandomUniform::setupInitialState() {
         std::vector<double> position = std::vector<double>();
 
         for (int m4=0; m4 < m_numberOfDimensions; m4++) {
-            position.push_back(m_stepLength*(Random::nextDouble()-0.5));
+            position.push_back(m_stepLength*(m_system->getRandomEngine()->nextDouble()-0.5));
         }
 
         m_particles.push_back(new Particle());

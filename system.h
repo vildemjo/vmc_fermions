@@ -1,9 +1,13 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <Math/random.h>
 
 class System {
 public:
+    System();
+    System(int seed);
+
     bool metropolisStep             ();
     bool metropolisStepImportance   ();
     void runMetropolisSteps         (int numberOfMetropolisSteps, int firstCriteria, bool importanceOrNot, bool allEnergiesOrNot, double stepLength);
@@ -19,7 +23,8 @@ public:
     void setImportance              (bool statement);
     void setAllEnergies             (bool statement);
     void setFileName                (std::string filename) {m_filename = filename;}
-    void setSpinFactor              (double spinFactor);
+    void setSpinFactor              ();
+    class Random*                    getRandomEngine()   { return m_random; }
     class WaveFunction*              getWaveFunction()   { return m_waveFunction; }
     class Hamiltonian*               getHamiltonian()    { return m_hamiltonian; }
     class Sampler*                   getSampler()        { return m_sampler; }
@@ -35,7 +40,7 @@ public:
     bool getAllEnergies()               { return m_allEnergies;}
     double getStepLength()              { return m_stepLength; }
     double getEquilibration()           { return m_equilibration; }
-    double getSpinFactor()              { return m_spinFactor; }
+    std::vector<std::vector<double>> getSpinFactor()              { return m_spinFactor; }
     double getFrequency()               { return m_omega; }
 
 
@@ -53,13 +58,14 @@ private:
     int                              m_equilibration = 0;
     double                           m_stepLength = 0.1;
     double                           m_timeStep   = 0.1;
-    double                           m_spinFactor = 0.5;
+    std::vector<std::vector<double>> m_spinFactor = std::vector<std::vector<double>>();
     double                           m_omega = 1.0;
     std::string                      m_filename = "Output/no_name_specified";
     class WaveFunction*              m_waveFunction = nullptr;
     class Hamiltonian*               m_hamiltonian = nullptr;
     class InitialState*              m_initialState = nullptr;
     class Sampler*                   m_sampler = nullptr;
+    class Random*                    m_random = nullptr;
     std::vector<class Particle*>     m_particles = std::vector<class Particle*>(); 
 };
 

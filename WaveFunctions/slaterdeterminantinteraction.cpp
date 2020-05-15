@@ -9,14 +9,13 @@
 #include "InitialStates/initialstate.h"
 
 
-SlaterDeterminantInteraction::SlaterDeterminantInteraction(System* system, double alpha, double beta, double spinFactor) :
+SlaterDeterminantInteraction::SlaterDeterminantInteraction(System* system, double alpha, double beta) :
         WaveFunction(system) {
     assert(alpha >= 0);
     m_numberOfParameters = 2;
     m_parameters.reserve(2);
     m_parameters.push_back(alpha);
     m_parameters.push_back(beta);
-    m_system->setSpinFactor(spinFactor);
     m_omega = m_system->getFrequency(); // A little bit vonrable because now the hamiltonain has to be added before the wavefunction.
 }
 
@@ -47,7 +46,8 @@ double SlaterDeterminantInteraction::evaluateCorrelationPart() {
 
     for (int j7 = 0; j7<numberOfParticles-1; j7++){
         for (int j8 = j7+1; j8<numberOfParticles; j8++){
-            correlationPart += a*distances[j7][j8]/(1+m_parameters[1]*distances[j7][j8]);
+
+            correlationPart += a[j7][j8]*distances[j7][j8]/(1+m_parameters[1]*distances[j7][j8]);
         }
     }
     
@@ -147,9 +147,10 @@ double SlaterDeterminantInteraction::computeBetaDerivative(){
 
     for (int j9 = 0; j9<numberOfParticles-1; j9++){
         for (int j10 = j9+1; j10<numberOfParticles; j10++){
+
             auto rLength = distances[j9][j10];
             double factor = (1+m_parameters[1]*rLength);
-            factorSum += -a*rLength*rLength/(factor*factor);
+            factorSum += -a[j9][j10]*rLength*rLength/(factor*factor);
         }
     }
 
@@ -208,7 +209,7 @@ std::vector <double> SlaterDeterminantInteraction::computeDerivativeOfu(int part
     int                     numberOfParticles       = m_system->getNumberOfParticles();
     int                     numberOfDimensions      = m_system->getNumberOfDimensions();
     double                  uDerivative             = 0;
-    double                  a                       = m_system->getSpinFactor();
+    auto                    a                       = m_system->getSpinFactor();
     double                  uDoubleDerivative       = 0;
     double                  uTotalDoubleDerivative  = 0;
     std::vector <double>    uTotalDerivative        (numberOfDimensions);
@@ -224,13 +225,14 @@ std::vector <double> SlaterDeterminantInteraction::computeDerivativeOfu(int part
     // The elements necessary to calculate doubleDerPsi_C/PsiC is calculated here    
 
     for (int l1 = 0; l1 < numberOfParticles; l1++){
+
         if (particleNumber != l1){
             auto rj         = m_particles[l1]->getPosition();        
             auto rLength    = difference[particleNumber][l1];                           
 
             auto factor = (1+m_parameters[1]*rLength);
-            uDerivative = a/(factor*factor);
-            uDoubleDerivative = -2*a*m_parameters[1]/(factor*factor*factor);
+            uDerivative = a[l1][particleNumber]/(factor*factor);
+            uDoubleDerivative = -2*a[l1][particleNumber]*m_parameters[1]/(factor*factor*factor);
        
 
             for (int l3 = 0; l3<numberOfDimensions; l3++){
