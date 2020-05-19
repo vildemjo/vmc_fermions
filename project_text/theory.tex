@@ -8,9 +8,9 @@ where
 $$\hat{H}_0=\sum_{i=1}^{N} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right)$$
 is the single particle part and
 
-\begin{equation*}
+\begin{equation}\label{eq:hamilton_interaction}
 \hat{H}_1=\sum_{i<j}\frac{1}{r_{ij}},
-\end{equation*}
+\end{equation}
 
 represent the interaction potential between particles. The Hamiltonian is written in atomic units, which implies that $\hbar = 1, m= 1$, the unit of length is $a_0 = ...$ and the unit of energy is $...$.  We also have $r_{ij}=\vert \bm{r}_i-\bm{r}_j\vert= \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}$ and $\omega$ is the oscillator frequency. Later we will study the dependence of the system on the oscillator frequency. 
 
@@ -37,7 +37,7 @@ The expectation value can be found by solving the equation
         {\int d\bm{r}_1d\bm{r}_2\psi^{\ast}_T(\bm{r}_1,\bm{r}_2)\psi_T(\bm{r}_1,\bm{r}_2)}.
 \end{equation}
 
-We will use Variational Monte Carlo (VMC) methods to evaluate the Eq. \ref{eq:expectation_energy}. The exact wave function for two not interacting electrons in the ground state is given by
+We will use Variational Monte Carlo (VMC) methods to evaluate the Eq. \ref{eq:expectation_energy} \cite{project1}. The exact wave function for two not interacting electrons in the ground state is given by
 
 \begin{equation*}
 \Phi(\bm{r}_1,\bm{r}_2) = C\exp{\left(-\omega(r_1^2+r_2^2)/2\right)},
@@ -117,12 +117,23 @@ The determinant have the same structure as for six particles and the relation to
 
 \subsection{One-body density}
 
-The radial one-body density is a measure of the spactial distribution of the electrons with respect to the distance from the middle of the harmonic oscillator trap. To calculate the radial one-body density, we want to sample the position of the electrons. The distance from the origin to a set cut-off is seperated into bins with a length $\Delta r$. For every Monte Carlo step, the distance between the electron's position and the origin is calculated, and the bin that corresponds to the current distance get a count. In the end, you have an array corresponding to the different bins with counts corresponding to how many times an electron was found to have that particular distance to the origin. This array is normalized by dividing by the number of Monte Carlo steps. However, to get the density, we have to divide the number in the bins with the area or volume the bin represents. Because we have two-dimensional problem in this project and we calculate the radial one-body density, we devide bin $i$ with the area $ A = \pi (r_i+\Delta r)^2 - \pi r_i^2$ where $r_i$ is distance from the origin to bin $i$. \textit{normalized to the number of particles. Mention. But how is it done? Is it foreces like I have done it now?}
+The radial one-body density is a measure of the spactial distribution of the electrons with respect to the distance from the middle of the harmonic oscillator trap. To calculate the radial one-body density, we want to sample the position of the electrons. The distance from the origin to a set cut-off is seperated into bins with a length $\Delta r$. For every Monte Carlo step, the distance between the electron's position and the origin is calculated, and the bin that corresponds to the current distance get a count. In the end, you have an array corresponding to the different bins with counts corresponding to how many times an electron was found to have that particular distance to the origin. This array is normalized by dividing by the number of Monte Carlo steps. However, to get the density, we have to divide the number in the bins with the area or volume the bin represents. Because we have two-dimensional problem in this project and we calculate the radial one-body density, we devide bin $i$ with the area $ A = \pi (r_i+\Delta r)^2 - \pi r_i^2$ where $r_i$ is distance from the origin to bin $i$. \textit{normalized to the number of particles. Mention. Should happen automatically...}
 
 \subsection{Virial theorem}
 
-Explain.
+The virial theorem gives a relation between the time-average total kinetic energy, $\left<T\right>$, and the time-average external potential energy, $\left<V_{ext}\right>$, that is
 
 \begin{equation}\label{eq:virial_theorem}
-2\left< T\right> = -\left< V_{ext}\right>
+2\left< T\right> = n\left< V_{ext}\right>
 \end{equation}
+
+where $V(r) = Br^n$. In our case when we do not include interaction $n = 2$ from the external potential term in Eq. \ref{eq:finalH}, and therefore the average kinetic energy should be equal to the average potential energy. This can be used as a test to see if the simulations executed are correct. 
+
+\subsection{Trap frequency}
+
+The trap frequency changes the external potential felt by the electrons. Figure \ref{fig:harmonic_oscillator_potential} shows how a larger trap frquency, $\omega$, results in a narrower external potential. In this narrow harmonic oscillator trap, the electrons are forced to be closer to eachother. Later, we will investigate how $\omega$ affects the energy when the electrons are interacting with eachother through the potential given in Eq. \ref{eq:hamilton_interaction}
+
+\begin{figure}[H]
+\center
+\includegraphics[width=0.5\linewidth]{../Results/harmonic_oscialltor_potentials}\caption{•}\label{fig:harmonic_oscillator_potential}
+\end{figure}

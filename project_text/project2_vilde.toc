@@ -4,20 +4,21 @@
 \contentsline {subsection}{\numberline {2.2}More particles}{3}
 \contentsline {subsection}{\numberline {2.3}One-body density}{4}
 \contentsline {subsection}{\numberline {2.4}Virial theorem}{5}
+\contentsline {subsection}{\numberline {2.5}Trap frequency}{5}
 \contentsline {section}{\numberline {3}Results and discussion}{5}
 \contentsline {subsection}{\numberline {3.1}Two electrons in two dimensions}{5}
 \contentsline {subsubsection}{\numberline {3.1.1}Brute force sampling}{5}
 \contentsline {subsubsection}{\numberline {3.1.2}Including importance sampling}{6}
 \contentsline {subsubsection}{\numberline {3.1.3}Including optimization}{6}
-\contentsline {subsubsection}{\numberline {3.1.4}Including interaction}{6}
-\contentsline {subsection}{\numberline {3.2}Extending to more particles}{6}
-\contentsline {subsubsection}{\numberline {3.2.1}Six particles}{6}
-\contentsline {subsubsection}{\numberline {3.2.2}Twelve particles}{6}
-\contentsline {section}{Appendices}{6}
-\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{6}
-\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{6}
+\contentsline {subsubsection}{\numberline {3.1.4}Including interaction}{7}
+\contentsline {subsection}{\numberline {3.2}Extending to more particles}{7}
+\contentsline {subsubsection}{\numberline {3.2.1}Six particles}{7}
+\contentsline {subsubsection}{\numberline {3.2.2}Twelve particles}{7}
+\contentsline {section}{Appendices}{7}
+\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{7}
+\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{7}
 \contentsline {subsection}{\numberline {B.1}Slater determinant}{7}
-\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{7}
-\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{8}
+\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{8}
+\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{9}
 \contentsline {section}{\numberline {C}Energies}{9}
-\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{9}
+\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{10}
