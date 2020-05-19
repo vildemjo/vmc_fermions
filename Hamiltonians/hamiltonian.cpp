@@ -32,10 +32,12 @@ double Hamiltonian::computeDoubleDerivativeNumerically() {
          for(int n4=0; n4<numberOfDimensions;n4++){
             // Wave function at forward step
             m_particles[i4]->adjustPosition(step, n4);
+            m_system->getWaveFunction()->updateSlaterRelatedThings(i4);
             waveNext = m_system->getWaveFunction()->evaluate();
 
             // Wave function at backward step
             m_particles[i4]->adjustPosition(-2*step, n4);
+            m_system->getWaveFunction()->updateSlaterRelatedThings(i4);
             waveLast = m_system->getWaveFunction()->evaluate();
 
             // Calculating the part of the double derivative which involves psi(x+dx) and psi(x-dx)
@@ -43,6 +45,7 @@ double Hamiltonian::computeDoubleDerivativeNumerically() {
 
             // Resetting the particle positions so that a new particle and spesific dimension can be calculated
             m_particles[i4]->adjustPosition(step, n4); 
+            m_system->getWaveFunction()->updateSlaterRelatedThings(i4);
         }
     }
 

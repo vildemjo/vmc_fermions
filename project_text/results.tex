@@ -1,8 +1,83 @@
 \subsection{Two electrons in two dimensions}
 
-\subsubsection{Ground state with no interaction}
+\subsubsection{Brute force sampling}
+
+Standard error of the mean (SEM):
+\begin{equation}
+\text{SEM} = \frac{\sigma}{\sqrt{N}}
+\end{equation}
+where $N$ is the number of observations, in our case the number of Monte Carlo cycles.
+
+\begin{table}[H]\caption{Comparing the results for analytical/numerical evaluation of the double derivative. Energy are in atomic units (a.u.) and CPU time is in units of seconds.}\label{tab:brute_force_no_interaction_2p}
+\center
+\begin{tabular}{l|l}
+Analytical: &  Numerical:\\ \hline
+\begin{tabular}{ccccc}
+$\alpha$: & $\left< E_L \right>$: & SEM: & $\sigma_B$: & CPU time:\\ \hline
+0.50 & 2.49402 & 0.00073 & 0.01022 & 5.57812\\
+0.60 & 2.26441 & 0.00052 & 0.00690 & 5.76562\\
+0.70 & 2.13118 & 0.00035 & 0.00448 & 5.92188\\
+0.80 & 2.05016 & 0.00022 & 0.00263 & 5.67188\\
+0.90 & 2.01015 & 0.00010 & 0.00116 & 5.96875\\
+1.00 & 2.00000 & 0.00000 & 0.00000 & 5.62500\\
+1.10 & 2.00871 & 0.00009 & 0.00102 & 6.20312\\
+1.20 & 2.03402 & 0.00018 & 0.00175 & 6.34375\\
+1.30 & 2.07259 & 0.00026 & 0.00244 & 5.95312\\
+1.40 & 2.11041 & 0.00034 & 0.00311 & 6.15625\\ \hline
+\end{tabular} & \begin{tabular}{ccccc}
+$\alpha$: & $\left< E_L \right>$: & SEM: & $\sigma_B$: & CPU time:\\ \hline
+0.50 & 2.49991 & 0.00073 & 0.01093 & 18.20310\\
+0.60 & 2.26412 & 0.00053 & 0.00727 & 18.21880\\
+0.70 & 2.13039 & 0.00036 & 0.00436 & 18.62500\\
+0.80 & 2.04993 & 0.00022 & 0.00269 & 18.46880\\
+0.90 & 2.01160 & 0.00010 & 0.00118 & 18.46880\\
+1.00 & 2.00000 & 0.00000 & 0.00000 & 18.31250\\
+1.10 & 2.00825 & 0.00009 & 0.00097 & 18.35940\\
+1.20 & 2.03308 & 0.00018 & 0.00170 & 18.31250\\
+1.30 & 2.06460 & 0.00026 & 0.00243 & 20.23440\\
+1.40 & 2.11803 & 0.00033 & 0.00308 & 19.00000\\ \hline
+\end{tabular}\\
+Mean CPU time: 5.91875 & Mean CPU time:  18.62033\\
+\end{tabular}
+\end{table}
 
 \subsubsection{Including importance sampling}
+
+\begin{table}[H]\caption{Comparing the results for importance/brute force sampling. Energy are in atomic units (a.u.) and CPU time is in units of seconds. Here the parameter $\alpha$ is set to 0.9.}\label{tab:importance_no_interaction_2p}
+\begin{tabular}{l|l|l} 
+ & Brute force: &  Importance:\\ \hline
+\begin{tabular}{c} 
+$dl$:\\ \hline
+1.000\\
+0.500\\
+0.100\\
+0.050\\
+0.010\\
+0.005\\
+0.001\\
+\end{tabular} & \begin{tabular}{ccccc}
+ $\left< E_L \right>$: & SEM: & $\sigma_B$: & Acc.: & $t_{CPU}$:\\ \hline
+2.011 & 0.00010 & 0.00068 & 79.834& 6.125\\
+2.010 & 0.00010 & 0.00118 & 89.814& 5.812\\
+2.013 & 0.00010 & 0.00496 & 97.951& 5.859\\
+2.003 & 0.00010 & 0.00860 & 98.995& 5.656\\
+2.004 & 0.00010 & 0.02281 & 99.798& 6.188\\
+1.948 & 0.00004 & 0.01005 & 99.909& 6.359\\
+2.018 & 0.00001 & 0.00211 & 99.980& 6.094\\ \hline
+\end{tabular} & \begin{tabular}{ccccc}
+$\left< E_L \right>$: & SEM: & $\sigma_B$: & Acc.: & $t_{CPU}$:\\ \hline
+2.016 & 0.00012 & 0.00027 & 68.528& 8.453\\
+1.987 & 0.00011 & 0.00026 & 82.230& 8.625\\
+2.005 & 0.00011 & 0.00051 & 97.874& 8.203\\
+2.012 & 0.00011 & 0.00070 & 99.358& 7.875\\
+2.011 & 0.00010 & 0.00145 & 99.967& 7.984\\
+2.011 & 0.00010 & 0.00214 & 99.992& 7.656\\
+2.015 & 0.00011 & 0.00487 & 99.999& 7.703\\ \hline
+\end{tabular}\\
+& Mean CPU time: 6.01339 & Mean CPU time: 8.07143\\
+\end{tabular}
+\end{table}
+
 
 \subsubsection{Including optimization}
 

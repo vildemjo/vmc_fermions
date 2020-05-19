@@ -194,7 +194,9 @@ void Sampler::printOutputToEnergyFile(){
     // adding some extra information to the energy file
     myfile << " # mean: " << m_energy << "\n";
     myfile << " # std: " << "sqrt(" << m_energySquared << " - " << m_energy << "^2) = " << sqrt(m_energySquared - m_energy*m_energy) << "\n";
-    myfile << "energy: \n";
+    myfile << " SEM: " <<  sqrt(m_energySquared - m_energy*m_energy)/sqrt(m_numberOfCyclesIncluded) << "\n";
+    myfile << " Number of cycles: " << m_numberOfCyclesIncluded << "\n";
+    myfile << " Energy: \n";
 
     for (int n3 = 0; n3<(int) m_localEnergyVector.size(); n3++){
         myfile << m_localEnergyVector[n3] << "\n";
