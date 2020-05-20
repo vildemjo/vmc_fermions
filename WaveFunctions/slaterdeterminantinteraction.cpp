@@ -17,6 +17,7 @@ SlaterDeterminantInteraction::SlaterDeterminantInteraction(System* system, doubl
     m_parameters.push_back(alpha);
     m_parameters.push_back(beta);
     m_omega = m_system->getFrequency(); // A little bit vonrable because now the hamiltonain has to be added before the wavefunction.
+    // std::cout << "omega: " << m_omega;
 }
 
 double SlaterDeterminantInteraction::evaluate() {

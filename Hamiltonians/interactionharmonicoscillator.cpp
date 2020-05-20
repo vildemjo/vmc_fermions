@@ -12,7 +12,9 @@ using std::endl;
 InteractionHarmonicOscillator::InteractionHarmonicOscillator(System* system, double omega) :
         Hamiltonian(system) {
     assert(omega > 0);
+    m_system->setFrequency(omega);
     m_omega  = omega;
+    // cout << m_omega;
 }
 
 double InteractionHarmonicOscillator::computePotentialEnergy() {

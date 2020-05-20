@@ -15,6 +15,7 @@ SlaterDeterminant::SlaterDeterminant(System* system, double alpha) :
     m_parameters.push_back(alpha);
     m_alpha = getParameters()[0];
     m_omega = m_system->getFrequency();
+    // std::cout << m_omega;
 }
 
 double SlaterDeterminant::evaluate() {
