@@ -107,16 +107,28 @@ def data_path(dat_id):
 
 omega = [1.0, 0.5, 0.1, 0.05, 0.01]
 
-alpha = [0.98847, 0.98061, 0.94693, 0.92747]
-beta = [0.39965, 0.31091, 0.17764, 0.13815]
-mean_distance = [1.63619, 2.48111, 6.6947, 10.3885 ]
-E_kin = [0.894379, 0.448803, 0.100298, 0.0532853]
-E_pot = [1.29896, 0.705148,  0.176739, 0.0997244]
-E_int = [0.813457, 0.513494, 0.171606, 0.107577]
+
+# Brute force values
+# alpha = [0.98847, 0.98061, 0.94693, 0.92747, 0.88398]
+# beta = [0.39965, 0.31091, 0.17764, 0.13815, 0.07287]
+# mean_distance = [1.63619, 2.48111, 6.6947, 10.3885, 29.1774]
+# E_kin = [0.894379, 0.448803, 0.100298, 0.0532853, 0.0129223]
+# E_pot = [1.29896, 0.705148,  0.176739, 0.0997244, 0.0283832]
+# E_int = [0.813457, 0.513494, 0.171606, 0.107577, 0.0363629]
+
+# Importance values
+
+alpha = 
+beta = 
+mean_distance = 
+E_kin = 
+E_pot = 
+E_int = 
 
 for o in range(len(omega)):
 
-    infile = open(data_path("exercise_e//interaction_ground_state_brute_force_2p_omega_%i_energy.txt"%int(omega*100),'r')
+    infile = open(data_path("exercise_e//interaction_ground_state_brute_force_2p_omega_%i_energy.txt"%int(omega[o]*100)),'r')
+
 
     x = loadtxt(infile, skiprows=5)
 
@@ -125,10 +137,7 @@ for o in range(len(omega)):
 
     uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
 
-    alpha = 0.94693
-    beta = 0.17764
-
-    print "%.5f & %.5f & %.5f & %.4f & %.5f & %.5f & %.4f & %.4f & %.4f"%(omega[o], alpha[o], beta[o], mu, uncor_std, std,mean_distance[o] ,E_kin[o], E_pot[o], E_int[o])+ "\\"+ "\\"
+    print "%.5f & %.5f & %.5f & %.4f & %.5f & %.5f & %.3f & %.4f & %.4f & %.4f"%(omega[o], alpha[o], beta[o], mu, uncor_std, std, mean_distance[o], E_kin[o], E_pot[o], E_int[o])+ "\\"+ "\\"
 
 # ---------------------------------------------
 # Importance sampling exercise d

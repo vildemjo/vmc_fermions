@@ -66,7 +66,7 @@ void WaveFunction::updateOneBodyDensity(){
     // }
 
 
-    for (int l = 0; l < numberOfParticles/2; l++){
+    for (int l = 0; l < numberOfParticles; l++){
 
         auto r = m_particles[l]->getPosition();
 
@@ -102,8 +102,13 @@ void WaveFunction::updateOneBodyDensity(){
                     }
                 }
             }
-            
         }
+
+        // for ( int i_p = 0 ; i_p < m numberOfParticles ; i_p ++){
+        //     int bin = int ( radialVector ( i_p ) / m radialStep ) + 1 ;
+        //     m_electronsPerBin ( bin ) ++;
+        //     }
+        // }
         //         if (j5 < 0 && j3 < 0){
         //             if (r[0] > (j5)*binLength && r[0] <= (j5+1)*binLength && r[1] > (j3)*binLength && r[1] <= (j3+1)*binLength){
         //                 // std::cout << r[0] << " < " << (j5)*binLength << " && " << r[0] << " <= " << (j5+1)*binLength << "\n";
@@ -131,6 +136,7 @@ void WaveFunction::updateOneBodyDensity(){
 
 
 }
+
 
 double WaveFunction::calculatePositionSumSquared(){
     /* This function calcualtes the positions squared and summed over all

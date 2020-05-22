@@ -47,4 +47,5 @@ private:
     int     m_firstCriteria = 1;
     std::vector <double> m_localEnergyVector = std::vector <double>();
     class System* m_system = nullptr;
+    std::vector <double> m_densityVector = std::vector<double>();
 };

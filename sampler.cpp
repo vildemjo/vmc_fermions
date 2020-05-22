@@ -102,6 +102,8 @@ void Sampler::sampleAllEnergies(bool acceptedStep) {
     
 }
 
+
+
 void Sampler::printOutputToTerminal() {
     /* This function prints the relevant information about the set-up and the results
     to the terminal. */
