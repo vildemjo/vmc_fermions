@@ -33,7 +33,7 @@ int main() {
     int numberOfParticles    = 6;
     int numberOfSteps        = (int) pow(2.0,21.0);
     double omega             = 1.0;          // Oscillator frequency.
-    double stepLength        = 0.5;//0.001;          // Metropolis step length.
+    double stepLength        = 0.01;//0.001;          // Metropolis step length.
     int firstCriteria        = 0;            // print header in file
     double alpha             = 0.95;
     double beta              = 0;   
@@ -47,7 +47,7 @@ int main() {
 //    /* Set-up to run and save local energies for every step to file*/
 
     allEnergiesOrNot    = true;
-    importanceOrNot     = false;
+    importanceOrNot     = true;
 
     clock_t start, end;
     // Recording the starting clock tick.
@@ -61,7 +61,7 @@ int main() {
     cout << "omega: " << omega << "\n";
     string samplingType = setSamplingName(importanceOrNot);
 
-    string file_name = "Output/exercise_d/ground_state_" + samplingType + "_6p_omega_"+ to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable);
+    string file_name = "Output/exercise_d/ground_state_" + samplingType + "_2p_omega_"+ to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable);
 
     
     System* system = new System();
