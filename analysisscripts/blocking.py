@@ -118,26 +118,26 @@ omega = [1.0, 0.5, 0.1, 0.05, 0.01]
 
 # Importance values
 
-alpha = 
-beta = 
-mean_distance = 
-E_kin = 
-E_pot = 
-E_int = 
+# alpha = 
+# beta = 
+# mean_distance = 
+# E_kin = 
+# E_pot = 
+# E_int = 
 
-for o in range(len(omega)):
+# for o in range(len(omega)):
 
-    infile = open(data_path("exercise_e//interaction_ground_state_brute_force_2p_omega_%i_energy.txt"%int(omega[o]*100)),'r')
+#     infile = open(data_path("exercise_e//interaction_ground_state_brute_force_2p_omega_%i_energy.txt"%int(omega[o]*100)),'r')
 
 
-    x = loadtxt(infile, skiprows=5)
+#     x = loadtxt(infile, skiprows=5)
 
-    (mu, variance) = block(x) 
-    std = sqrt(variance)
+#     (mu, variance) = block(x) 
+#     std = sqrt(variance)
 
-    uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
+#     uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
 
-    print "%.5f & %.5f & %.5f & %.4f & %.5f & %.5f & %.3f & %.4f & %.4f & %.4f"%(omega[o], alpha[o], beta[o], mu, uncor_std, std, mean_distance[o], E_kin[o], E_pot[o], E_int[o])+ "\\"+ "\\"
+#     print "%.5f & %.5f & %.5f & %.4f & %.5f & %.5f & %.3f & %.4f & %.4f & %.4f"%(omega[o], alpha[o], beta[o], mu, uncor_std, std, mean_distance[o], E_kin[o], E_pot[o], E_int[o])+ "\\"+ "\\"
 
 # ---------------------------------------------
 # Importance sampling exercise d
@@ -145,11 +145,11 @@ for o in range(len(omega)):
 
 # methodtype="analytical"
 
-# samplingtype = "importance"
+# samplingtype = "brute_force"
 
 # DATA_ID = "../Output//exercise_d//allEnergies"
 
-# print "Step size: & $left< E_L right>$: & SEM: & $sigma_B$: & Acceptance & CPU time:"+ "\\" + "\\"
+# print "$left< E_L right>$: & SEM: & $sigma_B$: & Acceptance & CPU time:"+ "\\" + "\\"
 
 # M = loadtxt("../Output//exercise_d//analytical_2p_2d_"+ samplingtype + ".txt", skiprows=1)
 
@@ -176,7 +176,7 @@ for o in range(len(omega)):
 #     uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
     
 
-#     print "%.3f & %.3f & %.5f & %.5f & %.3f& %.3f"%(stepsize[a], mu, uncor_std, std, acc[a], cpu_time[a] )+ "\\"+ "\\"
+#     print "%.3f & %.5f & %.5f & %.3f& %.3f"%(mu, uncor_std, std, acc[a], cpu_time[a] )+ "\\"+ "\\"
 
 # print "Mean CPU time & & & ", mean(cpu_time)
 

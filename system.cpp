@@ -109,8 +109,7 @@ bool System::metropolisStepImportance() {
     auto   newPosition      = m_particles[particleIndex]->getPosition();
     
 
-    double greensFunctionFrac = greensFunctionFraction(oldPosition, oldQuantumForce,
-                                                         newPosition, newQuantumForce);
+    double greensFunctionFrac = greensFunctionFraction(newPosition, oldPosition, newQuantumForce, oldQuantumForce);
 
     // cout << greensFunctionFrac << "\t" << m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction) << "\t" << oldWaveFunction << "\t" << newWaveFunction << "\n";
     // Determening if step is accepted (return true) or not (move particle back and return false)
@@ -120,7 +119,7 @@ bool System::metropolisStepImportance() {
         return true;
         }
     // cout << "move not accepted \n";
-                std::cout << "Particle index: " << particleIndex << endl;
+                // std::cout << "Particle index: " << particleIndex << endl;
     
     for(int m4=0;m4<m_numberOfDimensions; m4++){
         m_particles[particleIndex]->adjustPosition(-importanceAmount[m4], m4);
@@ -250,20 +249,23 @@ double System::greensFunctionFraction(std::vector<double> posNew, std::vector<do
     from the old state to the new and the transition from the new to the old. This expression
     is used to determine wether a move is accepted or not when importance sampling is used. */
     
+    // double exponentTop = 0;
+    // double exponentLow = 0;
     double exponent = 0;
     double sigma = m_diffConstant*m_timeStep;
 
     for (int n10=0; n10<m_numberOfDimensions; n10++){
-        auto posChange = posOld[n10]-posNew[n10];
-        exponent += -(posChange-sigma*forceNew[n10])*(posChange-sigma*forceNew[n10])
-         + (-posChange-sigma*forceOld[n10])*(-posChange-sigma*forceOld[n10]);
-        // exponent += 0.5*(forceOld[n10]+forceNew[n10])*
-	    //         (m_diffConstant*m_timeStep*0.5*(forceOld[n10]-forceNew[n10])-posNew[n10]+posOld[n10]); // fra lecture notes
+        // auto posChange = posOld[n10]-posNew[n10];
+        // exponentTop += -(posOld[n10]-posNew[n10]-sigma*forceNew[n10])*(posOld[n10]-posNew[n10]-sigma*forceNew[n10])/(4.0*sigma);
+        // exponentLow += -(posNew[n10]-posOld[n10]-sigma*forceOld[n10])*(posNew[n10]-posOld[n10]-sigma*forceOld[n10])/(4.0*sigma);
+
+        exponent += 0.5*(forceOld[n10]+forceNew[n10])*
+	            (m_diffConstant*m_timeStep*0.5*(forceOld[n10]-forceNew[n10])-posNew[n10]+posOld[n10]); // fra lecture notes
         // exponent += 0.5*(forceOld[n10]-forceNew[n10])*(posNew[n10]-posOld[n10]); // Fra Evens master (+ legg til number of dim)
         // exponent += 0.25*m_diffConstant*m_timeStep*(forceNew[n10]*forceNew[n10]+forceOld[n10]*forceOld[n10]) 
         //             + 0.5*(posOld[n10]-posNew[n10])*(forceOld[n10]+forceNew[n10]); // Fra meg selv
     }
-    return exp(exponent);// + m_numberOfDimensions;
+    return exp(exponent);///exp(exponentLow);// + m_numberOfDimensions;
 }
 
 void System::setSpinFactor(){

@@ -21,5 +21,5 @@
 \contentsline {subsection}{\numberline {B.1}Slater determinant}{9}
 \contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{10}
 \contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{11}
-\contentsline {section}{\numberline {C}Energies}{12}
+\contentsline {section}{\numberline {C}Energies}{11}
 \contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{12}

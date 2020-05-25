@@ -26,16 +26,16 @@ int main() {
 /* The standard set-up */
 
     bool analyticOrNot       = true;
-    bool importanceOrNot     = false;
+    bool importanceOrNot     = true;
     bool allEnergiesOrNot    = true;
-    int equilibration        = 0;//1e5;          // Number of the total steps used for equilibration
+    int equilibration        = 1e5;          // Number of the total steps used for equilibration
     int numberOfDimensions   = 2;
-    int numberOfParticles    = 6;
-    int numberOfSteps        = (int) pow(2.0,21.0);
-    double omega             = 1.0;          // Oscillator frequency.
-    double stepLength        = 0.01;//0.001;          // Metropolis step length.
+    int numberOfParticles    = 2;
+    int numberOfSteps        = (int) pow(2.0,23.0);
+    double omega             = 0.01;          // Oscillator frequency.
+    double stepLength        = 0.005;//0.001;          // Metropolis step length.
     int firstCriteria        = 0;            // print header in file
-    double alpha             = 0.95;
+    double alpha             = 1.0;
     double beta              = 0;   
     double inititalizingStep = 0.5;
 
@@ -61,7 +61,7 @@ int main() {
     cout << "omega: " << omega << "\n";
     string samplingType = setSamplingName(importanceOrNot);
 
-    string file_name = "Output/exercise_d/ground_state_" + samplingType + "_2p_omega_"+ to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable);
+    string file_name = "Output/exercise_d/ground_state_" + samplingType + "_6p_omega_"+ to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable);
 
     
     System* system = new System();
@@ -214,10 +214,10 @@ int main() {
 // ---------------------------------------------------------------------------------------------------------------------
     // analyticOrNot    = true;
     // allEnergiesOrNot = true;
-    // importanceOrNot  = true;
+    // importanceOrNot  = false;
 
     // numberOfDimensions  = 2;
-    // numberOfParticles   = 6;
+    // numberOfParticles   = 2;
     // alpha               = 0.9;
     // numberOfSteps       = (int) pow(2.0, 21.0);
 
@@ -245,7 +245,7 @@ int main() {
     //     double dlPrint = dls[dl]*1000.0;
     //     int dlPrintable = ceil(dlPrint);
     //     string filename = "Output/exercise_d/allEnergies/" + 
-    //     methodName + "2d_" +"6p"+ "_stepsize_" + to_string(dlPrintable) + "_MC_21_" + samplingType;
+    //     methodName + "2d_" +"2p"+ "_stepsize_" + to_string(dlPrintable) + "_MC_21_" + samplingType;
 
     //     clock_t start, end;
     //     // Recording the starting clock tick.
@@ -397,11 +397,11 @@ int main() {
     // double minimizationRate_beta = 0.1;
     // allEnergiesOrNot = false;
     // importanceOrNot = true;
-    // alpha = 0.93343;
-    // beta = 0.20384;
-    // stepLength = 0.01;
+    // alpha = 0.90;
+    // beta = 0.1;
+    // stepLength = 0.005;
     // inititalizingStep = 0.5;
-    // omega = 0.1;
+    // omega = 0.01;
 
     // double energy       = 0;
 
@@ -431,7 +431,7 @@ int main() {
     // // file2 << "Alpha: \t Beta: \t Energy: \t Kinetic Energy: \t Potential Energy:  \t Interaction Energy:\n";
     // // file2.close();
 
-    // for (int k=0;  energyChange > stopCriteria && k <= 400; k++){
+    // for (int k=0;  energyChange > stopCriteria && k <= 300; k++){
     
 
     //     System* system = new System();
