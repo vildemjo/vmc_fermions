@@ -87,7 +87,7 @@ std::vector<double> SlaterDeterminant::computeDerivative(int particleIndex){
 
 
         if(particleIndex < numberOfParticles/2){
-        
+        // std::cout << "spin up particle derivative calced \n";
             for (int p3 = 0; p3<numberOfDimensions; p3++){
                 for (int p1 = 0; p1 < numberOfParticles/2; p1++){
                     auto phi_00_pI = phi_00(pI);
@@ -110,7 +110,7 @@ std::vector<double> SlaterDeterminant::computeDerivative(int particleIndex){
         }if (particleIndex >= numberOfParticles/2){
             pI = particleIndex - numberOfParticles/2;
             cor = numberOfParticles/2;
-
+            // std::cout << "spin down particle derivative calced \n";
             for (int p3 = 0; p3<numberOfDimensions; p3++){
                 for (int p1 = 0; p1 < numberOfParticles/2; p1++){
                     auto phi_00_pI = phi_00(pI+cor);
@@ -329,6 +329,8 @@ void SlaterDeterminant::calculateInverseSlaterMatrix(){
                 }
             }
         }
+    
+      
     
             // std::cout << "In inverse matrix: " << "\n ---------- \n";
             // std::cout << "determinant before: "<< m_slaterDeterminantSpinDown << " \n";

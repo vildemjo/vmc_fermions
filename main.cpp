@@ -28,14 +28,14 @@ int main() {
     bool analyticOrNot       = true;
     bool importanceOrNot     = false;
     bool allEnergiesOrNot    = true;
-    int equilibration        = 1e5;          // Number of the total steps used for equilibration
+    int equilibration        = 0;//1e5;          // Number of the total steps used for equilibration
     int numberOfDimensions   = 2;
-    int numberOfParticles    = 2;
-    int numberOfSteps        = (int) pow(2.0,22.0);
-    double omega             = 0.01;          // Oscillator frequency.
+    int numberOfParticles    = 6;
+    int numberOfSteps        = (int) pow(2.0,21.0);
+    double omega             = 1.0;          // Oscillator frequency.
     double stepLength        = 0.5;//0.001;          // Metropolis step length.
     int firstCriteria        = 0;            // print header in file
-    double alpha             = 1.0;
+    double alpha             = 0.95;
     double beta              = 0;   
     double inititalizingStep = 0.5;
 
@@ -55,11 +55,13 @@ int main() {
 
     double omegaPrint = omega*100.0;
     int omegaPrintable = ceil(omegaPrint);
+    double alphaPrint = alpha*100.0;
+    int alphaPrintable = ceil(alphaPrint);
 
     cout << "omega: " << omega << "\n";
     string samplingType = setSamplingName(importanceOrNot);
 
-    string file_name = "Output/exercise_f/ground_state_" + samplingType + "_2p_omega_"+ to_string(omegaPrintable);
+    string file_name = "Output/exercise_d/ground_state_" + samplingType + "_6p_omega_"+ to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable);
 
     
     System* system = new System();
