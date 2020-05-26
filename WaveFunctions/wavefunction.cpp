@@ -21,18 +21,26 @@ void WaveFunction::setOneBodyDensityBins(int numberOfBins, double densityLength)
     
     // int numberOfDimensions = m_system->getNumberOfDimensions();
     std::vector<double> bins(m_numberOfBins);
-    // std::vector<double> radialBins(m_numberOfBins);
+    double binStartValue = 0;
+    m_oneBodyDensityRadial = std::vector<std::vector<double> >(2, std::vector<double>(numberOfBins/2,0)); 
 
-    for (int n3 = 0; n3<numberOfBins; n3++){
-        bins[n3] = 0;
-        // binStartValue[n3] = n3*(m_densityLength/(double) m_numberOfBins);// (-m_numberOfBins/2+n3)*(densityLength/(double)numberOfBins);
-    }
-    // Creating an array to have control over what values the bins represent
-    // m_oneBodyDensity.push_back(radialBins);
+    // for (int n3 = 0; n3<numberOfBins; n3++){
+    //     bins[n3] = 0;
+    //     // (-m_numberOfBins/2+n3)*(densityLength/(double)numberOfBins);
+    // }
 
-    for (int n6 = 0; n6<m_numberOfBins; n6++){
-        m_oneBodyDensity.push_back(bins);
+    for (int n4 = 0; n4 < numberOfBins/2; n4++){
+        binStartValue = n4*(m_densityLength/(double) m_numberOfBins);
+        m_oneBodyDensityRadial[0][n4] = binStartValue;     // Creating an array to have control over what values the bins represent
+        m_oneBodyDensityRadial[1][n4] = 0;
     }
+
+    // std::cout << m_oneBodyDensityRadial[0][0] << "\n";
+
+    // for (int n6 = 0; n6<m_numberOfBins; n6++){
+    //     m_oneBodyDensity.push_back(bins);
+    // }
+
 
 }
 
@@ -70,65 +78,54 @@ void WaveFunction::updateOneBodyDensity(){
 
         auto r = m_particles[l]->getPosition();
 
-              
-        for (int j5 = -m_numberOfBins/2; j5 < m_numberOfBins/2; j5++){
-            if (j5 < 0){
-                if (r[0] > (j5)*binLength && r[0] <= (j5+1)*binLength){
+        double rLength = 0;
 
-                    for (int j3 = -m_numberOfBins/2; j3 < m_numberOfBins/2; j3++){
-                        if (j3 < 0){
-                            if (r[1] > (j3)*binLength && r[1] <= (j3+1)*binLength){
-                                m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
-                            }
-                        }else{
-                            if (r[1] >= (j3)*binLength && r[1] < (j3+1)*binLength){
-                                m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
-                            }
-                        }
-                    }
-                }
-            }else{
-                if (r[0] > (j5)*binLength && r[0] <= (j5+1)*binLength){
-                    for (int j3 = -m_numberOfBins/2; j3 < m_numberOfBins/2; j3++){
-                        if (j3 < 0){
-                            if (r[1] > (j3)*binLength && r[1] <= (j3+1)*binLength){
-                                m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
-                            }
-                        }else{
-                            if (r[1] >= (j3)*binLength && r[1] < (j3+1)*binLength){
-                                m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
-                            }
-                        }
-                    }
-                }
+        for (int j4 = 0; j4 < numberOfDimensions; j4++){
+            rLength += r[j4]*r[j4];
+        }
+        rLength = sqrt(rLength);
+
+        for (int j6 = 0; j6 < m_numberOfBins/2; j6++){
+            if (rLength >= (j6)*binLength && rLength < (j6+1)*binLength){    
+                m_oneBodyDensityRadial[1][j6] += 1;
             }
         }
 
-        // for ( int i_p = 0 ; i_p < m numberOfParticles ; i_p ++){
-        //     int bin = int ( radialVector ( i_p ) / m radialStep ) + 1 ;
-        //     m_electronsPerBin ( bin ) ++;
-        //     }
-        // }
-        //         if (j5 < 0 && j3 < 0){
-        //             if (r[0] > (j5)*binLength && r[0] <= (j5+1)*binLength && r[1] > (j3)*binLength && r[1] <= (j3+1)*binLength){
-        //                 // std::cout << r[0] << " < " << (j5)*binLength << " && " << r[0] << " <= " << (j5+1)*binLength << "\n";
-        //                 m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
+              
+        // for (int j5 = -m_numberOfBins/2; j5 < m_numberOfBins/2; j5++){
+        //     if (j5 < 0){
+        //         if (r[0] > (j5)*binLength && r[0] <= (j5+1)*binLength){
+
+        //             for (int j3 = -m_numberOfBins/2; j3 < m_numberOfBins/2; j3++){
+        //                 if (j3 < 0){
+        //                     if (r[1] > (j3)*binLength && r[1] <= (j3+1)*binLength){
+        //                         m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
+        //                     }
+        //                 }else{
+        //                     if (r[1] >= (j3)*binLength && r[1] < (j3+1)*binLength){
+        //                         m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
+        //                     }
+        //                 }
         //             }
-        //         }if (j5 > 0 && j3 > 0){
-        //             if (r[0] >= (j5)*binLength && r[0] < (j5+1)*binLength && r[1] >= (j3)*binLength && r[1] < (j3+1)*binLength){
-        //                 m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
-        //             }
-        //         }if (j5 > 0 && j3 < 0){
-        //             if (r[0] >= (j5)*binLength && r[0] < (j5+1)*binLength && r[1] > (j3)*binLength && r[1] <= (j3+1)*binLength){
-        //                 m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
-        //             }
-        //         }if (j5 < 0 && j3 > 0){
-        //             if (r[0] > (j5)*binLength && r[0] <= (j5+1)*binLength && r[1] >= (j3)*binLength && r[1] < (j3+1)*binLength){
-        //                 m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
+        //         }
+        //     }else{
+        //         if (r[0] > (j5)*binLength && r[0] <= (j5+1)*binLength){
+        //             for (int j3 = -m_numberOfBins/2; j3 < m_numberOfBins/2; j3++){
+        //                 if (j3 < 0){
+        //                     if (r[1] > (j3)*binLength && r[1] <= (j3+1)*binLength){
+        //                         m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
+        //                     }
+        //                 }else{
+        //                     if (r[1] >= (j3)*binLength && r[1] < (j3+1)*binLength){
+        //                         m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
+        //                     }
+        //                 }
         //             }
         //         }
         //     }
         // }
+
+       
     
     }
 

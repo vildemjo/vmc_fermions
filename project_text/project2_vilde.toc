@@ -9,17 +9,17 @@
 \contentsline {subsection}{\numberline {3.1}Two electrons in two dimensions}{5}
 \contentsline {subsubsection}{\numberline {3.1.1}Brute force sampling}{5}
 \contentsline {subsubsection}{\numberline {3.1.2}Including importance sampling}{6}
-\contentsline {subsubsection}{\numberline {3.1.3}Including optimization}{8}
-\contentsline {subsubsection}{\numberline {3.1.4}Including interaction}{8}
+\contentsline {subsubsection}{\numberline {3.1.3}Including optimization}{9}
+\contentsline {subsubsection}{\numberline {3.1.4}Including interaction}{9}
 \contentsline {subsection}{\numberline {3.2}One-body density}{9}
 \contentsline {subsection}{\numberline {3.3}Extending to more particles}{9}
 \contentsline {subsubsection}{\numberline {3.3.1}Six particles}{9}
 \contentsline {subsubsection}{\numberline {3.3.2}Twelve particles}{9}
 \contentsline {section}{Appendices}{9}
 \contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{9}
-\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{9}
-\contentsline {subsection}{\numberline {B.1}Slater determinant}{9}
+\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{10}
+\contentsline {subsection}{\numberline {B.1}Slater determinant}{10}
 \contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{10}
 \contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{11}
-\contentsline {section}{\numberline {C}Energies}{11}
+\contentsline {section}{\numberline {C}Energies}{12}
 \contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{12}

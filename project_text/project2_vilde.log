@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.13)  25 MAY 2020 13:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.13)  25 MAY 2020 15:29
 entering extended mode
 **./project2_vilde.tex
 (project2_vilde.tex
@@ -855,8 +855,12 @@ Overfull \hbox (2.61049pt too wide) in paragraph at lines 95--101
  []
 
 [7]
+Overfull \hbox (10.94354pt too wide) in paragraph at lines 137--178
+ [] 
+ []
 
-LaTeX Warning: Reference `' on page 8 undefined on input line 111.
+
+LaTeX Warning: Reference `' on page 8 undefined on input line 182.
 
 [8 <../Results/brute_force_small_steps.png> <../Results/brute_force_larger_step
 s.png>]) (appendix.tex [9] [10] [11] [12]) [13] [14] (project2_vilde.bbl)
@@ -867,18 +871,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 11139 strings out of 492970
- 173830 string characters out of 3126593
- 290413 words of memory out of 3000000
- 14644 multiletter control sequences out of 15000+200000
- 32354 words of font info for 121 fonts, out of 3000000 for 9000
+ 11142 strings out of 492970
+ 173911 string characters out of 3126593
+ 290422 words of memory out of 3000000
+ 14645 multiletter control sequences out of 15000+200000
+ 32431 words of font info for 122 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,16n,77p,1365b,608s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,17n,77p,1365b,608s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm
 -super-t1.enc}<C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmex10.pfb><C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fo
@@ -912,7 +913,7 @@ ilde/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/cm-super/sfss1440.pfb
 sfss1728.pfb><C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/cm-super/sfss2074.pfb><C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/font
 s/type1/public/cm-super/sfss2488.pfb>
-Output written on project2_vilde.pdf (15 pages, 426842 bytes).
+Output written on project2_vilde.pdf (15 pages, 427805 bytes).
 PDF statistics:
  171 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

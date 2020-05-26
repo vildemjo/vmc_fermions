@@ -210,30 +210,44 @@ void Sampler::printOneBodyDensityToFile(){
     /* This function prints the one-body density data to file for 
     the runs where all local energies are saved to file */
 
-    std::vector <std::vector <double>> oneBodyDensity = m_system->getWaveFunction()->getOneBodyDensity();
+    // std::vector <std::vector <double>> oneBodyDensity = m_system->getWaveFunction()->getOneBodyDensity();
+    std::vector <std::vector <double>> oneBodyDensityRadial = m_system->getWaveFunction()->getOneBodyDensityRadial();
+    
     
     // The number of cycles included are the number of cycles where the energy 
     // and the one-body density data is acquired. The function is called here to
     // update m_numberOfCyclesIncluded which is used to normalize the data.
     evaluateNumberOfCyclesIncluded();
 
-    ofstream myfile;
+    ofstream myfile2;//, myfile;
 
-    string filename = m_system->getFileName() + "_density.txt";
+    // string filename = m_system->getFileName() + "_density.txt";
+    string filename2 = m_system->getFileName() + "_densityRadial.txt";
 
-    myfile.open (filename, ios::out | ios::trunc);
+    // myfile.open (filename, ios::out | ios::trunc);
 
-    // int numberOfParticles = (double) m_system->getNumberOfParticles();
+    // // int numberOfParticles = (double) m_system->getNumberOfParticles();
 
-    for (int n5 = 0; n5 < (int)oneBodyDensity[0].size(); n5++){
-        myfile << oneBodyDensity[0][n5] << "\t";
-        for (int m5 = 0; m5 < (int)oneBodyDensity[0].size() ; m5++){
-            myfile << oneBodyDensity[m5][n5] << "\t";
-        }
-        myfile << "\n";
+    // for (int n5 = 0; n5 < (int)oneBodyDensity[0].size(); n5++){
+    //     myfile << oneBodyDensity[0][n5] << "\t";
+    //     for (int m5 = 0; m5 < (int)oneBodyDensity[0].size() ; m5++){
+    //         myfile << oneBodyDensity[m5][n5] << "\t";
+    //     }
+    //     myfile << "\n";
+    // }
+
+    // myfile.close();
+
+    auto dr = oneBodyDensityRadial[0][1];
+
+    myfile2.open(filename2, ios::out | ios::trunc);
+
+    for (int p5 = 0; p5 < (int)oneBodyDensityRadial[0].size(); p5++){
+        auto r = oneBodyDensityRadial[0][p5];
+        auto rPlus = r+dr;
+        myfile2 << r << "\t" << (oneBodyDensityRadial[1][p5]/m_numberOfCyclesIncluded)/(M_PI*(rPlus*rPlus-r*r)) << "\n";
     }
-
-    myfile.close();
+    myfile2.close();
 }
 
 void Sampler::computeAverages() {

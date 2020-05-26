@@ -15,6 +15,7 @@ public:
     virtual double computeAlphaDerivative() = 0;
     virtual double computeBetaDerivative() = 0;
     std::vector <std::vector<double> > getOneBodyDensity(){ return m_oneBodyDensity; };
+    std::vector <std::vector<double> > getOneBodyDensityRadial(){ return m_oneBodyDensityRadial; };
     void setOneBodyDensityBins(int numberOfBins, double densityLength);
     virtual double getDistance() = 0;
     virtual double computeRatio(double oldWaveFunction, double newWaveFunction) = 0;
@@ -30,6 +31,7 @@ protected:
 
 private:
     std::vector<std::vector<double> > m_oneBodyDensity = std::vector<std::vector<double> >(); 
+    std::vector<std::vector<double> > m_oneBodyDensityRadial = std::vector<std::vector<double> >(); 
     int m_numberOfBins = 50;
     double m_densityLength = 1.0;
 };

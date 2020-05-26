@@ -19,6 +19,7 @@ public:
     double getPotentialEnergy()     { return m_potentialEnergy; }
     double getInteractionEnergy()     { return m_interactionEnergy; }
     double getAcceptance()      { return 100*(double)m_numberOfAcceptedSteps/(double)m_numberOfCyclesIncluded; }
+    double getMeanDistance()     { return m_distance; }
 
 private:
     int     m_numberOfMetropolisSteps = 0;

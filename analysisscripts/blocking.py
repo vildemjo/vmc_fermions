@@ -62,25 +62,26 @@ def exact_energy(alpha, N):
 
 # exercise c - brute force - no interaction
 
-DATA_ID = "../Output//exercise_c//allEnergies"
+DATA_ID = "../Output//exercise_d//allEnergies"
 
 Ns = ["2"]#, "50", "100", "500"]#, "100"]#, "500"]
 
-As = ["50", "60", "70", "80", "90", "100", "110", "120", "130", "140", "150"]
+As = ["50", "60", "70", "80", "90", "100", "110", "120", "130", "140"]
 
-methodtype = "numerical"
+methodtype = "analytical"
+samplingtype = "brute_force"
 
 
 # for j in range(len(Ns)):
 #     print "N: ", Ns[j]
-#     print "$alpha$: & $left< E_L right>$: & SEM: & $sigma_B$: & CPU time:"+ "\\" + "\\"
-#     cpu_time = loadtxt("../Output//exercise_c//"+methodtype+"_.txt")
+#     print "$\\alpha$: & $\\left< E_L \\right>$: & SEM: & $\\sigma_B$: & CPU time:"+ "\\" + "\\"
+#     cpu_time = loadtxt("../Output//exercise_d//"+samplingtype+".txt")
 #     for a in range(len(As)):    
         
 #         def data_path(dat_id):
 #             return os.path.join(DATA_ID, dat_id)
 
-#         infile = open(data_path(methodtype+"_2d_%sp_alpha_%s_MC_21_energy.txt"%(Ns[j],As[a])),'r')
+#         infile = open(data_path("analytical_2d_%sp_alpha_%s_MC_21_%s_energy.txt"%(Ns[j],As[a], samplingtype)),'r')
 
 #         x = loadtxt(infile, skiprows=5)
 #         # x = x[:int(2**19)]
@@ -106,6 +107,7 @@ def data_path(dat_id):
     return os.path.join(DATA_ID, dat_id)
 
 omega = [1.0, 0.5, 0.1, 0.05, 0.01]
+sampling_type = "importance" 
 
 
 # Brute force values
@@ -118,26 +120,27 @@ omega = [1.0, 0.5, 0.1, 0.05, 0.01]
 
 # Importance values
 
-# alpha = 
-# beta = 
-# mean_distance = 
-# E_kin = 
-# E_pot = 
-# E_int = 
+alpha = [0.98846, 0.98082, 0.94734, 0.92262]
+beta = [0.39954, 0.31068, 0.17810, 0.14090]
+mean_distance = 
+E_kin = 
+E_pot = 
+E_int = 
 
-# for o in range(len(omega)):
+for o in range(len(omega)):
 
-#     infile = open(data_path("exercise_e//interaction_ground_state_brute_force_2p_omega_%i_energy.txt"%int(omega[o]*100)),'r')
+    infile = open(data_path("exercise_e//interaction_ground_state_"+ sampling_type + "_2p_omega_%i_energy.txt"%int(omega[o]*100)),'r')
 
 
-#     x = loadtxt(infile, skiprows=5)
+    x = loadtxt(infile, skiprows=5)
 
-#     (mu, variance) = block(x) 
-#     std = sqrt(variance)
+    (mu, variance) = block(x) 
+    std = sqrt(variance)
 
-#     uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
+    uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
 
-#     print "%.5f & %.5f & %.5f & %.4f & %.5f & %.5f & %.3f & %.4f & %.4f & %.4f"%(omega[o], alpha[o], beta[o], mu, uncor_std, std, mean_distance[o], E_kin[o], E_pot[o], E_int[o])+ "\\"+ "\\"
+    print "%.5f & %.5f & %.5f & %.4f & %.5f & %.5f & %.3f & %.4f & %.4f & %.4f"%(omega[o], alpha[o], beta[o], mu, uncor_std, std, mean_distance[o], E_kin[o], E_pot[o], E_int[o])+ "\\"+ "\\"
+
 
 # ---------------------------------------------
 # Importance sampling exercise d
