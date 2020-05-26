@@ -183,22 +183,26 @@ Minimization rate of 0.5 seemed to be ideal. It resulted in the fewest steps unt
 
 \subsubsection{Including interaction}
 
-\begin{table}[H]\caption{Ground state energy of two interacting electrons in harmonic oscillator trap. Number of MC cycles are $2^{23}$}\label{tab:ground_state_energy_brute_force_interaction}
+\begin{table}[H]\caption{Ground state energy of two interacting electrons in harmonic oscillator trap found with brute force sampling. Number of MC cycles are $2^{23}$}\label{tab:ground_state_energy_brute_force_interaction}
 \center
 \begin{tabular}{c|cccccrccc}
 $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\overline{r}_{12} \,\,\,$ & $\left< T \right>$  & $\left< V_{ext}\right>$ & $\left<V_{int} \right>$  \\ \hline
-1.00000 & 0.98847 & 0.39965 & 3.0068 & 0.00001 & 0.00009 & 1.636 & 0.8944 & 1.2990 & 0.8135\\
-0.50000 & 0.98061 & 0.31091 & 1.6674 & 0.00001 & 0.00010 & 2.481 & 0.4488 & 0.7051 & 0.5135\\
-0.10000 & 0.94693 & 0.17764 & 0.4486 & 0.00001 & 0.00011 & 6.695 & 0.1003 & 0.1767 & 0.1716\\
-0.05000 & 0.92747 & 0.13815 & 0.2609 & 0.00000 & 0.00011 & 10.389 & 0.0533 & 0.0997 & 0.1076\\
-0.01000 & 0.88398 & 0.07287 & 0.0777 & 0.00000 & 0.00006 & 29.177 & 0.0129 & 0.0284 & 0.0364\\
+1.00 & 0.98847 & 0.39965 & 3.0068 & 0.00001 & 0.00009 & 1.636 & 0.8944 & 1.2990 & 0.8135\\
+0.50 & 0.98061 & 0.31091 & 1.6674 & 0.00001 & 0.00010 & 2.481 & 0.4488 & 0.7051 & 0.5135\\
+0.10 & 0.94693 & 0.17764 & 0.4486 & 0.00001 & 0.00011 & 6.695 & 0.1003 & 0.1767 & 0.1716\\
+0.05 & 0.92747 & 0.13815 & 0.2609 & 0.00000 & 0.00011 & 10.389 & 0.0533 & 0.0997 & 0.1076\\
+0.01 & 0.88398 & 0.07287 & 0.0777 & 0.00000 & 0.00006 & 29.177 & 0.0129 & 0.0284 & 0.0364\\
 \end{tabular}
 \end{table}
 
-\begin{table}[H]\caption{Ground state energy of two interacting electrons in harmonic oscillator trap. Number of MC cycles are $2^{22}$}\label{tab:ground_state_energy_importance_interaction}
+\begin{table}[H]\caption{Ground state energy of two interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$}\label{tab:ground_state_energy_importance_interaction}
 \center
 \begin{tabular}{c|ccccccccc}
-$\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ & $|\bm{r}_1-\bm{r}_2|_{mean}$ & $\left< T \right>$  & $\left< V_{ext}\right>$ & $\left<V_{int} \right>$  \\ \hline
+$\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\overline{r}_{12} \,\,\,$ & $\left< T \right>$  & $\left< V_{ext}\right>$ & $\left<V_{int} \right>$  \\ \hline
+1.00 & 0.98846 & 0.39954 & 3.0069 & 0.00001 & 0.00018 & 1.643 & 0.8931 & 1.3052 & 0.8086\\
+0.50& 0.98082 & 0.31068 & 1.6674 & 0.00001 & 0.00019 & 2.481 & 0.4547 & 0.6997 & 0.5130\\
+0.10 & 0.94734 & 0.17810 & 0.4486 & 0.00001 & 0.00023 & 6.724 & 0.0989 & 0.1787 & 0.1710\\
+0.05 & 0.92262 & 0.14090 & 0.2610 & 0.00000 & 0.00021 & 10.333 & 0.0495 & 0.1024 & 0.1091\\
 \end{tabular}
 \end{table}
 
@@ -209,6 +213,15 @@ $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ & $|\bm{
 \subsection{Extending to more particles}
 
 \subsubsection{Six particles}
+
+\begin{table}[H]\caption{Ground state energy of two interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$}\label{tab:ground_state_energy_importance_interaction_6p}
+\center
+\begin{tabular}{c|cccccccc}
+$\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\left< T \right>$  & $\left< V_{ext}\right>$ & $\left<V_{int} \right>$  \\ \hline
+1.00 & 0.71567 & 0.49372 & 20.4492 & 0.00022 & 0.00813 & 2.3429 & 10.7076 & 7.3988\\
+\end{tabular}
+\end{table}
+
 
 \subsubsection{Twelve particles}
 

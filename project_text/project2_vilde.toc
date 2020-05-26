@@ -14,12 +14,12 @@
 \contentsline {subsection}{\numberline {3.2}One-body density}{9}
 \contentsline {subsection}{\numberline {3.3}Extending to more particles}{9}
 \contentsline {subsubsection}{\numberline {3.3.1}Six particles}{9}
-\contentsline {subsubsection}{\numberline {3.3.2}Twelve particles}{9}
-\contentsline {section}{Appendices}{9}
-\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{9}
+\contentsline {subsubsection}{\numberline {3.3.2}Twelve particles}{10}
+\contentsline {section}{Appendices}{10}
+\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{10}
 \contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{10}
 \contentsline {subsection}{\numberline {B.1}Slater determinant}{10}
-\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{10}
-\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{11}
+\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{11}
+\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{12}
 \contentsline {section}{\numberline {C}Energies}{12}
-\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{12}
+\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{13}

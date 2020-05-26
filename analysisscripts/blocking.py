@@ -106,7 +106,7 @@ DATA_ID = "../Output//"
 def data_path(dat_id):
     return os.path.join(DATA_ID, dat_id)
 
-omega = [1.0, 0.5, 0.1, 0.05, 0.01]
+omega = [1.0]#, 0.5, 0.1, 0.05, 0.01]
 sampling_type = "importance" 
 
 
@@ -120,16 +120,25 @@ sampling_type = "importance"
 
 # Importance values
 
-alpha = [0.98846, 0.98082, 0.94734, 0.92262]
-beta = [0.39954, 0.31068, 0.17810, 0.14090]
-mean_distance = 
-E_kin = 
-E_pot = 
-E_int = 
+# alpha = [0.98846, 0.98082, 0.94734, 0.92262]
+# beta = [0.39954, 0.31068, 0.17810, 0.14090]
+# mean_distance = [1.64345, 2.48083, 6.72361, 10.3333]
+# E_kin = [0.893123, 0.454685, 0.0988959, 0.0495128 ]
+# E_pot = [1.30517, 0.699729, 0.178708,  0.102437]
+# E_int = [0.808643,  0.51295, 0.170973, 0.109083]
+
+# N = 6
+
+alpha = [0.71567]
+beta = [0.49372]
+mean_distance = [0]
+E_kin = [2.34291]
+E_pot = [10.7076]
+E_int = [7.39876]
 
 for o in range(len(omega)):
 
-    infile = open(data_path("exercise_e//interaction_ground_state_"+ sampling_type + "_2p_omega_%i_energy.txt"%int(omega[o]*100)),'r')
+    infile = open(data_path("exercise_g//interaction_ground_state_"+ sampling_type + "_6p_omega_%i_energy.txt"%int(omega[o]*100)),'r')
 
 
     x = loadtxt(infile, skiprows=5)
@@ -139,7 +148,7 @@ for o in range(len(omega)):
 
     uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
 
-    print "%.5f & %.5f & %.5f & %.4f & %.5f & %.5f & %.3f & %.4f & %.4f & %.4f"%(omega[o], alpha[o], beta[o], mu, uncor_std, std, mean_distance[o], E_kin[o], E_pot[o], E_int[o])+ "\\"+ "\\"
+    print "%.2f & %.5f & %.5f & %.4f & %.5f & %.5f & %.3f & %.4f & %.4f & %.4f"%(omega[o], alpha[o], beta[o], mu, uncor_std, std, mean_distance[o], E_kin[o], E_pot[o], E_int[o])+ "\\"+ "\\"
 
 
 # ---------------------------------------------
