@@ -10,8 +10,10 @@ public:
     double computeAlphaDerivative();
     double computeBetaDerivative();
     double getDistance()  { return m_distance; }
-    double computeRatio(double oldWaveFunction, double newWaveFunction);
+    double computeRatio(int particleNumber);
     void updateSlaterRelatedThings(int particleNumber);
+    void updateSlaterMatrix(int particleNumber);
+    void updateInverseSlaterMatrix(int particleNumber);
     void setupSlaterRelatedThings();
     std::vector<double> computeQuantumForce(int particleIndex, bool oldOrNew);
 
@@ -39,7 +41,6 @@ private:
     std::vector<std::vector<double>> m_oldInverseSlaterMatrixSpinDown = std::vector<std::vector<double>>();
 
     void setupSlaterMatrix();
-    void updateSlaterMatrix(int particleNumber);
     double phi_00(int particleNumber);
     double phi_10(int particleNumber, int dimension);
     double phi_20(int particleNumber, int dimension);
@@ -56,7 +57,6 @@ private:
     double phi_11_double_der(int particleNumber);
 
     void calculateInverseSlaterMatrix();
-    void updateInverseSlaterMatrix(int particleNumber);
 
     double m_metropolisRatio = 1;
 };

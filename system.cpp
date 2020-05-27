@@ -46,19 +46,20 @@ bool System::metropolisStep() {
         m_particles[randomParticleIndex]->adjustPosition(randomAmount[m1], m1);
     }
 
-    m_waveFunction->updateSlaterRelatedThings(randomParticleIndex);
-
+    // m_waveFunction->updateSlaterRelatedThings(randomParticleIndex);
+    m_waveFunction->updateSlaterMatrix(randomParticleIndex);
     // cout << "ok after update \n";
 
-    double newWaveFunction = m_waveFunction->evaluate();
+    // double newWaveFunction = m_waveFunction->evaluate();
     
     // std::cout << "New wavefunction: " << newWaveFunction << endl;
     
 
 
     // Determening if step is accepted (return true) or not (move particle back and return false)
-    if (m_random->nextDouble() <= m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction)){
+    if (m_random->nextDouble() <= m_waveFunction->computeRatio(randomParticleIndex)){
                                     // cout << "ok" << endl;
+        m_waveFunction->updateInverseSlaterMatrix(randomParticleIndex);
         return true;
         }
 
@@ -66,7 +67,7 @@ bool System::metropolisStep() {
         m_particles[randomParticleIndex]->adjustPosition(-randomAmount[m2], m2);
     }
 
-    m_waveFunction->updateSlaterRelatedThings(randomParticleIndex);
+    m_waveFunction->updateSlaterMatrix(randomParticleIndex);
     // cout << "no move" << endl;
     return false;
 }
@@ -113,11 +114,11 @@ bool System::metropolisStepImportance() {
 
     // cout << greensFunctionFrac << "\t" << m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction) << "\t" << oldWaveFunction << "\t" << newWaveFunction << "\n";
     // Determening if step is accepted (return true) or not (move particle back and return false)
-    if (m_random->nextDouble() <= greensFunctionFrac*m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction)){
+    // if (m_random->nextDouble() <= greensFunctionFrac*m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction)){
                 // cout << "move accepted \n";
 
-        return true;
-        }
+        // return true;
+        // }
     // cout << "move not accepted \n";
                 // std::cout << "Particle index: " << particleIndex << endl;
     

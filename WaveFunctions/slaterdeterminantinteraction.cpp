@@ -604,8 +604,10 @@ void SlaterDeterminantInteraction::updateInverseSlaterMatrix(int particleNumber)
 
 }
 
-double SlaterDeterminantInteraction::computeRatio(double oldWaveFunction, double newWaveFunction){
-    return newWaveFunction*newWaveFunction/(oldWaveFunction*oldWaveFunction);
+double SlaterDeterminantInteraction::computeRatio(int particleNumber){
+
+    // return newWaveFunction*newWaveFunction/(oldWaveFunction*oldWaveFunction);
+    return 0;
 }
 
 

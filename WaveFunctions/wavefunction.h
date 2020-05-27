@@ -18,8 +18,10 @@ public:
     std::vector <std::vector<double> > getOneBodyDensityRadial(){ return m_oneBodyDensityRadial; };
     void setOneBodyDensityBins(int numberOfBins, double densityLength);
     virtual double getDistance() = 0;
-    virtual double computeRatio(double oldWaveFunction, double newWaveFunction) = 0;
+    virtual double computeRatio(int particleNumber) = 0;
     virtual void updateSlaterRelatedThings(int particleNumber) = 0;
+    virtual void updateSlaterMatrix(int particleNumber) = 0;
+    virtual void updateInverseSlaterMatrix(int particleNumber) = 0;
     virtual void setupSlaterRelatedThings() = 0;
     virtual std::vector<double> computeQuantumForce(int particleIndex, bool oldOrNew) = 0;
     
