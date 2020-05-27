@@ -23,6 +23,7 @@ public:
     virtual void updateSlaterMatrix(int particleNumber) = 0;
     virtual void updateInverseSlaterMatrix(int particleNumber) = 0;
     virtual void setupSlaterRelatedThings() = 0;
+    
     virtual std::vector<double> computeQuantumForce(int particleIndex, bool oldOrNew) = 0;
     
 protected:
