@@ -364,11 +364,9 @@ void SlaterDeterminant::calculateInverseSlaterMatrix(){
         if (s == 0){
             m_inverseSlaterMatrixSpinUp = m_inverseSlaterMatrix;
             m_slaterDeterminantSpinUp = m.determinant(); //m_slaterMatrix.determinant();
-            m_oldInverseSlaterMatrixSpinUp = m_inverseSlaterMatrixSpinUp;
         }else{
             m_inverseSlaterMatrixSpinDown = m_inverseSlaterMatrix;
             m_slaterDeterminantSpinDown = m.determinant(); //m_slaterMatrix.determinant();
-            m_oldInverseSlaterMatrixSpinDown = m_inverseSlaterMatrixSpinDown;
         }
     
             // std::cout << "determinant after: "<< m_slaterDeterminantSpinDown << " \n ------------ \n";
@@ -388,76 +386,74 @@ void SlaterDeterminant::updateInverseSlaterMatrix(int particleNumber){
     int pN = particleNumber;
 	
     std::vector <std::vector <double> > slaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
-    std::vector <std::vector <double> > oldSlaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
-    std::vector <std::vector <double> > inverseSlaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
+    // std::vector <std::vector <double> > oldSlaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
+    // std::vector <std::vector <double> > inverseSlaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
     std::vector <std::vector <double> > newInverseSlaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
-    std::vector <std::vector <double> > oldInverseSlaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
 
     if(particleNumber < numberOfParticles/2){
         slaterMatrix = m_slaterMatrixSpinUp;
-        oldSlaterMatrix = m_oldSlaterMatrixSpinUp;
-        inverseSlaterMatrix = m_inverseSlaterMatrixSpinUp;
-        oldInverseSlaterMatrix = m_oldInverseSlaterMatrixSpinUp;
+        // oldSlaterMatrix = m_oldSlaterMatrixSpinUp;
+        // inverseSlaterMatrix = m_inverseSlaterMatrixSpinUp;
+        // std::cout << "up is ok" << "\n";
     }else{
         slaterMatrix = m_slaterMatrixSpinDown;
-        oldSlaterMatrix = m_oldSlaterMatrixSpinDown;
-        inverseSlaterMatrix = m_inverseSlaterMatrixSpinDown;
-        oldInverseSlaterMatrix = m_oldInverseSlaterMatrixSpinDown;
-        pN = particleNumber - numberOfParticles/2;
+        // oldSlaterMatrix = m_oldSlaterMatrixSpinDown;
+        // inverseSlaterMatrix = m_inverseSlaterMatrixSpinDown;
+        // pN = particleNumber - numberOfParticles/2;
+        // std::cout << "pN: " << pN << "\n";
     }
 
 
-    for (int j_i = 0; j_i < numberOfParticles/2; j_i++){ // states
-        double sumWithNew = 0;
-        double sumWithOld = 0;
+    // for (int j_i = 0; j_i < numberOfParticles/2; j_i++){ // states
+    //     double sumWithNew = 0;
+    //     double sumWithOld = 0;
 
-        for (int l_i = 0; l_i < numberOfParticles/2; l_i++){
-            sumWithNew += slaterMatrix[l_i][pN]*oldInverseSlaterMatrix[j_i][l_i];
-            sumWithOld += oldSlaterMatrix[l_i][pN]*oldInverseSlaterMatrix[j_i][l_i];
-        }
+    //     for (int l_i = 0; l_i < numberOfParticles/2; l_i++){
+    //         sumWithNew += slaterMatrix[l_i][pN]*inverseSlaterMatrix[j_i][l_i];
+    //         sumWithOld += oldSlaterMatrix[l_i][pN]*inverseSlaterMatrix[j_i][l_i];
+    //     }
 
-        // std::cout << "\n";
-        for (int k_i = 0; k_i < numberOfParticles/2; k_i++){ // particles
+    //     // std::cout << "\n";
+    //     for (int k_i = 0; k_i < numberOfParticles/2; k_i++){ // particles
 
-            if (j_i != pN){
-                newInverseSlaterMatrix[j_i][k_i] = inverseSlaterMatrix[j_i][k_i] - (inverseSlaterMatrix[pN][k_i]/m_metropolisRatio)*sumWithNew;
-            }if(j_i == pN){
-                newInverseSlaterMatrix[j_i][k_i] = (inverseSlaterMatrix[pN][k_i]/m_metropolisRatio)*sumWithOld;
-            }
+    //         if (j_i != pN){
+    //             newInverseSlaterMatrix[j_i][k_i] = inverseSlaterMatrix[j_i][k_i] - (inverseSlaterMatrix[pN][k_i]/m_metropolisRatio)*sumWithNew;
+    //         }if(j_i == pN){
+    //             newInverseSlaterMatrix[j_i][k_i] = (inverseSlaterMatrix[pN][k_i]/m_metropolisRatio)*sumWithOld;
+    //         }
 
-        // std::cout << inverseSlaterMatrix[j_i][k_i] << "\t";
+    //     // std::cout << inverseSlaterMatrix[j_i][k_i] << "  ";
 
-        }
-    }
+    //     }
+           
+    // }
+    // // std::cout << "\n"; 
 
-
-    // MatrixXd m(numberOfParticles/2, numberOfParticles/2);
-    // MatrixXd m_inv(numberOfParticles/2, numberOfParticles/2);
+    MatrixXd m(numberOfParticles/2, numberOfParticles/2);
+    MatrixXd m_inv(numberOfParticles/2, numberOfParticles/2);
         
-    //     for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
-    //         for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
-    //             m(i_i,j_i) = slaterMatrix[i_i][j_i];
-    //         }
-    //     }
+        for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
+            for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
+                m(i_i,j_i) = slaterMatrix[i_i][j_i];
+            }
+        }
 
-    //     // Inverse:
-    //     m_inv = m.inverse();
+        // Inverse:
+        m_inv = m.inverse();
 
-    //     for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
-    //         for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
-    //             newInverseSlaterMatrix[i_i][j_i] = m_inv(i_i,j_i);
-    //         }
-    //     }
+        for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
+            for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
+                newInverseSlaterMatrix[i_i][j_i] = m_inv(i_i,j_i);
+            }
+        }
 
 
 
         if(particleNumber < numberOfParticles/2){
-            m_oldSlaterMatrixSpinUp = m_slaterMatrixSpinUp;
             m_slaterMatrixSpinUp = slaterMatrix;
             m_inverseSlaterMatrixSpinUp = newInverseSlaterMatrix;
             // m_slaterDeterminantSpinUp = m.determinant();
         }else{
-            m_oldSlaterMatrixSpinDown = m_slaterMatrixSpinDown;
             m_slaterMatrixSpinDown = slaterMatrix;
             m_inverseSlaterMatrixSpinDown = newInverseSlaterMatrix;
             // m_slaterDeterminantSpinDown = m.determinant();
@@ -467,33 +463,36 @@ void SlaterDeterminant::updateInverseSlaterMatrix(int particleNumber){
 
 }
 
+double SlaterDeterminant::computeRatio(double newWaveFunction, double oldWaveFunction){
+    // int pN = particleNumber;
+    // auto numberOfParticles = m_system->getNumberOfParticles();
+    // double R = 0;
 
-double SlaterDeterminant::computeRatio(int particleNumber){
-    int pN = particleNumber;
-    auto numberOfParticles = m_system->getNumberOfParticles();
-    double R = 0;
+    // // std::cout << R << "\t";
 
-    if(particleNumber < numberOfParticles/2){
-        for (int j_R = 0; j_R < numberOfParticles/2; j_R++){
-            R += m_slaterMatrixSpinUp[j_R][pN]*m_inverseSlaterMatrixSpinUp[pN][j_R];
-        }
-    }else{
-        pN = particleNumber - particleNumber/2;
-        for (int j_R = 0; j_R < numberOfParticles/2; j_R++){
-            R += m_slaterMatrixSpinDown[j_R][pN]*m_inverseSlaterMatrixSpinDown[pN][j_R];
-        }
-    }
+    // if(particleNumber < numberOfParticles/2){
+    //     for (int j_R = 0; j_R < numberOfParticles/2; j_R++){
+    //         R += m_slaterMatrixSpinUp[j_R][pN]*m_inverseSlaterMatrixSpinUp[pN][j_R];
+    //     }
+    // }else{
+    //     pN = particleNumber - numberOfParticles/2;
+    //     for (int j_R = 0; j_R < numberOfParticles/2; j_R++){
+    //         R += m_slaterMatrixSpinDown[j_R][pN]*m_inverseSlaterMatrixSpinDown[pN][j_R];
+    //     }
+    // }
+    // std::cout << "New ratio: " << R << "\n";
 
-    m_metropolisRatio = R;
+    // m_metropolisRatio = R;
 
-    return R;
+    // // std::cout << R << "\t";
 
+    // return R;
 
-    // m_metropolisRatio = newWaveFunction*newWaveFunction/(oldWaveFunction*oldWaveFunction);
-    
+    m_metropolisRatio = newWaveFunction*newWaveFunction/(oldWaveFunction*oldWaveFunction);
+
     return m_metropolisRatio;
+    
 }
-
 
 std::vector<double> SlaterDeterminant::computeQuantumForce(int particleIndex, bool oldOrNew){
     /* This function calculates the quantum force/drift force with is used for importance
@@ -504,14 +503,17 @@ std::vector<double> SlaterDeterminant::computeQuantumForce(int particleIndex, bo
     if (oldOrNew == true){
         R_inv = 1;
     }if(oldOrNew == false){
-        R_inv = 1;// /m_metropolisRatio;
+        R_inv = 1; // /m_metropolisRatio; // need only this part because Slater matrix has been updated by itself because
+                                   // the particle used to evaluate it has been moved.
     }
 
   
     auto derivative = computeDerivative(particleIndex);
 
+    double factor = 2*R_inv;
+
     for (int m=0;m<m_system->getNumberOfDimensions();m++){
-        derivative[m] *= 2;
+        derivative[m] *= factor;
         // std::cout << derivative[m] << "\n";
     }
 

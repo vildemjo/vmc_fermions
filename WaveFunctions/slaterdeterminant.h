@@ -10,7 +10,7 @@ public:
     double computeAlphaDerivative();
     double computeBetaDerivative(){ return 0;}
     double getDistance();
-    double computeRatio(int particleNumber);
+    double computeRatio(double newWaveFunction, double oldWaveFunction);
     void updateSlaterRelatedThings(int particleNumber);
     void updateSlaterMatrix(int particleNumber);
     void updateInverseSlaterMatrix(int particleNumber);
@@ -30,8 +30,6 @@ private:
     std::vector<std::vector<double>> m_oldSlaterMatrixSpinDown = std::vector<std::vector<double>>();
     std::vector<std::vector<double>> m_inverseSlaterMatrixSpinUp = std::vector<std::vector<double>>();
     std::vector<std::vector<double>> m_inverseSlaterMatrixSpinDown = std::vector<std::vector<double>>();
-    std::vector<std::vector<double>> m_oldInverseSlaterMatrixSpinUp = std::vector<std::vector<double>>();
-    std::vector<std::vector<double>> m_oldInverseSlaterMatrixSpinDown = std::vector<std::vector<double>>();
 
     void setupSlaterMatrix();
     double phi_00(int particleNumber);

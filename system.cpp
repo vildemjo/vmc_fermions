@@ -34,7 +34,7 @@ bool System::metropolisStep() {
     // A vector to save the distances the particle is moved in
     // case it has to be moved back
     std::vector<double> randomAmount(m_numberOfDimensions);
-    // double   oldWaveFunction      = m_waveFunction->evaluate();
+    double   oldWaveFunction      = m_waveFunction->evaluate();
     int      randomParticleIndex  = m_random->nextInt(0, m_numberOfParticles-1);
 
     // std::cout << "\n ------------- \n Particle index: " << randomParticleIndex << "\n ------------ " << endl;
@@ -50,14 +50,15 @@ bool System::metropolisStep() {
     m_waveFunction->updateSlaterMatrix(randomParticleIndex);
     // cout << "ok after update \n";
 
-    // double newWaveFunction = m_waveFunction->evaluate();
+    double newWaveFunction = m_waveFunction->evaluate();
     
     // std::cout << "New wavefunction: " << newWaveFunction << endl;
     
 
-
+    // cout << "Old ratio: " << newWaveFunction*newWaveFunction/(oldWaveFunction*oldWaveFunction) << "\n";
+   
     // Determening if step is accepted (return true) or not (move particle back and return false)
-    if (m_random->nextDouble() <= m_waveFunction->computeRatio(randomParticleIndex)){
+    if (m_random->nextDouble() <= m_waveFunction->computeRatio(newWaveFunction, oldWaveFunction)){
                                     // cout << "ok" << endl;
         m_waveFunction->updateInverseSlaterMatrix(randomParticleIndex);
         return true;
@@ -104,7 +105,8 @@ bool System::metropolisStepImportance() {
         m_particles[particleIndex]->adjustPosition(importanceAmount[m1], m1);
     }
  
-    m_waveFunction->updateSlaterRelatedThings(particleIndex);
+    m_waveFunction->updateSlaterMatrix(particleIndex);
+    m_waveFunction->updateInverseSlaterMatrix(particleIndex);
     double newWaveFunction  = m_waveFunction->evaluate();
     auto   newQuantumForce  = m_waveFunction->computeQuantumForce(particleIndex, false); // false = new quantum force
     auto   newPosition      = m_particles[particleIndex]->getPosition();
@@ -114,11 +116,11 @@ bool System::metropolisStepImportance() {
 
     // cout << greensFunctionFrac << "\t" << m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction) << "\t" << oldWaveFunction << "\t" << newWaveFunction << "\n";
     // Determening if step is accepted (return true) or not (move particle back and return false)
-    // if (m_random->nextDouble() <= greensFunctionFrac*m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction)){
+    if (m_random->nextDouble() <= greensFunctionFrac*m_waveFunction->computeRatio(newWaveFunction, oldWaveFunction)){
                 // cout << "move accepted \n";
-
-        // return true;
-        // }
+        // m_waveFunction->updateInverseSlaterMatrix(particleIndex);
+        return true;
+        }
     // cout << "move not accepted \n";
                 // std::cout << "Particle index: " << particleIndex << endl;
     
@@ -126,7 +128,8 @@ bool System::metropolisStepImportance() {
         m_particles[particleIndex]->adjustPosition(-importanceAmount[m4], m4);
     }
 
-    m_waveFunction->updateSlaterRelatedThings(particleIndex);
+    m_waveFunction->updateSlaterMatrix(particleIndex);
+    m_waveFunction->updateInverseSlaterMatrix(particleIndex);
 
     return false;
 }

@@ -37,7 +37,7 @@ int main() {
     int numberOfParticles    = 6;
     int numberOfSteps        = (int) pow(2.0,21.0);
     double omega             = 1.0;          // Oscillator frequency.
-    double stepLength        = 0.5;//0.001;          // Metropolis step length.
+    double stepLength        = 0.005;//0.001;          // Metropolis step length.
     int firstCriteria        = 0;            // print header in file
     double alpha             = 1.0;
     double beta              = 0;   
@@ -50,9 +50,6 @@ int main() {
 
 
 //    /* Set-up to run and save local energies for every step to file*/
-
-    allEnergiesOrNot    = true;
-    importanceOrNot     = true;
 
     clock_t start, end;
     // Recording the starting clock tick.

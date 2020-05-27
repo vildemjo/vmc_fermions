@@ -488,10 +488,8 @@ void SlaterDeterminantInteraction::calculateInverseSlaterMatrix(){
 
         if (s == 0){
             m_slaterMatrix = m_slaterMatrixSpinUp;
-            m_oldInverseSlaterMatrixSpinUp = m_inverseSlaterMatrixSpinUp; // saving the old one
         }if(s == 1){
             m_slaterMatrix = m_slaterMatrixSpinDown;
-            m_oldInverseSlaterMatrixSpinDown = m_inverseSlaterMatrixSpinDown; // saving the old one
         }
 
 
@@ -604,10 +602,11 @@ void SlaterDeterminantInteraction::updateInverseSlaterMatrix(int particleNumber)
 
 }
 
-double SlaterDeterminantInteraction::computeRatio(int particleNumber){
+double SlaterDeterminantInteraction::computeRatio(double newWaveFunction, double oldWaveFunction){
 
-    // return newWaveFunction*newWaveFunction/(oldWaveFunction*oldWaveFunction);
-    return 0;
+    m_metropolisRatio = newWaveFunction*newWaveFunction/(oldWaveFunction*oldWaveFunction);
+
+    return m_metropolisRatio;
 }
 
 
@@ -620,7 +619,7 @@ std::vector<double> SlaterDeterminantInteraction::computeQuantumForce(int partic
     if (oldOrNew == true){
         R_inv = 1;
     }if(oldOrNew == false){
-        R_inv = 1;// /m_metropolisRatio;
+        R_inv = 1/m_metropolisRatio;
     }
 
     
