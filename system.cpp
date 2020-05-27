@@ -34,7 +34,7 @@ bool System::metropolisStep() {
     // A vector to save the distances the particle is moved in
     // case it has to be moved back
     std::vector<double> randomAmount(m_numberOfDimensions);
-    double   oldWaveFunction      = m_waveFunction->evaluate();
+    // double   oldWaveFunction      = m_waveFunction->evaluate();
     int      randomParticleIndex  = m_random->nextInt(0, m_numberOfParticles-1);
 
     // std::cout << "\n ------------- \n Particle index: " << randomParticleIndex << "\n ------------ " << endl;

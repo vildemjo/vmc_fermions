@@ -100,11 +100,13 @@ The consequence of these calculations are that we now only have to calculate the
 
 \subsection{Updating the inverse of the Slater determinant}
 
+\textbf{Har skrevet feil her - må rette det opp.}
+
 After a move is accepted in the Metropolis test, the row in the Slater determinant representing that particle is updated, but the inverse of the Slater determinant also needs to be updated because the Slater determinant has changed. This could be done by simply calculating the inverse of the determinant, but this is costly and there is a more efficient way. The elements of the determinant $d_{kj}^{-1}$ (\textit{hva betyr den $^{-1}$? At den skal opphøyes i minus 1 eller er det notasjon på at det er et element i den inverse matrisen?}) can be found through
 
 $$ d_{kj}^{-1}(\bm{r}^{new}) = \left\{ \begin{matrix}
-d_{kj}^{-1}(\bm{r}^{old})- \frac{d_{kj}^{-1}(\bm{r}^{old})}{R}\sum_{l=1}^N d_{il}^{-1}(\bm{r}^{new})d_{lj}^{-1}(\bm{r}^{old}) &\quad \text{ if } i \neq j \\
-\frac{d_{kj}^{-1}(\bm{r}^{old})}{R}\sum_{l=1}^N d_{il}^{-1}(\bm{r}^{old})d_{lj}^{-1}(\bm{r}^{old}) &\quad \text{ if } i = j
+d_{kj}^{-1}(\bm{r}^{old})- \frac{d_{ki}^{-1}(\bm{r}^{old})}{R}\sum_{l=1}^N d_{il}(\bm{r}^{new})d_{lj}^{-1}(\bm{r}^{old}) &\quad \text{ if } i \neq j \\
+\frac{d_{ki}^{-1}(\bm{r}^{old})}{R}\sum_{l=1}^N d_{il}(\bm{r}^{old})d_{lj}^{-1}(\bm{r}^{old}) &\quad \text{ if } i = j
 \end{matrix} \right. , $$
 
 where $i$ is the number of the row representing the particle that was moved. 

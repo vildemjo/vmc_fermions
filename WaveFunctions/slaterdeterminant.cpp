@@ -257,23 +257,23 @@ void SlaterDeterminant::updateSlaterMatrix(int particleNumber){
         // std::cout << m_slaterMatrix[m3][pN] << "\t";
     }
 
-    // MatrixXd m(numberOfParticles/2, numberOfParticles/2);
+    MatrixXd m(numberOfParticles/2, numberOfParticles/2);
         
-    //     for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
-    //         for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
-    //             m(i_i,j_i) = m_slaterMatrix[i_i][j_i];
-    //         }
-    //     }
+        for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
+            for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
+                m(i_i,j_i) = m_slaterMatrix[i_i][j_i];
+            }
+        }
 
 
     if(particleNumber < numberOfParticles/2){
         m_oldSlaterMatrixSpinUp = m_slaterMatrixSpinUp; // saving the "old" one to calculate the inverse
         m_slaterMatrixSpinUp = m_slaterMatrix;
-        // m_slaterDeterminantSpinUp = m.determinant();
+        m_slaterDeterminantSpinUp = m.determinant();
     }else{
         m_oldSlaterMatrixSpinDown = m_slaterMatrixSpinDown; // saving the "old" one to calculate the inverse
         m_slaterMatrixSpinDown = m_slaterMatrix;
-        // m_slaterDeterminantSpinDown = m.determinant();
+        m_slaterDeterminantSpinDown = m.determinant();
     }
 
 }
@@ -407,47 +407,47 @@ void SlaterDeterminant::updateInverseSlaterMatrix(int particleNumber){
     }
 
 
-    // for (int j_i = 0; j_i < numberOfParticles/2; j_i++){ // states
-    //     double sumWithNew = 0;
-    //     double sumWithOld = 0;
+    for (int j_i = 0; j_i < numberOfParticles/2; j_i++){ // states
+        double sumWithNew = 0;
+        double sumWithOld = 0;
 
-    //     for (int l_i = 0; l_i < numberOfParticles/2; l_i++){
-    //         sumWithNew += slaterMatrix[l_i][pN]*oldInverseSlaterMatrix[j_i][l_i];
-    //         sumWithOld += oldSlaterMatrix[l_i][pN]*oldInverseSlaterMatrix[j_i][l_i];
-    //     }
+        for (int l_i = 0; l_i < numberOfParticles/2; l_i++){
+            sumWithNew += slaterMatrix[l_i][pN]*oldInverseSlaterMatrix[j_i][l_i];
+            sumWithOld += oldSlaterMatrix[l_i][pN]*oldInverseSlaterMatrix[j_i][l_i];
+        }
 
-    //     // std::cout << "\n";
-    //     for (int k_i = 0; k_i < numberOfParticles/2; k_i++){ // particles
+        // std::cout << "\n";
+        for (int k_i = 0; k_i < numberOfParticles/2; k_i++){ // particles
 
-    //         if (j_i != pN){
-    //             newInverseSlaterMatrix[j_i][k_i] = inverseSlaterMatrix[j_i][k_i] - (inverseSlaterMatrix[pN][k_i]/m_metropolisRatio)*sumWithNew;
-    //         }if(j_i == pN){
-    //             newInverseSlaterMatrix[j_i][k_i] = (inverseSlaterMatrix[pN][k_i]/m_metropolisRatio)*sumWithOld;
-    //         }
+            if (j_i != pN){
+                newInverseSlaterMatrix[j_i][k_i] = inverseSlaterMatrix[j_i][k_i] - (inverseSlaterMatrix[pN][k_i]/m_metropolisRatio)*sumWithNew;
+            }if(j_i == pN){
+                newInverseSlaterMatrix[j_i][k_i] = (inverseSlaterMatrix[pN][k_i]/m_metropolisRatio)*sumWithOld;
+            }
 
         // std::cout << inverseSlaterMatrix[j_i][k_i] << "\t";
 
-        // }
-    // }
+        }
+    }
 
 
-    MatrixXd m(numberOfParticles/2, numberOfParticles/2);
-    MatrixXd m_inv(numberOfParticles/2, numberOfParticles/2);
+    // MatrixXd m(numberOfParticles/2, numberOfParticles/2);
+    // MatrixXd m_inv(numberOfParticles/2, numberOfParticles/2);
         
-        for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
-            for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
-                m(i_i,j_i) = slaterMatrix[i_i][j_i];
-            }
-        }
+    //     for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
+    //         for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
+    //             m(i_i,j_i) = slaterMatrix[i_i][j_i];
+    //         }
+    //     }
 
-        // Inverse:
-        m_inv = m.inverse();
+    //     // Inverse:
+    //     m_inv = m.inverse();
 
-        for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
-            for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
-                newInverseSlaterMatrix[i_i][j_i] = m_inv(i_i,j_i);
-            }
-        }
+    //     for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
+    //         for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
+    //             newInverseSlaterMatrix[i_i][j_i] = m_inv(i_i,j_i);
+    //         }
+    //     }
 
 
 
@@ -455,12 +455,12 @@ void SlaterDeterminant::updateInverseSlaterMatrix(int particleNumber){
             m_oldSlaterMatrixSpinUp = m_slaterMatrixSpinUp;
             m_slaterMatrixSpinUp = slaterMatrix;
             m_inverseSlaterMatrixSpinUp = newInverseSlaterMatrix;
-            m_slaterDeterminantSpinUp = m.determinant();
+            // m_slaterDeterminantSpinUp = m.determinant();
         }else{
             m_oldSlaterMatrixSpinDown = m_slaterMatrixSpinDown;
             m_slaterMatrixSpinDown = slaterMatrix;
             m_inverseSlaterMatrixSpinDown = newInverseSlaterMatrix;
-            m_slaterDeterminantSpinDown = m.determinant();
+            // m_slaterDeterminantSpinDown = m.determinant();
         }
     
 
