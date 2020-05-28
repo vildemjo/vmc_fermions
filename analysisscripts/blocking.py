@@ -106,7 +106,7 @@ DATA_ID = "../Output//"
 def data_path(dat_id):
     return os.path.join(DATA_ID, dat_id)
 
-omega = [1.0]#, 0.5, 0.1, 0.05, 0.01]
+omega = [1.0, 0.5]#, 0.1, 0.05, 0.01]
 sampling_type = "importance" 
 
 
@@ -129,12 +129,12 @@ sampling_type = "importance"
 
 # N = 6
 
-alpha = [0.71567]
-beta = [0.49372]
-mean_distance = [0]
-E_kin = [2.34291]
-E_pot = [10.7076]
-E_int = [7.39876]
+alpha = [0.71567, 0.75823]
+beta = [0.49372, 0.34260]
+mean_distance = [0,0]
+E_kin = [2.34291, 1.32263]
+E_pot = [10.7076, 5.80937]
+E_int = [7.39876,4.85476]
 
 for o in range(len(omega)):
 

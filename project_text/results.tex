@@ -208,20 +208,67 @@ $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\ove
 
 \subsection{One-body density}
 
+\begin{figure}[H]
+\center
+\includegraphics[width=0.8\linewidth]{../Results/one_body_density_no_interaction_2p}\caption{•}\label{fig:one_body_density_no_interaction_2p}
+\end{figure}
 
+\begin{figure}[H]
+\center
+\includegraphics[width=0.7\linewidth]{../Results/one_body_density_interaction_2p}\caption{Dashed lines are with the Jastrow factor. Normal lines is without Jastrow factor. }\label{fig:one_body_density_interaction_2p}
+\end{figure}
 
 \subsection{Extending to more particles}
 
 \subsubsection{Six particles}
+
+\begin{table}[H]\caption{Number of MC cycles are $2^{23}$. }\label{tab:ground_state_energy_importance_6p}
+\center
+\begin{tabular}{c|rcc}
+$\omega$ & $\left< E_L \right>$  & $\left< T \right>$  & $\left< V_{ext}\right>$ \\ \hline
+1.00 & 10.00 & 4.9865 & 5.0135\\ 
+0.50 & 5.00 & 2.4973 & 2.5027\\
+0.10 & 1.00 & 0.4861 & 0.5139\\
+0.05 & 0.50 & 0.2483 & 0.2517\\
+0.01 & 0.10 & 0.0454 & 0.0546\\
+\end{tabular}
+\end{table}
 
 \begin{table}[H]\caption{Ground state energy of two interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$}\label{tab:ground_state_energy_importance_interaction_6p}
 \center
 \begin{tabular}{c|cccccccc}
 $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\left< T \right>$  & $\left< V_{ext}\right>$ & $\left<V_{int} \right>$  \\ \hline
 1.00 & 0.71567 & 0.49372 & 20.4492 & 0.00022 & 0.00813 & 2.3429 & 10.7076 & 7.3988\\
+0.50 & 0.75823 & 0.34260 & 11.9868 & 0.00011 & 0.00522 & 1.3226 & 5.8094 & 4.8548\\
 \end{tabular}
 \end{table}
+
+\begin{figure}[H]
+\center
+\includegraphics[width=0.8\linewidth]{../Results/one_body_density_no_interaction_6p}\caption{•}\label{fig:one_body_density_no_interaction_6p}
+\end{figure}
+
+\begin{figure}[H]
+\center
+\includegraphics[width=0.7\linewidth]{../Results/one_body_density_interaction_6p}\caption{Dashed lines are with the Jastrow factor. Normal lines is without Jastrow factor. }\label{fig:one_body_density_interaction_6p}
+\end{figure}
 
 
 \subsubsection{Twelve particles}
 
+\begin{table}[H]\caption{Number of MC cycles are $2^{23}$. }\label{tab:ground_state_energy_importance_12p}
+\center
+\begin{tabular}{c|rrr}
+$\omega$ & $\left< E_L \right>$  & $\left< T \right>\,\,\,$  & $\left< V_{ext}\right>\,$ \\ \hline
+1.00 & 28.00 & 14.0117 & 13.9883\\ 
+0.50 & 14.00 & 7.0463 & 6.9537\\ 
+0.10 & 2.80 & 1.4084 & 1.3916\\ 
+0.05 & 1.40 & 0.6901 & 0.7099\\ 
+0.01 & 0.28 & 0.1419 & 0.1381\\ 
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\center
+\includegraphics[width=0.8\linewidth]{../Results/one_body_density_no_interaction_12p}\caption{Had to use MC 2 24 to get smooth graphs. }\label{fig:one_body_density_no_interaction_12p}
+\end{figure}

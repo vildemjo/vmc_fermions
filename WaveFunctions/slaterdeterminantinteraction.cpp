@@ -7,6 +7,10 @@
 #include "../particle.h"
 #include <iostream>
 #include "InitialStates/initialstate.h"
+#include <Eigen/Dense>
+
+using namespace Eigen;
+
 
 
 SlaterDeterminantInteraction::SlaterDeterminantInteraction(System* system, double alpha, double beta) :

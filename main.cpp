@@ -34,8 +34,8 @@ int main() {
     bool allEnergiesOrNot    = true;
     int equilibration        = 1e5;          // Number of the total steps used for equilibration
     int numberOfDimensions   = 2;
-    int numberOfParticles    = 12;
-    int numberOfSteps        = (int) pow(2.0,21.0);
+    int numberOfParticles    = 6;
+    int numberOfSteps        = (int) pow(2.0,23.0);
     double omega             = 1.0;          // Oscillator frequency.
     double stepLength        = 0.005;//0.001;          // Metropolis step length.
     int firstCriteria        = 0;            // print header in file
@@ -45,52 +45,49 @@ int main() {
 
     double spinFactor  = 1;
 
-    double densityLength = 3.0*2;
-    int numberOfBins = 300*2;// (int) (300/4)*(int) densityLength;
+    double densityLength = 12.0*2;
+    int numberOfBins = 4*2;// (int) (300/4)*(int) densityLength;
 
 
 //    /* Set-up to run and save local energies for every step to file*/
 
-    allEnergiesOrNot    = true;
-    importanceOrNot     = true;
+    // clock_t start, end;
+    // // Recording the starting clock tick.
+    // start = clock();
 
-    clock_t start, end;
-    // Recording the starting clock tick.
-    start = clock();
+    // double omegaPrint = omega*100.0;
+    // int omegaPrintable = ceil(omegaPrint);
+    // double alphaPrint = alpha*100.0;
+    // int alphaPrintable = ceil(alphaPrint);
 
-    double omegaPrint = omega*100.0;
-    int omegaPrintable = ceil(omegaPrint);
-    double alphaPrint = alpha*100.0;
-    int alphaPrintable = ceil(alphaPrint);
+    // cout << "omega: " << omega << "\n";
+    // string samplingType = setSamplingName(importanceOrNot);
 
-    cout << "omega: " << omega << "\n";
-    string samplingType = setSamplingName(importanceOrNot);
-
-    string file_name = "test"; // "Output/exercise_f/one_body/ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"+ to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable)+ "_0";
-    // string file_name = "Output/exercise_f/one_body/ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"
-    //                                         + to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable)+ "_0";
+    // string file_name = "test"; //"Output/exercise_f/one_body/ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"+ to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable)+ "_0";
+    // // string file_name = "Output/exercise_f/one_body/ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"
+    // //                                         + to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable)+ "_0";
     
-    System* system = new System();
-    system->setHamiltonian                (new HarmonicOscillator(system, omega));
-    system->setWaveFunction               (new SlaterDeterminant(system, alpha));
+    // System* system = new System();
+    // system->setHamiltonian                (new HarmonicOscillator(system, omega));
+    // system->setWaveFunction               (new SlaterDeterminant(system, alpha));
 
-    system->setInitialState               (new RandomUniform(system, numberOfDimensions, 
-                                                numberOfParticles, inititalizingStep));
+    // system->setInitialState               (new GaussianDistribution(system, numberOfDimensions, 
+    //                                             numberOfParticles, inititalizingStep));
 
-    system->setEquilibration              (equilibration);
-    system->setAnalytical                 (analyticOrNot);
-    system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
-    system->setFileName                   (file_name);
+    // system->setEquilibration              (equilibration);
+    // system->setAnalytical                 (analyticOrNot);
+    // system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
+    // system->setFileName                   (file_name);
 
-    system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
-                                                            allEnergiesOrNot, stepLength);
+    // system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
+    //                                                         allEnergiesOrNot, stepLength);
 
-    cout << "number of steps: " << numberOfSteps << endl;
-    cout << "energy: " << system->getSampler()->getEnergy() << endl;
+    // cout << "number of steps: " << numberOfSteps << endl;
+    // cout << "energy: " << system->getSampler()->getEnergy() << endl;
 
-    end = clock();
-    double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
-    cout << "CPU time: " << time_taken << " seconds" << endl;
+    // end = clock();
+    // double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
+    // cout << "CPU time: " << time_taken << " seconds" << endl;
 
 
 
@@ -101,8 +98,8 @@ int main() {
     // stepLength = 0.005;
     // inititalizingStep = 0.5;
     // allEnergiesOrNot = true;
-    // numberOfParticles    = 6;
-    // omega = 1.0;
+    // numberOfParticles = 6;
+    // omega = 0.1;
     // cout << "omega: " << omega << "\n";
 
     // double omegaPrint = omega*100.0;
@@ -114,8 +111,8 @@ int main() {
 
     // string file_name = "Output/exercise_g/interaction_ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"+ to_string(omegaPrintable);
 
-    // alpha =  0.71567;
-    // beta = 0.49372;
+    // alpha =  0.78852;
+    // beta = 0.15041;
 
 
     // clock_t start2, end2;
@@ -381,197 +378,109 @@ int main() {
 
 /* Gradient descent */
 
-/* One parameter */
-
-    // ofstream file;
-    
-    // std::vector <double> A = {1.0, 0.5, 0.1, 0.05, 0.01};// minrate: { 1.0, 0.5, 0.1, 0.05, 0.01, 0.005};
-
-    // for (int aa = 0; aa < A.size(); aa++){
-    //     double energyChange = 1.0;
-    //     double stopCriteria = 1e-7;
-    //     double energyNew = 0.0;
-    //     double energyDerivative = 1.0;
-    //     double alphaNew = 0;
-    //     double minimizationRate = 0.5;
-    //     allEnergiesOrNot = false;
-    //     importanceOrNot = false;
-    //     alpha = 1.0;
-    //     stepLength = 0.5;
-    //     inititalizingStep = stepLength;
-
-    //     double energy       = 0;
-
-    //     numberOfDimensions  = 2;
-    //     numberOfParticles   = 2;
-    //     numberOfSteps       = (int) std::pow(2,19.0);
-            
-    //     omega = A[aa];
-
-    //     double alphaPrint = alpha*100.0;
-    //     int alphaPrintable = ceil(alphaPrint);
-    //     double gammaPrint = minimizationRate*1000.0;
-    //     int gammaPrintable = ceil(gammaPrint);
-    //     double omegaPrint = omega*100.0;
-    //     int omegaPrintable = ceil(omegaPrint);
-
-
-    //     string file_name = "Output/exercise_e/gradient_descent_p2_omega_"+ to_string(omegaPrintable) +"_alphastart_"+ to_string(alphaPrintable) + "_gamma_" + to_string(gammaPrintable) + ".txt";
-
-    //     file.open (file_name, ios::out | ios::trunc);
-    //     file << "Alpha: \t Energy: \t Derivative: \n";
-    //     file.close();
-    //     cout << "Alpha: \t Energy: \t Derivative: \n";
-
-    //     for (int k=0;  energyChange > stopCriteria && k <= 150; k++){
-
-    //         clock_t start, end;
-    //     // Recording the starting clock tick.
-    //         start = clock();
-        
-
-    //         System* system = new System();
-    //         system->setHamiltonian              (new HarmonicOscillator(system, omega));
-    //         system->setWaveFunction             (new SlaterDeterminant(system, alpha));
-    //         system->setInitialState             (new RandomUniform(system, numberOfDimensions, 
-    //                                                     numberOfParticles, inititalizingStep));
-    //         system->setEquilibration            (equilibration);
-    //         system->setAnalytical               (analyticOrNot);
-    //         system->runMetropolisSteps          (numberOfSteps, firstCriteria, 
-    //                                             importanceOrNot, allEnergiesOrNot, stepLength);
-
-    //         firstCriteria = 1;
-            
-    //         energyNew = system->getSampler()->getEnergy();
-    //         energyDerivative = system->getSampler()->getDerivative()[0];
-    //         alphaNew = alpha - minimizationRate*energyDerivative/numberOfParticles;
-
-            
-    //         file.open (file_name, ios::out | ios::app);
-    //         file << alpha << "\t" << energy << "\t" << energyDerivative << "\n";
-    //         file.close();
-
-    //         cout << alpha << "\t" << energy << "\t" << energyDerivative << "\n";
-
-    //         energyChange = std::abs(energyNew - energy);
-    //         alpha = alphaNew;
-    //         energy = energyNew;
-
-    //         end = clock();
-    //         double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
-    //         // cout << "CPU time: " << time_taken << " seconds" << endl;
-        
-    //     }
-        
-    // } 
-
-
-
-
-
-
-
-
-
 /* Two parameters */
 
-    // ofstream  file; //file2, 
+    ofstream  file; //file2, b
 
-    // double energyChange = 1.0;
-    // double stopCriteria = 1e-8;
-    // double energyNew = 0.0;
-    // std::vector<double> energyDerivative(2,0);
-    // double alphaNew = 0;
-    // double betaNew = 0;
-    // double minimizationRate_alpha = 0.1; //0.01, 0.05, 0.5, 0.1
-    // double minimizationRate_beta = 0.1;
-    // allEnergiesOrNot = false;
-    // importanceOrNot = true;
-    // alpha = 0.74;
-    // beta = 0.35;
-    // stepLength = 0.005;
-    // inititalizingStep = 0.5;
-    // omega = 0.5;
+    double energyChange = 1.0;
+    double stopCriteria = 1e-8;
+    double energyNew = 0.0;
+    std::vector<double> energyDerivative(2,0);
+    std::vector<double> oldEnergyDerivative(2,0);
+    double alphaNew = 0;
+    double betaNew = 0;
+    double minimizationRate_alpha = 0.01; //0.01, 0.05, 0.5, 0.1
+    double minimizationRate_beta = 0.01;
+    double lambda = 0;
+    allEnergiesOrNot = false;
+    importanceOrNot = true;
+    alpha = 0.78614;
+    beta = 0.14561;
+    stepLength = 0.005;
+    inititalizingStep = 0.5;
+    omega = 0.08;
 
-    // double energy       = 0;
+    double energy       = 0;
 
-    // numberOfDimensions  = 2;
-    // numberOfParticles   = 6;
-    // numberOfSteps       = (int) std::pow(2,20.0);
+    numberOfDimensions  = 2;
+    numberOfParticles   = 6;
+    numberOfSteps       = (int) std::pow(2,19.0);
 
-    // double alphaPrint = alpha*100.0;
-    // int alphaPrintable = ceil(alphaPrint);
-    // double betaPrint = beta*100.0;
-    // int betaPrintable = ceil(betaPrint);
-    // double gammaPrint = minimizationRate_alpha*1000.0;
-    // int gammaPrintable = ceil(gammaPrint);
-    // double omegaPrint = omega*100.0;
-    // int omegaPrintable = ceil(omegaPrint);
+    double alphaPrint = alpha*100.0;
+    int alphaPrintable = ceil(alphaPrint);
+    double betaPrint = beta*100.0;
+    int betaPrintable = ceil(betaPrint);
+    double gammaPrint = minimizationRate_alpha*1000.0;
+    int gammaPrintable = ceil(gammaPrint);
+    double omegaPrint = omega*100.0;
+    int omegaPrintable = ceil(omegaPrint);
 
-    // string samplingType = setSamplingName(importanceOrNot);
-    // string file_name = "Output/exercise_g/gradient_descent_interaction_p6_" + samplingType + 
-    //                     "_omega_"+ to_string(omegaPrintable) +"_alphastart_"+ to_string(alphaPrintable) + "_betastart_"
-    //                         + to_string(betaPrintable) + "_gamma_" + to_string(gammaPrintable) + ".txt";
+    string samplingType = setSamplingName(importanceOrNot);
+    string file_name = "Output/exercise_g/gradient_descent_interaction_p"+ to_string(numberOfParticles) +"_" + samplingType + 
+                        "_omega_"+ to_string(omegaPrintable) +"_alphastart_"+ to_string(alphaPrintable) + "_betastart_"
+                            + to_string(betaPrintable) + "_gamma_" + to_string(gammaPrintable) + ".txt";
 
-    // string energy_file = file_name + "_energy";
+    string energy_file = file_name + "_energy";
 
-    // file.open (file_name, ios::out | ios::trunc);
-    // file << "Alpha: \t Beta: \t Energy: \t Derivative (alpha): \t Derivative (beta): \n";
-    // file.close();
-    // cout << "Alpha: \t Beta: \t Energy: \t Derivative (alpha): \t Derivative (beta): \n";
+    file.open (file_name, ios::out | ios::trunc);
+    file << "Alpha: \t Beta: \t Energy: \t Derivative (alpha): \t Derivative (beta): \n";
+    file.close();
+    cout << "Alpha: \t Beta: \t Energy: \t Derivative (alpha): \t Derivative (beta): \n";
 
-    // // file2.open (energy_file, ios::out | ios::trunc);
-    // // file2 << "Alpha: \t Beta: \t Energy: \t Kinetic Energy: \t Potential Energy:  \t Interaction Energy:\n";
-    // // file2.close();
+    // file2.open (energy_file, ios::out | ios::trunc);
+    // file2 << "Alpha: \t Beta: \t Energy: \t Kinetic Energy: \t Potential Energy:  \t Interaction Energy:\n";
+    // file2.close();
 
-    // for (int k=0;  energyChange > stopCriteria && k <= 300; k++){
+    for (int k=0;  energyChange > stopCriteria && k <= 300; k++){
     
 
-    //     System* system = new System();
-    //     system->setHamiltonian              (new InteractionHarmonicOscillator(system, omega));
-    //     system->setWaveFunction             (new SlaterDeterminantInteraction(system, alpha, beta));
-    //     system->setInitialState             (new GaussianDistribution(system, numberOfDimensions, 
-    //                                                 numberOfParticles, inititalizingStep));
-    //     system->setEquilibration            (equilibration);
-    //     system->setAnalytical               (analyticOrNot);
-    //     system->runMetropolisSteps          (numberOfSteps, firstCriteria, 
-    //                                         importanceOrNot, allEnergiesOrNot, stepLength);
+        System* system = new System();
+        system->setHamiltonian              (new InteractionHarmonicOscillator(system, omega));
+        system->setWaveFunction             (new SlaterDeterminantInteraction(system, alpha, beta));
+        system->setInitialState             (new GaussianDistribution(system, numberOfDimensions, 
+                                                    numberOfParticles, inititalizingStep));
+        system->setEquilibration            (equilibration);
+        system->setAnalytical               (analyticOrNot);
+        system->runMetropolisSteps          (numberOfSteps, firstCriteria, 
+                                            importanceOrNot, allEnergiesOrNot, stepLength);
 
-    //     firstCriteria = 1;
+        firstCriteria = 1;
         
-    //     energyNew = system->getSampler()->getEnergy();
-    //     energyDerivative = system->getSampler()->getDerivative();
+        energyNew = system->getSampler()->getEnergy();
+        oldEnergyDerivative = energyDerivative;
+        energyDerivative = system->getSampler()->getDerivative();
 
-    //     // if (abs(energyDerivative[0]) > 0.3 || abs(energyDerivative[1]) > 0.3){
-    //         // alphaNew = alpha - minimizationRate_alpha*0.0001;
-    //         // betaNew = beta - minimizationRate_beta*0.0001;
-    //     // }else{
-    //         alphaNew = alpha - minimizationRate_alpha*energyDerivative[0];
-    //         betaNew = beta - minimizationRate_beta*energyDerivative[1];
-    //     // }
+        // if (abs(energyDerivative[0]) > 1.0)
+            // alphaNew = alpha*1.00001; ?????
+        // if(abs(energyDerivative[1]) > 1.0)
+            // betaNew = beta - 0.01;
+        // if(abs(energyDerivative[0]) <= 1.0)
+            alphaNew = alpha - (minimizationRate_alpha-lambda)*energyDerivative[0]-lambda*oldEnergyDerivative[0];
+        // if(abs(energyDerivative[1]) <= 1.0)
+            betaNew = beta - (minimizationRate_beta-lambda)*energyDerivative[1]-lambda*oldEnergyDerivative[1];
 
-    //     file.open (file_name, ios::out | ios::app);
-    //     file << alpha << "\t" << beta << "\t" << energy << "\t" << energyDerivative[0] << "\t" << energyDerivative[1] << "\n";
-    //     file.close();
+        file.open (file_name, ios::out | ios::app);
+        file << alpha << "\t" << beta << "\t" << energy << "\t" << energyDerivative[0] << "\t" << energyDerivative[1] << "\n";
+        file.close();
 
-    //     // file2.open (energy_file, ios::out | ios::app);
-    //     // file2 << alpha << "\t" << beta << "\t" << energy << "\t" << system->getSampler()->getKineticEnergy() 
-    //     // << "\t" << system->getSampler()->getPotentialEnergy()  << "\t" << system->getSampler()->getInteractionEnergy()<< "\n";
-    //     // file2.close();
+        // file2.open (energy_file, ios::out | ios::app);
+        // file2 << alpha << "\t" << beta << "\t" << energy << "\t" << system->getSampler()->getKineticEnergy() 
+        // << "\t" << system->getSampler()->getPotentialEnergy()  << "\t" << system->getSampler()->getInteractionEnergy()<< "\n";
+        // file2.close();
 
-    //     cout << alpha << "\t" << beta << "\t" << energy << "\t" << energyDerivative[0] << "\t" << energyDerivative[1] << "\n";
+        cout << alpha << "\t" << beta << "\t" << energy << "\t" << energyDerivative[0] << "\t" << energyDerivative[1] << "\n";
 
-    //     energyChange = std::abs(energyNew - energy);
-    //     alpha = alphaNew;
-    //     beta = betaNew;
-    //     energy = energyNew;
-    // } 
+        energyChange = std::abs(energyNew - energy);
+        alpha = alphaNew;
+        beta = betaNew;
+        energy = energyNew;
+    } 
 
 /* Comparing different omegas - no interaction */
 
     // std::vector<double> omegas = {1.0, 0.5, 0.1, 0.05, 0.01};
 
-    // numberOfParticles = 2;
+    // numberOfParticles = 12;
     // numberOfSteps     = (int) pow(2.0,23.0);
     // allEnergiesOrNot    = false;
     // importanceOrNot     = true;
@@ -602,7 +511,7 @@ int main() {
         
     //     string samplingType = setSamplingName(importanceOrNot);
 
-    //     string file_name = "Output/exercise_d/ground_state_" + samplingType + "_2p_omega_"+ to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable);
+    //     string file_name = "test";//"Output/exercise_d/ground_state_" + samplingType + "_2p_omega_"+ to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable);
 
         
     //     System* system = new System();
@@ -627,7 +536,9 @@ int main() {
     //     // cout << "number of steps: " << numberOfSteps << endl;
     //     // cout << "energy: " << system->getSampler()->getEnergy() << endl;
         
-    //     cout << alpha << " & " << system->getSampler()->getEnergy() << " & " << system->getSampler()->getMeanDistance() 
+    //     // cout << alpha << " & " << system->getSampler()->getEnergy() << " & " << system->getSampler()->getMeanDistance() 
+    //     // << " & " << system->getSampler()->getKineticEnergy() << " & " << system->getSampler()->getPotentialEnergy() << "\\\\ \n";
+    //     cout << alpha << " & " << system->getSampler()->getEnergy()
     //     << " & " << system->getSampler()->getKineticEnergy() << " & " << system->getSampler()->getPotentialEnergy() << "\\\\ \n";
 
     //     end = clock();
