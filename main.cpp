@@ -34,12 +34,12 @@ int main() {
     bool allEnergiesOrNot    = true;
     int equilibration        = 1e5;          // Number of the total steps used for equilibration
     int numberOfDimensions   = 2;
-    int numberOfParticles    = 6;
+    int numberOfParticles    = 12;
     int numberOfSteps        = (int) pow(2.0,21.0);
     double omega             = 1.0;          // Oscillator frequency.
     double stepLength        = 0.005;//0.001;          // Metropolis step length.
     int firstCriteria        = 0;            // print header in file
-    double alpha             = 0.9;
+    double alpha             = 1.0;
     double beta              = 0;   
     double inititalizingStep = 0.5;
 

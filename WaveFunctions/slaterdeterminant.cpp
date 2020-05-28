@@ -411,8 +411,8 @@ void SlaterDeterminant::updateInverseSlaterMatrix(int particleNumber){
         }
 
 
-    MatrixXd m(numberOfParticles/2, numberOfParticles/2);
-    MatrixXd m_inv(numberOfParticles/2, numberOfParticles/2);
+        MatrixXd m(numberOfParticles/2, numberOfParticles/2);
+        MatrixXd m_inv(numberOfParticles/2, numberOfParticles/2);
         
         for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
             for (int j_i = 0; j_i < numberOfParticles/2; j_i++){

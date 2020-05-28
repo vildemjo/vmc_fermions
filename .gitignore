@@ -1,0 +1,14 @@
+# Ignore build-directory
+build
+
+Output
+
+compile_project
+
+Makefile
+
+CMakeLists.txt
+
+vmc
+
+vmc_fermions.pro 
