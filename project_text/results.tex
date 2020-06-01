@@ -47,8 +47,9 @@ Figure \ref{fig:comparing_sampling} compare the expectation value of the energy 
 
 \begin{figure}[H]
 \center
-\includegraphics[width=\linewidth]{../Results/comparing_sampling}\caption{•}\label{fig:comparing_sampling}
+\includegraphics[width=\linewidth]{../Results/comparing_sampling}\caption{Left: Expectation energies after $2^{21}$ MC cycles for different step sizes. Right: Percentage of accepted steps for different step sizes. Here importance sampling and brute force sampling is compared. }\label{fig:comparing_sampling}
 \end{figure}
+
 
 From the left part of the figure it can be observed that one of the expectation values for the energies are lower than the ground state energy ($dl = 0.005$ with brute force sampling) when these calculations where done with $\alpha$ = 0.9. However, in Tab. \ref{tab:importance_no_interaction_2p} which compare the result of brute force sampling and importance sampling for different step sizes one can observe that the standard deviation from the blocking method is larger for the case of brute force sampling with a step size of 0.005. However,  the SEM does not indicate anything to be special about this result.
 
@@ -87,7 +88,7 @@ $\left< E_L \right>$: & SEM: & $\sigma_B$: & Acc.: & $t_{CPU}$:\\ \hline
 \end{tabular}
 \end{table}
 
-I took a closer look at the actual local energies for the brute force sampling method. Figure \ref{fig:brute_force_small_steps} shows how the energy is not stable for steps sizes smaller than 0.01, so even though the step sizes 0.001 and 0.01 seems to give reasonable expectation values for the energy (see Tab. \ref{tab:importance_no_interaction_2p} and Fig. \ref{fig:comparing_sampling}), Fig. \ref{fig:brute_force_small_steps} seems to show that that is sort of a lucky shot. I also saw this by running the calculation with brute force sampling and the step size, $0.005$, with different seeds for the random number generator. The expectation energy for five different runs where $\left< E_L \right>$ =  1.91487, 2.03452, 1.90805, 1.88356 and 1.9284. From Fig. \ref{fig:brute_force_larger_steps} one can observe that even $dl=0.1$ seems to be too small since it also results in the local energy varying slowly and taking longer "trips" to higher energies and using many steps to get back down again, but for this step size the "trips" to higher energies are more frequent than for the smaller step sizes. I concluded that a step size of 0.5 is the best choice for the brute force sampling because it gives resonable changes of the local energy and an accpentance rate of $\sim$ 90 \%. 
+I took a closer look at the actual local energies for the brute force sampling method. Figure \ref{fig:brute_force_small_steps} shows how the energy is not stable for steps sizes smaller than 0.01, so even though the step sizes 0.001 and 0.01 seems to give reasonable expectation values for the energy (see Tab. \ref{tab:importance_no_interaction_2p} and Fig. \ref{fig:comparing_sampling}), Fig. \ref{fig:brute_force_small_steps} seems to show that that is sort of a lucky shot. I also saw this by running the calculation with brute force sampling and the step size, $0.005$, with different seeds for the random number generator. The expectation energy for five different runs where $\left< E_L \right>$ =  1.91487, 2.03452, 1.90805, 1.88356 and 1.9284. From Fig. \ref{fig:brute_force_larger_steps} one can observe that even $dl=0.1$ seems to be too small since it also results in the local energy varying slowly and taking longer "trips" to higher energies and using many steps to get back down again, but for this step size the "trips" to higher energies are more frequent than for the smaller step sizes. I concluded that a step size of 0.5 is the best choice for the brute force sampling because it gives resonable changes of the local energy and an accpentance rate of $\sim$ 90 \% (see Fig. \ref{fig:comparing_sampling}). 
 
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
@@ -96,13 +97,18 @@ I took a closer look at the actual local energies for the brute force sampling m
 \begin{subfigure}{.5\textwidth}
 \includegraphics[width=\linewidth]{../Results/brute_force_larger_steps}\caption{}\label{fig:brute_force_larger_steps}
 \end{subfigure}
-\caption{•}\label{fig:brute_force_step_sizes}
+\caption{The local energy for every tenth MC cycle for brute force sampling at different step sizes, $dl$. a) shows the smaller step sizes and b) some that are a bit larger. }\label{fig:brute_force_step_sizes}
 \end{figure}
 
 %On the other hand, for the importance sampling, the investigation of the local energies did not give any clues to why the expecation energy is lower that the ground state energy for a step size of 0.5. Eventually I decided that the result itself indicate that 0.5 is a too large step size for importance sampling and taken together with a low acceptance rate at 0.5 ($\sim$ 82 \%) it is clear that a smaller step size is preferable. 
 %
 %At last, it is interesting to note that the CPU time of importance sampling is higher than the brute force sampling, so even though brute force sampling has a lower acceptance rate, at the ideal step size, than importance sampling the two methods seems to be somewhat comparable at least for the system I am investigating.
-\begin{table}[H]\caption{Ground state energy of two electrons in harmonic oscillator trap. Number of MC cycles are $2^{23}$.}\label{tab:tab:ground_state_energy_different_omegas_no_interaction_2p}
+
+Proceeding to evaluate the energy, Table \ref{tab:ground_state_energy_different_omegas_no_interaction_2p} shows how the energy changes with different trap frequencies, $\omega$. In this table one can observe that there is no large difference between the reuslts from brute force sampling and importance sampling. However, to be able to compare the sampling methods more thoroughly it is better to look at the case where the system is not in the ground state. 
+
+\textit{JEG KOM HIT :)}
+
+\begin{table}[H]\caption{Ground state energy of two electrons in harmonic oscillator trap. Number of MC cycles are $2^{23}$.}\label{tab:ground_state_energy_different_omegas_no_interaction_2p}
 \begin{tabular}{l|l|l} 
  & Brute force: &  Importance:\\ \hline
 \begin{tabular}{c} 
@@ -118,14 +124,14 @@ $\alpha$ & $\left< E_L \right>$ & $\overline{r}_{12} $ & $\left< T \right>$  & $
 1 & 1.00 & 1.775 & 0.4971 & 0.5029\\
 1 & 0.20 & 3.967 & 0.0996 & 0.1004\\ 
 1 & 0.10 & 5.638 & 0.0497 & 0.0503\\ 
-1 & 0.02 & 12.631 & 0.0099 & 0.0101\\  \hline
+1 & 0.02 & 12.631 & 0.0099 & 0.0101\\  
 \end{tabular} & \begin{tabular}{ccccc}
 $\alpha$ & $\left< E_L \right>$ & $\overline{r}_{12} $ & $\left< T \right>$  & $\left< V_{ext}\right>$ \\ \hline
 1 & 2.00 & 1.254 & 0.9982 & 1.0018\\
 1 & 1.00 & 1.781 & 0.4973 & 0.5027\\
 1 & 0.20 & 4.046 & 0.0987 & 0.1013\\ 
 1 & 0.10 & 5.534 & 0.0512 & 0.0488\\ 
-1 & 0.02 & 12.488 & 0.0101 & 0.0099\\  \hline \hline
+1 & 0.02 & 12.488 & 0.0101 & 0.0099\\ 
 \end{tabular}\\
 \end{tabular}
 \end{table}
