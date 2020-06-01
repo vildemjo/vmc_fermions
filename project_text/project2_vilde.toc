@@ -5,10 +5,11 @@
 \contentsline {subsection}{\numberline {2.3}One-body density}{4}
 \contentsline {subsection}{\numberline {2.4}Virial theorem}{5}
 \contentsline {subsection}{\numberline {2.5}Trap frequency}{5}
-\contentsline {section}{\numberline {3}Results and discussion}{5}
-\contentsline {subsection}{\numberline {3.1}Two electrons in two dimensions}{5}
-\contentsline {subsubsection}{\numberline {3.1.1}Brute force sampling}{5}
-\contentsline {subsubsection}{\numberline {3.1.2}Including importance sampling}{6}
+\contentsline {subsection}{\numberline {2.6}Evaluating the error}{5}
+\contentsline {section}{\numberline {3}Results and discussion}{6}
+\contentsline {subsection}{\numberline {3.1}Two electrons in two dimensions}{6}
+\contentsline {subsubsection}{\numberline {3.1.1}Brute force sampling}{6}
+\contentsline {subsubsection}{\numberline {3.1.2}Including importance sampling}{7}
 \contentsline {subsubsection}{\numberline {3.1.3}Including optimization}{9}
 \contentsline {subsubsection}{\numberline {3.1.4}Including interaction}{9}
 \contentsline {subsection}{\numberline {3.2}One-body density}{10}

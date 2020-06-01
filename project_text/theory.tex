@@ -44,9 +44,9 @@ We will use Variational Monte Carlo (VMC) methods to evaluate the Eq. \ref{eq:ex
 \end{equation*}
 
 where $r_i = \sqrt{x_i^2+y_i^2}$ and C is a normalization constant. The trial wavefunction we use for the not interacting case is 
-\begin{equation*}
+\begin{equation}\label{eq:trial_wf_not_interacing}
 \Phi(\bm{r}_1,\bm{r}_2) = C\exp{\left(-\alpha\omega(r_1^2+r_2^2)/2\right)}.
-\end{equation*}
+\end{equation}
 
 with the parameter $\alpha$. From the exact wave function we know that $\alpha = 1$ for the situation without interaction. On the other hand, for the interacting case, the trial wave function for the two-electron system is
 
@@ -135,5 +135,13 @@ The trap frequency changes the external potential felt by the electrons. Figure 
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.5\linewidth]{../Results/harmonic_oscialltor_potentials}\caption{•}\label{fig:harmonic_oscillator_potential}
+\includegraphics[width=0.5\linewidth]{../Results/harmonic_oscialltor_potentials}\caption{Illustration of how the potential changes when the trap frequency changes. }\label{fig:harmonic_oscillator_potential}
 \end{figure}
+
+\subsection{Evaluating the error}
+
+Standard error of the mean (SEM):
+\begin{equation}
+\text{SEM} = \frac{\sigma}{\sqrt{N}}
+\end{equation}
+where $N$ is the number of observations, in our case the number of Monte Carlo cycles.

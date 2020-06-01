@@ -1,14 +1,12 @@
 \subsection{Two electrons in two dimensions}
 
+We start with the simple case of two electrons in a harmonic oscillator trap. These electrons do not interact with eachother and the trial wavefunction is given by Eq. \ref{eq:trial_wf_not_interacing}. 
+
 \subsubsection{Brute force sampling}
 
-Standard error of the mean (SEM):
-\begin{equation}
-\text{SEM} = \frac{\sigma}{\sqrt{N}}
-\end{equation}
-where $N$ is the number of observations, in our case the number of Monte Carlo cycles.
+First, brute force sampling was used to calculate the new position and evaluate the metropolis ratio. The double derivative of the wavefunction, used to calculate the kinetic energy part of the expectation energy, was evaluated both analytically and numerically. Table \ref{tab:brute_force_no_interaction_2p} shows the energy for different values for the parameter $\alpha$. The numbers show that the standard error of the mean (SEM) is underestimating the deviations. From Tab. \ref{tab:brute_force_no_interaction_2p} one can observe that including the correlations, e.g. correlations in the random number generator, increases the deviation, giving us $\sigma_b$. This value is also an estimate of the error, but probably a more true estimate of the error.
 
-The numbers show that the SEM is underestimating the deviations and that including the correlations in the random number generator increases the deviation, giving us $\sigma_b$.
+From Tab. \ref{tab:brute_force_no_interaction_2p} one can also observe that $\alpha $ = 1.0 gives zero standard deviation and is therefore the optimal parameter. By comparing the results for the analytical and the numerical cases one can observe that the SEM and $\sigma_b$ is similar for both cases, especially around the ground state ($\alpha$ = 1.0). If he expectation energies from the analytial case and the numbercal cases are compared, they differ with values at the scale of $10^{-3}$, which is reasonable with a $\sigma_b$ around $10^{-3}$ to $10^{-2}$. At last one can observe, both from the individual CPU time measurements and the mean CPU time of these 10 measurements (though with different $\alpha$s), that the analytical solution of the double derivative is much faster and more efficient than the numerical case. 
 
 \begin{table}[H]\caption{Comparing the results for analytical/numerical evaluation of the double derivative. Energy are in atomic units (a.u.) and CPU time is in units of seconds. Number of MC cycles are 2$^{21}$.}\label{tab:brute_force_no_interaction_2p}
 \center
