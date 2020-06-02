@@ -34,7 +34,7 @@ int main() {
     bool allEnergiesOrNot    = true;
     int equilibration        = 1e5;          // Number of the total steps used for equilibration
     int numberOfDimensions   = 2;
-    int numberOfParticles    = 2;
+    int numberOfParticles    = 6;
     int numberOfSteps        = (int) pow(2.0,23.0);
     double omega             = 1.0;          // Oscillator frequency.
     double stepLength        = 0.005;//0.001;          // Metropolis step length.
@@ -52,14 +52,17 @@ int main() {
 
 //    /* Set-up to run and save local energies for every step to file*/
     // N = 2:
-    std::vector<double> binLengths = {3.0, 5.0, 8.0, 10.0, 12.0};
+    numberOfParticles = 2;
+    std::vector<double> binLengths = {3.0, 5.0, 8.0, 10.0, 15.0};
     std::vector<double> binNumbers = {300, 500, 700, 800, 900};
 
     // N = 6:
+    // numberOfParticles = 6;
     // std::vector<double> binLengths = {4.0, 5.0, 10.0, 12.0, 15.0};
     // std::vector<double> binNumbers = {500, 600, 700, 800, 900};
 
     // N = 12:
+    // numberOfParticles = 12;
     // std::vector<double> binLengths = {4.5, 6.0, 11.0, 15.0, 20.0};
     // std::vector<double> binNumbers = {450, 600, 700, 800, 900};
 

@@ -36,78 +36,82 @@
 \@writefile{toc}{\contentsline {section}{\numberline {3}Results and discussion}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Two electrons in two dimensions}{7}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Brute force sampling}{7}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparing the results for analytical/numerical evaluation of the double derivative. Energy are in atomic units (a.u.) and CPU time is in units of seconds. Number of MC cycles are 2$^{21}$.\relax }}{8}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparing the results for analytical/numerical evaluation of the double derivative. Here $\left < E_L \right >$ is the expectation value for the energy given in atomic units (a.u.) and CPU time is in units of seconds. $\sigma _B$ is the standard deviation after resampling with the blocking method and SEM is the standard deviation of the mean. Number of MC cycles are 2$^{21}$.\relax }}{8}}
 \newlabel{tab:brute_force_no_interaction_2p}{{2}{8}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Including importance sampling}{8}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Left: Expectation energies after $2^{21}$ MC cycles for different step sizes. Right: Percentage of accepted steps for different step sizes. Here importance sampling and brute force sampling is compared. \relax }}{8}}
 \newlabel{fig:comparing_sampling}{{3}{8}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Comparing the results for importance/brute force sampling. Energy are in atomic units (a.u.). Here the parameter $\alpha $ is set to 0.9 and number of MC cycles are 2$^{21}$. Acc. is short for acceptance and is here given in \%, $\sigma _B$ is the standard deviation after resampling with the blocking method, SEM is the standard deviation of the mean and $t_{CPU}$ is the CPU time used by the program in units of seconds. \relax }}{9}}
-\newlabel{tab:importance_no_interaction_2p}{{3}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Comparing the results for importance/brute force sampling. Here the parameter $\alpha $ is set to 0.9 and number of MC cycles are 2$^{21}$. Acc. is short for acceptance and is here given in \% and $t_{CPU}$ is the CPU time used by the program in units of seconds. The rest of the values are as described in Tab. 2\hbox {}. \relax }}{9}}
+\newlabel{tab:compare_stepsize_no_interaction_2p}{{3}{9}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The local energy for every tenth MC cycle for brute force sampling at different step sizes, $dl$. a) shows the smaller step sizes and b) some that are a bit larger.\relax }}{10}}
 \newlabel{fig:local_energy_step_size_brute_force}{{4}{10}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Ground state energy of two electrons in harmonic oscillator trap. Number of MC cycles are $2^{23}$.\relax }}{10}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Ground state energy of two electrons in harmonic oscillator trap. Here $\overline  {r}_{12}$ is the mean distance between the two electrons at positions $\bm  {r}_1$ and $\bm  {r}_2$ and $\left < E_L \right >$, $\left < T \right >$, $\left < V_{ext}\right >$ and $\left <V_{int} \right >$ are the expectation value of the local energy, kinetic energy, potential energy and interaction energy, respectively. The rest of the values are as explained in Tab. 2\hbox {}. Number of MC cycles are $2^{23}$.\relax }}{10}}
 \newlabel{tab:ground_state_energy_different_omegas_no_interaction_2p}{{4}{10}}
-\citation{project1}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Comparing the results for brute force sampling/importance sampling. Energy are in atomic units (a.u.) and CPU time is in units of seconds. Number of MC cycles are 2$^{21}$.\relax }}{11}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Comparing the results for brute force sampling/importance sampling. Values are as explained in Tab. 2\hbox {}. Number of MC cycles are 2$^{21}$.\relax }}{11}}
 \newlabel{tab:compare_importance_alphas_2p}{{5}{11}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Including optimization}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Left: The developement of the parameters during the steps of gradient descent. The values $\alpha _{mean}$ and $\beta _{mean}$ printed on the figure is the mean of the last 50 values. Right: The expectation value after $2^{19}$ number of MC cycles. Here also, the value printed on the figure is the mean of the last 50 iterations. \relax }}{11}}
-\newlabel{fig:example_gradient_descent}{{5}{11}}
+\citation{project1}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Left: The developement of the parameters during the steps of gradient descent. The values $\alpha _{mean}$ and $\beta _{mean}$ printed on the figure is the mean of the last 50 values. Right: The expectation value after $2^{19}$ number of MC cycles. Here also, the value printed on the figure is the mean of the last 50 iterations. \relax }}{12}}
+\newlabel{fig:example_gradient_descent}{{5}{12}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Including interaction}{12}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Ground state energy of two interacting electrons in harmonic oscillator trap found with brute force sampling. Number of MC cycles are $2^{23}$\relax }}{12}}
-\newlabel{tab:ground_state_energy_brute_force_interaction}{{6}{12}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Ground state energy of two interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$\relax }}{12}}
-\newlabel{tab:ground_state_energy_importance_interaction}{{7}{12}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}One-body density}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \IeC {\textbullet }\relax }}{13}}
-\newlabel{fig:one_body_density_no_interaction_2p}{{6}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Dashed lines are with the Jastrow factor. Normal lines is without Jastrow factor. \relax }}{13}}
-\newlabel{fig:one_body_density_interaction_2p}{{7}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Extending to more particles}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Six particles}{13}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Number of MC cycles are $2^{23}$. \relax }}{13}}
-\newlabel{tab:ground_state_energy_importance_6p}{{8}{13}}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Ground state energy of six interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$\relax }}{14}}
-\newlabel{tab:ground_state_energy_importance_interaction_6p}{{9}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces \IeC {\textbullet }\relax }}{14}}
-\newlabel{fig:parameters_compared}{{8}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces \IeC {\textbullet }\relax }}{14}}
-\newlabel{fig:energy_per_particle_compared}{{9}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces \IeC {\textbullet }\relax }}{15}}
-\newlabel{fig:one_body_density_no_interaction_6p}{{10}{15}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Dashed lines are with the Jastrow factor. Normal lines is without Jastrow factor. \relax }}{15}}
-\newlabel{fig:one_body_density_interaction_6p}{{11}{15}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Twelve particles}{15}}
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Number of MC cycles are $2^{23}$. \relax }}{15}}
-\newlabel{tab:ground_state_energy_importance_12p}{{10}{15}}
-\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Ground state energy of twelve interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$\relax }}{16}}
-\newlabel{tab:ground_state_energy_importance_interaction_12p}{{11}{16}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Had to use MC 2 24 to get smooth graphs. \relax }}{16}}
-\newlabel{fig:one_body_density_no_interaction_12p}{{12}{16}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Efficiency}{16}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Performance analysis}{16}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Vectorization}{16}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Parallellization}{16}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{16}}
-\@writefile{toc}{\contentsline {section}{Appendices}{16}}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{16}}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{17}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Slater determinant}{17}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{17}}
-\newlabel{eq:metropolis_ratio}{{13}{17}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{18}}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Energies}{19}}
-\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces The exact energies for the non-interacting case with different number of particles in a closed shell system.\relax }}{19}}
-\newlabel{tab:exact_energies_non_interacting}{{12}{19}}
-\@writefile{toc}{\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{19}}
-\newlabel{app:hermite_and_derivatives}{{D}{19}}
-\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces $\psi _{n_xn_y}$\relax }}{20}}
-\newlabel{tab:single_particle_trial_wavefunctions}{{13}{20}}
-\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces $\psi _{n_xn_y}$\relax }}{20}}
-\newlabel{tab:derivative_single_particle_trial_wavefunctions}{{14}{20}}
-\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces $\psi _{n_xn_y}$\relax }}{21}}
-\newlabel{tab:doble_derivative_single_particle_trial_wavefunctions}{{15}{21}}
-\@writefile{toc}{\contentsline {section}{\numberline {E}Evaluating the minimization rate}{21}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Ground state energy of two interacting electrons in harmonic oscillator trap found with brute force sampling. Here $\overline  {r}_{12}$, $\left < T \right >$, $\left < V_{ext}\right >$ and $\left <V_{int} \right >$ are as explain in Tab. 4\hbox {}. The rest of the values are as explained in Tab. 2\hbox {} . Number of MC cycles are $2^{23}$.\relax }}{13}}
+\newlabel{tab:ground_state_energy_brute_force_interaction}{{6}{13}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Ground state energy of two interacting electrons in harmonic oscillator trap found with importance sampling. Here $\overline  {r}_{12}$, $\left < T \right >$, $\left < V_{ext}\right >$ and $\left <V_{int} \right >$as explain in Tab. 4\hbox {}. The rest of the values are as explained in Tab. 2\hbox {}. Number of MC cycles are $2^{23}$\relax }}{13}}
+\newlabel{tab:ground_state_energy_importance_interaction}{{7}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The mean distance between the two particles, calculated with importance sampling, compared for the situation with and without the Jastrow factor and at different trap frequencies. \relax }}{14}}
+\newlabel{fig:mean_distance_compared}{{6}{14}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}One-body density}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces \IeC {\textbullet }\relax }}{14}}
+\newlabel{fig:one_body_density_no_interaction_2p}{{7}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces \IeC {\textbullet }\relax }}{15}}
+\newlabel{fig:one_body_density_no_interaction_2p_smoothed}{{8}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Dashed lines are with the Jastrow factor. Normal lines is without Jastrow factor. \relax }}{15}}
+\newlabel{fig:one_body_density_interaction_2p}{{9}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Extending to more particles}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Six particles}{15}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Ground state energy of six electrons in harmonic oscillator trap. Here $\left < E_L \right >$, $\left < T \right >$ and $\left < V_{ext}\right >$ are as explain in Tab. 4\hbox {}. Number of MC cycles are $2^{23}$. \relax }}{15}}
+\newlabel{tab:ground_state_energy_importance_6p}{{8}{15}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Ground state energy of six interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$.\relax }}{16}}
+\newlabel{tab:ground_state_energy_importance_interaction_6p}{{9}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces \IeC {\textbullet }\relax }}{16}}
+\newlabel{fig:parameters_compared}{{10}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces \IeC {\textbullet }\relax }}{16}}
+\newlabel{fig:energy_per_particle_compared}{{11}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces \IeC {\textbullet }\relax }}{17}}
+\newlabel{fig:one_body_density_no_interaction_6p}{{12}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Dashed lines are with the Jastrow factor. Normal lines is without Jastrow factor. \relax }}{17}}
+\newlabel{fig:one_body_density_interaction_6p}{{13}{17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Twelve particles}{17}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Number of MC cycles are $2^{23}$. \relax }}{17}}
+\newlabel{tab:ground_state_energy_importance_12p}{{10}{17}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Ground state energy of twelve interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$\relax }}{18}}
+\newlabel{tab:ground_state_energy_importance_interaction_12p}{{11}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Had to use MC 2 24 to get smooth graphs. \relax }}{18}}
+\newlabel{fig:one_body_density_no_interaction_12p}{{14}{18}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Efficiency}{18}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Performance analysis}{18}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Vectorization}{18}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Parallellization}{18}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{18}}
+\@writefile{toc}{\contentsline {section}{Appendices}{18}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{18}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Slater determinant}{19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{19}}
+\newlabel{eq:metropolis_ratio}{{13}{19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{20}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Energies}{21}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces The exact energies for the non-interacting case with different number of particles in a closed shell system.\relax }}{21}}
+\newlabel{tab:exact_energies_non_interacting}{{12}{21}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{21}}
+\newlabel{app:hermite_and_derivatives}{{D}{21}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces $\psi _{n_xn_y}$\relax }}{22}}
+\newlabel{tab:single_particle_trial_wavefunctions}{{13}{22}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces $\psi _{n_xn_y}$\relax }}{22}}
+\newlabel{tab:derivative_single_particle_trial_wavefunctions}{{14}{22}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces $\psi _{n_xn_y}$\relax }}{23}}
+\newlabel{tab:doble_derivative_single_particle_trial_wavefunctions}{{15}{23}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Evaluating the minimization rate}{23}}
 \bibstyle{unsrt}
 \bibdata{References}
 \bibcite{project1}{1}

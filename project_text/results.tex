@@ -8,7 +8,7 @@ First, brute force sampling was used to calculate the new position and evaluate 
 
 From Tab. \ref{tab:brute_force_no_interaction_2p} one can also observe that $\alpha $ = 1.0 gives zero standard deviation and is therefore the optimal parameter. By comparing the results for the analytical and the numerical cases one can observe that the SEM and $\sigma_b$ is similar for both cases, especially around the ground state ($\alpha$ = 1.0). If he expectation energies from the analytical case and the numerical cases are compared, they differ with values at the scale of $10^{-3}$, which is reasonable with a $\sigma_b$ around $10^{-3}$ to $10^{-2}$. At last one can observe, both from the individual CPU time measurements and the mean CPU time of these 10 measurements (though with different $\alpha$s), that the analytical solution of the double derivative is much faster and more efficient than the numerical case. 
 
-\begin{table}[H]\caption{Comparing the results for analytical/numerical evaluation of the double derivative. Energy are in atomic units (a.u.) and CPU time is in units of seconds. Number of MC cycles are 2$^{21}$.}\label{tab:brute_force_no_interaction_2p}
+\begin{table}[H]\caption{Comparing the results for analytical/numerical evaluation of the double derivative. Here $\left< E_L \right>$ is the expectation value for the energy given in atomic units (a.u.) and CPU time is in units of seconds. $\sigma_B$ is the standard deviation after resampling with the blocking method and SEM is the standard deviation of the mean. Number of MC cycles are 2$^{21}$.}\label{tab:brute_force_no_interaction_2p}
 \center
 \begin{tabular}{l|l}
 Analytical: &  Numerical:\\ \hline
@@ -51,9 +51,9 @@ Figure \ref{fig:comparing_sampling} compare the expectation value of the energy 
 \end{figure}
 
 
-From the left part of the figure it can be observed that one of the expectation values for the energies are lower than the ground state energy ($dl = 0.005$ with brute force sampling) when these calculations where done with $\alpha$ = 0.9. However, in Tab. \ref{tab:importance_no_interaction_2p} which compare the result of brute force sampling and importance sampling for different step sizes one can observe that the standard deviation from the blocking method is larger for the case of brute force sampling with a step size of 0.005. However,  the SEM does not indicate anything to be special about this result.
+From the left part of the figure it can be observed that one of the expectation values for the energies are lower than the ground state energy ($dl = 0.005$ with brute force sampling) when these calculations where done with $\alpha$ = 0.9. However, in Tab. \ref{tab:compare_stepsize_no_interaction_2p} which compare the result of brute force sampling and importance sampling for different step sizes one can observe that the standard deviation from the blocking method is larger for the case of brute force sampling with a step size of 0.005. However,  the SEM does not indicate anything to be special about this result.
 
-\begin{table}[H]\caption{Comparing the results for importance/brute force sampling. Energy are in atomic units (a.u.). Here the parameter $\alpha$ is set to 0.9 and number of MC cycles are 2$^{21}$. Acc. is short for acceptance and is here given in \%, $\sigma_B$ is the standard deviation after resampling with the blocking method, SEM is the standard deviation of the mean and $t_{CPU}$ is the CPU time used by the program in units of seconds. }\label{tab:importance_no_interaction_2p}
+\begin{table}[H]\caption{Comparing the results for importance/brute force sampling. Here the parameter $\alpha$ is set to 0.9 and number of MC cycles are 2$^{21}$. Acc. is short for acceptance and is here given in \% and $t_{CPU}$ is the CPU time used by the program in units of seconds. The rest of the values are as described in Tab. \ref{tab:brute_force_no_interaction_2p}. }\label{tab:compare_stepsize_no_interaction_2p}
 \begin{tabular}{l|l|l} 
  & Brute force: &  Importance:\\ \hline
 \begin{tabular}{c} 
@@ -88,7 +88,7 @@ $\left< E_L \right>$: & SEM: & $\sigma_B$: & Acc.: & $t_{CPU}$:\\ \hline
 \end{tabular}
 \end{table}
 
-I took a closer look at the actual local energies for the brute force sampling method. Figure \ref{fig:local_energy_step_size_brute_force} shows how the energy is not stable for steps sizes smaller than 0.01, so even though the step sizes 0.001 and 0.01 seems to give reasonable expectation values for the energy (see Tab. \ref{tab:importance_no_interaction_2p} and Fig. \ref{fig:comparing_sampling}), Fig. \ref{fig:local_energy_step_size_brute_force} seems to show that that is sort of a lucky shot. I also saw this by running the calculation with brute force sampling and the step size, $0.005$, with different seeds for the random number generator. The expectation energy for five different runs where $\left< E_L \right>$ =  1.91487, 2.03452, 1.90805, 1.88356 and 1.9284. From Fig. \ref{fig:local_energy_step_size_brute_force} one can observe that even $dl=0.1$ seems to be too small since it also results in the local energy varying slowly and taking longer "trips" to higher energies and using many steps to get back down again, but for this step size the "trips" to higher energies are more frequent than for the smaller step sizes. I concluded that a step size of 0.5 is the best choice for the brute force sampling because it gives reasonable changes of the local energy and an acceptance rate of $\sim$ 90 \% (see Fig. \ref{fig:comparing_sampling}). 
+I took a closer look at the actual local energies for the brute force sampling method. Figure \ref{fig:local_energy_step_size_brute_force} shows how the energy is not stable for steps sizes smaller than 0.01, so even though the step sizes 0.001 and 0.01 seems to give reasonable expectation values for the energy (see Tab. \ref{tab:compare_stepsize_no_interaction_2p} and Fig. \ref{fig:comparing_sampling}), Fig. \ref{fig:local_energy_step_size_brute_force} seems to show that that is sort of a lucky shot. I also saw this by running the calculation with brute force sampling and the step size, $0.005$, with different seeds for the random number generator. The expectation energy for five different runs where $\left< E_L \right>$ =  1.91487, 2.03452, 1.90805, 1.88356 and 1.9284. From Fig. \ref{fig:local_energy_step_size_brute_force} one can observe that even $dl=0.1$ seems to be too small since it also results in the local energy varying slowly and taking longer "trips" to higher energies and using many steps to get back down again, but for this step size the "trips" to higher energies are more frequent than for the smaller step sizes. I concluded that a step size of 0.5 is the best choice for the brute force sampling because it gives reasonable changes of the local energy and an acceptance rate of $\sim$ 90 \% (see Fig. \ref{fig:comparing_sampling}). 
 
 \begin{figure}[H]
 \center
@@ -99,9 +99,9 @@ I took a closer look at the actual local energies for the brute force sampling m
 %
 %At last, it is interesting to note that the CPU time of importance sampling is higher than the brute force sampling, so even though brute force sampling has a lower acceptance rate, at the ideal step size, than importance sampling the two methods seems to be somewhat comparable at least for the system I am investigating.
 
-Proceeding to evaluate the energy, Table \ref{tab:ground_state_energy_different_omegas_no_interaction_2p} shows how the energy changes with different trap frequencies, $\omega$. In this table one can observe that there is no large difference between the results from brute force sampling and importance sampling. However, to be able to compare the sampling methods more thoroughly it is better to look at the case where the system is not in the ground state. 
+Proceeding to evaluate the energy, Table \ref{tab:ground_state_energy_different_omegas_no_interaction_2p} shows how the energy changes with different trap frequencies, $\omega$. From Tab. \ref{tab:ground_state_energy_different_omegas_no_interaction_2p} one can observe that the mean distance is increasing with decreasing trap frequency.  This is as expected from Fig. \ref{fig:harmonic_oscillator_potential}, where the potential is broadened with decreasing trap frequency ang hence is not forcing the particels closer together. The mean distance is a bit different for brute force sampling compared to importance sampling, but the similarity might imporve if more MC cycles are used.  The other value show, however,  no large difference between the results from brute force sampling and importance sampling. But to be able to compare the sampling methods more thoroughly it is better to look at the case where the system is not in the ground state. 
 
-\begin{table}[H]\caption{Ground state energy of two electrons in harmonic oscillator trap. Number of MC cycles are $2^{23}$.}\label{tab:ground_state_energy_different_omegas_no_interaction_2p}
+\begin{table}[H]\caption{Ground state energy of two electrons in harmonic oscillator trap.  Here $\overline{r}_{12}$ is the mean distance between the two electrons at positions $\bm{r}_1$ and $\bm{r}_2$ and $\left< E_L \right>$, $\left< T \right>$, $\left< V_{ext}\right>$  and $\left<V_{int} \right>$ are the expectation value of the local energy, kinetic energy, potential energy and interaction energy, respectively. The rest of the values are as explained in Tab. \ref{tab:brute_force_no_interaction_2p}. Number of MC cycles are $2^{23}$.}\label{tab:ground_state_energy_different_omegas_no_interaction_2p}
 \begin{tabular}{l|l|l} 
  & Brute force: &  Importance:\\ \hline
 \begin{tabular}{c} 
@@ -131,7 +131,7 @@ $\alpha$ & $\left< E_L \right>$ & $\overline{r}_{12} $ & $\left< T \right>$  & $
 
 Table \ref{tab:compare_importance_alphas_2p} shows the expectation value for the energy for various parameters, $alpha$.  The calculated expectation values for the energy for the two different sampling methods are similar, especially close to the correct parameter $\alpha$, varying only by $\pm 10^{-2}$. The SEM is here underestimating the error compared to $\sigma_b$ from the blocking resampling technique for both sampling methods. However, what is different is that $\sigma_b$ is larger for importance sampling than for brute force sampling. \textit{Why is that? Is it just estimating the error more correctly (but the blocking code is the same), or is there a larger error resulting from importance sampling?}. At last, one can observe that the CPU time of the the importance sampling method is larger than brute force sampling which is expected because of the calculation of the gradient and the quantum force. But we know from Fig. \ref{fig:comparing_sampling} that the acceptance rate of brute force sampling is around 90 \% compared to importance sampling which should be close to 100 \% and this makes the importance sampling technique more effective in terms of MC cycles.
 
-\begin{table}[H]\caption{Comparing the results for brute force sampling/importance sampling. Energy are in atomic units (a.u.) and CPU time is in units of seconds. Number of MC cycles are 2$^{21}$.}\label{tab:compare_importance_alphas_2p}
+\begin{table}[H]\caption{Comparing the results for brute force sampling/importance sampling. Values are as explained in Tab. \ref{tab:brute_force_no_interaction_2p}. Number of MC cycles are 2$^{21}$.}\label{tab:compare_importance_alphas_2p}
 \center
 \begin{tabular}{l|l|l}
  & Brute force: & Importance:\\ \hline
@@ -191,7 +191,9 @@ For the system with six interacting fermions, the method described above was use
 
 \subsubsection{Including interaction}
 
-\begin{table}[H]\caption{Ground state energy of two interacting electrons in harmonic oscillator trap found with brute force sampling. Number of MC cycles are $2^{23}$}\label{tab:ground_state_energy_brute_force_interaction}
+Here is the results of the expectation values approximating the ground state energy for two interacitng electrons in a harmonic oscillator trap. The equations used to model the system is as described in the theory part of this report. That includes the trial wavefunction (see Eq. \ref{eq:trial_interacting}) with the Jastrow factor that is used to model the many-body wavefunction. Table \ref{tab:ground_state_energy_brute_force_interaction} and \ref{tab:ground_state_energy_importance_interaction} show the results of the calculations with the optimal parameters found with the gradient descent method for brute force and importance sampling, respectively. 
+
+\begin{table}[H]\caption{Ground state energy of two interacting electrons in harmonic oscillator trap found with brute force sampling. Here $\overline{r}_{12}$,  $\left< T \right>$, $\left< V_{ext}\right>$  and $\left<V_{int} \right>$ are as explain in Tab. \ref{tab:ground_state_energy_different_omegas_no_interaction_2p}. The rest of the values are as explained in Tab. \ref{tab:brute_force_no_interaction_2p} . Number of MC cycles are $2^{23}$.}\label{tab:ground_state_energy_brute_force_interaction}
 \center
 \begin{tabular}{c|cccccrccc}
 $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\overline{r}_{12} \,\,\,$ & $\left< T \right>$  & $\left< V_{ext}\right>$ & $\left<V_{int} \right>$  \\ \hline
@@ -203,7 +205,7 @@ $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\ove
 \end{tabular}
 \end{table}
 
-\begin{table}[H]\caption{Ground state energy of two interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$}\label{tab:ground_state_energy_importance_interaction}
+\begin{table}[H]\caption{Ground state energy of two interacting electrons in harmonic oscillator trap found with importance sampling. Here $\overline{r}_{12}$,  $\left< T \right>$, $\left< V_{ext}\right>$  and $\left<V_{int} \right>$as explain in Tab. \ref{tab:ground_state_energy_different_omegas_no_interaction_2p}. The rest of the values are as explained in Tab. \ref{tab:brute_force_no_interaction_2p}. Number of MC cycles are $2^{23}$}\label{tab:ground_state_energy_importance_interaction}
 \center
 \begin{tabular}{c|ccccccccc}
 $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\overline{r}_{12} \,\,\,$ & $\left< T \right>$  & $\left< V_{ext}\right>$ & $\left<V_{int} \right>$  \\ \hline
@@ -215,11 +217,27 @@ $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\ove
 \end{tabular}
 \end{table}
 
+From Tab. \ref{tab:ground_state_energy_brute_force_interaction} and \ref{tab:ground_state_energy_importance_interaction} one can observe that the two sampling methods give approximately the same results. The different expectation values for the different energies are very similar and the mean distance is also very similar. However, the standard deviation from the blocking resampling method are different. Importance sampling seems to result in larger $\sigma_B$ here as well as for the case without interaction (see Tab. \ref{tab:compare_importance_alphas_2p}). 
+
+The results above show that the energy of the system is decreasing with decreasing trap frequency, $\omega$. One can slo observe that the potential energy dominates for large trap frequencies ($\omega = 1.0$ and $\omega = 0.5$), but for the smaller $\omega$s the interaction energy and the potential energy is approximately equal. For all $\omega$, the kinetic energy is the smallest one. \textit{Does this make sense? What is the potential energy? The energy stored in the force from the trap - keeping the electorns together - stronger trapping force - stronger potential energy. What is kinetic energy? Momentum? Why does it decrease with trap frequency? Because potential energy is less? Without interaction - energy oscillates between potential energy and kinetic energy - energy is conserved. }
+
+\begin{figure}[H]
+\center
+\includegraphics[width=0.7\linewidth]{../Results/mean_distance_change}\caption{The mean distance between the two particles, calculated with importance sampling, compared for the situation with and without the Jastrow factor and at different trap frequencies. }\label{fig:mean_distance_compared}
+\end{figure}
+
+Figure \ref{fig:mean_distance_compared} shows the combined results from Tab. \ref{tab:ground_state_energy_different_omegas_no_interaction_2p} and \ref{tab:ground_state_energy_importance_interaction}. One can observe that the mean distance is larger for the case with interaction. This is expected since the interaciton potential (see Eq. \ref{eq:hamilton_interaction}) is a repulsive potential, and will hence force the electrons further apart. One can also observe that the ratio of the two different cases increase with decreasing trap frequency, i.e. the mean distance increases more for smaller trap frequencies. \textit{is that as expected? Why? Does that mean that the trap frequency is more important than the interaction?}
+
 \subsubsection{One-body density}
 
 \begin{figure}[H]
 \center
 \includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_2p}\caption{•}\label{fig:one_body_density_no_interaction_2p}
+\end{figure}
+
+\begin{figure}[H]
+\center
+\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_2p_smoothed}\caption{•}\label{fig:one_body_density_no_interaction_2p_smoothed}
 \end{figure}
 
 \begin{figure}[H]
@@ -231,7 +249,7 @@ $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\ove
 
 \subsection{Six particles}
 
-\begin{table}[H]\caption{Number of MC cycles are $2^{23}$. }\label{tab:ground_state_energy_importance_6p}
+\begin{table}[H]\caption{Ground state energy of six electrons in harmonic oscillator trap. Here $\left< E_L \right>$, $\left< T \right>$ and $\left< V_{ext}\right>$  are as explain in Tab. \ref{tab:ground_state_energy_different_omegas_no_interaction_2p}. Number of MC cycles are $2^{23}$. }\label{tab:ground_state_energy_importance_6p}
 \center
 \begin{tabular}{c|rcc}
 $\omega$ & $\left< E_L \right>$  & $\left< T \right>$  & $\left< V_{ext}\right>$ \\ \hline
@@ -243,7 +261,7 @@ $\omega$ & $\left< E_L \right>$  & $\left< T \right>$  & $\left< V_{ext}\right>$
 \end{tabular}
 \end{table}
 
-\begin{table}[H]\caption{Ground state energy of six interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$}\label{tab:ground_state_energy_importance_interaction_6p}
+\begin{table}[H]\caption{Ground state energy of six interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$.}\label{tab:ground_state_energy_importance_interaction_6p}
 \center
 \begin{tabular}{c|cccccccc}
 $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\left< T \right>$  & $\left< V_{ext}\right>$ & $\left<V_{int} \right>$  \\ \hline
