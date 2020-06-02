@@ -12,14 +12,14 @@
 \contentsline {subsubsection}{\numberline {3.1.2}Including importance sampling}{7}
 \contentsline {subsubsection}{\numberline {3.1.3}Including optimization}{9}
 \contentsline {subsubsection}{\numberline {3.1.4}Including interaction}{10}
-\contentsline {subsection}{\numberline {3.2}One-body density}{10}
+\contentsline {subsection}{\numberline {3.2}One-body density}{11}
 \contentsline {subsection}{\numberline {3.3}Extending to more particles}{11}
 \contentsline {subsubsection}{\numberline {3.3.1}Six particles}{11}
-\contentsline {subsubsection}{\numberline {3.3.2}Twelve particles}{12}
+\contentsline {subsubsection}{\numberline {3.3.2}Twelve particles}{13}
 \contentsline {section}{Appendices}{13}
 \contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{13}
-\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{13}
-\contentsline {subsection}{\numberline {B.1}Slater determinant}{13}
+\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{14}
+\contentsline {subsection}{\numberline {B.1}Slater determinant}{14}
 \contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{14}
 \contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{15}
 \contentsline {section}{\numberline {C}Energies}{16}

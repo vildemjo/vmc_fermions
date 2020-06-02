@@ -50,6 +50,25 @@ int main() {
 
 
 //    /* Set-up to run and save local energies for every step to file*/
+    // N = 2:
+    // std::vector<double> binLengths = {3.0, 5.0, 8.0, 10.0, 12.0};
+    // std::vector<double> binNumbers = {300, 500, 700, 800, 900};
+
+    // N = 6:
+    // std::vector<double> binLengths = {4.0, 5.0, 10.0, 12.0, 15.0};
+    // std::vector<double> binNumbers = {500, 600, 700, 800, 900};
+
+    // N = 12:
+    // std::vector<double> binLengths = {4.5, 6.0, 11.0, 15.0, 20.0};
+    // std::vector<double> binNumbers = {450, 600, 700, 800, 900};
+
+    // int mcPow = 24;
+    // numberOfSteps = (int) pow(2,mcPow);
+
+    // for (int b= 0; b<binLengths.size(); b++){
+
+    // densityLength = binLengths[b]*2;
+    // numberOfBins = binNumbers[b]*2;
 
     // clock_t start, end;
     // // Recording the starting clock tick.
@@ -65,7 +84,7 @@ int main() {
 
     // string file_name = "test"; //"Output/exercise_f/one_body/ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"+ to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable)+ "_0";
     // // string file_name = "Output/exercise_f/one_body/ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"
-    // //                                         + to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable)+ "_0";
+    // //                                         + to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable)+  + "_MC_" + to_string(mcPow);
     
     // System* system = new System();
     // system->setHamiltonian                (new HarmonicOscillator(system, omega));
@@ -89,18 +108,35 @@ int main() {
     // double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
     // cout << "CPU time: " << time_taken << " seconds" << endl;
 
-
+    // }
 
     /* Same but for the interacting case */   
 
-    std::vector<double> alphas = {}
+    // N = 6:
+    // std::vector<double> alphas = {0.71567, 0.75823, 0.78852, 0.76518, 0.64907};
+    // std::vector<double> betas = {0.49372, 0.34260, 0.15041, 0.10733, 0.05085};
+    // std::vector<double> binLengths = {7.0, 9.0, 12.0, 15.0, 20.0};
+    // std::vector<double> binNumbers = {500, 600, 700, 800, 900};
 
+    // N = 2:
+    // std::vector<double> alphas = {0.98846, 0.98082, 0.94734, 0.92262};
+    // std::vector<double> betas = {0.39954, 0.31068, 0.17810, 0.14090};
+    // std::vector<double> binLengths = {3.5, 5.0, 7.0, 10.0, 12.0};
+    // std::vector<double> binNumbers = {350, 500, 700, 800, 900};
+
+    // for (int b= 0; b<binLengths.size(); b++){
+
+    // densityLength = binLengths[b]*2;
+    // numberOfBins = binNumbers[b]*2;
+
+    // int mcPow = 24;
+    // numberOfSteps = (int) pow(2,mcPow);
 
     importanceOrNot = true;
     stepLength = 0.005;
     inititalizingStep = 0.5;
     allEnergiesOrNot = true;
-    numberOfParticles = 6;
+    numberOfParticles = 2;
     omega = 0.01;
     cout << "omega: " << omega << "\n";
 
@@ -112,10 +148,10 @@ int main() {
     string samplingType = setSamplingName(importanceOrNot);
 
     string file_name = "Output/exercise_g/interaction_ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"+ to_string(omegaPrintable);
-    // string file_name = "Output/exercise_g/one_body/interaction_ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"+ to_string(omegaPrintable);
+    // string file_name = "Output/exercise_g/one_body/interaction_ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"+ to_string(omegaPrintable) + "_MC_" + to_string(mcPow);
 
-    alpha =  0.64907;
-    beta = 0.05085;
+    alpha =  0.88305; //alphas[b];
+    beta = 0.07366; //betas[b];
 
 
     clock_t start2, end2;
@@ -143,7 +179,8 @@ int main() {
     end2 = clock();
     double time_taken2 = double(end2 - start2) / double(CLOCKS_PER_SEC); 
     cout << "CPU time: " << time_taken2 << " seconds" << endl;
-
+    
+    // }
 
 // ---------------------------------------------------------------------------------------------------------------------
 /* Printing all local energy measurements for some alphas */
@@ -392,13 +429,13 @@ int main() {
     // std::vector<double> oldEnergyDerivative(2,0);
     // double alphaNew = 0;
     // double betaNew = 0;
-    // double minimizationRate_alpha = 0.1; //0.01, 0.05, 0.5, 0.1
-    // double minimizationRate_beta = 0.1;
+    // double minimizationRate_alpha = 0.05; //0.01, 0.05, 0.5, 0.1
+    // double minimizationRate_beta = 0.05;
     // double lambda = 0;
     // allEnergiesOrNot = false;
     // importanceOrNot = true;
-    // alpha = 0.92262;
-    // beta = 0.14090;
+    // alpha = 0.88398;
+    // beta = 0.07287;
     // stepLength = 0.005;
     // inititalizingStep = 0.5;
     // omega = 0.01;

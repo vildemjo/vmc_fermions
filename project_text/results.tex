@@ -47,7 +47,7 @@ Figure \ref{fig:comparing_sampling} compare the expectation value of the energy 
 
 \begin{figure}[H]
 \center
-\includegraphics[width=\linewidth]{../Results/comparing_sampling}\caption{Left: Expectation energies after $2^{21}$ MC cycles for different step sizes. Right: Percentage of accepted steps for different step sizes. Here importance sampling and brute force sampling is compared. }\label{fig:comparing_sampling}
+\includegraphics[width=0.85\linewidth]{../Results/comparing_sampling}\caption{Left: Expectation energies after $2^{21}$ MC cycles for different step sizes. Right: Percentage of accepted steps for different step sizes. Here importance sampling and brute force sampling is compared. }\label{fig:comparing_sampling}
 \end{figure}
 
 
@@ -88,16 +88,11 @@ $\left< E_L \right>$: & SEM: & $\sigma_B$: & Acc.: & $t_{CPU}$:\\ \hline
 \end{tabular}
 \end{table}
 
-I took a closer look at the actual local energies for the brute force sampling method. Figure \ref{fig:brute_force_small_steps} shows how the energy is not stable for steps sizes smaller than 0.01, so even though the step sizes 0.001 and 0.01 seems to give reasonable expectation values for the energy (see Tab. \ref{tab:importance_no_interaction_2p} and Fig. \ref{fig:comparing_sampling}), Fig. \ref{fig:brute_force_small_steps} seems to show that that is sort of a lucky shot. I also saw this by running the calculation with brute force sampling and the step size, $0.005$, with different seeds for the random number generator. The expectation energy for five different runs where $\left< E_L \right>$ =  1.91487, 2.03452, 1.90805, 1.88356 and 1.9284. From Fig. \ref{fig:brute_force_larger_steps} one can observe that even $dl=0.1$ seems to be too small since it also results in the local energy varying slowly and taking longer "trips" to higher energies and using many steps to get back down again, but for this step size the "trips" to higher energies are more frequent than for the smaller step sizes. I concluded that a step size of 0.5 is the best choice for the brute force sampling because it gives resonable changes of the local energy and an accpentance rate of $\sim$ 90 \% (see Fig. \ref{fig:comparing_sampling}). 
+I took a closer look at the actual local energies for the brute force sampling method. Figure \ref{fig:local_energy_step_size_brute_force} shows how the energy is not stable for steps sizes smaller than 0.01, so even though the step sizes 0.001 and 0.01 seems to give reasonable expectation values for the energy (see Tab. \ref{tab:importance_no_interaction_2p} and Fig. \ref{fig:comparing_sampling}), Fig. \ref{fig:local_energy_step_size_brute_force} seems to show that that is sort of a lucky shot. I also saw this by running the calculation with brute force sampling and the step size, $0.005$, with different seeds for the random number generator. The expectation energy for five different runs where $\left< E_L \right>$ =  1.91487, 2.03452, 1.90805, 1.88356 and 1.9284. From Fig. \ref{fig:local_energy_step_size_brute_force} one can observe that even $dl=0.1$ seems to be too small since it also results in the local energy varying slowly and taking longer "trips" to higher energies and using many steps to get back down again, but for this step size the "trips" to higher energies are more frequent than for the smaller step sizes. I concluded that a step size of 0.5 is the best choice for the brute force sampling because it gives resonable changes of the local energy and an accpentance rate of $\sim$ 90 \% (see Fig. \ref{fig:comparing_sampling}). 
 
 \begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
-\includegraphics[width=\linewidth]{../Results/brute_force_small_steps}\caption{}\label{fig:brute_force_small_steps}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-\includegraphics[width=\linewidth]{../Results/brute_force_larger_steps}\caption{}\label{fig:brute_force_larger_steps}
-\end{subfigure}
-\caption{The local energy for every tenth MC cycle for brute force sampling at different step sizes, $dl$. a) shows the smaller step sizes and b) some that are a bit larger. }\label{fig:brute_force_step_sizes}
+\center
+\includegraphics[width=0.85\linewidth]{../Results/local_energy_step_sizes}\caption{The local energy for every tenth MC cycle for brute force sampling at different step sizes, $dl$. a) shows the smaller step sizes and b) some that are a bit larger.}\label{fig:local_energy_step_size_brute_force}
 \end{figure}
 
 %On the other hand, for the importance sampling, the investigation of the local energies did not give any clues to why the expecation energy is lower that the ground state energy for a step size of 0.5. Eventually I decided that the result itself indicate that 0.5 is a too large step size for importance sampling and taken together with a low acceptance rate at 0.5 ($\sim$ 82 \%) it is clear that a smaller step size is preferable. 
@@ -185,6 +180,11 @@ $\left< E_L \right>$: & SEM: & $\sigma_B$: & CPU time:\\ \hline
 
 Minimization rate of 0.5 seemed to be ideal. It resulted in the fewest steps until the parameter value stabilized both for guesses close to the optimal value and for guesses far away from the optimal value, but for the smallest trap frequencies I had to use $\gamma = $ 0.1 or 0.2. The parameters were optimized by trying out different first guesses for $\alpha$ and $\beta$ and tuning $\gamma$ so that the parameters stabilized during the first 200 iteretions. The optimal parameters were extracted from the mean of the last 50 iterations. An example run is shown in Fig. \ref{} for $\omega = 0.5$.
 
+\begin{figure}
+\center
+\includegraphics[width=0.8\linewidth]{../Results/example_gradient_descent}\caption{•}\label{fig:example_gradient_descent}
+\end{figure}
+
 \subsubsection{Including interaction}
 
 \begin{table}[H]\caption{Ground state energy of two interacting electrons in harmonic oscillator trap found with brute force sampling. Number of MC cycles are $2^{23}$}\label{tab:ground_state_energy_brute_force_interaction}
@@ -215,12 +215,12 @@ $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\ove
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.8\linewidth]{../Results/one_body_density_no_interaction_2p}\caption{•}\label{fig:one_body_density_no_interaction_2p}
+\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_2p}\caption{•}\label{fig:one_body_density_no_interaction_2p}
 \end{figure}
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.7\linewidth]{../Results/one_body_density_interaction_2p}\caption{Dashed lines are with the Jastrow factor. Normal lines is without Jastrow factor. }\label{fig:one_body_density_interaction_2p}
+\includegraphics[width=0.65\linewidth]{../Results/one_body_density_interaction_2p}\caption{Dashed lines are with the Jastrow factor. Normal lines is without Jastrow factor. }\label{fig:one_body_density_interaction_2p}
 \end{figure}
 
 \subsection{Extending to more particles}
@@ -253,12 +253,12 @@ $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\lef
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.8\linewidth]{../Results/one_body_density_no_interaction_6p}\caption{•}\label{fig:one_body_density_no_interaction_6p}
+\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_6p}\caption{•}\label{fig:one_body_density_no_interaction_6p}
 \end{figure}
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.7\linewidth]{../Results/one_body_density_interaction_6p}\caption{Dashed lines are with the Jastrow factor. Normal lines is without Jastrow factor. }\label{fig:one_body_density_interaction_6p}
+\includegraphics[width=0.70\linewidth]{../Results/one_body_density_interaction_6p}\caption{Dashed lines are with the Jastrow factor. Normal lines is without Jastrow factor. }\label{fig:one_body_density_interaction_6p}
 \end{figure}
 
 
@@ -286,5 +286,5 @@ $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\lef
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.8\linewidth]{../Results/one_body_density_no_interaction_12p}\caption{Had to use MC 2 24 to get smooth graphs. }\label{fig:one_body_density_no_interaction_12p}
+\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_12p}\caption{Had to use MC 2 24 to get smooth graphs. }\label{fig:one_body_density_no_interaction_12p}
 \end{figure}
