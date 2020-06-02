@@ -4,7 +4,7 @@ We start with the simple case of two electrons in a harmonic oscillator trap. Th
 
 \subsubsection{Brute force sampling}
 
-First, brute force sampling was used to calculate the new position and evaluate the metropolis ratio. The double derivative of the wavefunction, used to calculate the kinetic energy part of the expectation energy, was evaluated both analytically and numerically. Table \ref{tab:brute_force_no_interaction_2p} shows the energy for different values for the parameter $\alpha$. The numbers show that the standard error of the mean (SEM) is underestimating the deviations. From Tab. \ref{tab:brute_force_no_interaction_2p} one can observe that including the correlations, e.g. correlations in the random number generator, increases the deviation, giving us $\sigma_b$. This value is also an estimate of the error, but probably a more true estimate of the error.
+First, brute force sampling was used to calculate the new position and evaluate the metropolis ratio. The double derivative of the wavefunction, used to calculate the kinetic energy part of the expectation energy, was evaluated both analytically and numerically. Table \ref{tab:brute_force_no_interaction_2p} shows the energy for different values for the parameter $\alpha$. The numbers show that the standard error of the mean (SEM) is underestimating the deviations. From Tab. \ref{tab:brute_force_no_interaction_2p} one can observe that including the correlations, i.e. mainly correlations between one state and the next where only one particle is moved, increases the deviation, giving us $\sigma_b$. This value is also an estimate of the error, but probably a more true estimate of the error.
 
 From Tab. \ref{tab:brute_force_no_interaction_2p} one can also observe that $\alpha $ = 1.0 gives zero standard deviation and is therefore the optimal parameter. By comparing the results for the analytical and the numerical cases one can observe that the SEM and $\sigma_b$ is similar for both cases, especially around the ground state ($\alpha$ = 1.0). If he expectation energies from the analytial case and the numbercal cases are compared, they differ with values at the scale of $10^{-3}$, which is reasonable with a $\sigma_b$ around $10^{-3}$ to $10^{-2}$. At last one can observe, both from the individual CPU time measurements and the mean CPU time of these 10 measurements (though with different $\alpha$s), that the analytical solution of the double derivative is much faster and more efficient than the numerical case. 
 
@@ -104,9 +104,7 @@ I took a closer look at the actual local energies for the brute force sampling m
 %
 %At last, it is interesting to note that the CPU time of importance sampling is higher than the brute force sampling, so even though brute force sampling has a lower acceptance rate, at the ideal step size, than importance sampling the two methods seems to be somewhat comparable at least for the system I am investigating.
 
-Proceeding to evaluate the energy, Table \ref{tab:ground_state_energy_different_omegas_no_interaction_2p} shows how the energy changes with different trap frequencies, $\omega$. In this table one can observe that there is no large difference between the reuslts from brute force sampling and importance sampling. However, to be able to compare the sampling methods more thoroughly it is better to look at the case where the system is not in the ground state. 
-
-\textit{JEG KOM HIT :)}
+Proceeding to evaluate the energy, Table \ref{tab:ground_state_energy_different_omegas_no_interaction_2p} shows how the energy changes with different trap frequencies, $\omega$. In this table one can observe that there is no large difference between the results from brute force sampling and importance sampling. However, to be able to compare the sampling methods more thoroughly it is better to look at the case where the system is not in the ground state. 
 
 \begin{table}[H]\caption{Ground state energy of two electrons in harmonic oscillator trap. Number of MC cycles are $2^{23}$.}\label{tab:ground_state_energy_different_omegas_no_interaction_2p}
 \begin{tabular}{l|l|l} 
@@ -135,6 +133,8 @@ $\alpha$ & $\left< E_L \right>$ & $\overline{r}_{12} $ & $\left< T \right>$  & $
 \end{tabular}\\
 \end{tabular}
 \end{table}
+
+Table \ref{tab:compare_importance_alphas_2p} shows the expectation value for the energy for various parameters, $alpha$.  The calculated expecation values for the energy for the two different sampling methods are similar, especially close to the correct parameter $\alpha$, varying only by $\pm 10^{-2}$. The SEM is here underestimating the error compared to $\sigma_b$ from the blocking resampling technique for both sampling methods. However, what is different is that $\sigma_b$ is larger for importance sampling than for brute force sampling. \textit{Why is that? Is it just esimating the error more correctly (but the blocking code is the same), or is there a larger error resulting from importance sampling?}. At last, one can observe that the CPU time of the the importance sampling method is larger than brute force sampling which is expected because of the calculation of the gradient and the quantum force. But we know from Fig. \ref{fig:comparing_sampling} that the acceptance rate of brute force sampling is around 90 \% compared to importance sampling which should be close to 100 \% and this makes the importance sampling techique more effective in terms of MC cycles.
 
 \begin{table}[H]\caption{Comparing the results for brute force sampling/importance sampling. Energy are in atomic units (a.u.) and CPU time is in units of seconds. Number of MC cycles are 2$^{21}$.}\label{tab:compare_importance_alphas_2p}
 \center
@@ -207,6 +207,7 @@ $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\ove
 0.50& 0.98082 & 0.31068 & 1.6674 & 0.00001 & 0.00019 & 2.481 & 0.4547 & 0.6997 & 0.5130\\
 0.10 & 0.94734 & 0.17810 & 0.4486 & 0.00001 & 0.00023 & 6.724 & 0.0989 & 0.1787 & 0.1710\\
 0.05 & 0.92262 & 0.14090 & 0.2610 & 0.00000 & 0.00021 & 10.333 & 0.0495 & 0.1024 & 0.1091\\
+
 \end{tabular}
 \end{table}
 
@@ -246,6 +247,7 @@ $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\lef
 0.50 & 0.75823 & 0.34260 & 11.9868 & 0.00011 & 0.00522 & 1.3226 & 5.8094 & 4.8548\\
 0.10 & 0.78852 & 0.15041 & 3.6542 & 0.00003 & 0.00416 & 0.2951 & 1.7035 & 1.6556\\
 0.05 & 0.76518 & 0.10733 & 2.2223 & 0.00003 & 0.00436 &  0.1178 & 1.0882 & 1.0162\\
+0.01 & 0.64907 & 0.05085 & 0.7191 & 0.00001 & 0.00586 & 0.0021 & 0.3803 & 0.3367\\
 \end{tabular}
 \end{table}
 
@@ -273,6 +275,14 @@ $\omega$ & $\left< E_L \right>$  & $\left< T \right>\,\,\,$  & $\left< V_{ext}\r
 0.01 & 0.28 & 0.1419 & 0.1381\\ 
 \end{tabular}
 \end{table}
+
+\begin{table}[H]\caption{Ground state energy of twelve interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$}\label{tab:ground_state_energy_importance_interaction_12p}
+\center
+\begin{tabular}{c|cccccccc}
+$\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\left< T \right>$  & $\left< V_{ext}\right>$ & $\left<V_{int} \right>$  \\ \hline
+\end{tabular}
+\end{table}
+
 
 \begin{figure}[H]
 \center
