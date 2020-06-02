@@ -138,7 +138,8 @@ E_int = [0.808643,  0.51295, 0.170973, 0.109083, 0.0362095]
 
 for o in [4]:#]range(len(omega)):
 
-    infile = open(data_path("exercise_g//interaction_ground_state_"+ sampling_type + "_6p_omega_%i_energy.txt"%int(omega[o]*100)),'r')
+    infile = open(data_path("exercise_g//interaction_ground_state_"+ sampling_type + "_2p_omega_%i_energy.txt"%int(omega[o]*100)),'r')
+
 
 
     x = loadtxt(infile, skiprows=5)

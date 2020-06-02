@@ -1,4 +1,4 @@
-In this project we investigate a fermionic system of N=2, 6 and 12 electrons. It is a so-called closed shell-system. The Hamiltonian used to model this system is
+In this project we investigate a fermionic system of $N=$ 2, 6 and 12 electrons, where $N$ is the number of particles. It is a so-called closed shell-system. The Hamiltonian used to model this system is
 
 \begin{equation}
 \label{eq:finalH}
@@ -12,7 +12,7 @@ is the single particle part and
 \hat{H}_1=\sum_{i<j}\frac{1}{r_{ij}},
 \end{equation}
 
-represent the interaction potential between particles. The Hamiltonian is written in atomic units, which implies that $\hbar = 1, m= 1$, the unit of length is $a_0 = ...$ and the unit of energy is $...$.  We also have $r_{ij}=\vert \bm{r}_i-\bm{r}_j\vert= \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}$ and $\omega$ is the oscillator frequency. Later we will study the dependence of the system on the oscillator frequency. 
+represent the interaction potential between particles. The Hamiltonian is written in atomic units, which implies that $\hbar = 1, m= 1$, the unit of length is $a_0 = \nicefrac{4 \pi \epsilon_0 \hbar^2}{m_e e^2}$ and the unit of energy is $E_h = \nicefrac{\hbar^2}{m_e a_0^2}$.  We also have $r_{ij}=\vert \bm{r}_i-\bm{r}_j\vert= \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}$ and $\omega$ is the oscillator frequency. Later we will study the dependence of the system on the oscillator frequency. 
 
 \subsection{Two particle system}
 
@@ -117,7 +117,7 @@ The determinant have the same structure as for six particles and the relation to
 
 \subsection{One-body density}
 
-The radial one-body density is a measure of the spactial distribution of the electrons with respect to the distance from the middle of the harmonic oscillator trap. To calculate the radial one-body density, we want to sample the position of the electrons. The distance from the origin to a set cut-off is seperated into bins with a length $\Delta r$. For every Monte Carlo step, the distance between the electron's position and the origin is calculated, and the bin that corresponds to the current distance get a count. In the end, you have an array corresponding to the different bins with counts corresponding to how many times an electron was found to have that particular distance to the origin. This array is normalized by dividing by the number of Monte Carlo steps. However, to get the density, we have to divide the number in the bins with the area or volume the bin represents. Because we have two-dimensional problem in this project and we calculate the radial one-body density, we devide bin $i$ with the area $ A = \pi (r_i+\Delta r)^2 - \pi r_i^2$ where $r_i$ is distance from the origin to bin $i$. \textit{normalized to the number of particles. Mention. Should happen automatically... Does not happen automatically for me, but I have notice that Even has the same scale on the y-axis.}\cite{Evens_master}
+The radial one-body density is a measure of the spacial distribution of the electrons with respect to the distance from the middle of the harmonic oscillator trap. To calculate the radial one-body density, we want to sample the position of the electrons. The distance from the origin to a set cut-off is separated into bins with a length $\Delta r$. For every Monte Carlo step, the distance between the electron's position and the origin is calculated, and the bin that corresponds to the current distance get a count. In the end, you have an array corresponding to the different bins with counts corresponding to how many times an electron was found to have that particular distance to the origin. This array is normalized by dividing by the number of Monte Carlo steps. However, to get the density, we have to divide the number in the bins with the area or volume the bin represents. Because we have two-dimensional problem in this project and we calculate the radial one-body density, we divide bin $i$ with the area $ A = \pi (r_i+\Delta r)^2 - \pi r_i^2$ where $r_i$ is distance from the origin to bin $i$. \textit{normalized to the number of particles. Mention. Should happen automatically... Does not happen automatically for me, but I have notice that Even has the same scale on the y-axis.}\cite{Evens_master}
 
 \subsection{Virial theorem}
 
@@ -131,7 +131,7 @@ where $V(r) = Br^n$. In our case when we do not include interaction $n = 2$ from
 
 \subsection{Trap frequency}
 
-The trap frequency changes the external potential felt by the electrons. Figure \ref{fig:harmonic_oscillator_potential} shows how a larger trap frquency, $\omega$, results in a narrower external potential. In this narrow harmonic oscillator trap, the electrons are forced to be closer to eachother. Later, we will investigate how $\omega$ affects the energy when the electrons are interacting with eachother through the potential given in Eq. \ref{eq:hamilton_interaction}
+The trap frequency changes the external potential felt by the electrons. Figure \ref{fig:harmonic_oscillator_potential} shows how a larger trap frequency, $\omega$, results in a narrower external potential. In this narrow harmonic oscillator trap, the electrons are forced to be closer to each other. Later, we will investigate how $\omega$ affects the energy when the electrons are interacting with each other through the potential given in Eq. \ref{eq:hamilton_interaction}
 
 \begin{figure}[H]
 \center
@@ -145,3 +145,25 @@ Standard error of the mean (SEM):
 \text{SEM} = \frac{\sigma}{\sqrt{N}}
 \end{equation}
 where $N$ is the number of observations, in our case the number of Monte Carlo cycles.
+
+\subsection{The program}
+
+\subsubsection{Initialization}
+
+\subsubsection{Metropolis steps}
+
+\subsubsection{Sampling}
+
+\subsection{Improving performance and effiency}
+
+\subsubsection{Vectorization}
+
+Solving as vectors instead of scalars - using more of memory - is sort of parallel. 
+
+\subsubsection{Parallelizing}
+
+Doing operations in parallell instead of secquentially. In this case, we want more MC cycles in less time. I chose to parallellize with cmake. I am generating files that contain $E_L$. I get the same data if I run the same code (with different seeds for the random number generator) in 4 proseccors for MC cycles/4 or the same code for MC cycles in one proscessor. Embarrasing parallellization - very simple. Need different file name. 
+
+\subsubsection{Reducing computational cost}
+
+Decrease floating point operations (flops) by smarter code and use of ratios.
