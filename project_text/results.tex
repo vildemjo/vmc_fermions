@@ -230,19 +230,25 @@ Figure \ref{fig:mean_distance_compared} shows the combined results from Tab. \re
 
 \subsubsection{One-body density}
 
-\begin{figure}[H]
-\center
-\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_2p}\caption{•}\label{fig:one_body_density_no_interaction_2p}
-\end{figure}
+The one-body density can tell how the particles are distributed in space, and Fig. \ref{fig:one_body_density_no_interaction_2p} shows the result of the one-body density of the system of two not interacting fermions for different trap frequencies. One can observe, as one saw in the development of the mean distance (see Fig. \ref{fig:mean_distance_compared}), that the particle distribution or density is spread out in space for smaller trap frequencies. From Fig. \ref{fig:one_body_density_no_interaction_2p} one can also observe that the electrons spend most of their time around the origin of the harmonic oscillator trap. The shape of the curve seems not to change for the different trap frequencies, only the height and width.
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_2p_smoothed}\caption{•}\label{fig:one_body_density_no_interaction_2p_smoothed}
+\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_2p}\caption{One-body density of the two electron system without the Jastrow factor, but with different trap frequencies. Left: The larger trap frequencies. Right: The smaller trap frequencies. The system with $\omega = 0.1$ is in both plots to show the difference in scale for the two plots. Used $2^{24}$ MC cycles. }\label{fig:one_body_density_no_interaction_2p}
 \end{figure}
+
+To get a smooth curve, I found out htat you either have to use larger bin sizes or more MC cycles. Since the one-body density is found by counting how many times a particle is situated within a certain bin, i.e. with a certain distance to origo, more samples of the positions will give a more true distribution. So if the bin size is small, you need more MC cycles to smooth out the random difference between the two bins. On the other hand, if the bin size is too large real differences or fast changes in the distribution might not be detected.
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.65\linewidth]{../Results/one_body_density_interaction_2p}\caption{Dashed lines are with the Jastrow factor. Normal lines is without Jastrow factor. }\label{fig:one_body_density_interaction_2p}
+\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_2p_few_points}\caption{One-body density of the two electron system without the Jastrow factor, but with different trap frequencies. Left: The larger trap frequencies. Right: The smaller trap frequencies. The system with $\omega = 0.1$ is in both plots to show the difference in scale for the two plots. Here showed for a case with larger bins then Fig. \ref{fig:one_body_density_no_interaction_2p}. Used $2^{24}$ MC cycles.}\label{fig:one_body_density_no_interaction_2p_fewer_bins}
+\end{figure}
+
+Furthermore, Fig. \ref{fig:one_body_density_interaction_2p} shows the one-body densities with and without the Jastrow factor. Here, one can also observe the same as was seen with the mean distance, that the Jastrow factor spreads out the distribution of the particles, but the difference is a lot clearer in the one-body density plot. Another interesting observation is that, for the interacting case, the maxium does not seem to lay at the origo. It is not that easy to see for the larger trap frequencies, but one can easily see it for $\omega = 0.1$ in the right part of Fig. \ref{fig:one_body_density_interaction_2p}. This seems to be reasonable because there is a repulsive force between the particles, they spend more time further away from the origin. \textit{Could it be that for larger trap frequencies there is a larger energy-wise gain ( i.e. the energy is lower) to be situated closer to origo, hence the maximum is not shifted as far from origo for those frequencies, but for the lower trap frequencies the gain obtained closer to origo does not compensate enough of the repulsive forces (or interaction energy), so the maximum is shifted away from origo. That should imply that the position of the maximum reflects a balance between the potential energy and the interaction energy. }
+
+\begin{figure}[H]
+\center
+\includegraphics[width=0.85\linewidth]{../Results/one_body_density_interaction_2p}\caption{One-body density of the two electron system with and without the Jastrow factor and with different trap frequencies (indicated by the color of the lines). Dashed lines are with the Jastrow factor and filled lines are without Jastrow factor. Left: The larger trap frequencies. Right: The smaller trap frequencies.  The system with $\omega = 0.1$ is in both plots to show the difference in scale for the two plots. Used $2^{24}$ MC cycles. }\label{fig:one_body_density_interaction_2p}
 \end{figure}
 
 \subsection{Extending to more particles}
@@ -285,12 +291,12 @@ $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\lef
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_6p}\caption{•}\label{fig:one_body_density_no_interaction_6p}
+\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_6p}\caption{One-body density of the six electron system without the Jastrow factor, but with different trap frequencies. Left: The larger trap frequencies. Right: The smaller trap frequencies. The system with $\omega = 0.1$ is in both plots to show the difference in scale for the two plots. Used $2^{24}$ MC cycles.}\label{fig:one_body_density_no_interaction_6p}
 \end{figure}
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.70\linewidth]{../Results/one_body_density_interaction_6p}\caption{Dashed lines are with the Jastrow factor. Normal lines is without Jastrow factor. }\label{fig:one_body_density_interaction_6p}
+\includegraphics[width=0.70\linewidth]{../Results/one_body_density_interaction_6p}\caption{One-body density of the six electron system with and without the Jastrow factor and with different trap frequencies (indicated by the color of the lines). Dashed lines are with the Jastrow factor and filled lines are without Jastrow factor. Left: The larger trap frequencies. Right: The smaller trap frequencies.  The system with $\omega = 0.1$ is in both plots to show the difference in scale for the two plots. Used $2^{24}$ MC cycles. }\label{fig:one_body_density_interaction_6p}
 \end{figure}
 
 
@@ -318,7 +324,7 @@ $\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\lef
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_12p}\caption{Had to use MC 2 24 to get smooth graphs. }\label{fig:one_body_density_no_interaction_12p}
+\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_12p}\caption{One-body density of the six electron system without the Jastrow factor, but with different trap frequencies. Left: The larger trap frequencies. Right: The smaller trap frequencies. The system with $\omega = 0.1$ is in both plots to show the difference in scale for the two plots. Used $2^{24}$ MC cycles. }\label{fig:one_body_density_no_interaction_12p}
 \end{figure}
 
 \subsection{Efficiency}

@@ -120,6 +120,8 @@ sampling_type = "importance"
 
 # Importance values
 
+N = 2
+
 alpha = [0.98846, 0.98082, 0.94734, 0.92262, 0.88305]
 beta = [0.39954, 0.31068, 0.17810, 0.14090, 0.07366]
 mean_distance = [1.64345, 2.48083, 6.72361, 10.3333, 29.2928 ]
@@ -136,11 +138,9 @@ E_int = [0.808643,  0.51295, 0.170973, 0.109083, 0.0362095]
 # E_pot = [10.7076, 5.80937, 1.7035, 1.0882, 0.380349]
 # E_int = [7.39876, 4.85476, 1.65562, 1.01623, 0.336716]
 
-for o in [4]:#]range(len(omega)):
+for o in range(len(omega)):
 
-    infile = open(data_path("exercise_g//interaction_ground_state_"+ sampling_type + "_2p_omega_%i_energy.txt"%int(omega[o]*100)),'r')
-
-
+    infile = open(data_path("exercise_g//one_body//interaction_ground_state_"+ sampling_type + "_%ip_omega_%i_MC_24_energy.txt"%(N,int(omega[o]*100))),'r')
 
     x = loadtxt(infile, skiprows=5)
 

@@ -21,20 +21,20 @@
 \contentsline {subsubsection}{\numberline {3.1.3}Including optimization}{11}
 \contentsline {subsubsection}{\numberline {3.1.4}Including interaction}{12}
 \contentsline {subsubsection}{\numberline {3.1.5}One-body density}{14}
-\contentsline {subsection}{\numberline {3.2}Extending to more particles}{15}
-\contentsline {subsection}{\numberline {3.3}Six particles}{15}
-\contentsline {subsection}{\numberline {3.4}Twelve particles}{17}
-\contentsline {subsection}{\numberline {3.5}Efficiency}{18}
-\contentsline {subsection}{\numberline {3.6}Performance analysis}{18}
-\contentsline {subsubsection}{\numberline {3.6.1}Vectorization}{18}
-\contentsline {subsubsection}{\numberline {3.6.2}Parallellization}{18}
-\contentsline {section}{\numberline {4}Conclusion}{18}
-\contentsline {section}{Appendices}{18}
-\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{18}
-\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{19}
-\contentsline {subsection}{\numberline {B.1}Slater determinant}{19}
-\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{19}
-\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{20}
-\contentsline {section}{\numberline {C}Energies}{21}
-\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{21}
-\contentsline {section}{\numberline {E}Evaluating the minimization rate}{23}
+\contentsline {subsection}{\numberline {3.2}Extending to more particles}{16}
+\contentsline {subsection}{\numberline {3.3}Six particles}{16}
+\contentsline {subsection}{\numberline {3.4}Twelve particles}{18}
+\contentsline {subsection}{\numberline {3.5}Efficiency}{19}
+\contentsline {subsection}{\numberline {3.6}Performance analysis}{19}
+\contentsline {subsubsection}{\numberline {3.6.1}Vectorization}{19}
+\contentsline {subsubsection}{\numberline {3.6.2}Parallellization}{19}
+\contentsline {section}{\numberline {4}Conclusion}{19}
+\contentsline {section}{Appendices}{19}
+\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{19}
+\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{20}
+\contentsline {subsection}{\numberline {B.1}Slater determinant}{20}
+\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{20}
+\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{21}
+\contentsline {section}{\numberline {C}Energies}{22}
+\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{22}
+\contentsline {section}{\numberline {E}Evaluating the minimization rate}{24}
