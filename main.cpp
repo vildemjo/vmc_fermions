@@ -52,7 +52,7 @@ int main() {
 
 //    /* Set-up to run and save local energies for every step to file*/
 
-    std::vector<double> omegas = {1.0, 0.5, 0.1, 0.05, 0.01};
+    // std::vector<double> omegas = {1.0, 0.5, 0.1, 0.05, 0.01};
     // N = 2:
     // numberOfParticles = 2;
     // std::vector<double> binLengths = {3.0, 6.0, 9.0, 12.0, 15.0};
@@ -66,58 +66,58 @@ int main() {
     // std::vector<double> binNumbers = {200, 300, 400, 500, 700};
 
     // N = 12:
-    numberOfParticles = 12;
-    std::vector<double> binLengths = {6.0, 6.0, 12.0, 18.0, 24.0};
-    std::vector<double> binNumbers = {200, 200, 400, 600, 800};
+    // numberOfParticles = 12;
+    // std::vector<double> binLengths = {6.0, 6.0, 12.0, 18.0, 24.0};
+    // std::vector<double> binNumbers = {200, 200, 400, 600, 800};
 
-    int mcPow = 24;
-    numberOfSteps = (int) pow(2,mcPow);
+    // int mcPow = 24;
+    // numberOfSteps = (int) pow(2,mcPow);
 
-    for (int b = 4; b < binLengths.size(); b++){
+    // for (int b = 4; b < binLengths.size(); b++){
 
-    densityLength = binLengths[b]*2;
-    numberOfBins = binNumbers[b]*2;
-    omega = omegas[b];
+    // densityLength = binLengths[b]*2;
+    // numberOfBins = binNumbers[b]*2;
+    // omega = omegas[b];
 
-    clock_t start, end;
-    // Recording the starting clock tick.
-    start = clock();
+    // clock_t start, end;
+    // // Recording the starting clock tick.
+    // start = clock();
 
-    double omegaPrint = omega*100.0;
-    int omegaPrintable = ceil(omegaPrint);
-    double alphaPrint = alpha*100.0;
-    int alphaPrintable = ceil(alphaPrint);
+    // double omegaPrint = omega*100.0;
+    // int omegaPrintable = ceil(omegaPrint);
+    // double alphaPrint = alpha*100.0;
+    // int alphaPrintable = ceil(alphaPrint);
 
-    cout << "omega: " << omega << "\n";
-    string samplingType = setSamplingName(importanceOrNot);
+    // cout << "omega: " << omega << "\n";
+    // string samplingType = setSamplingName(importanceOrNot);
 
-    // string file_name = "Output/exercise_f/one_body/ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"+ to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable)+ "_0";
-    string file_name = "Output/exercise_f/one_body/ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"
-                                            + to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable)+  + "_MC_" + to_string(mcPow);
+    // // string file_name = "Output/exercise_f/one_body/ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"+ to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable)+ "_0";
+    // string file_name = "Output/exercise_f/one_body/ground_state_" + samplingType + "_" + to_string(numberOfParticles) + "p_omega_"
+    //                                         + to_string(omegaPrintable) + "_alpha_"+ to_string(alphaPrintable)+  + "_MC_" + to_string(mcPow);
     
-    System* system = new System();
-    system->setHamiltonian                (new HarmonicOscillator(system, omega));
-    system->setWaveFunction               (new SlaterDeterminant(system, alpha));
+    // System* system = new System();
+    // system->setHamiltonian                (new HarmonicOscillator(system, omega));
+    // system->setWaveFunction               (new SlaterDeterminant(system, alpha));
 
-    system->setInitialState               (new GaussianDistribution(system, numberOfDimensions, 
-                                                numberOfParticles, inititalizingStep));
+    // system->setInitialState               (new GaussianDistribution(system, numberOfDimensions, 
+    //                                             numberOfParticles, inititalizingStep));
 
-    system->setEquilibration              (equilibration);
-    system->setAnalytical                 (analyticOrNot);
-    system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
-    system->setFileName                   (file_name);
+    // system->setEquilibration              (equilibration);
+    // system->setAnalytical                 (analyticOrNot);
+    // system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
+    // system->setFileName                   (file_name);
 
-    system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
-                                                            allEnergiesOrNot, stepLength);
+    // system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
+    //                                                         allEnergiesOrNot, stepLength);
 
-    cout << "number of steps: " << numberOfSteps << endl;
-    cout << "energy: " << system->getSampler()->getEnergy() << endl;
+    // cout << "number of steps: " << numberOfSteps << endl;
+    // cout << "energy: " << system->getSampler()->getEnergy() << endl;
 
-    end = clock();
-    double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
-    cout << "CPU time: " << time_taken << " seconds" << endl;
+    // end = clock();
+    // double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
+    // cout << "CPU time: " << time_taken << " seconds" << endl;
 
-    }
+    // }
 
     /* Same but for the interacting case */   
 
@@ -601,6 +601,74 @@ int main() {
     //     // cout << "CPU time: " << time_taken << " seconds" << endl;
     // }
 
+
+/* Timing the code with and without vectorization */
+
+    numberOfSteps = pow(2,22);
+    importanceOrNot = true;
+    allEnergiesOrNot = true;
+    stepLength = 0.005;
+    inititalizingStep = 0.5;
+
+    // std::vector<double> alphas = {0.71567, 0.75823, 0.78852, 0.76518, 0.64907};
+    // std::vector<double> betas = {0.49372, 0.34260, 0.15041, 0.10733, 0.05085};
+
+    omega = 1.0;
+    alpha = 0.71567;
+    beta = 0.49372;
+
+    ofstream myfile;
+
+    string cpufilename = "Output/exercise_i/without_vectorization.txt";
+
+    numberOfParticles = 6;
+
+
+    myfile.open( cpufilename, ios::out | ios::trunc);
+    myfile.close();     
+
+    for(int a=0; a < 10; a++){
+
+        double alphaPrint = alpha*100.0;
+        int alphaPrintable = ceil(alphaPrint);    
+        string filename = "Output/exercise_i/allEnergies/6p_alpha_" + to_string(alphaPrintable) + "_MC_22";
+
+        numberOfDimensions  = 2;
+        numberOfParticles   = 2;
+        
+        allEnergiesOrNot    = true;
+        importanceOrNot     = false;
+
+        clock_t start, end;
+        // Recording the starting clock tick.
+        start = clock();
+
+        
+        System* system = new System();
+        system->setHamiltonian                (new InteractionHarmonicOscillator(system, omega));
+        system->setWaveFunction               (new SlaterDeterminantInteraction(system, alpha, beta));
+
+        system->setInitialState               (new GaussianDistribution(system, numberOfDimensions, 
+                                                    numberOfParticles, inititalizingStep));
+
+        system->setEquilibration              (equilibration);
+        system->setAnalytical                 (analyticOrNot);
+        system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
+        system->setFileName                   (filename);
+
+        system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
+                                                                allEnergiesOrNot, stepLength);
+
+        end = clock();
+        double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
+
+        myfile.open (cpufilename, ios::out | ios::app);
+        myfile << time_taken << "\n";
+        myfile.close();
+
+        firstCriteria = 1;
+
+    }
 
 
 }

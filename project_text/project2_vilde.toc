@@ -29,12 +29,12 @@
 \contentsline {subsubsection}{\numberline {3.6.1}Vectorization}{21}
 \contentsline {subsubsection}{\numberline {3.6.2}Parallellization}{21}
 \contentsline {section}{\numberline {4}Conclusion}{21}
-\contentsline {section}{Appendices}{21}
-\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{21}
+\contentsline {section}{Appendices}{22}
+\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{22}
 \contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{22}
 \contentsline {subsection}{\numberline {B.1}Slater determinant}{22}
-\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{22}
-\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{23}
+\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{23}
+\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{24}
 \contentsline {section}{\numberline {C}Energies}{24}
-\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{24}
-\contentsline {section}{\numberline {E}More MC cycles}{26}
+\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{25}
+\contentsline {section}{\numberline {E}More MC cycles}{27}
