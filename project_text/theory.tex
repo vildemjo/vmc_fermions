@@ -26,7 +26,7 @@ For the lowest-lying state, $E_{00}$  (see Fig. \ref{fig:states}), we have $n_x=
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.6\linewidth]{../Results/states}\caption{•}\label{fig:states}
+\includegraphics[width=0.6\linewidth]{../Results/states}\caption{Illustration of the different electron states in a harmonic oscillator trap. The numbers $E_{ij}$ represent the different single-particle states and the states at the same level have the same energy. The arrows show that two electrons with opposite spins can occupy the same state. On the right the full shell systems with the according number of particles are pointed out.}\label{fig:states}
 \end{figure}
 
 The expectation value can be found by solving the equation
@@ -148,11 +148,19 @@ where $N$ is the number of observations, in our case the number of Monte Carlo c
 
 \subsection{The program}
 
+\textit{A short introduction?}
+
 \subsubsection{Initialization}
+
+First the different parts of the program is initialized based on what Hamiltonian that is used and what wave function is used. In this program, one can choose an Hamiltonian with and without interaction (InteractionHarmonicOscillator and HarmonicOscillator, respectively), and accordingly a wave function with and without a Jastrow factor (InteractionSlaterDeterminant and Slaterdeterminant, respectively). Thereafter, the initial state is set up. The particles are distributed after randomly after a set distribution. Two different distributions are used and chosen based on the sampling method. For importance sampling a Gaussian distrribution is used (GaussainDistribution) and for brute force sampling a random uniform distribution is used (RandomUniform). This is reflected in the way the sampling of new positions are mabe by the sampling method which is explained in project 1 \cite{project1}.
 
 \subsubsection{Metropolis steps}
 
+After the initialization the particles are moved one by one, chosen at random, and the new position is found through the sampling method. The metropolis ratio is calculated to determine wether the step is accepted or not. The metropolis ratio is also determined by the sampling method. If the step is accepted, the energy is sampled and if not, the former energy is sampled again. This is continued until all Monte Carlo (MC) cycles have finished. 
+
 \subsubsection{Sampling}
+
+In this program one can choose to sample all local energies for all MC cycles. This makes it possible to performed resampling techniques on the dataset to improve estimate of the error by estimating the correlation between the different metropolis steps, i.e. the samples made of the local energy. For the other outputs, e.g. kinetic, potential and interaction energy and the mean distance, the average is calculated based on the sum of all the sampled values by dividing by the number of MC cycles.
 
 \subsection{Improving performance and effiency}
 

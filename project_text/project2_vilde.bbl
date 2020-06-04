@@ -1,12 +1,18 @@
 \begin{thebibliography}{1}
 
 \bibitem{project1}
-Vilde~M Reinertsen.
+V.~M. Reinertsen.
 \newblock Project 1, 2020.
 
 \bibitem{Evens_master}
-Even~Marius Nordhagen.
+E.~M. Nordhagen.
 \newblock Studies of quantum dots using machine learning.
 \newblock Master's thesis, University of Oslo, 2019.
+
+\bibitem{taut1993two}
+M.~Taut.
+\newblock Two electrons in an external oscillator potential: Particular
+  analytic solutions of a coulomb correlation problem.
+\newblock {\em Physical Review A}, 48(5):3561, 1993.
 
 \end{thebibliography}
