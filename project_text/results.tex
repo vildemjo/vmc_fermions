@@ -372,19 +372,33 @@ Run & With vectorization & Without vectorization \\ \hline
 
 Chose to parallellize using cmake.
 
-
-\begin{table}[H]\caption{•}\label{tab:CPUtime_parallelization}
+\begin{table}[H]\caption{Four threads $2^{22}$ MC cycles on each.}\label{tab:CPUtime_treads}
 \center
-\begin{tabular}{r|cc}
-& Not parallelized & Parallelized \\ \hline
-CPU time & 9m46.904s & 490 \\
+\begin{tabular}{r|cccc|c}
+Tread & 1 & 2 & 3 & 4 & Total: \\ \hline
+CPU time & 206.520 & 207.370 & 209.260 & 210.400 & 210.400 \\
+& 228.270 & 229.930 & 229.930 & 230.110 & 230.110 \\
+& 231.880 & 234.690 & 235.030 & 235.730 & 235.730 \\
+& 231.330 & 234.060 & 234.170 & 234.300 & 234.300 \\
+& 230.200 & 231.280 & 231.770 & 232.070 & 232.070 \\ \hline
+ &  &  &  & Mean: & 228.522 \\
+\end{tabular}\\
+\end{table}
+
+\begin{table}[H]\caption{Not parallelized: $2^{24}$ MC cycles, one thread. Parallelized: $2^{22}$ MC cycles, four threads. An average over five runs.}\label{tab:CPUtime_parallelization}
+\center
+\begin{tabular}{r|ccc}
+& Not parallelized & Parallelized & Times faster \\ \hline
+CPU time &  656.210  & 228.522 & 2.87\\
+ &   &  & \\
 \end{tabular}
 \end{table}
 
-\begin{table}[H]\caption{•}\label{tab:CPUtime_treads}
+\begin{table}[H]\caption{•}\label{tab:energy_parallelization}
 \center
-\begin{tabular}{r|cccc}
-Tread & 1 & 2 & 3 & 4 \\
-CPU time & 123 & 145 & 245 & 454 \\
-\end{tabular}\\
+\begin{tabular}{r|ccc}
+& $\left< E_L \right>$ & SEM & $\sigma_B$ \\ \hline
+Parallelized & \\
+Not parallelized & \\
+\end{tabular}
 \end{table}

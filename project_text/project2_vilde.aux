@@ -93,39 +93,41 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Efficiency}{21}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Performance analysis}{21}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Vectorization}{21}}
-\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces The average CPU time after 10 runs. The calculation is of the six electron system with interaction and involves importance sampling, saving and printing all energies to file.\relax }}{21}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces The average CPU time after 10 runs. The calculation is of the six electron system with interaction and involves importance sampling, saving and printing all energies to file. Here I used $2^{22}$ MC cycles. \relax }}{21}}
 \newlabel{tab:CPUtime_vectorization}{{12}{21}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Parallellization}{21}}
-\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces \IeC {\textbullet }\relax }}{21}}
-\newlabel{tab:CPUtime_parallelization}{{13}{21}}
-\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces \IeC {\textbullet }\relax }}{22}}
-\newlabel{tab:CPUtime_treads}{{14}{22}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Four threads $2^{22}$ MC cycles on each.\relax }}{22}}
+\newlabel{tab:CPUtime_treads}{{13}{22}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Not parallelized: $2^{24}$ MC cycles, one thread. Parallelized: $2^{22}$ MC cycles, four threads. An average over five runs.\relax }}{22}}
+\newlabel{tab:CPUtime_parallelization}{{14}{22}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces \IeC {\textbullet }\relax }}{22}}
+\newlabel{tab:energy_parallelization}{{15}{22}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{22}}
-\@writefile{toc}{\contentsline {section}{Appendices}{22}}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{22}}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{22}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Slater determinant}{22}}
-\newlabel{app:efficient_SD}{{B.1}{22}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{23}}
-\newlabel{app:efficient_R}{{B.2}{23}}
-\newlabel{eq:metropolis_ratio}{{13}{23}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{24}}
+\@writefile{toc}{\contentsline {section}{Appendices}{23}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{23}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Slater determinant}{23}}
+\newlabel{app:efficient_SD}{{B.1}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{24}}
+\newlabel{app:efficient_R}{{B.2}{24}}
+\newlabel{eq:metropolis_ratio}{{13}{24}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{25}}
 \@writefile{toc}{\contentsline {section}{\numberline {C}Energies}{25}}
-\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces The exact energies for the non-interacting case with different number of particles in a closed shell system.\relax }}{25}}
-\newlabel{tab:exact_energies_non_interacting}{{15}{25}}
-\@writefile{toc}{\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{25}}
-\newlabel{app:hermite_and_derivatives}{{D}{25}}
-\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces $\psi _{n_xn_y}$\relax }}{26}}
-\newlabel{tab:single_particle_trial_wavefunctions}{{16}{26}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces The exact energies for the non-interacting case with different number of particles in a closed shell system.\relax }}{25}}
+\newlabel{tab:exact_energies_non_interacting}{{16}{25}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{26}}
+\newlabel{app:hermite_and_derivatives}{{D}{26}}
 \@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces $\psi _{n_xn_y}$\relax }}{26}}
-\newlabel{tab:derivative_single_particle_trial_wavefunctions}{{17}{26}}
+\newlabel{tab:single_particle_trial_wavefunctions}{{17}{26}}
 \@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces $\psi _{n_xn_y}$\relax }}{27}}
-\newlabel{tab:doble_derivative_single_particle_trial_wavefunctions}{{18}{27}}
-\@writefile{toc}{\contentsline {section}{\numberline {E}More MC cycles}{27}}
-\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Ground state energy of two interacting electrons in harmonic oscillator trap found with importance sampling. Here $\overline  {r}_{12}$, $\left < T \right >$, $\left < V_{ext}\right >$ and $\left <V_{int} \right >$as explain in Tab. 4\hbox {}. The rest of the values are as explained in Tab. 2\hbox {}. Number of MC cycles are $2^{24}$\relax }}{27}}
-\newlabel{tab:ground_state_energy_importance_interaction_MC_24}{{19}{27}}
-\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Ground state energy of six interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{24}$.\relax }}{27}}
-\newlabel{tab:ground_state_energy_importance_interaction_6p_MC_24}{{20}{27}}
+\newlabel{tab:derivative_single_particle_trial_wavefunctions}{{18}{27}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces $\psi _{n_xn_y}$\relax }}{27}}
+\newlabel{tab:doble_derivative_single_particle_trial_wavefunctions}{{19}{27}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}More MC cycles}{28}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Ground state energy of two interacting electrons in harmonic oscillator trap found with importance sampling. Here $\overline  {r}_{12}$, $\left < T \right >$, $\left < V_{ext}\right >$ and $\left <V_{int} \right >$as explain in Tab. 4\hbox {}. The rest of the values are as explained in Tab. 2\hbox {}. Number of MC cycles are $2^{24}$\relax }}{28}}
+\newlabel{tab:ground_state_energy_importance_interaction_MC_24}{{20}{28}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Ground state energy of six interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{24}$.\relax }}{28}}
+\newlabel{tab:ground_state_energy_importance_interaction_6p_MC_24}{{21}{28}}
 \bibstyle{unsrt}
 \bibdata{References}
 \bibcite{project1}{1}
