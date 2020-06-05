@@ -13,7 +13,7 @@
 \contentsline {subsection}{\numberline {2.8}Improving performance and effiency}{7}
 \contentsline {subsubsection}{\numberline {2.8.1}Vectorization}{7}
 \contentsline {subsubsection}{\numberline {2.8.2}Parallelizing}{7}
-\contentsline {subsubsection}{\numberline {2.8.3}Reducing computational cost}{7}
+\contentsline {subsubsection}{\numberline {2.8.3}Reducing computational cost}{8}
 \contentsline {section}{\numberline {3}Results and discussion}{8}
 \contentsline {subsection}{\numberline {3.1}Two electrons in two dimensions}{8}
 \contentsline {subsubsection}{\numberline {3.1.1}Brute force sampling}{8}
@@ -28,13 +28,13 @@
 \contentsline {subsection}{\numberline {3.6}Performance analysis}{21}
 \contentsline {subsubsection}{\numberline {3.6.1}Vectorization}{21}
 \contentsline {subsubsection}{\numberline {3.6.2}Parallellization}{21}
-\contentsline {section}{\numberline {4}Conclusion}{21}
+\contentsline {section}{\numberline {4}Conclusion}{22}
 \contentsline {section}{Appendices}{22}
 \contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{22}
 \contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{22}
 \contentsline {subsection}{\numberline {B.1}Slater determinant}{22}
 \contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{23}
 \contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{24}
-\contentsline {section}{\numberline {C}Energies}{24}
+\contentsline {section}{\numberline {C}Energies}{25}
 \contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{25}
 \contentsline {section}{\numberline {E}More MC cycles}{27}

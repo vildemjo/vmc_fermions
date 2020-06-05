@@ -12,7 +12,7 @@
 
 Determening a determinant numerically is a costly operation, so we want to do some alteration to increase the efficency of the code.
 
-\subsection{Slater determinant}
+\subsection{Slater determinant}\label{app:efficient_SD}
 
 The Slater determinant is contain the single-particle wave function of the number of particles included in the system evaluated at the posistion for all particles included because electrons are indistinguishable. The determinant is written as
 
@@ -42,7 +42,7 @@ We see this from Tab. \ref{tab:notation_wavefunctions} and Eq. \ref{eq:single_pa
 The trial wavefunction can therefore be rewritten to 
 $$ \psi_T = D_\uparrow D_\downarrow \psi_C $$ where $\psi_C$ is the correlation part of the trial wavefunction. Now we only have to update one of these matrises when we move a particle, depending on which spin the particle has. 
  
-\subsection{The Metropolis ratio}
+\subsection{The Metropolis ratio}\label{app:efficient_R}
 
 In the metropolis test we calculate the ratio bewteen the wavefunction before and after a proposed move, but now the wavefunction includes a determinant which is costly to calculate. We therefore want to utilize some relations from linear algebra to simplify the ratio and make the algorithm more efficent. The ratio between the Slater determinant part of the wavefunction, $\psi_{SD}$, is
 \begin{equation}\label{eq:metropolis_ratio}

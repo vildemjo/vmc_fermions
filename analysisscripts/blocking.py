@@ -100,14 +100,16 @@ samplingtype = "brute_force"
 
 
 # -------------------------------------------
+# Ground state energies with interaction
+# -------------------------------------------
 
 DATA_ID = "../Output//"
 
 def data_path(dat_id):
     return os.path.join(DATA_ID, dat_id)
 
-omega = [1.0, 0.5, 0.1, 0.05, 0.01]
-sampling_type = "importance" 
+# omega = [1.0, 0.5, 0.1, 0.05, 0.01]
+# sampling_type = "importance" 
 
 
 # Brute force values
@@ -120,7 +122,7 @@ sampling_type = "importance"
 
 # Importance values
 
-N = 2
+# N = 2
 
 # alpha = [0.98846, 0.98082, 0.94734, 0.92262, 0.88305]
 # beta = [0.39954, 0.31068, 0.17810, 0.14090, 0.07366]
@@ -138,7 +140,7 @@ N = 2
 # E_int = [0.815996,  0.515984, 0.170941, 0.107271,  0.0367146]
 
 
-N = 6
+# N = 6
 
 # alpha = [0.71567, 0.75823, 0.78852, 0.76518, 0.64907]
 # beta = [0.49372, 0.34260, 0.15041, 0.10733, 0.05085]
@@ -147,29 +149,29 @@ N = 6
 # E_pot = [10.7076, 5.80937, 1.7035, 1.0882, 0.380349]
 # E_int = [7.39876, 4.85476, 1.65562, 1.01623, 0.336716]
 
-alpha = [0.71567, 0.75823, 0.78852, 0.76518, 0.64907]
-beta = [0.49372, 0.34260, 0.15041, 0.10733, 0.05085]
-mean_distance = [2.76801, 3.99339,  9.91115, 15.2152,  38.5545]
-E_kin = [ 2.40112,  1.33601, 0.283704, 0.132386, -0.0211001]
-E_pot = [ 10.6658, 5.79185, 1.70936, 1.06189, 0.399848]
-E_int = [ 7.39113, 4.85717,  1.65167,  1.02717,0.329007]
+# alpha = [0.71567, 0.75823, 0.78852, 0.76518, 0.64907]
+# beta = [0.49372, 0.34260, 0.15041, 0.10733, 0.05085]
+# mean_distance = [2.76801, 3.99339,  9.91115, 15.2152,  38.5545]
+# E_kin = [ 2.40112,  1.33601, 0.283704, 0.132386, -0.0211001]
+# E_pot = [ 10.6658, 5.79185, 1.70936, 1.06189, 0.399848]
+# E_int = [ 7.39113, 4.85717,  1.65167,  1.02717,0.329007]
 
-for o in range(len(omega)):
+# for o in range(len(omega)):
 
-    infile = open(data_path("exercise_g//one_body//interaction_ground_state_"+ sampling_type + "_%ip_omega_%i_MC_24_energy.txt"%(N,int(omega[o]*100))),'r')
+#     infile = open(data_path("exercise_g//one_body//interaction_ground_state_"+ sampling_type + "_%ip_omega_%i_MC_24_energy.txt"%(N,int(omega[o]*100))),'r')
 
-    x = loadtxt(infile, skiprows=5)
+#     x = loadtxt(infile, skiprows=5)
 
-    (mu, variance) = block(x) 
-    std = sqrt(variance)
+#     (mu, variance) = block(x) 
+#     std = sqrt(variance)
 
-    uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
+#     uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
 
-    print "%.2f & %.5f & %.5f & %.4f & %.5f & %.5f & %.3f & %.4f & %.4f & %.4f"%(omega[o], alpha[o], beta[o], mu, uncor_std, std, mean_distance[o], E_kin[o], E_pot[o], E_int[o])+ "\\"+ "\\"
+#     print "%.2f & %.5f & %.5f & %.4f & %.5f & %.5f & %.3f & %.4f & %.4f & %.4f"%(omega[o], alpha[o], beta[o], mu, uncor_std, std, mean_distance[o], E_kin[o], E_pot[o], E_int[o])+ "\\"+ "\\"
 
 
 # ---------------------------------------------
-# Importance sampling exercise d
+# Importance sampling 
 # ---------------------------------------------
 
 # methodtype="analytical"
@@ -208,4 +210,41 @@ for o in range(len(omega)):
 #     print "%.3f & %.5f & %.5f & %.3f& %.3f"%(mu, uncor_std, std, acc[a], cpu_time[a] )+ "\\"+ "\\"
 
 # print "Mean CPU time & & & ", mean(cpu_time)
+
+# ---------------------------------------------
+# Parallelized code
+# ---------------------------------------------
+
+print "Parallel:"
+
+identifyers = [1,2,3,4]
+
+for n in identifyers:
+
+    infile = open(data_path("exercise_i/parallell_checking_6p_importance_interaction_MC_22_identifyer_%i"%(n),'r')
+
+    x[n-1] = loadtxt(infile, skiprows=5)
+
+z = concatenate(x[0], x[1], x[2], x[3])
+(mu, variance) = block(z) 
+std = sqrt(variance)
+
+uncor_std = sqrt(calculate_uncor_var(z))/sqrt(len(z)) # sqrt(calculate_mean_squared(x) - mu*mu)
+
+print "%.4f & %.5f & %.5f "%(mu, uncor_std, std)+ "\\"+ "\\"
+
+# Not in parallel
+
+print "Not parallel:"
+
+infile = open(data_path("exercise_i/parallell_checking_6p_importance_interaction_MC_24_identifyer_0",'r')
+
+x = loadtxt(infile, skiprows=5)
+
+(mu, variance) = block(x) 
+std = sqrt(variance)
+
+uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
+
+print "%.4f & %.5f & %.5f "%(mu, uncor_std, std)+ "\\"+ "\\"
 

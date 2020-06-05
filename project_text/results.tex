@@ -356,6 +356,35 @@ Show results or errors of attempt to make parts of code more efficient.
 
 \subsubsection{Vectorization}
 
+\begin{table}[H]\caption{The average CPU time after 10 runs. The calculation is of the six electron system with interaction and involves importance sampling, saving and printing all energies to file. Here I used $2^{22}$ MC cycles. }\label{tab:CPUtime_vectorization}
+\center
+\begin{tabular}{c|cc}
+ & CPU time & \\ \hline
+Run & With vectorization & Without vectorization \\ \hline
+1 & 145.930 & 148.531 \\
+2 & 149.653 & 142.881 \\
+3 & 155.731 & 153.519 \\
+4 & 146.769 & 146.834 \\
+\end{tabular}
+\end{table}
+
 \subsubsection{Parallellization}
 
 Chose to parallellize using cmake.
+
+
+\begin{table}[H]\caption{•}\label{tab:CPUtime_parallelization}
+\center
+\begin{tabular}{r|cc}
+& Not parallelized & Parallelized \\ \hline
+CPU time & 9m46.904s & 490 \\
+\end{tabular}
+\end{table}
+
+\begin{table}[H]\caption{•}\label{tab:CPUtime_treads}
+\center
+\begin{tabular}{r|cccc}
+Tread & 1 & 2 & 3 & 4 \\
+CPU time & 123 & 145 & 245 & 454 \\
+\end{tabular}\\
+\end{table}

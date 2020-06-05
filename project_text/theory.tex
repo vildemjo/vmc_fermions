@@ -174,4 +174,16 @@ Doing operations in parallell instead of secquentially. In this case, we want mo
 
 \subsubsection{Reducing computational cost}
 
-Decrease floating point operations (flops) by smarter code and use of ratios.
+Decrease floating point operations (flops) by smarter code and use of ratios:\\
+- Slater determinant split into spin-up determinat and spin down determinant: Only have to update either of them when a spin up/spin down is moved. Detailed information in Appedix \ref{app:efficient_SD}. \\
+- Metropolis ratio - instead of calculating individual parts and afterwards calculate the ratio, a much simpler expression for the ratio is used and then calculated. Details in Appendix \ref{app:efficient_R}\\
+- Updating the inverse instead of calculating the inverse for every step. \\
+- Another structure in metropolis step (importance sampling):\\
+\begin{itemize}
+\item Pick particle at random and find new position
+\item Update Slater determinant row (spin up or spin down one based on the particle that was picked)
+\item Calculate both old and new quantum force (gradient in a spesific position) using the old inverse Salter determinant.
+\item Calculate the metropolis ratio using the new Slater determinant and the old inverse determinant.
+\item Update the inverse Slater determinant (only spin up or spin down one based on the particle that was moved) only if the move is accepted. 
+\end{itemize}
+- Using this structure saves many flops. The inverse update takes e.g. $O(N^2)$ instead of $O(N^3)$.

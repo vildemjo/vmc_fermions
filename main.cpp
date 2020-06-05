@@ -24,10 +24,13 @@ void alphaListRun(string filename, int numberOfP);
 string setMethodName(bool analyticOrNot);
 string setSamplingName(bool importanceOrNot);
 
-int main() {
+int main(int argc, char** argv) {
 /* The standard set-up */
 
-
+    auto file_name_identifyer = *argv[1];
+    
+	string fni;
+	fni.push_back(file_name_identifyer);
 
     bool analyticOrNot       = true;
     bool importanceOrNot     = true;
@@ -604,71 +607,96 @@ int main() {
 
 /* Timing the code with and without vectorization */
 
-    numberOfSteps = pow(2,22);
-    importanceOrNot = true;
+    // numberOfSteps = pow(2,22);
+    // importanceOrNot = true;
+    // allEnergiesOrNot = true;
+    // stepLength = 0.005;
+    // inititalizingStep = 0.5;
+
+    // // std::vector<double> alphas = {0.71567, 0.75823, 0.78852, 0.76518, 0.64907};
+    // // std::vector<double> betas = {0.49372, 0.34260, 0.15041, 0.10733, 0.05085};
+
+    // omega = 1.0;
+    // alpha = 0.71567;
+    // beta = 0.49372;
+
+    // ofstream myfile;
+
+    // string cpufilename = "Output/exercise_i/with_vectorization_4.txt";
+
+    // numberOfParticles = 6;
+
+
+    // myfile.open( cpufilename, ios::out | ios::trunc);
+    // myfile.close();     
+
+    // for(int a=0; a < 10; a++){
+
+    //     double alphaPrint = alpha*100.0;
+    //     int alphaPrintable = ceil(alphaPrint);    
+    //     string filename = "Output/exercise_i/allEnergies/6p_alpha_" + to_string(alphaPrintable) + "_MC_22";
+
+
+    //     clock_t start, end;
+    //     // Recording the starting clock tick.
+    //     start = clock();
+
+        
+    //     System* system = new System();
+    //     system->setHamiltonian                (new InteractionHarmonicOscillator(system, omega));
+    //     system->setWaveFunction               (new SlaterDeterminantInteraction(system, alpha, beta));
+
+    //     system->setInitialState               (new GaussianDistribution(system, numberOfDimensions, 
+    //                                                 numberOfParticles, inititalizingStep));
+
+    //     system->setEquilibration              (equilibration);
+    //     system->setAnalytical                 (analyticOrNot);
+    //     system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
+    //     system->setFileName                   (filename);
+
+    //     system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
+    //                                                             allEnergiesOrNot, stepLength);
+
+    //     end = clock();
+    //     double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
+
+    //     myfile.open (cpufilename, ios::out | ios::app);
+    //     myfile << time_taken << "\n";
+    //     myfile.close();
+
+    //     firstCriteria = 1;
+    // }
+
+/* Code to be run with and without parallelizing */
+
+    numberOfParticles = 6;
+    alpha = 0.71567;
+    beta = 0.49372;
+    omega = 1.0;
+
+    int mcPow = 22; // In parallel: 22, Not parallel: 24
+    numberOfSteps = (int) pow(2,mcPow);
+
     allEnergiesOrNot = true;
+    importanceOrNot = true;
     stepLength = 0.005;
     inititalizingStep = 0.5;
 
-    // std::vector<double> alphas = {0.71567, 0.75823, 0.78852, 0.76518, 0.64907};
-    // std::vector<double> betas = {0.49372, 0.34260, 0.15041, 0.10733, 0.05085};
+    string file_name = "Output/exercise_i/parallell_checking_6p_importance_interaction_MC_" + to_string(mcPow) + "_" + fni;
 
-    omega = 1.0;
-    alpha = 0.71567;
-    beta = 0.49372;
+    System* system2 = new System();
+    system2->setHamiltonian                (new InteractionHarmonicOscillator(system2, omega));
+    system2->setWaveFunction               (new SlaterDeterminantInteraction(system2, alpha, beta));
 
-    ofstream myfile;
+    system2->setInitialState               (new GaussianDistribution(system2, numberOfDimensions, 
+                                                numberOfParticles, inititalizingStep));
+    system2->setEquilibration              (equilibration);
+    system2->setAnalytical                 (analyticOrNot);
+    system2->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
+    system2->setFileName                   (file_name);
 
-    string cpufilename = "Output/exercise_i/without_vectorization.txt";
-
-    numberOfParticles = 6;
-
-
-    myfile.open( cpufilename, ios::out | ios::trunc);
-    myfile.close();     
-
-    for(int a=0; a < 10; a++){
-
-        double alphaPrint = alpha*100.0;
-        int alphaPrintable = ceil(alphaPrint);    
-        string filename = "Output/exercise_i/allEnergies/6p_alpha_" + to_string(alphaPrintable) + "_MC_22";
-
-        numberOfDimensions  = 2;
-        numberOfParticles   = 2;
-        
-        allEnergiesOrNot    = true;
-        importanceOrNot     = false;
-
-        clock_t start, end;
-        // Recording the starting clock tick.
-        start = clock();
-
-        
-        System* system = new System();
-        system->setHamiltonian                (new InteractionHarmonicOscillator(system, omega));
-        system->setWaveFunction               (new SlaterDeterminantInteraction(system, alpha, beta));
-
-        system->setInitialState               (new GaussianDistribution(system, numberOfDimensions, 
-                                                    numberOfParticles, inititalizingStep));
-
-        system->setEquilibration              (equilibration);
-        system->setAnalytical                 (analyticOrNot);
-        system->getWaveFunction               ()->setOneBodyDensityBins(numberOfBins, densityLength);
-        system->setFileName                   (filename);
-
-        system->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
-                                                                allEnergiesOrNot, stepLength);
-
-        end = clock();
-        double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
-
-        myfile.open (cpufilename, ios::out | ios::app);
-        myfile << time_taken << "\n";
-        myfile.close();
-
-        firstCriteria = 1;
-
-    }
+    system2->runMetropolisSteps            (numberOfSteps, firstCriteria, importanceOrNot, 
+                                                            allEnergiesOrNot, stepLength);
 
 
 }
