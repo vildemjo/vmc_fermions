@@ -682,7 +682,7 @@ int main(int argc, char** argv) {
     stepLength = 0.005;
     inititalizingStep = 0.5;
 
-    string file_name = "Output/exercise_i/parallell_checking_6p_importance_interaction_MC_" + to_string(mcPow) + "_" + fni;
+    string file_name = "test"; // Output/exercise_i/parallell_checking_6p_importance_interaction_MC_" + to_string(mcPow) + "_" + fni;
 
     System* system2 = new System();
     system2->setHamiltonian                (new InteractionHarmonicOscillator(system2, omega));

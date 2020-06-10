@@ -101,7 +101,7 @@ I took a closer look at the actual local energies for the brute force sampling m
 
 Proceeding to evaluate the energy, Table \ref{tab:ground_state_energy_different_omegas_no_interaction_2p} shows how the energy changes with different trap frequencies, $\omega$. From Tab. \ref{tab:ground_state_energy_different_omegas_no_interaction_2p} one can observe that the mean distance is increasing with decreasing trap frequency.  This is as expected from Fig. \ref{fig:harmonic_oscillator_potential}, where the potential is broadened with decreasing trap frequency and hence is not forcing the particles closer together. The mean distance is a bit different for brute force sampling compared to importance sampling, but the similarity might improve if more MC cycles are used.  The other value show, however,  no large difference between the results from brute force sampling and importance sampling. But to be able to compare the sampling methods more thoroughly it is better to look at the case where the system is not in the ground state. 
 
-\begin{table}[H]\caption{Ground state energy of two electrons in harmonic oscillator trap.  Here $\overline{r}_{12}$ is the mean distance between the two electrons at positions $\bm{r}_1$ and $\bm{r}_2$ given in units of $a_0$ and $\left< E_L \right>$, $\left< T \right>$, $\left< V_{ext}\right>$  and $\left<V_{int} \right>$ are the expectation value of the local energy, kinetic energy, potential energy and interaction energy, respectively, given in units of $E_h$. The rest of the values are as explained in Tab. \ref{tab:brute_force_no_interaction_2p}. Number of MC cycles are $2^{23}$.}\label{tab:ground_state_energy_different_omegas_no_interaction_2p}
+\begin{table}[H]\caption{Ground state energy of two electrons in a harmonic oscillator trap.  Here $\overline{r}_{12}$ is the mean distance between the two electrons at positions $\bm{r}_1$ and $\bm{r}_2$ given in units of $a_0$ and $\left< E_L \right>$, $\left< T \right>$, $\left< V_{ext}\right>$  and $\left<V_{int} \right>$ are the expectation value of the local energy, kinetic energy, potential energy and interaction energy, respectively, given in units of $E_h$. The rest of the values are as explained in Tab. \ref{tab:brute_force_no_interaction_2p}. Number of MC cycles are $2^{23}$.}\label{tab:ground_state_energy_different_omegas_no_interaction_2p}
 \begin{tabular}{l|l|l} 
  & Brute force: &  Importance:\\ \hline
 \begin{tabular}{c} 
@@ -263,9 +263,9 @@ To investigate the quantum dot system further, the next shell (illustrated in Fi
 
 \subsection{Six particles}
 
-The expectation value for the total energy (i.e. the local energy), the kinetic energy and the potential energy for the different trap frequencies and without interaction are listed in Tab. \ref{tab:ground_state_energy_importance_6p}. One can observe that for all the trap frequencies, the kinetic and potential energy seems to follow the virial theorem (see Eq. \ref{eq:virial_theorem}), if one allows for a small difference of maximum $\pm 0.03$ a.u.. 
+The expectation value for the total energy (i.e. the local energy), the kinetic energy and the potential energy for the different trap frequencies and without interaction are listed in Tab. \ref{tab:ground_state_energy_importance_6p}. One can observe that for all the trap frequencies, the kinetic and potential energy seems to follow the virial theorem (see Eq. \ref{eq:virial_theorem}), if one allows for a small difference of maximum $\pm 0.03$ a.u.. The energies are as expected from the calculated exact energies in Tab.  \ref{tab:exact_energies_non_interacting} in Appendix \ref{app:energies}.
 
-\begin{table}[H]\caption{Ground state energy of six electrons in harmonic oscillator trap. Here $\left< E_L \right>$, $\left< T \right>$ and $\left< V_{ext}\right>$  are as explain in Tab. \ref{tab:ground_state_energy_different_omegas_no_interaction_2p}. Number of MC cycles are $2^{23}$. }\label{tab:ground_state_energy_importance_6p}
+\begin{table}[H]\caption{Ground state energy of six electrons in a harmonic oscillator trap. Here $\left< E_L \right>$, $\left< T \right>$ and $\left< V_{ext}\right>$  are as explain in Tab. \ref{tab:ground_state_energy_different_omegas_no_interaction_2p}. Number of MC cycles are $2^{23}$. }\label{tab:ground_state_energy_importance_6p}
 \center
 \begin{tabular}{c|rcc}
 $\omega$ & $\left< E_L \right>$  & $\left< T \right>$  & $\left< V_{ext}\right>$ \\ \hline
@@ -300,30 +300,26 @@ I wanted to take a closer look at the optimized parameters for the two different
 \includegraphics[width=0.85\linewidth]{../Results/parameters_compared}\caption{Left: The optimized parameters for the system with two particles and with the different trap frequencies. Right: The optimized parameters for  for the system with six particles and with the different trap frequencies. All found with the simple gradient descent method.}\label{fig:parameters_compared}
 \end{figure}
 
-Next, Fig. \ref{fig:energy_per_particle_compared} compares the energy per particle of the two systems when interaction is included. The left part of the figure shows that the magnitude of kinetic energy per particle and the development of the kinetic energy with trap frequency is very similar for both systems (two and six particles). The right part of the figure shows that both the potential and interaction energy per particle is larger for the six particle system at the same trap frequency, than the two particle system. This is as expected since the trap frequency determine the "size" of the trap. The six particle system's potential energy is hence larger for the same size system when there are more particles involved. The interaction energy is also larger when more particles, that are repulsed by each other, are forced together in the "same amount of space" (it is not exactly the same amount of space since the space is not strictly limited, but it is intuitive to image it like that). Apart from this the six particle system show the same behaviour as the two particle system, energy wise. 
+Next, Fig. \ref{fig:energy_per_particle_compared} compares the energy per particle of the two systems when interaction is included. The left part of the figure shows that the magnitude of kinetic energy per particle and the development of the kinetic energy with trap frequency is very similar for both systems (two and six particles). The right part of the figure shows that both the potential and interaction energy per particle is larger for the six particle system at the same trap frequency, than the two particle system. This is as expected since the trap frequency determine the "size" of the trap. The six particle system's potential energy is hence larger for the same size system when there are more particles involved. The interaction energy is also larger when more particles, that are repulsed by each other, are forced together in the "same amount of space" (it is not exactly the same amount of space since the space is not strictly limited, but it is intuitive to image it like that). Apart from this, the six particle system show the same behaviour as the two particle system, energy wise. 
 
 \begin{figure}[H]
 \center
 \includegraphics[width=0.85\linewidth]{../Results/energy_per_particle_compared}\caption{Left: The expectation value for the kinetic energy per particle for the two different systems examined at the different trap frequencies. Right: The expectation value of the potential and interaction energy per particle for the two different systems at the different trap frequencies.  }\label{fig:energy_per_particle_compared}
 \end{figure}
 
-
-
-\begin{figure}[H]
-\center
-\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_6p}\caption{One-body density of the six electron system without the Jastrow factor, but with different trap frequencies. Left: The larger trap frequencies. Right: The smaller trap frequencies. The system with $\omega = 0.1$ is in both plots to show the difference in scale for the two plots. Used $2^{24}$ MC cycles.}\label{fig:one_body_density_no_interaction_6p}
-\end{figure}
+Proceeding to the one-body density, Fig. \ref{fig:one_body_density_interaction_6p} shows the one-body density for the six electron system. First, one can notice that the shape is different from the two electron system. Here the maxium denisty is not at the origin of the trap, but approximately $a_0$ away from the origin for $\omega=1.0$ without the Jastrow factor. Furthermore, one can observe that the maximum moves further and further away from the origin when $\omega$ increases. Regarding the inclusion of interaction, the same behavior is seen here, compared to the two electron one-body denisty, that including interaction  broadens the whole curve and lowers the maximum density. The shape of the one-body density curve seems to be similar with and without interaction except for $\omega = 0.1$ and maybe also smaller $\omega$ where there is another maximum closer to the origin. Maybe the broadening of the trap with decreasing $\omega$ opens up for a redistribution of the particles when the repulsive interaction is included. 
 
 \begin{figure}[H]
 \center
 \includegraphics[width=0.85\linewidth]{../Results/one_body_density_interaction_6p}\caption{One-body density of the six electron system with and without the Jastrow factor and with different trap frequencies (indicated by the color of the lines). Dashed lines are with the Jastrow factor and filled lines are without Jastrow factor. Left: The larger trap frequencies. Right: The smaller trap frequencies.  The system with $\omega = 0.1$ is in both plots to show the difference in scale for the two plots. Used $2^{24}$ MC cycles. }\label{fig:one_body_density_interaction_6p}
 \end{figure}
 
-\textit{Strange dump in the middle for $\omega = 0.1$ with Jastrow factor. Have the larger trap opened up so that the particles can rearrange themselves with particles spending more time in the middle of the trap. }
 
 \subsection{Twelve particles}
 
-\begin{table}[H]\caption{Number of MC cycles are $2^{23}$. }\label{tab:ground_state_energy_importance_12p}
+By including another shell in the two dimensional harmonic oscillator trap, the system consists of twelve particles. The ground state energy at different $\omega$s are listed in Tab. \ref{tab:ground_state_energy_importance_12p} and the energies are the same as the exact energies calculate based on the different energy states (see Tab. \ref{tab:exact_energies_non_interacting} in Appendix \ref{app:energies}).
+
+\begin{table}[H]\caption{Ground state energy of twelve electrons in a harmonic oscillator trap. Here $\left< E_L \right>$, $\left< T \right>$ and $\left< V_{ext}\right>$  are as explain in Tab. \ref{tab:ground_state_energy_different_omegas_no_interaction_2p}. Number of MC cycles are $2^{23}$. }\label{tab:ground_state_energy_importance_12p}
 \center
 \begin{tabular}{c|rrr}
 $\omega$ & $\left< E_L \right>$  & $\left< T \right>\,\,\,$  & $\left< V_{ext}\right>\,$ \\ \hline
@@ -335,28 +331,33 @@ $\omega$ & $\left< E_L \right>$  & $\left< T \right>\,\,\,$  & $\left< V_{ext}\r
 \end{tabular}
 \end{table}
 
-\begin{table}[H]\caption{Ground state energy of twelve interacting electrons in harmonic oscillator trap found with importance sampling. Number of MC cycles are $2^{23}$}\label{tab:ground_state_energy_importance_interaction_12p}
-\center
-\begin{tabular}{c|cccccccc}
-$\omega$ & $\alpha$ & $\beta$ & $\left< E_L \right>$ & SEM & $\sigma_B$ &  $\left< T \right>$  & $\left< V_{ext}\right>$ & $\left<V_{int} \right>$  \\ \hline
-\end{tabular}
-\end{table}
-
+I tried to use the same method, the simple gradient descent method, to evaluate the parameters that gives me the closest thing to the ground state I can get with the trial wavefunction used in this project, but it seems like the system have gotten too complicated with twelve particles. An example of the behaviour of the gradient descent method is showed in Fig. \ref{fig:gradient_descent_12p}. One can observe, from the right part of the figure that the energy seems to be converging towards a minimum, but it is a very slow process. However, the left part of the figure shows how much the parameters are varying and that the parameter $\alpha$ is negative. I do not think that a negative $\alpha$ is a good sign especially after comparing my results with Ref. \cite{Evens_master} where $\left< E_L \right> = 65.7026(4)$ was found for the same system. 
 
 \begin{figure}[H]
 \center
-\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_12p}\caption{One-body density of the six electron system without the Jastrow factor, but with different trap frequencies. Left: The larger trap frequencies. Right: The smaller trap frequencies. The system with $\omega = 0.1$ is in both plots to show the difference in scale for the two plots. Used $2^{24}$ MC cycles. }\label{fig:one_body_density_no_interaction_12p}
+\includegraphics[width=0.85\linewidth]{../Results/gradient_descent_12p}\caption{Two examples of the gradient descent method for twelve particles with different initial guesses for the two parameters. One of them is a guess based on the parameters found for the six electron system and the other is a guess based on the difference and trend found when the two electron and the six electron parameters was compared. Left: The development of the parameters. Right: The corresponding expectatino value for the energy. }\label{fig:gradient_descent_12p}
+\end{figure}
+
+Continuing to the one-body density, Fig. \ref{fig:one_body_density_no_interaction_12p} shows the one-body denisty for the twelve electron system, but only without interaction since a ground state for the interaction case was not found. Compared to the two smaller systems, this system shows another curve for the one-body density. Here, the maximum is once angain at the origin of the trap, but there is also another local maximum approximately 1.5$a_0$ away from the origin. The scaling of the density seems to be similar to the former two systems where one see that the distribution broadens and the maximum is hence lowered, but the shape remains similar when $\omega$ is decreased.
+
+\begin{figure}[H]
+\center
+\includegraphics[width=0.85\linewidth]{../Results/one_body_density_no_interaction_12p}\caption{One-body density of the twelve electron system without the Jastrow factor, but with different trap frequencies. Left: The larger trap frequencies. Right: The smaller trap frequencies. The system with $\omega = 0.1$ is in both plots to show the difference in scale for the two plots. Used $2^{24}$ MC cycles. }\label{fig:one_body_density_no_interaction_12p}
 \end{figure}
 
 \subsection{Efficiency}
 
-Show results or errors of attempt to make parts of code more efficient. 
+In this project I wanted to write an efficient code, but I ran into some problems and after a while I figured out that it was best to use the unefficeint, but working code to get some results and use time to analyse them. Therefore, I have two branches in my repository at github. One called \texttt{no\_optimization} and one master branch. The master branch includes my attempts to make the code more efficient as described in the theory part of this report, and the other branch is the code used to generate the results in this proejct.
 
 \subsection{Performance analysis}
 
+At last, I include a small analysis of the performance of the code with and without vectorization and with and without parallelizing.
+
 \subsubsection{Vectorization}
 
-\begin{table}[H]\caption{The average CPU time after 10 runs. The calculation is of the six electron system with interaction and involves importance sampling, saving and printing all energies to file. Here I used $2^{22}$ MC cycles. }\label{tab:CPUtime_vectorization}
+Table \ref{tab:CPUtime_vectorization} lists the average CPU time of ten runs of the code with and without vectorization. The mean was found four times for both cases at different times. There is not a clear difference in CPU time, and one can also see from the four differnt attempts that the CPU time changes based on the computer. I think one can conclude that the program is just as efficient with and without the vectorization. But this is just comapring the CPU time. As I have understood, vectorization can also help exploit the memory in a more efficent way. 
+
+\begin{table}[H]\caption{The average CPU time in seconds after 10 runs. The calculation is of the six electron system with interaction and involves importance sampling, saving and printing all local energies to file. Here I used $2^{22}$ MC cycles. }\label{tab:CPUtime_vectorization}
 \center
 \begin{tabular}{c|cc}
  & CPU time & \\ \hline
@@ -370,12 +371,12 @@ Run & With vectorization & Without vectorization \\ \hline
 
 \subsubsection{Parallellization}
 
-Chose to parallellize using cmake.
+In this project I chose to parallelize using a Makefile and cmake. I ran the whole executeable with different seeds for the random number generator and different filenames to save all the local energies in four different threads on my own personal computer which is a quad-core laptop. The CPU times for the different threads for five different runs are listed in Tab. \ref{tab:CPUtime_treads}. The maximum CPU time of the four different threads is counted as the total CPU time. From the different runs, one can observe that the CPU time can vary based on the laptop and other processes on it, and it shows that it is important to time several runs to get a proper comparison of the CPU time of different methods. 
 
 \begin{table}[H]\caption{Four threads $2^{22}$ MC cycles on each.}\label{tab:CPUtime_treads}
 \center
 \begin{tabular}{r|cccc|c}
-Tread & 1 & 2 & 3 & 4 & Total: \\ \hline
+Thread & 1 & 2 & 3 & 4 & Total: \\ \hline
 CPU time & 206.520 & 207.370 & 209.260 & 210.400 & 210.400 \\
 & 228.270 & 229.930 & 229.930 & 230.110 & 230.110 \\
 & 231.880 & 234.690 & 235.030 & 235.730 & 235.730 \\
@@ -385,20 +386,22 @@ CPU time & 206.520 & 207.370 & 209.260 & 210.400 & 210.400 \\
 \end{tabular}\\
 \end{table}
 
-\begin{table}[H]\caption{Not parallelized: $2^{24}$ MC cycles, one thread. Parallelized: $2^{22}$ MC cycles, four threads. An average over five runs.}\label{tab:CPUtime_parallelization}
+Table \ref{tab:CPUtime_parallelization} compare the CPU time of parallelized runs and the not parallelized runs. One can see clearly that the parallelized runs are faster, but even though the parellelized run is done on four threads it is only between two and three times faster. One reason might be that the number of MC cycles used to reach an equilibrium is the same ($1\cdot 10^5$) for both cases. For the single thread case it is done only once and afterwards all the local energeis are sampled, but for the four thread case this is done independently on all four threads. At last I compared the expectation value, the SEM and $\sigma_B$ for one of the runs with and without parallelizing. The results are listed in Tab. \ref{tab:energy_parallelization} and shows a difference in the expectation value of the energy at approximatly $\pm 0.01$ which is larger than the calculated $\sigma_B$. One would expect a difference because of the different seeds in the random number generator, but maybe not that large. This might improve with a larger number of MC cycles though. 
+
+\begin{table}[H]\caption{Not parallelized: $2^{24}$ MC cycles and one thread. Parallelized: $2^{22}$ MC cycles and four threads. The CPU times are given in seconds and as an average over five runs.}\label{tab:CPUtime_parallelization}
 \center
 \begin{tabular}{r|ccc}
 & Not parallelized & Parallelized & Times faster \\ \hline
 CPU time &  656.210  & 228.522 & 2.87\\
- &   &  & \\
+ & 602.816   & 257.922  & 2.34\\
 \end{tabular}
 \end{table}
 
-\begin{table}[H]\caption{•}\label{tab:energy_parallelization}
+\begin{table}[H]\caption{A comparison of the expectation value, the SEM and $\sigma_B$ for one of the runs with and without parallelizing. Units are as described in Tab. \ref{tab:ground_state_energy_different_omegas_no_interaction_2p}.}\label{tab:energy_parallelization}
 \center
 \begin{tabular}{r|ccc}
 & $\left< E_L \right>$ & SEM & $\sigma_B$ \\ \hline
-Parallelized & \\
-Not parallelized & \\
+Parallelized & 20.4601 & 0.00016 & 0.00617 \\
+Not parallelized & 20.4572 & 0.00016 & 0.00629 \\
 \end{tabular}
 \end{table}

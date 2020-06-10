@@ -2,7 +2,7 @@
 import os
 # Where to save the figures and data files
 
-from numpy import log2, zeros, mean, var, sum, loadtxt, arange, array, cumsum, dot, transpose, diagonal, sqrt
+from numpy import log2, zeros, mean, var, sum, loadtxt, arange, array, cumsum, dot, transpose, diagonal, sqrt, concatenate
 from numpy.linalg import inv
 
 import pandas as pd
@@ -219,13 +219,14 @@ print "Parallel:"
 
 identifyers = [1,2,3,4]
 
-for n in identifyers:
+x = [{} for m in range(len(identifyers))]
 
-    infile = open(data_path("exercise_i/parallell_checking_6p_importance_interaction_MC_22_identifyer_%i"%(n),'r')
+for n in identifyers:
+    infile = open(data_path("exercise_i/parallell_checking_6p_importance_interaction_MC_22_%i_energy.txt"%(n)),'r')
 
     x[n-1] = loadtxt(infile, skiprows=5)
 
-z = concatenate(x[0], x[1], x[2], x[3])
+z = concatenate((x[0], x[1], x[2], x[3]))
 (mu, variance) = block(z) 
 std = sqrt(variance)
 
@@ -237,14 +238,14 @@ print "%.4f & %.5f & %.5f "%(mu, uncor_std, std)+ "\\"+ "\\"
 
 print "Not parallel:"
 
-infile = open(data_path("exercise_i/parallell_checking_6p_importance_interaction_MC_24_identifyer_0",'r')
+infile = open(data_path("exercise_i/parallell_checking_6p_importance_interaction_MC_24_0_energy.txt"),'r')
 
-x = loadtxt(infile, skiprows=5)
+y = loadtxt(infile, skiprows=5)
 
-(mu, variance) = block(x) 
-std = sqrt(variance)
+(mu_0, variance_0) = block(y) 
+std_0 = sqrt(variance_0)
 
-uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
+uncor_std_0 = sqrt(calculate_uncor_var(y))/sqrt(len(y)) # sqrt(calculate_mean_squared(x) - mu*mu)
 
-print "%.4f & %.5f & %.5f "%(mu, uncor_std, std)+ "\\"+ "\\"
+print "%.4f & %.5f & %.5f "%(mu_0, uncor_std_0, std_0)+ "\\"+ "\\"
 

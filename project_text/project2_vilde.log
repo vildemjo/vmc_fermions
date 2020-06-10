@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.13)  5 JUN 2020 16:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.13)  9 JUN 2020 15:00
 entering extended mode
 **./project2_vilde.tex
 (project2_vilde.tex
@@ -810,66 +810,76 @@ Package pdftex.def Info: ../Results/states.png  used on input line 29.
 File: ../Results/harmonic_oscialltor_potentials.png Graphic file (type png)
 <use ../Results/harmonic_oscialltor_potentials.png>
 Package pdftex.def Info: ../Results/harmonic_oscialltor_potentials.png  used on
- input line 138.
+ input line 159.
 (pdftex.def)             Requested size: 342.37051pt x 239.65953pt.
- [6 <../Results/harmonic_oscialltor_potentials.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 177--182
+ [6]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 176.
+
+
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+[7 <../Results/harmonic_oscialltor_potentials.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 204--209
 
  []
 
-[7]
-LaTeX Font Info:    Try loading font information for OMS+cmss on input line 183
+LaTeX Font Info:    Try loading font information for OMS+cmss on input line 210
 .
-LaTeX Font Info:    No file OMScmss.fd. on input line 183.
-
+LaTeX Font Info:    No file OMScmss.fd. on input line 210.
 
 LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 183.
+(Font)              for symbol `textbullet' on input line 210.
 
-) (results.tex
+) [8] (results.tex
 Overfull \hbox (31.4273pt too wide) in paragraph at lines 13--42
  [] 
  []
 
-[8]
-<../Results/comparing_sampling.png, id=53, 867.24pt x 361.35pt>
+[9]
+<../Results/comparing_sampling.png, id=57, 867.24pt x 361.35pt>
 File: ../Results/comparing_sampling.png Graphic file (type png)
 <use ../Results/comparing_sampling.png>
 Package pdftex.def Info: ../Results/comparing_sampling.png  used on input line 
 50.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [9 <../Results/comparing_sampling.png>]
+ [10 <../Results/comparing_sampling.png>]
 Overfull \hbox (36.48715pt too wide) in paragraph at lines 57--89
 [][] 
  []
 
-<../Results/local_energy_step_sizes.png, id=59, 867.24pt x 361.35pt>
+<../Results/local_energy_step_sizes.png, id=63, 867.24pt x 361.35pt>
 File: ../Results/local_energy_step_sizes.png Graphic file (type png)
 <use ../Results/local_energy_step_sizes.png>
 Package pdftex.def Info: ../Results/local_energy_step_sizes.png  used on input 
 line 95.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
-[10] [11 <../Results/local_energy_step_sizes.png>]
+[11] [12 <../Results/local_energy_step_sizes.png>]
 Overfull \hbox (10.94354pt too wide) in paragraph at lines 138--179
  [] 
  []
 
-<../Results/example_gradient_descent.png, id=67, 867.24pt x 361.35pt>
+<../Results/example_gradient_descent.png, id=71, 867.24pt x 361.35pt>
 File: ../Results/example_gradient_descent.png Graphic file (type png)
 <use ../Results/example_gradient_descent.png>
 Package pdftex.def Info: ../Results/example_gradient_descent.png  used on input
  line 187.
 (pdftex.def)             Requested size: 391.28378pt x 163.03607pt.
-[12] [13 <../Results/example_gradient_descent.png>]
-<../Results/mean_distance_change.png, id=76, 722.7pt x 505.89pt>
+[13] [14 <../Results/example_gradient_descent.png>]
+<../Results/mean_distance_change.png, id=80, 722.7pt x 505.89pt>
 File: ../Results/mean_distance_change.png Graphic file (type png)
 <use ../Results/mean_distance_change.png>
 Package pdftex.def Info: ../Results/mean_distance_change.png  used on input lin
 e 232.
 (pdftex.def)             Requested size: 342.37051pt x 239.65953pt.
- [14]
-<../Results/one_body_density_no_interaction_2p.png, id=80, 867.24pt x 361.35pt>
+ [15]
+<../Results/one_body_density_no_interaction_2p.png, id=84, 867.24pt x 361.35pt>
 
 File: ../Results/one_body_density_no_interaction_2p.png Graphic file (type png)
 
@@ -877,8 +887,8 @@ File: ../Results/one_body_density_no_interaction_2p.png Graphic file (type png)
 Package pdftex.def Info: ../Results/one_body_density_no_interaction_2p.png  use
 d on input line 243.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [15 <../Results/mean_distance_change.png>]
-<../Results/one_body_density_no_interaction_2p_few_points.png, id=85, 867.24pt 
+ [16 <../Results/mean_distance_change.png>]
+<../Results/one_body_density_no_interaction_2p_few_points.png, id=89, 867.24pt 
 x 361.35pt>
 File: ../Results/one_body_density_no_interaction_2p_few_points.png Graphic file
  (type png)
@@ -886,74 +896,71 @@ File: ../Results/one_body_density_no_interaction_2p_few_points.png Graphic file
 Package pdftex.def Info: ../Results/one_body_density_no_interaction_2p_few_poin
 ts.png  used on input line 250.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [16 <../Results/one_body_density_no_interaction_2p.png> <../Results/one_body_d
+ [17 <../Results/one_body_density_no_interaction_2p.png> <../Results/one_body_d
 ensity_no_interaction_2p_few_points.png>]
-<../Results/one_body_density_interaction_2p.png, id=91, 867.24pt x 361.35pt>
+<../Results/one_body_density_interaction_2p.png, id=95, 867.24pt x 361.35pt>
 File: ../Results/one_body_density_interaction_2p.png Graphic file (type png)
 <use ../Results/one_body_density_interaction_2p.png>
 Package pdftex.def Info: ../Results/one_body_density_interaction_2p.png  used o
 n input line 257.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [17 <../Results/one_body_density_interaction_2p.png>]
-<../Results/parameters_compared.png, id=96, 867.24pt x 361.35pt>
+ [18 <../Results/one_body_density_interaction_2p.png>]
+<../Results/parameters_compared.png, id=100, 867.24pt x 361.35pt>
 File: ../Results/parameters_compared.png Graphic file (type png)
 <use ../Results/parameters_compared.png>
 Package pdftex.def Info: ../Results/parameters_compared.png  used on input line
  300.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [18]
-<../Results/energy_per_particle_compared.png, id=100, 867.24pt x 433.62pt>
+ [19]
+<../Results/energy_per_particle_compared.png, id=105, 867.24pt x 433.62pt>
 File: ../Results/energy_per_particle_compared.png Graphic file (type png)
 <use ../Results/energy_per_particle_compared.png>
 Package pdftex.def Info: ../Results/energy_per_particle_compared.png  used on i
 nput line 307.
 (pdftex.def)             Requested size: 415.74042pt x 207.87057pt.
-<../Results/one_body_density_no_interaction_6p.png, id=101, 867.24pt x 361.35pt
->
-File: ../Results/one_body_density_no_interaction_6p.png Graphic file (type png)
-
-<use ../Results/one_body_density_no_interaction_6p.png>
-Package pdftex.def Info: ../Results/one_body_density_no_interaction_6p.png  use
-d on input line 314.
-(pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [19 <../Results/parameters_compared.png> <../Results/energy_per_particle_compa
+ [20 <../Results/parameters_compared.png> <../Results/energy_per_particle_compa
 red.png>]
-<../Results/one_body_density_interaction_6p.png, id=108, 867.24pt x 361.35pt>
+<../Results/one_body_density_interaction_6p.png, id=111, 867.24pt x 361.35pt>
 File: ../Results/one_body_density_interaction_6p.png Graphic file (type png)
 <use ../Results/one_body_density_interaction_6p.png>
 Package pdftex.def Info: ../Results/one_body_density_interaction_6p.png  used o
-n input line 319.
+n input line 314.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [20 <../Results/one_body_density_no_interaction_6p.png> <../Results/one_body_d
-ensity_interaction_6p.png>]
-<../Results/one_body_density_no_interaction_12p.png, id=114, 867.24pt x 361.35p
+ [21 <../Results/one_body_density_interaction_6p.png>]
+<../Results/gradient_descent_12p.png, id=116, 867.24pt x 433.62pt>
+File: ../Results/gradient_descent_12p.png Graphic file (type png)
+<use ../Results/gradient_descent_12p.png>
+Package pdftex.def Info: ../Results/gradient_descent_12p.png  used on input lin
+e 338.
+(pdftex.def)             Requested size: 415.74042pt x 207.87057pt.
+<../Results/one_body_density_no_interaction_12p.png, id=117, 867.24pt x 361.35p
 t>
 File: ../Results/one_body_density_no_interaction_12p.png Graphic file (type png
 )
 <use ../Results/one_body_density_no_interaction_12p.png>
 Package pdftex.def Info: ../Results/one_body_density_no_interaction_12p.png  us
-ed on input line 348.
+ed on input line 345.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
-
-[21 <../Results/one_body_density_no_interaction_12p.png>]) (conclusion.tex)
-(appendix.tex [22] [23] [24] [25] [26] [27]) [28] (project2_vilde.bbl)
+ [22 <../Results/gradient_descent_12p.png> <../Results/one_body_density_no_inte
+raction_12p.png>] [23]) (conclusion.tex [24])
+(appendix.tex [25] [26] [27] [28] [29]) [30] (project2_vilde.bbl)
 
 Package caption Warning: Unused \captionsetup[sub] on input line 11.
 See the caption package documentation for explanation.
 
-[29] (project2_vilde.aux)
+[31] (project2_vilde.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 11269 strings out of 492970
- 177457 string characters out of 3126593
- 290625 words of memory out of 3000000
- 14696 multiletter control sequences out of 15000+200000
- 35402 words of font info for 154 fonts, out of 3000000 for 9000
+ 11548 strings out of 492970
+ 179963 string characters out of 3126593
+ 290647 words of memory out of 3000000
+ 14972 multiletter control sequences out of 15000+200000
+ 35638 words of font info for 154 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,17n,77p,1613b,470s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,17n,77p,1613b,971s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm
 -super-t1.enc}<C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmex10.pfb><C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fo
@@ -985,10 +992,11 @@ ams/MiKTeX 2.9/fonts/type1/public/cm-super/sfss1200.pfb><C:/Users/vilde/AppData
 ilde/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/cm-super/sfss1728.pfb
 ><C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/cm-super/
 sfss2074.pfb><C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/cm-super/sfss2488.pfb>
-Output written on project2_vilde.pdf (29 pages, 935087 bytes).
+ic/cm-super/sfss2488.pfb><C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/cm-super/sftt1200.pfb>
+Output written on project2_vilde.pdf (31 pages, 991084 bytes).
 PDF statistics:
- 229 PDF objects out of 1000 (max. 8388607)
+ 240 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21575 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 22087 words of extra memory for PDF output out of 24883 (max. 10000000)
 

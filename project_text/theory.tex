@@ -104,7 +104,7 @@ $\phi_{12}$ & $\phi_{n_x=0, n_y=2}$\\
 \end{tabular}
 \end{table}
 
-Similarly if we include another "shell" in our system we get 12 particles and the trial wavefunction is 
+Similarly if we include another shell in our system we get 12 particles and the trial wavefunction is 
 
 \begin{equation}
    \psi_{T}(\bm{r}_1,\bm{r}_2, \dots,\bm{r}_{12}) = 
@@ -115,11 +115,32 @@ Similarly if we include another "shell" in our system we get 12 particles and th
 
 The determinant have the same structure as for six particles and the relation to the single-particle wave functions are shown in Tab. \ref{tab:notation_wavefunctions}.
 
-\subsection{One-body density}
+\subsection{Relevant topics for this project}
+
+\subsubsection{Gradient descent - two parameters}
+
+In this project the gradient descent method also known as steepest descent method  was used to evaluate the parameters that makes the trial wavefunction approximate the ground state wavefunction \cite{gradient_descent}. Compared to Project 1, there are two parameters to be evaluated. The derivative of the trial wavefunction with regards to the parameter $\alpha$ is 
+
+\begin{equation}\label{eq:alpha_derivative}
+\frac{\frac{\partial \psi_T}{\partial \alpha}}{\psi_T} = -\frac{\omega}{2}\sum_i^N r_i^2
+\end{equation}
+and $\beta$ is
+\begin{equation}\label{eq:beta_derivative}
+\frac{\frac{\partial \psi_T}{\partial \beta}}{\psi_T} = - \sum_{i<j}^N \frac{a_{ij}r_{ij}^2}{(1+\beta r_{ij})^2}.
+\end{equation}
+
+The derivative used in the gradient descent method is 
+
+\begin{equation}
+\frac{\partial \left< E_L \right>}{\partial \alpha} = 2  \left( \left<\frac{\bar{\psi_T^{\alpha}}}{\psi_T}E_L\right> -\left<\frac{\bar{\psi_T^{\alpha}}}{\psi_T}\right>\left<E_L\right> \right)
+\end{equation}
+where $\left<\frac{\bar{\psi_T^{\alpha}}}{\psi_T}\right>$ is the expectation value of Eq. \ref{eq:alpha_derivative} and $\left<\frac{\bar{\psi_T^{\alpha}}}{\psi_T}E_L\right>$ is the expectation value of Eq. \ref{eq:alpha_derivative} multiplied with the local energy, and the same applies for the parameter $\beta$ (except using Eq. \ref{eq:beta_derivative}). 
+
+\subsubsection{One-body density}
 
 The radial one-body density is a measure of the spacial distribution of the electrons with respect to the distance from the middle of the harmonic oscillator trap. To calculate the radial one-body density, we want to sample the position of the electrons. The distance from the origin to a set cut-off is separated into bins with a length $\Delta r$. For every Monte Carlo step, the distance between the electron's position and the origin is calculated, and the bin that corresponds to the current distance get a count. In the end, you have an array corresponding to the different bins with counts corresponding to how many times an electron was found to have that particular distance to the origin. This array is normalized by dividing by the number of Monte Carlo steps. However, to get the density, we have to divide the number in the bins with the area or volume the bin represents. Because we have two-dimensional problem in this project and we calculate the radial one-body density, we divide bin $i$ with the area $ A = \pi (r_i+\Delta r)^2 - \pi r_i^2$ where $r_i$ is distance from the origin to bin $i$. \textit{normalized to the number of particles. Mention. Should happen automatically... Does not happen automatically for me, but I have notice that Even has the same scale on the y-axis.}\cite{Evens_master}
 
-\subsection{Virial theorem}
+\subsubsection{Virial theorem}
 
 The virial theorem gives a relation between the time-average total kinetic energy, $\left<T\right>$, and the time-average external potential energy, $\left<V_{ext}\right>$, that is
 
@@ -129,7 +150,7 @@ The virial theorem gives a relation between the time-average total kinetic energ
 
 where $V(r) = Br^n$. In our case when we do not include interaction $n = 2$ from the external potential term in Eq. \ref{eq:finalH}, and therefore the average kinetic energy should be equal to the average potential energy. This can be used as a test to see if the simulations executed are correct. 
 
-\subsection{Trap frequency}
+\subsubsection{Trap frequency}
 
 The trap frequency changes the external potential felt by the electrons. Figure \ref{fig:harmonic_oscillator_potential} shows how a larger trap frequency, $\omega$, results in a narrower external potential. In this narrow harmonic oscillator trap, the electrons are forced to be closer to each other. Later, we will investigate how $\omega$ affects the energy when the electrons are interacting with each other through the potential given in Eq. \ref{eq:hamilton_interaction}
 
@@ -138,7 +159,7 @@ The trap frequency changes the external potential felt by the electrons. Figure 
 \includegraphics[width=0.7\linewidth]{../Results/harmonic_oscialltor_potentials}\caption{Illustration of how the potential changes when the trap frequency changes. }\label{fig:harmonic_oscillator_potential}
 \end{figure}
 
-\subsection{Evaluating the error}
+\subsubsection{Evaluating the error}
 
 Standard error of the mean (SEM):
 \begin{equation}
@@ -152,7 +173,7 @@ where $N$ is the number of observations, in our case the number of Monte Carlo c
 
 \subsubsection{Initialization}
 
-First the different parts of the program is initialized based on what Hamiltonian that is used and what wave function is used. In this program, one can choose an Hamiltonian with and without interaction (InteractionHarmonicOscillator and HarmonicOscillator, respectively), and accordingly a wave function with and without a Jastrow factor (SlaterDeterminantInteraction and Slaterdeterminant, respectively). Thereafter, the initial state is set up. The particles are distributed after randomly after a set distribution. Two different distributions are used and chosen based on the sampling method. For importance sampling a Gaussian distrribution is used (GaussainDistribution) and for brute force sampling a random uniform distribution is used (RandomUniform). This initialization reflects in the way the sampling of new positions are made by the sampling method, which is explained in project 1 \cite{project1}.
+First the different parts of the program is initialized based on what Hamiltonian that is used and what wave function is used. In this program, one can choose an Hamiltonian with and without interaction (\texttt{InteractionHarmonicOscillator} and \texttt{HarmonicOscillator}, respectively), and accordingly a wave function with and without a Jastrow factor (\texttt{SlaterDeterminantInteraction} and \texttt{Slaterdeterminant}, respectively). Thereafter, the initial state is set up. The particles are distributed after randomly after a set distribution. Two different distributions are used and chosen based on the sampling method. For importance sampling a Gaussian distribution is used (\texttt{GaussainDistribution}) and for brute force sampling a random uniform distribution is used (\texttt{RandomUniform}). This initialization reflects in the way the sampling of new positions are made by the sampling method, which is explained in project 1 \cite{project1}.
 
 \subsubsection{Metropolis steps}
 
@@ -166,11 +187,17 @@ In this program one can choose to sample all local energies for all MC cycles. T
 
 \subsubsection{Vectorization}
 
-Solving as vectors instead of scalars - using more of memory - is sort of parallel. 
+Solving as vectors instead of scalars - using more of memory - is sort of parallel. Added
+
+\begin{lstlisting}
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+\end{lstlisting}
+
+in \texttt{CMakeLists}.
 
 \subsubsection{Parallelizing}
 
-Doing operations in parallell instead of secquentially. In this case, we want more MC cycles in less time. I chose to parallellize with cmake. I am generating files that contain $E_L$. I get the same data if I run the same code (with different seeds for the random number generator) in 4 proseccors for MC cycles/4 or the same code for MC cycles in one proscessor. Embarrasing parallellization - very simple. Need different file name. 
+Doing operations in parallell instead of secquentially. Can use different methods and combine different methods like MPI and openMP. Includes the transfer of information betweeen different processes. In this case the paralellization needed is very simple. Want more MC cycles in less time. In this project I chose to parallelize using a Makefile and cmake. I ran the whole executeable with different seeds for the random number generator and different filenames to save all the local energies in four different threads on my own personal computer which is a quad-core laptop.
 
 \subsubsection{Reducing computational cost}
 

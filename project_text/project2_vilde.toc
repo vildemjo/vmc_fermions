@@ -2,39 +2,40 @@
 \contentsline {section}{\numberline {2}Theory and method}{3}
 \contentsline {subsection}{\numberline {2.1}Two particle system}{3}
 \contentsline {subsection}{\numberline {2.2}More particles}{4}
-\contentsline {subsection}{\numberline {2.3}One-body density}{5}
-\contentsline {subsection}{\numberline {2.4}Virial theorem}{6}
-\contentsline {subsection}{\numberline {2.5}Trap frequency}{6}
-\contentsline {subsection}{\numberline {2.6}Evaluating the error}{6}
-\contentsline {subsection}{\numberline {2.7}The program}{7}
-\contentsline {subsubsection}{\numberline {2.7.1}Initialization}{7}
-\contentsline {subsubsection}{\numberline {2.7.2}Metropolis steps}{7}
-\contentsline {subsubsection}{\numberline {2.7.3}Sampling}{7}
-\contentsline {subsection}{\numberline {2.8}Improving performance and effiency}{7}
-\contentsline {subsubsection}{\numberline {2.8.1}Vectorization}{7}
-\contentsline {subsubsection}{\numberline {2.8.2}Parallelizing}{7}
-\contentsline {subsubsection}{\numberline {2.8.3}Reducing computational cost}{8}
-\contentsline {section}{\numberline {3}Results and discussion}{8}
-\contentsline {subsection}{\numberline {3.1}Two electrons in two dimensions}{8}
-\contentsline {subsubsection}{\numberline {3.1.1}Brute force sampling}{8}
-\contentsline {subsubsection}{\numberline {3.1.2}Including importance sampling}{9}
-\contentsline {subsubsection}{\numberline {3.1.3}Including optimization}{12}
-\contentsline {subsubsection}{\numberline {3.1.4}Including interaction}{13}
-\contentsline {subsubsection}{\numberline {3.1.5}One-body density}{15}
-\contentsline {subsection}{\numberline {3.2}Extending to more particles}{17}
-\contentsline {subsection}{\numberline {3.3}Six particles}{17}
-\contentsline {subsection}{\numberline {3.4}Twelve particles}{20}
-\contentsline {subsection}{\numberline {3.5}Efficiency}{21}
-\contentsline {subsection}{\numberline {3.6}Performance analysis}{21}
-\contentsline {subsubsection}{\numberline {3.6.1}Vectorization}{21}
-\contentsline {subsubsection}{\numberline {3.6.2}Parallellization}{21}
-\contentsline {section}{\numberline {4}Conclusion}{22}
-\contentsline {section}{Appendices}{23}
-\contentsline {section}{\numberline {A}Iteration - derivatives with regards to parameters}{23}
-\contentsline {section}{\numberline {B}Dealing with the Slater determinant efficiently}{23}
-\contentsline {subsection}{\numberline {B.1}Slater determinant}{23}
-\contentsline {subsection}{\numberline {B.2}The Metropolis ratio}{24}
-\contentsline {subsection}{\numberline {B.3}Updating the inverse of the Slater determinant}{25}
-\contentsline {section}{\numberline {C}Energies}{25}
-\contentsline {section}{\numberline {D}Hermite polynomials and the wavefunction derivatives}{26}
-\contentsline {section}{\numberline {E}More MC cycles}{28}
+\contentsline {subsection}{\numberline {2.3}Relevant topics for this project}{5}
+\contentsline {subsubsection}{\numberline {2.3.1}Gradient descent - two parameters}{5}
+\contentsline {subsubsection}{\numberline {2.3.2}One-body density}{6}
+\contentsline {subsubsection}{\numberline {2.3.3}Virial theorem}{6}
+\contentsline {subsubsection}{\numberline {2.3.4}Trap frequency}{6}
+\contentsline {subsubsection}{\numberline {2.3.5}Evaluating the error}{7}
+\contentsline {subsection}{\numberline {2.4}The program}{7}
+\contentsline {subsubsection}{\numberline {2.4.1}Initialization}{7}
+\contentsline {subsubsection}{\numberline {2.4.2}Metropolis steps}{7}
+\contentsline {subsubsection}{\numberline {2.4.3}Sampling}{8}
+\contentsline {subsection}{\numberline {2.5}Improving performance and effiency}{8}
+\contentsline {subsubsection}{\numberline {2.5.1}Vectorization}{8}
+\contentsline {subsubsection}{\numberline {2.5.2}Parallelizing}{8}
+\contentsline {subsubsection}{\numberline {2.5.3}Reducing computational cost}{8}
+\contentsline {section}{\numberline {3}Results and discussion}{9}
+\contentsline {subsection}{\numberline {3.1}Two electrons in two dimensions}{9}
+\contentsline {subsubsection}{\numberline {3.1.1}Brute force sampling}{9}
+\contentsline {subsubsection}{\numberline {3.1.2}Including importance sampling}{10}
+\contentsline {subsubsection}{\numberline {3.1.3}Including optimization}{13}
+\contentsline {subsubsection}{\numberline {3.1.4}Including interaction}{14}
+\contentsline {subsubsection}{\numberline {3.1.5}One-body density}{16}
+\contentsline {subsection}{\numberline {3.2}Extending to more particles}{18}
+\contentsline {subsection}{\numberline {3.3}Six particles}{18}
+\contentsline {subsection}{\numberline {3.4}Twelve particles}{21}
+\contentsline {subsection}{\numberline {3.5}Efficiency}{23}
+\contentsline {subsection}{\numberline {3.6}Performance analysis}{23}
+\contentsline {subsubsection}{\numberline {3.6.1}Vectorization}{23}
+\contentsline {subsubsection}{\numberline {3.6.2}Parallellization}{23}
+\contentsline {section}{\numberline {4}Conclusion}{24}
+\contentsline {section}{Appendices}{25}
+\contentsline {section}{\numberline {A}Dealing with the Slater determinant efficiently}{25}
+\contentsline {subsection}{\numberline {A.1}Slater determinant}{25}
+\contentsline {subsection}{\numberline {A.2}The Metropolis ratio}{26}
+\contentsline {subsection}{\numberline {A.3}Updating the inverse of the Slater determinant}{27}
+\contentsline {section}{\numberline {B}Energies}{27}
+\contentsline {section}{\numberline {C}Hermite polynomials and the wavefunction derivatives}{28}
+\contentsline {section}{\numberline {D}More MC cycles}{30}
