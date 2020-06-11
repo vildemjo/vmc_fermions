@@ -10,7 +10,7 @@ Wikipedia contributors.
 
 \bibitem{Evens_master}
 E.~M. Nordhagen.
-\newblock Studies of quantum dots using machine learning.
+\newblock Studies of {Q}uantum {D}ots using {M}achine {L}earning.
 \newblock Master's thesis, University of Oslo, 2019.
 
 \bibitem{taut1993two}
@@ -18,5 +18,9 @@ M.~Taut.
 \newblock Two electrons in an external oscillator potential: Particular
   analytic solutions of a coulomb correlation problem.
 \newblock {\em Physical Review A}, 48(5):3561, 1993.
+
+\bibitem{lecture_notes}
+M.~Hjorth-Jensen.
+\newblock Computational {P}hysics. {L}ecture {N}otes {F}all 2015., 2015.
 
 \end{thebibliography}

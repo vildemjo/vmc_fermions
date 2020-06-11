@@ -1,8 +1,6 @@
-\begin{itemize}
-\item Better optmization technique - maybe conjugate gradient - took a long time and work + could not really find the parameteres for the N=12 case. Maybe, if I had enough time, I could have found the parameters giving a correct minimum in the energy, but after trying out a lot of different starting guesses for the parameters, different number of MC cycles for each step and different minimization rates without finding a minimum in the energy I figured it was too difficult with the simple gradient descent method. 
-\item Not efficient code - new how to do it, but I could not do it. Did not get the correct energies (below ground state energy at omega not 1 - no interaction).
-\item Not efficent to which to Eigen notation for matrix in inverse matrix function, should have whiched all code to eigen, but I used the time I had left for analysis etc instead
-\item 
-\end{itemize}
+In this project I have used VMC methods to investigate quantum dots. I have looked at two dimensional full-shell systems of two and six electrons both with and without interaction and seen how the energy and one-body densities change when the trap frequency is changed. The energy of the system decrease with the decreasing trap frequency and the broader harmonic oscillator potential broadened the one-body density as the trap frequency was decreased. I also looked at the full-shell system of twelve electrons without interaction and compared this system with the two smaller ones. The one-body density showed  how the density of electrons changed when more shells where occupied by electrons.
+
+Some aspects of the project that could have been done differently was to use a more robust optimization technique so that the twelve particle system could have been investigated with interaction as well. I also could have used a supercomputer to improve the errors through increasing the number of MC cycles. The code I used to generate the results could have been more efficient, I understood how to implement the changes to make it more efficient and I learned a lot with the attempt even though I did not have time to make the code work properly. That is why I chose to still include the different expressions in the Appendix of this report. Another thing that would make the program more elegant and probably more efficient is to change to the Eigen library for all vectors and matrices in the code instead of using many flops to convert the matrices to the Eigen matrix when I calculate the inverse and the determinant. 
+
 
 

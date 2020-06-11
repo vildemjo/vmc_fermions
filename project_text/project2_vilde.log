@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.13)  9 JUN 2020 15:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.13)  11 JUN 2020 14:59
 entering extended mode
 **./project2_vilde.tex
 (project2_vilde.tex
@@ -172,26 +172,151 @@ sty"
 Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip46
 )
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\hyperref.
+sty"
+Package: hyperref 2018/09/30 v6.88a Hypertext links for LaTeX
+
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\hobsub-
+hyperref.sty"
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\hobsub-
+generic.sty"
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.
+sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\auxhook.s
+ty"
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\kvoptions
+.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen121
+\Hy@linkcounter=\count104
+\Hy@pagecounter=\count105
+
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\pd1enc.de
+f"
+File: pd1enc.def 2018/09/30 v6.88a Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count106
+
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\hyperref.
+cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 4409.
+Package hyperref Info: Hyper figures OFF on input line 4535.
+Package hyperref Info: Link nesting OFF on input line 4540.
+Package hyperref Info: Hyper index ON on input line 4543.
+Package hyperref Info: Plain pages OFF on input line 4550.
+Package hyperref Info: Backreferencing OFF on input line 4555.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4788.
+\c@Hy@tempcnt=\count107
+ ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\url\url.sty"
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5141.
+\XeTeXLinkMargin=\dimen122
+\Fld@menulength=\count108
+\Field@Width=\dimen123
+\Fld@charsize=\dimen124
+Package hyperref Info: Hyper figures OFF on input line 6396.
+Package hyperref Info: Link nesting OFF on input line 6401.
+Package hyperref Info: Hyper index ON on input line 6404.
+Package hyperref Info: backreferencing OFF on input line 6411.
+Package hyperref Info: Link coloring ON on input line 6414.
+Package hyperref Info: Link coloring with OCG OFF on input line 6421.
+Package hyperref Info: PDF/A mode OFF on input line 6426.
+LaTeX Info: Redefining \ref on input line 6466.
+LaTeX Info: Redefining \pageref on input line 6470.
+\Hy@abspage=\count109
+\c@Item=\count110
+\c@Hfootnote=\count111
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\hpdftex.d
+ef"
+File: hpdftex.def 2018/09/30 v6.88a Hyperref driver for pdfTeX
+\Fld@listcount=\count112
+\c@bookmark@seq@number=\count113
+
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\rerunfile
+check.sty"
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip47
+)
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ms\ragged2e.sty"
 Package: ragged2e 2009/05/21 v2.1 ragged2e Package (MS)
 
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ms\everysel.sty"
 Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 )
-\CenteringLeftskip=\skip47
-\RaggedLeftLeftskip=\skip48
-\RaggedRightLeftskip=\skip49
-\CenteringRightskip=\skip50
-\RaggedLeftRightskip=\skip51
-\RaggedRightRightskip=\skip52
-\CenteringParfillskip=\skip53
-\RaggedLeftParfillskip=\skip54
-\RaggedRightParfillskip=\skip55
-\JustifyingParfillskip=\skip56
-\CenteringParindent=\skip57
-\RaggedLeftParindent=\skip58
-\RaggedRightParindent=\skip59
-\JustifyingParindent=\skip60
+\CenteringLeftskip=\skip48
+\RaggedLeftLeftskip=\skip49
+\RaggedRightLeftskip=\skip50
+\CenteringRightskip=\skip51
+\RaggedLeftRightskip=\skip52
+\RaggedRightRightskip=\skip53
+\CenteringParfillskip=\skip54
+\RaggedLeftParfillskip=\skip55
+\RaggedRightParfillskip=\skip56
+\JustifyingParfillskip=\skip57
+\CenteringParindent=\skip58
+\RaggedLeftParindent=\skip59
+\RaggedRightParindent=\skip60
+\JustifyingParindent=\skip61
 )
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\rotating.
 sty"
@@ -200,31 +325,31 @@ Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\c@r@tfl@t=\count104
-\rotFPtop=\skip61
-\rotFPbot=\skip62
+\c@r@tfl@t=\count114
+\rotFPtop=\skip62
+\rotFPbot=\skip63
 \rot@float@box=\box28
 \rot@mess@toks=\toks22
 ) ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\multicol.s
 ty"
 Package: multicol 2018/04/20 v1.8s multicolumn formatting (FMi)
-\c@tracingmulticols=\count105
+\c@tracingmulticols=\count115
 \mult@box=\box29
-\multicol@leftmargin=\dimen121
-\c@unbalance=\count106
-\c@collectmore=\count107
-\doublecol@number=\count108
-\multicoltolerance=\count109
-\multicolpretolerance=\count110
-\full@width=\dimen122
-\page@free=\dimen123
-\premulticols=\dimen124
-\postmulticols=\dimen125
-\multicolsep=\skip63
-\multicolbaselineskip=\skip64
+\multicol@leftmargin=\dimen125
+\c@unbalance=\count116
+\c@collectmore=\count117
+\doublecol@number=\count118
+\multicoltolerance=\count119
+\multicolpretolerance=\count120
+\full@width=\dimen126
+\page@free=\dimen127
+\premulticols=\dimen128
+\postmulticols=\dimen129
+\multicolsep=\skip64
+\multicolbaselineskip=\skip65
 \partial@page=\box30
 \last@line=\box31
-\maxbalancingoverflow=\dimen126
+\maxbalancingoverflow=\dimen130
 \mult@rightbox=\box32
 \mult@grightbox=\box33
 \mult@gfirstbox=\box34
@@ -246,38 +371,38 @@ Package: multicol 2018/04/20 v1.8s multicolumn formatting (FMi)
 \@tempa=\box50
 \@tempa=\box51
 \@tempa=\box52
-\c@columnbadness=\count111
-\c@finalcolumnbadness=\count112
-\last@try=\dimen127
-\multicolovershoot=\dimen128
-\multicolundershoot=\dimen129
+\c@columnbadness=\count121
+\c@finalcolumnbadness=\count122
+\last@try=\dimen131
+\multicolovershoot=\dimen132
+\multicolundershoot=\dimen133
 \mult@nat@firstbox=\box53
 \colbreak@box=\box54
-\mc@col@check@num=\count113
+\mc@col@check@num=\count123
 )
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\tabularx.sty
 "
 Package: tabularx 2016/02/03 v2.11b `tabularx' package (DPC)
  ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\array.sty"
 Package: array 2018/04/30 v2.4h Tabular extension package (FMi)
-\col@sep=\dimen130
+\col@sep=\dimen134
 \ar@mcellbox=\box55
-\extrarowheight=\dimen131
+\extrarowheight=\dimen135
 \NC@list=\toks23
-\extratabsurround=\skip65
-\backup@length=\skip66
+\extratabsurround=\skip66
+\backup@length=\skip67
 \ar@cellbox=\box56
 )
-\TX@col@width=\dimen132
-\TX@old@table=\dimen133
-\TX@old@col=\dimen134
-\TX@target=\dimen135
-\TX@delta=\dimen136
-\TX@cols=\count114
+\TX@col@width=\dimen136
+\TX@old@table=\dimen137
+\TX@old@col=\dimen138
+\TX@target=\dimen139
+\TX@delta=\dimen140
+\TX@cols=\count124
 \TX@ftn=\toks24
 ) ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count115
+\c@float@type=\count125
 \float@exts=\toks25
 \float@box=\box57
 \@float@everytoks=\toks26
@@ -287,28 +412,28 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 sty"
 Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \ttl@box=\box59
-\beforetitleunit=\skip67
-\aftertitleunit=\skip68
-\ttl@plus=\dimen137
-\ttl@minus=\dimen138
+\beforetitleunit=\skip68
+\aftertitleunit=\skip69
+\ttl@plus=\dimen141
+\ttl@minus=\dimen142
 \ttl@toksa=\toks27
-\titlewidth=\dimen139
-\titlewidthlast=\dimen140
-\titlewidthfirst=\dimen141
+\titlewidth=\dimen143
+\titlewidthlast=\dimen144
+\titlewidthfirst=\dimen145
 )
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\units\nicefrac.sty
 "
 Package: nicefrac 1998/08/04 v0.9b Nice fractions
-\L@UnitsRaiseDisplaystyle=\skip69
-\L@UnitsRaiseTextstyle=\skip70
-\L@UnitsRaiseScriptstyle=\skip71
+\L@UnitsRaiseDisplaystyle=\skip70
+\L@UnitsRaiseTextstyle=\skip71
+\L@UnitsRaiseScriptstyle=\skip72
 )
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\titling\titling.st
 y"
 Package: titling 2009/09/04 v2.1d maketitle typesetting
-\thanksmarkwidth=\skip72
-\thanksmargin=\skip73
-\droptitle=\skip74
+\thanksmarkwidth=\skip73
+\thanksmargin=\skip74
+\droptitle=\skip75
 )
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\adjustbox\adjustbo
 x.sty"
@@ -325,7 +450,7 @@ tex"
 \XKV@toks=\toks28
 \XKV@tempa@toks=\toks29
 )
-\XKV@depth=\count116
+\XKV@depth=\count126
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\adjustbox\adjcalc.
@@ -342,76 +467,46 @@ box.sty"
 Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \collectedbox=\box60
 )
-\tc@llx=\dimen142
-\tc@lly=\dimen143
-\tc@urx=\dimen144
-\tc@ury=\dimen145
+\tc@llx=\dimen146
+\tc@lly=\dimen147
+\tc@urx=\dimen148
+\tc@ury=\dimen149
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\adjustbox\tc-pdfte
 x.def"
 File: tc-pdftex.def 2018/04/08 v2.1 Clipping driver for pdftex
 ))
-\adjbox@Width=\dimen146
-\adjbox@Height=\dimen147
-\adjbox@Depth=\dimen148
-\adjbox@Totalheight=\dimen149
-\adjbox@pwidth=\dimen150
-\adjbox@pheight=\dimen151
-\adjbox@pdepth=\dimen152
-\adjbox@ptotalheight=\dimen153
+\adjbox@Width=\dimen150
+\adjbox@Height=\dimen151
+\adjbox@Depth=\dimen152
+\adjbox@Totalheight=\dimen153
+\adjbox@pwidth=\dimen154
+\adjbox@pheight=\dimen155
+\adjbox@pdepth=\dimen156
+\adjbox@ptotalheight=\dimen157
 
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ifoddpage\ifoddpag
 e.sty"
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
-\c@checkoddpage=\count117
+\c@checkoddpage=\count127
 )
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\varwidth\varwidth.
 sty"
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box61
-\sift@deathcycles=\count118
-\@vwid@loff=\dimen154
-\@vwid@roff=\dimen155
+\sift@deathcycles=\count128
+\@vwid@loff=\dimen158
+\@vwid@roff=\dimen159
 ))
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\parskip\parskip.st
 y"
 Package: parskip 2018-08-24 v2.0a non-zero parskip adjustments
 
-("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\kvoptions
-.sty"
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-
-("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds
-.sty"
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-)
-("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\kvsetke
-ys.sty"
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-
-("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\infware
-rr.sty"
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
-)
-("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\etexcmd
-s.sty"
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-
-("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifluate
-x.sty"
-Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.
 sty"
 Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count119
+\etb@tempcnta=\count129
 )) ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\bm.sty"
 Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup6
@@ -427,31 +522,31 @@ Package: ltablex 2014/08/13 v1.1 Modified tabularx
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\longtable.st
 y"
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
-\LTleft=\skip75
-\LTright=\skip76
-\LTpre=\skip77
-\LTpost=\skip78
-\LTchunksize=\count120
-\LTcapwidth=\dimen156
+\LTleft=\skip76
+\LTright=\skip77
+\LTpre=\skip78
+\LTpost=\skip79
+\LTchunksize=\count130
+\LTcapwidth=\dimen160
 \LT@head=\box62
 \LT@firsthead=\box63
 \LT@foot=\box64
 \LT@lastfoot=\box65
-\LT@cols=\count121
-\LT@rows=\count122
-\c@LT@tables=\count123
-\c@LT@chunks=\count124
+\LT@cols=\count131
+\LT@rows=\count132
+\c@LT@tables=\count133
+\c@LT@chunks=\count134
 \LT@p@ftn=\toks30
 ))
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\microtyp
 e.sty"
 Package: microtype 2019/11/18 v2.7d Micro-typographical refinements (RS)
 \MT@toks=\toks31
-\MT@count=\count125
+\MT@count=\count135
 LaTeX Info: Redefining \textls on input line 790.
-\MT@outer@kern=\dimen157
+\MT@outer@kern=\dimen161
 LaTeX Info: Redefining \textmicrotypecontext on input line 1354.
-\MT@listname@count=\count126
+\MT@listname@count=\count136
 
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\microtyp
 e-pdftex.def"
@@ -459,7 +554,7 @@ File: microtype-pdftex.def 2019/11/18 v2.7d Definitions specific to pdftex (RS)
 
 LaTeX Info: Redefining \lsstyle on input line 914.
 LaTeX Info: Redefining \lslig on input line 914.
-\MT@outer@space=\skip79
+\MT@outer@space=\skip80
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
@@ -469,24 +564,24 @@ File: microtype.cfg 2019/11/18 v2.7d microtype main configuration file (RS)
 ))
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\listings.
 sty"
-\lst@mode=\count127
+\lst@mode=\count137
 \lst@gtempboxa=\box66
 \lst@token=\toks32
-\lst@length=\count128
-\lst@currlwidth=\dimen158
-\lst@column=\count129
-\lst@pos=\count130
-\lst@lostspace=\dimen159
-\lst@width=\dimen160
-\lst@newlines=\count131
-\lst@lineno=\count132
-\lst@maxwidth=\dimen161
+\lst@length=\count138
+\lst@currlwidth=\dimen162
+\lst@column=\count139
+\lst@pos=\count140
+\lst@lostspace=\dimen163
+\lst@width=\dimen164
+\lst@newlines=\count141
+\lst@lineno=\count142
+\lst@maxwidth=\dimen165
 
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\lstmisc.s
 ty"
 File: lstmisc.sty 2019/02/27 1.8b (Carsten Heinz)
-\c@lstnumber=\count133
-\lst@skipnumbers=\count134
+\c@lstnumber=\count143
+\lst@skipnumbers=\count144
 \lst@framebox=\box67
 )
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\listings.
@@ -518,31 +613,23 @@ sty"
 Package: pdfpages 2017/10/31 v0.5l Insert pages of external PDF documents (AM)
  ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\calc.sty"
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count135
-\calc@Bcount=\count136
-\calc@Adimen=\dimen162
-\calc@Bdimen=\dimen163
-\calc@Askip=\skip80
-\calc@Bskip=\skip81
+\calc@Acount=\count145
+\calc@Bcount=\count146
+\calc@Adimen=\dimen166
+\calc@Bdimen=\dimen167
+\calc@Askip=\skip81
+\calc@Bskip=\skip82
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count137
-\calc@Cskip=\skip82
+\calc@Ccount=\count147
+\calc@Cskip=\skip83
 )
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.st
 y"
 Package: eso-pic 2018/04/12 v2.0h eso-pic (RN)
-
-("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\atbegsh
-i.sty"
-Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
-
-("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.s
-ty"
-Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
-)))
-\AM@pagewidth=\dimen164
-\AM@pageheight=\dimen165
+)
+\AM@pagewidth=\dimen168
+\AM@pageheight=\dimen169
 
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pdfpages\pppdftex.
 def"
@@ -551,40 +638,30 @@ File: pppdftex.def 2017/10/31 v0.5l Pdfpages driver for pdfTeX (AM)
 \AM@pagebox=\box68
 \AM@global@opts=\toks33
 \AM@toc@title=\toks34
-\c@AM@survey=\count138
+\c@AM@survey=\count148
 \AM@templatesizebox=\box69
 )
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\appendix\appendix.
 sty"
 Package: appendix 2009/09/02 v1.2b extra appendix facilities
-\c@@pps=\count139
-\c@@ppsavesec=\count140
-\c@@ppsaveapp=\count141
+\c@@pps=\count149
+\c@@ppsavesec=\count150
+\c@@ppsaveapp=\count151
 )
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.
 sty"
 Package: geometry 2018/04/16 v5.8 Page Geometry
-
-("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.
-sty"
-Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
-Package ifvtex Info: VTeX not detected.
-)
-("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.
-sty"
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
-)
-\Gm@cnth=\count142
-\Gm@cntv=\count143
-\c@Gm@tempcnt=\count144
-\Gm@bindingoffset=\dimen166
-\Gm@wd@mp=\dimen167
-\Gm@odd@mp=\dimen168
-\Gm@even@mp=\dimen169
-\Gm@layoutwidth=\dimen170
-\Gm@layoutheight=\dimen171
-\Gm@layouthoffset=\dimen172
-\Gm@layoutvoffset=\dimen173
+\Gm@cnth=\count152
+\Gm@cntv=\count153
+\c@Gm@tempcnt=\count154
+\Gm@bindingoffset=\dimen170
+\Gm@wd@mp=\dimen171
+\Gm@odd@mp=\dimen172
+\Gm@even@mp=\dimen173
+\Gm@layoutwidth=\dimen174
+\Gm@layoutheight=\dimen175
+\Gm@layouthoffset=\dimen176
+\Gm@layoutvoffset=\dimen177
 \Gm@dimlist=\toks35
 
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.
@@ -599,39 +676,41 @@ Package: tgbonum 2009/09/27 v1.2 TeX Gyre Bonum as default roman family
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\booktabs\booktabs.
 sty"
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen174
-\lightrulewidth=\dimen175
-\cmidrulewidth=\dimen176
-\belowrulesep=\dimen177
-\belowbottomsep=\dimen178
-\aboverulesep=\dimen179
-\abovetopsep=\dimen180
-\cmidrulesep=\dimen181
-\cmidrulekern=\dimen182
-\defaultaddspace=\dimen183
-\@cmidla=\count145
-\@cmidlb=\count146
-\@aboverulesep=\dimen184
-\@belowrulesep=\dimen185
-\@thisruleclass=\count147
-\@lastruleclass=\count148
-\@thisrulewidth=\dimen186
+\heavyrulewidth=\dimen178
+\lightrulewidth=\dimen179
+\cmidrulewidth=\dimen180
+\belowrulesep=\dimen181
+\belowbottomsep=\dimen182
+\aboverulesep=\dimen183
+\abovetopsep=\dimen184
+\cmidrulesep=\dimen185
+\cmidrulekern=\dimen186
+\defaultaddspace=\dimen187
+\@cmidla=\count155
+\@cmidlb=\count156
+\@aboverulesep=\dimen188
+\@belowrulesep=\dimen189
+\@thisruleclass=\count157
+\@lastruleclass=\count158
+\@thisrulewidth=\dimen190
 ) (project2_vilde.aux)
 \openout1 = `project2_vilde.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 51.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 55.
 
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1cmss.fd"
 File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -639,16 +718,16 @@ File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.mk
 ii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count149
-\scratchdimen=\dimen187
+\scratchcounter=\count159
+\scratchdimen=\dimen191
 \scratchbox=\box70
-\nofMPsegments=\count150
-\nofMParguments=\count151
+\nofMPsegments=\count160
+\nofMParguments=\count161
 \everyMPshowfont=\toks36
-\MPscratchCnt=\count152
-\MPscratchDim=\dimen188
-\MPnumerator=\count153
-\makeMPintoPDFobject=\count154
+\MPscratchCnt=\count162
+\MPscratchDim=\dimen192
+\MPnumerator=\count163
+\makeMPintoPDFobject=\count164
 \everyMPtoPDFconversion=\toks37
 )
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-
@@ -658,19 +737,6 @@ Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\grfext.st
 y"
 Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-
-("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\kvdefin
-ekeys.sty"
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-))
-("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\pdftexc
-mds.sty"
-Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
 )
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 38.
@@ -681,6 +747,7 @@ G,.JBIG2,.JB2,.eps]
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: longtable package is loaded.
 
@@ -690,9 +757,30 @@ Package: ltcaption 2018/08/26 v1.4-95 longtable captions (AR)
 )
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
- ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 51.
-LaTeX Info: Redefining \microtypecontext on input line 51.
+\AtBeginShipoutBox=\box71
+Package hyperref Info: Link coloring ON on input line 55.
+
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\nameref.s
+ty"
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\gettitl
+estring.sty"
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count165
+)
+LaTeX Info: Redefining \ref on input line 55.
+LaTeX Info: Redefining \pageref on input line 55.
+LaTeX Info: Redefining \nameref on input line 55.
+ (project2_vilde.out) (project2_vilde.out)
+\@outlinefile=\write3
+\openout3 = `project2_vilde.out'.
+
+
+ABD: EverySelectfont initializing macros
+LaTeX Info: Redefining \selectfont on input line 55.
+LaTeX Info: Redefining \microtypecontext on input line 55.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -706,8 +794,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-\c@lstlisting=\count155
-\AtBeginShipoutBox=\box71
+\c@lstlisting=\count166
 
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\pdflscape
 .sty"
@@ -753,14 +840,14 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \celsius on input line 51.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 51.
+LaTeX Info: Redefining \celsius on input line 55.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 55.
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 51.
-Package gensymb Info: Using \Omega for \ohm on input line 51.
+LaTeX Info: Redefining \ohm on input line 55.
+Package gensymb Info: Using \Omega for \ohm on input line 55.
 
 Package gensymb Warning: Not defining \micro.
 
@@ -770,7 +857,7 @@ fg"
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 55.
+LaTeX Font Info:    Try loading font information for U+msa on input line 59.
 
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -779,7 +866,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 fg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 55.
+LaTeX Font Info:    Try loading font information for U+msb on input line 59.
 
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -790,30 +877,29 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 
 LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/m/n' instead on input line 58.
+(Font)              using `T1/cmss/m/n' instead on input line 62.
 
 (project2_vilde.toc [1
 
 {C:/Users/vilde/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}])
-\tf@toc=\write3
-\openout3 = `project2_vilde.toc'.
+\tf@toc=\write4
+\openout4 = `project2_vilde.toc'.
 
- (intro.tex) [2] (theory.tex
-<../Results/states.png, id=13, 398.4486pt x 241.8636pt>
+ (intro.tex) (theory.tex [2]
+<../Results/states.png, id=224, 398.4486pt x 241.8636pt>
 File: ../Results/states.png Graphic file (type png)
 <use ../Results/states.png>
 Package pdftex.def Info: ../Results/states.png  used on input line 29.
 (pdftex.def)             Requested size: 293.4647pt x 178.1385pt.
  [3] [4 <../Results/states.png>]
-[5]
-<../Results/harmonic_oscialltor_potentials.png, id=40, 722.7pt x 505.89pt>
+[5] [6]
+<../Results/harmonic_oscialltor_potentials.png, id=292, 722.7pt x 505.89pt>
 File: ../Results/harmonic_oscialltor_potentials.png Graphic file (type png)
 <use ../Results/harmonic_oscialltor_potentials.png>
 Package pdftex.def Info: ../Results/harmonic_oscialltor_potentials.png  used on
- input line 159.
+ input line 161.
 (pdftex.def)             Requested size: 342.37051pt x 239.65953pt.
- [6]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 176.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 178.
 
 
 ("C:\Users\vilde\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
@@ -824,143 +910,140 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-[7 <../Results/harmonic_oscialltor_potentials.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 204--209
-
- []
-
-LaTeX Font Info:    Try loading font information for OMS+cmss on input line 210
+[7 <../Results/harmonic_oscialltor_potentials.png>] [8]
+LaTeX Font Info:    Try loading font information for OMS+cmss on input line 214
 .
-LaTeX Font Info:    No file OMScmss.fd. on input line 210.
+LaTeX Font Info:    No file OMScmss.fd. on input line 214.
+
 
 LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 210.
+(Font)              for symbol `textbullet' on input line 214.
 
-) [8] (results.tex
+) (results.tex [9]
 Overfull \hbox (31.4273pt too wide) in paragraph at lines 13--42
  [] 
  []
 
-[9]
-<../Results/comparing_sampling.png, id=57, 867.24pt x 361.35pt>
+[10]
+<../Results/comparing_sampling.png, id=331, 867.24pt x 361.35pt>
 File: ../Results/comparing_sampling.png Graphic file (type png)
 <use ../Results/comparing_sampling.png>
 Package pdftex.def Info: ../Results/comparing_sampling.png  used on input line 
-50.
+52.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [10 <../Results/comparing_sampling.png>]
+
 Overfull \hbox (36.48715pt too wide) in paragraph at lines 57--89
 [][] 
  []
 
-<../Results/local_energy_step_sizes.png, id=63, 867.24pt x 361.35pt>
+<../Results/local_energy_step_sizes.png, id=340, 867.24pt x 361.35pt>
 File: ../Results/local_energy_step_sizes.png Graphic file (type png)
 <use ../Results/local_energy_step_sizes.png>
 Package pdftex.def Info: ../Results/local_energy_step_sizes.png  used on input 
 line 95.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
-[11] [12 <../Results/local_energy_step_sizes.png>]
-Overfull \hbox (10.94354pt too wide) in paragraph at lines 138--179
+[11 <../Results/comparing_sampling.png>] [12 <../Results/local_energy_step_size
+s.png>]
+Overfull \hbox (10.94354pt too wide) in paragraph at lines 141--182
  [] 
  []
 
-<../Results/example_gradient_descent.png, id=71, 867.24pt x 361.35pt>
+<../Results/example_gradient_descent.png, id=365, 867.24pt x 361.35pt>
 File: ../Results/example_gradient_descent.png Graphic file (type png)
 <use ../Results/example_gradient_descent.png>
 Package pdftex.def Info: ../Results/example_gradient_descent.png  used on input
- line 187.
+ line 191.
 (pdftex.def)             Requested size: 391.28378pt x 163.03607pt.
 [13] [14 <../Results/example_gradient_descent.png>]
-<../Results/mean_distance_change.png, id=80, 722.7pt x 505.89pt>
+<../Results/mean_distance_change.png, id=387, 722.7pt x 505.89pt>
 File: ../Results/mean_distance_change.png Graphic file (type png)
 <use ../Results/mean_distance_change.png>
 Package pdftex.def Info: ../Results/mean_distance_change.png  used on input lin
-e 232.
+e 219.
 (pdftex.def)             Requested size: 342.37051pt x 239.65953pt.
- [15]
-<../Results/one_body_density_no_interaction_2p.png, id=84, 867.24pt x 361.35pt>
-
+<../Results/one_body_density_no_interaction_2p.png, id=395, 867.24pt x 361.35pt
+>
 File: ../Results/one_body_density_no_interaction_2p.png Graphic file (type png)
 
 <use ../Results/one_body_density_no_interaction_2p.png>
 Package pdftex.def Info: ../Results/one_body_density_no_interaction_2p.png  use
-d on input line 243.
+d on input line 230.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [16 <../Results/mean_distance_change.png>]
-<../Results/one_body_density_no_interaction_2p_few_points.png, id=89, 867.24pt 
-x 361.35pt>
-File: ../Results/one_body_density_no_interaction_2p_few_points.png Graphic file
- (type png)
-<use ../Results/one_body_density_no_interaction_2p_few_points.png>
-Package pdftex.def Info: ../Results/one_body_density_no_interaction_2p_few_poin
-ts.png  used on input line 250.
-(pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [17 <../Results/one_body_density_no_interaction_2p.png> <../Results/one_body_d
-ensity_no_interaction_2p_few_points.png>]
-<../Results/one_body_density_interaction_2p.png, id=95, 867.24pt x 361.35pt>
+ [15 <../Results/mean_distance_change.png>]
+<../Results/one_body_density_interaction_2p.png, id=406, 867.24pt x 361.35pt>
 File: ../Results/one_body_density_interaction_2p.png Graphic file (type png)
 <use ../Results/one_body_density_interaction_2p.png>
 Package pdftex.def Info: ../Results/one_body_density_interaction_2p.png  used o
-n input line 257.
+n input line 239.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [18 <../Results/one_body_density_interaction_2p.png>]
-<../Results/parameters_compared.png, id=100, 867.24pt x 361.35pt>
+ [16 <../Results/one_body_density_no_interaction_2p.png>]
+[17 <../Results/one_body_density_interaction_2p.png>]
+<../Results/parameters_compared.png, id=432, 867.24pt x 361.35pt>
 File: ../Results/parameters_compared.png Graphic file (type png)
 <use ../Results/parameters_compared.png>
 Package pdftex.def Info: ../Results/parameters_compared.png  used on input line
- 300.
+ 276.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [19]
-<../Results/energy_per_particle_compared.png, id=105, 867.24pt x 433.62pt>
+ [18 <../Results/parameters_compared.png>]
+<../Results/energy_per_particle_compared.png, id=441, 867.24pt x 433.62pt>
 File: ../Results/energy_per_particle_compared.png Graphic file (type png)
 <use ../Results/energy_per_particle_compared.png>
 Package pdftex.def Info: ../Results/energy_per_particle_compared.png  used on i
-nput line 307.
+nput line 283.
 (pdftex.def)             Requested size: 415.74042pt x 207.87057pt.
- [20 <../Results/parameters_compared.png> <../Results/energy_per_particle_compa
-red.png>]
-<../Results/one_body_density_interaction_6p.png, id=111, 867.24pt x 361.35pt>
+<../Results/one_body_density_interaction_6p.png, id=443, 867.24pt x 361.35pt>
 File: ../Results/one_body_density_interaction_6p.png Graphic file (type png)
 <use ../Results/one_body_density_interaction_6p.png>
 Package pdftex.def Info: ../Results/one_body_density_interaction_6p.png  used o
-n input line 314.
+n input line 290.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [21 <../Results/one_body_density_interaction_6p.png>]
-<../Results/gradient_descent_12p.png, id=116, 867.24pt x 433.62pt>
+ [19 <../Results/energy_per_particle_compared.png>]
+<../Results/gradient_descent_12p.png, id=459, 867.24pt x 433.62pt>
 File: ../Results/gradient_descent_12p.png Graphic file (type png)
 <use ../Results/gradient_descent_12p.png>
 Package pdftex.def Info: ../Results/gradient_descent_12p.png  used on input lin
-e 338.
+e 314.
 (pdftex.def)             Requested size: 415.74042pt x 207.87057pt.
-<../Results/one_body_density_no_interaction_12p.png, id=117, 867.24pt x 361.35p
+ [20 <../Results/one_body_density_interaction_6p.png>]
+<../Results/one_body_density_no_interaction_12p.png, id=468, 867.24pt x 361.35p
 t>
 File: ../Results/one_body_density_no_interaction_12p.png Graphic file (type png
 )
 <use ../Results/one_body_density_no_interaction_12p.png>
 Package pdftex.def Info: ../Results/one_body_density_no_interaction_12p.png  us
-ed on input line 345.
+ed on input line 321.
 (pdftex.def)             Requested size: 415.74042pt x 173.22548pt.
- [22 <../Results/gradient_descent_12p.png> <../Results/one_body_density_no_inte
-raction_12p.png>] [23]) (conclusion.tex [24])
-(appendix.tex [25] [26] [27] [28] [29]) [30] (project2_vilde.bbl)
+ [21 <../Results/gradient_descent_12p.png> <../Results/one_body_density_no_inte
+raction_12p.png>] [22])
+(conclusion.tex [23]) (appendix.tex [24] [25] [26] [27] [28]) [29]
+(project2_vilde.bbl)
 
 Package caption Warning: Unused \captionsetup[sub] on input line 11.
 See the caption package documentation for explanation.
 
-[31] (project2_vilde.aux)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 90.
+[30]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 90.
+ (project2_vilde.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 90.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 90.
+Package rerunfilecheck Info: File `project2_vilde.out' has not changed.
+(rerunfilecheck)             Checksum: E6128B3607BE836758AFFE448907E262;2954.
+
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 90.
  ) 
 Here is how much of TeX's memory you used:
- 11548 strings out of 492970
- 179963 string characters out of 3126593
- 290647 words of memory out of 3000000
- 14972 multiletter control sequences out of 15000+200000
- 35638 words of font info for 154 fonts, out of 3000000 for 9000
+ 14971 strings out of 492970
+ 231674 string characters out of 3126593
+ 373820 words of memory out of 3000000
+ 18274 multiletter control sequences out of 15000+200000
+ 34423 words of font info for 144 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,17n,77p,1613b,971s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,17n,77p,1665b,992s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm
 -super-t1.enc}<C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmex10.pfb><C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fo
@@ -994,9 +1077,9 @@ ilde/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/cm-super/sfss1728.pfb
 sfss2074.pfb><C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/cm-super/sfss2488.pfb><C:/Users/vilde/AppData/Local/Programs/MiKTeX 2.9/font
 s/type1/public/cm-super/sftt1200.pfb>
-Output written on project2_vilde.pdf (31 pages, 991084 bytes).
+Output written on project2_vilde.pdf (30 pages, 996071 bytes).
 PDF statistics:
- 240 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 500000)
- 22087 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 663 PDF objects out of 1000 (max. 8388607)
+ 133 named destinations out of 1000 (max. 500000)
+ 22402 words of extra memory for PDF output out of 24883 (max. 10000000)
 

@@ -174,78 +174,78 @@ def data_path(dat_id):
 # Importance sampling 
 # ---------------------------------------------
 
-# methodtype="analytical"
+methodtype="analytical"
 
-# samplingtype = "brute_force"
+samplingtype = "brute_force"
 
-# DATA_ID = "../Output//exercise_d//allEnergies"
+DATA_ID = "../Output//exercise_d//allEnergies"
 
-# print "$left< E_L right>$: & SEM: & $sigma_B$: & Acceptance & CPU time:"+ "\\" + "\\"
+print "$left< E_L right>$: & SEM: & $sigma_B$: & Acceptance & CPU time:"+ "\\" + "\\"
 
-# M = loadtxt("../Output//exercise_d//analytical_2p_2d_"+ samplingtype + ".txt", skiprows=1)
+M = loadtxt("../Output//exercise_d//analytical_2p_2d_"+ samplingtype + ".txt", skiprows=1)
 
-# stepsize = M[:,0]
-# acc = M[:,1]
-# cpu_time = M[:,-1]
+stepsize = M[:,0]
+acc = M[:,1]
+cpu_time = M[:,-1]
 
-# for a in range(len(stepsize)):    
+for a in range(len(stepsize)):    
     
-#     def data_path(dat_id):
-#         return os.path.join(DATA_ID, dat_id)
+    def data_path(dat_id):
+        return os.path.join(DATA_ID, dat_id)
 
-#     printablestep = int(stepsize[a]*1000)
-#     printedstep = str(printablestep)
+    printablestep = int(stepsize[a]*1000)
+    printedstep = str(printablestep)
 
-#     infile = open(data_path(methodtype+"_2d_2p_stepsize_" + printedstep + "_MC_21_"+samplingtype + "_energy.txt"),'r')
+    infile = open(data_path(methodtype+"_2d_2p_stepsize_" + printedstep + "_MC_21_"+samplingtype + "_energy.txt"),'r')
 
-#     x = loadtxt(infile, skiprows=5)
-#     # x = x[:int(2**19)]
+    x = loadtxt(infile, skiprows=5)
+    # x = x[:int(2**19)]
 
-#     (mu, variance) = block(x) 
-#     std = sqrt(variance)
+    (mu, variance) = block(x) 
+    std = sqrt(variance)
 
-#     uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
+    uncor_std = sqrt(calculate_uncor_var(x))/sqrt(len(x)) # sqrt(calculate_mean_squared(x) - mu*mu)
     
 
-#     print "%.3f & %.5f & %.5f & %.3f& %.3f"%(mu, uncor_std, std, acc[a], cpu_time[a] )+ "\\"+ "\\"
+    print "%.3f & %.5f & %.5f & %.3f& %.3f"%(mu, uncor_std, std, acc[a], cpu_time[a] )+ "\\"+ "\\"
 
-# print "Mean CPU time & & & ", mean(cpu_time)
+print "Mean CPU time & & & ", mean(cpu_time)
 
 # ---------------------------------------------
 # Parallelized code
 # ---------------------------------------------
 
-print "Parallel:"
+# print "Parallel:"
 
-identifyers = [1,2,3,4]
+# identifyers = [1,2,3,4]
 
-x = [{} for m in range(len(identifyers))]
+# x = [{} for m in range(len(identifyers))]
 
-for n in identifyers:
-    infile = open(data_path("exercise_i/parallell_checking_6p_importance_interaction_MC_22_%i_energy.txt"%(n)),'r')
+# for n in identifyers:
+#     infile = open(data_path("exercise_i/parallell_checking_6p_importance_interaction_MC_22_%i_energy.txt"%(n)),'r')
 
-    x[n-1] = loadtxt(infile, skiprows=5)
+#     x[n-1] = loadtxt(infile, skiprows=5)
 
-z = concatenate((x[0], x[1], x[2], x[3]))
-(mu, variance) = block(z) 
-std = sqrt(variance)
+# z = concatenate((x[0], x[1], x[2], x[3]))
+# (mu, variance) = block(z) 
+# std = sqrt(variance)
 
-uncor_std = sqrt(calculate_uncor_var(z))/sqrt(len(z)) # sqrt(calculate_mean_squared(x) - mu*mu)
+# uncor_std = sqrt(calculate_uncor_var(z))/sqrt(len(z)) # sqrt(calculate_mean_squared(x) - mu*mu)
 
-print "%.4f & %.5f & %.5f "%(mu, uncor_std, std)+ "\\"+ "\\"
+# print "%.4f & %.5f & %.5f "%(mu, uncor_std, std)+ "\\"+ "\\"
 
-# Not in parallel
+# # Not in parallel
 
-print "Not parallel:"
+# print "Not parallel:"
 
-infile = open(data_path("exercise_i/parallell_checking_6p_importance_interaction_MC_24_0_energy.txt"),'r')
+# infile = open(data_path("exercise_i/parallell_checking_6p_importance_interaction_MC_24_0_energy.txt"),'r')
 
-y = loadtxt(infile, skiprows=5)
+# y = loadtxt(infile, skiprows=5)
 
-(mu_0, variance_0) = block(y) 
-std_0 = sqrt(variance_0)
+# (mu_0, variance_0) = block(y) 
+# std_0 = sqrt(variance_0)
 
-uncor_std_0 = sqrt(calculate_uncor_var(y))/sqrt(len(y)) # sqrt(calculate_mean_squared(x) - mu*mu)
+# uncor_std_0 = sqrt(calculate_uncor_var(y))/sqrt(len(y)) # sqrt(calculate_mean_squared(x) - mu*mu)
 
-print "%.4f & %.5f & %.5f "%(mu_0, uncor_std_0, std_0)+ "\\"+ "\\"
+# print "%.4f & %.5f & %.5f "%(mu_0, uncor_std_0, std_0)+ "\\"+ "\\"
 

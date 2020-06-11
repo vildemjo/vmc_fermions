@@ -1,4 +1,4 @@
-In this project we investigate a fermionic system of $N=$ 2, 6 and 12 electrons, where $N$ is the number of particles. It is a so-called closed shell-system. The Hamiltonian used to model this system is
+In this project I have investigated a system of $N=$ 2, 6 and 12 electrons, where $N$ is the number of particles. It is a so-called closed shell-system. The Hamiltonian used to model this system is
 
 \begin{equation}
 \label{eq:finalH}
@@ -12,7 +12,7 @@ is the single particle part and
 \hat{H}_1=\sum_{i<j}\frac{1}{r_{ij}},
 \end{equation}
 
-represent the interaction potential between particles. The Hamiltonian is written in atomic units, which implies that $\hbar = 1, m= 1$, the unit of length is $a_0 = \nicefrac{4 \pi \epsilon_0 \hbar^2}{m_e e^2}$ and the unit of energy is $E_h = \nicefrac{\hbar^2}{m_e a_0^2}$.  We also have $r_{ij}=\vert \bm{r}_i-\bm{r}_j\vert= \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}$ and $\omega$ is the oscillator frequency. Later we will study the dependence of the system on the oscillator frequency. 
+represent the interaction potential between particles. The Hamiltonian is written in atomic units, which implies that $\hbar = 1, m= 1$, the unit of length is $a_0 = \nicefrac{4 \pi \epsilon_0 \hbar^2}{m_e e^2}$ and the unit of energy is $E_h = \nicefrac{\hbar^2}{m_e a_0^2}$.  In Eq. \ref{eq:hamilton_interaction} $r_{ij}=\vert \bm{r}_i-\bm{r}_j\vert= \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}$ and in Eq. \ref{eq:finalH} $\omega$ is the oscillator frequency or the trap frequency.
 
 \subsection{Two particle system}
 
@@ -20,9 +20,9 @@ The single particle wave function in two dimensions is
 \begin{equation}\label{eq:single_particle_wf}
 \phi_{n_x,n_y}(x,y) = A H_{n_x}(\sqrt{\omega}x)H_{n_y}(\sqrt{\omega}y)\exp{(-\omega(x^2+y^2)/2}.
 \end{equation}
-where the functions $H_{n_x}(\sqrt{\omega}x)$ are Hermite polynomials,  while $A$ is a normalization constant. The relevant Hermite polynomials in this project are listed in Appendix \ref{app:hermite_and_derivatives}. $\omega$ is the trap frequency.
+where the functions $H_{n_x}(\sqrt{\omega}x)$ are Hermite polynomials,  while $A$ is a normalization constant. The relevant Hermite polynomials in this project are listed in Appendix \ref{app:hermite_and_derivatives}.
 
-For the lowest-lying state, $E_{00}$  (see Fig. \ref{fig:states}), we have $n_x=n_y=0$ and an energy $\epsilon_{n_x,n_y}=\omega(n_x+n_y+1) = \omega$, the total energy of the lowest-lying state is hence $2\omega$ because there is room for two electrons with opposite spins. 
+For the lowest-lying state, $E_{00}$  (see Fig. \ref{fig:states}), we have $n_x=n_y=0$ and an energy $\epsilon_{n_x,n_y}=\omega(n_x+n_y+1) = \omega$, the total energy of the lowest-lying state is hence $2\omega$ because there is, due to Pauli's exclusion principle, room for two electrons with opposite spins. The total spin of the ground state for the system with two electron is therfore zero. The same applies for all closed shell systems in the ground state because the filled states all have two electrons with opposite spins that cancel each other. The energies of the other full-shell systems that include an increasing number of states are listed in Appendix \ref{app:energies}. 
 
 \begin{figure}[H]
 \center
@@ -32,18 +32,18 @@ For the lowest-lying state, $E_{00}$  (see Fig. \ref{fig:states}), we have $n_x=
 The expectation value can be found by solving the equation
 
 \begin{equation}\label{eq:expectation_energy}
-   \langle E \rangle =
+   \langle E_L \rangle =
    \frac{\int d\bm{r}_1d\bm{r}_2\psi^{\ast}_T(\bm{r}_1,\bm{r}_2)\hat{H}(\bm{r}_1,\bm{r}_2)\psi_T(\bm{r}_1,\bm{r}_2)}
         {\int d\bm{r}_1d\bm{r}_2\psi^{\ast}_T(\bm{r}_1,\bm{r}_2)\psi_T(\bm{r}_1,\bm{r}_2)}.
 \end{equation}
 
-We will use Variational Monte Carlo (VMC) methods to evaluate the Eq. \ref{eq:expectation_energy} \cite{project1}. The exact wave function for two not interacting electrons in the ground state is given by
+We use Variational Monte Carlo (VMC) methods to evaluate the Eq. \ref{eq:expectation_energy} \cite{project1}. The exact wave function for two not interacting electrons in the ground state is given by
 
 \begin{equation*}
 \Phi(\bm{r}_1,\bm{r}_2) = C\exp{\left(-\omega(r_1^2+r_2^2)/2\right)},
 \end{equation*}
 
-where $r_i = \sqrt{x_i^2+y_i^2}$ and C is a normalization constant. The trial wavefunction we use for the not interacting case is 
+where $r_i = \sqrt{x_i^2+y_i^2}$ and C is a normalization constant. The trial wave function we use for the not interacting case is 
 \begin{equation}\label{eq:trial_wf_not_interacing}
 \Phi(\bm{r}_1,\bm{r}_2) = C\exp{\left(-\alpha\omega(r_1^2+r_2^2)/2\right)}.
 \end{equation}
@@ -57,11 +57,11 @@ with the parameter $\alpha$. From the exact wave function we know that $\alpha =
 \label{eq:trial_interacting}
 \end{equation}
 
-where we introduce another parameter, $\beta$, and a spin factor, $a$. $a$ is 1 when the two electrons have anti-parallel spins and $1/3$ when they have the parallel spins (this is not relevant before we introduce more particles to the system, as can be seen from Fig. \ref{fig:states}).
+where we introduce another parameter, $\beta$, and a spin factor, $a$. $a$ is 1 when the two electrons have anti-parallel spins and $1/3$ when they have the parallel spins (this is not relevant before one includes more than two particles to the system, as can be seen from Fig. \ref{fig:states}). This trial wave function is not the exact wave function, hence the simulation can only approximate the exact values for the ground state energy.
 
 \subsection{More particles}
 
-Since we are looking at closed shell systems, the next amount of particles are six. We can see this from Fig. \ref{fig:states}, there are room for two electrons with opposite spin in two different states, in addition to the two in the lowest lying state. The trial wave function is now given by
+Since we are looking at closed shell systems, the next amount of particles are six. We can see this from Fig. \ref{fig:states}, there are room for two electrons with opposite spin in the states here named $E_{01}$ and $E_{10}$, in addition to the two in the lowest lying state. The trial wave function is now given by
 
 \begin{equation}
    \psi_{T}(\bm{r}_1,\bm{r}_2,\dots, \bm{r}_6) = 
@@ -78,7 +78,7 @@ $$ Det\left(\phi_{1}(\bm{r}_1),\phi_{2}(\bm{r}_2),
   \vdots  & \vdots  & \ddots & \vdots  \\
   \phi_{1}(\bm{r}_6) & \phi_{2}(\bm{r}_6) & \cdots & \phi_{6}(\bm{r}_6) 
 \end{vmatrix}$$
-is the Slater determinant. This determinant occurs because electron are indistinguishable particles and they are antisymmetric ... . The functions, $\phi_{i}(\bm{r}_j)$,  are given by Eq. \ref{eq:single_particle_wf} and the notation is explained in Tab. \ref{tab:notation_wavefunctions}. 
+is the Slater determinant. This determinant occurs because electrons are indistinguishable particles and their wave function is hence antisymmetric. The functions, $\phi_{i}(\bm{r}_j)$,  are given by Eq. \ref{eq:single_particle_wf} and the notation is explained in Tab. \ref{tab:notation_wavefunctions}. 
 
 \begin{table}[H]\caption{The relation between the notation used in the determinant (left) compared to Eq. \ref{eq:single_particle_wf} (right). }\label{tab:notation_wavefunctions}
 \large
@@ -104,7 +104,7 @@ $\phi_{12}$ & $\phi_{n_x=0, n_y=2}$\\
 \end{tabular}
 \end{table}
 
-Similarly if we include another shell in our system we get 12 particles and the trial wavefunction is 
+Similarly if we include another shell in our system we get 12 particles and the trial wave function is 
 
 \begin{equation}
    \psi_{T}(\bm{r}_1,\bm{r}_2, \dots,\bm{r}_{12}) = 
@@ -117,9 +117,11 @@ The determinant have the same structure as for six particles and the relation to
 
 \subsection{Relevant topics for this project}
 
+For an explanation of the VMC method, sampling methods, optimization and gradient descent methods, statistical analysis and resampling techniques used in this project see the theory part of Project 1 \cite{project1}. However, below is some topics that are explained in further detail or new to this project. 
+
 \subsubsection{Gradient descent - two parameters}
 
-In this project the gradient descent method also known as steepest descent method  was used to evaluate the parameters that makes the trial wavefunction approximate the ground state wavefunction \cite{gradient_descent}. Compared to Project 1, there are two parameters to be evaluated. The derivative of the trial wavefunction with regards to the parameter $\alpha$ is 
+In this project the gradient descent method also known as steepest descent method  was used to evaluate the parameters that makes the trial wave function approximate the ground state wave function \cite{gradient_descent}. Compared to Project 1, there are two parameters to be evaluated. The derivative of the trial wave function with regards to the parameter $\alpha$ is 
 
 \begin{equation}\label{eq:alpha_derivative}
 \frac{\frac{\partial \psi_T}{\partial \alpha}}{\psi_T} = -\frac{\omega}{2}\sum_i^N r_i^2
@@ -138,7 +140,7 @@ where $\left<\frac{\bar{\psi_T^{\alpha}}}{\psi_T}\right>$ is the expectation val
 
 \subsubsection{One-body density}
 
-The radial one-body density is a measure of the spacial distribution of the electrons with respect to the distance from the middle of the harmonic oscillator trap. To calculate the radial one-body density, we want to sample the position of the electrons. The distance from the origin to a set cut-off is separated into bins with a length $\Delta r$. For every Monte Carlo step, the distance between the electron's position and the origin is calculated, and the bin that corresponds to the current distance get a count. In the end, you have an array corresponding to the different bins with counts corresponding to how many times an electron was found to have that particular distance to the origin. This array is normalized by dividing by the number of Monte Carlo steps. However, to get the density, we have to divide the number in the bins with the area or volume the bin represents. Because we have two-dimensional problem in this project and we calculate the radial one-body density, we divide bin $i$ with the area $ A = \pi (r_i+\Delta r)^2 - \pi r_i^2$ where $r_i$ is distance from the origin to bin $i$. \textit{normalized to the number of particles. Mention. Should happen automatically... Does not happen automatically for me, but I have notice that Even has the same scale on the y-axis.}\cite{Evens_master}
+The radial one-body density is a measure of the spacial distribution of the electrons with respect to the distance from the origin of the harmonic oscillator trap. To calculate the radial one-body density, I sampled the position of the electrons at each accepted step in the MC cycles. To sample the positions, the distance from the origin to a set cut-off length was separated into bins with a length $\Delta r$. For every Monte Carlo step, the distance between the electron's position and the origin was calculated, and the bin that corresponded to the current distance got a count. In the end, one has an array corresponding to the different bins with counts corresponding to how many times an electron was found to have that particular distance to the origin. This array is normalized by dividing by the number of Monte Carlo steps. However, to get the density, one has to divide the number in the bins with the area or volume the bin represents. Because this project involve a two-dimensional problem, and I wanted to calculate the radial one-body density, I divided bin $i$ with the area $ A = \pi (r_i+\Delta r)^2 - \pi r_i^2$ where $r_i$ is distance from the origin to bin $i$. This method to calculate the radial one-body density was found in Ref. \cite{Evens_master}.
 
 \subsubsection{Virial theorem}
 
@@ -148,11 +150,11 @@ The virial theorem gives a relation between the time-average total kinetic energ
 2\left< T\right> = n\left< V_{ext}\right>
 \end{equation}
 
-where $V(r) = Br^n$. In our case when we do not include interaction $n = 2$ from the external potential term in Eq. \ref{eq:finalH}, and therefore the average kinetic energy should be equal to the average potential energy. This can be used as a test to see if the simulations executed are correct. 
+where $V(r) = Br^n$. In our case, when interaction is not included, $n = 2$ from the external potential term in Eq. \ref{eq:finalH}, and therefore the average kinetic energy should be equal to the average potential energy. This can be used as a test to see if the simulations executed are correct. 
 
 \subsubsection{Trap frequency}
 
-The trap frequency changes the external potential felt by the electrons. Figure \ref{fig:harmonic_oscillator_potential} shows how a larger trap frequency, $\omega$, results in a narrower external potential. In this narrow harmonic oscillator trap, the electrons are forced to be closer to each other. Later, we will investigate how $\omega$ affects the energy when the electrons are interacting with each other through the potential given in Eq. \ref{eq:hamilton_interaction}
+The trap frequency changes the external potential felt by the electrons. Figure \ref{fig:harmonic_oscillator_potential} shows how a larger trap frequency, $\omega$, results in a narrower external potential. In this narrow harmonic oscillator trap, the electrons are forced to be closer to each other. Later, I look at how $\omega$ affects the energy when the electrons are interacting with each other through the potential given in Eq. \ref{eq:hamilton_interaction}.
 
 \begin{figure}[H]
 \center
@@ -161,33 +163,35 @@ The trap frequency changes the external potential felt by the electrons. Figure 
 
 \subsubsection{Evaluating the error}
 
-Standard error of the mean (SEM):
+To evaluate the error of the calculated expectation energy one can use the standard error of the mean (SEM)
 \begin{equation}
 \text{SEM} = \frac{\sigma}{\sqrt{N}}
 \end{equation}
-where $N$ is the number of observations, in our case the number of Monte Carlo cycles.
+where $N$ is the number of observations, in our case the number of Monte Carlo (MC) cycles. One can easily see that an increased number MC cycles will decrease the SEM.
 
 \subsection{The program}
 
-\textit{A short introduction?}
+The program is found at this \href{https://github.com/vildemjo/vmc_fermions}{GitHub} repository and includes comments to describe the code, but below are some general aspects of the program.
 
 \subsubsection{Initialization}
 
-First the different parts of the program is initialized based on what Hamiltonian that is used and what wave function is used. In this program, one can choose an Hamiltonian with and without interaction (\texttt{InteractionHarmonicOscillator} and \texttt{HarmonicOscillator}, respectively), and accordingly a wave function with and without a Jastrow factor (\texttt{SlaterDeterminantInteraction} and \texttt{Slaterdeterminant}, respectively). Thereafter, the initial state is set up. The particles are distributed after randomly after a set distribution. Two different distributions are used and chosen based on the sampling method. For importance sampling a Gaussian distribution is used (\texttt{GaussainDistribution}) and for brute force sampling a random uniform distribution is used (\texttt{RandomUniform}). This initialization reflects in the way the sampling of new positions are made by the sampling method, which is explained in project 1 \cite{project1}.
+First the different parts of the program is initialized based on what Hamiltonian that is used and what wave function is used. In this program, one can choose a Hamiltonian with and without interaction (\texttt{InteractionHarmonicOscillator} and \texttt{HarmonicOscillator}, respectively), and accordingly, a wave function with and without a Jastrow factor (\texttt{SlaterDeterminantInteraction} and \texttt{Slaterdeterminant}, respectively). Thereafter, the initial state is set up. The particles are distributed randomly after a set distribution. Two different distributions are used and chosen based on the sampling method. For importance sampling a Gaussian distribution is used (\texttt{GaussainDistribution}) and for brute force sampling a random uniform distribution is used (\texttt{RandomUniform}). This initialization reflects in the way the sampling of new positions are made by the sampling method, which is explained in project 1 \cite{project1}.
 
 \subsubsection{Metropolis steps}
 
-After the initialization the particles are moved one by one, chosen at random, and the new position is found through the sampling method. The metropolis ratio is calculated to determine wether the step is accepted or not. The metropolis ratio is also determined by the sampling method. If the step is accepted, the energy is sampled and if not, the former energy is sampled again. This is continued until all Monte Carlo (MC) cycles have finished. 
+After the initialization the particles are moved one by one, chosen at random, and the new position is found through the sampling method. The metropolis ratio is calculated to determine whether the step is accepted or not. The metropolis ratio is also determined by the sampling method. If the step is accepted, the energy is sampled and if not, the former energy is sampled again. This is continued until all Monte Carlo (MC) cycles have finished. 
 
 \subsubsection{Sampling}
 
 In this program one can choose to sample all local energies for all MC cycles. This makes it possible to performed resampling techniques on the dataset to improve estimate of the error by estimating the correlation between the different metropolis steps, i.e. the samples made of the local energy. For the other outputs, e.g. kinetic, potential and interaction energy and the mean distance, the average is calculated based on the sum of all the sampled values by dividing by the number of MC cycles.
 
-\subsection{Improving performance and effiency}
+\subsection{Improving performance and efficiency}
+
+An important part of numerical simulations is computational performance and efficiency. Below are some topics related to this.
 
 \subsubsection{Vectorization}
 
-Solving as vectors instead of scalars - using more of memory - is sort of parallel. Added
+Compliers can optimize the code in different ways and one of them is called vectorization. With vectorization more of the memory is used simultaneously and operations are executed on vectors instead of scalars. This makes the code more efficient and can reduce the CPU time of the code. To include vectorization in my program I added
 
 \begin{lstlisting}
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
@@ -197,20 +201,20 @@ in \texttt{CMakeLists}.
 
 \subsubsection{Parallelizing}
 
-Doing operations in parallell instead of secquentially. Can use different methods and combine different methods like MPI and openMP. Includes the transfer of information betweeen different processes. In this case the paralellization needed is very simple. Want more MC cycles in less time. In this project I chose to parallelize using a Makefile and cmake. I ran the whole executeable with different seeds for the random number generator and different filenames to save all the local energies in four different threads on my own personal computer which is a quad-core laptop.
+Parallelizing the code is doing operations in parallel instead of sequentially. One can use different methods to parallelize code and combine different methods like MPI and openMP. The different methods can be easy or difficult to implement based on how much you control the the transfer of information between different processes. 
+
+In this case the parallelization needed is very simple. We want more MC cycles in less time. In this project I chose to parallelize using a Makefile and cmake. I ran the whole executable with different seeds for the random number generator and different file names to save all the local energies in four different threads on my own personal computer which is a quad-core laptop.
 
 \subsubsection{Reducing computational cost}
 
-Decrease floating point operations (flops) by smarter code and use of ratios:\\
-- Slater determinant split into spin-up determinat and spin down determinant: Only have to update either of them when a spin up/spin down is moved. Detailed information in Appedix \ref{app:efficient_SD}. \\
-- Metropolis ratio - instead of calculating individual parts and afterwards calculate the ratio, a much simpler expression for the ratio is used and then calculated. Details in Appendix \ref{app:efficient_R}\\
-- Updating the inverse instead of calculating the inverse for every step. \\
-- Another structure in metropolis step (importance sampling):\\
+An important part of making the program more efficient is to reduce the number of floating point operations (flops) by implementing a smart code and use expressions for ratios, e.g. the metropolis ratio. 
+
+In this particular project one can do many different things to make the code more efficient. The first thing is to split the Slater determinant into a spin-up determinant and a spin down determinant. By doing this one only have to update either of them when a spin up/spin down particle is moved. How this is done is explained further in Appendix \ref{app:efficient_SD}. Another method to reduce flops is to find an expression for the metropolis ratio, instead of calculating individual parts and afterwards calculate the ratio. This is explained in Appendix \ref{app:efficient_R}. Other implementations are to updating the inverse instead of calculating the inverse for every step (see Appendix \ref{app:inverse_update}). All of these changes results in another structure when performing the metropolis step (when importance sampling is used):
 \begin{itemize}
 \item Pick particle at random and find new position
 \item Update Slater determinant row (spin up or spin down one based on the particle that was picked)
-\item Calculate both old and new quantum force (gradient in a spesific position) using the old inverse Salter determinant.
+\item Calculate both old and new quantum force (gradient in a specific position) using the old inverse Slater determinant (see Appendix \ref{app:gradients_double_derivatives}).
 \item Calculate the metropolis ratio using the new Slater determinant and the old inverse determinant.
 \item Update the inverse Slater determinant (only spin up or spin down one based on the particle that was moved) only if the move is accepted. 
 \end{itemize}
-- Using this structure saves many flops. The inverse update takes e.g. $O(N^2)$ instead of $O(N^3)$.
+Using this structure saves many flops since the inverse Slater determinant do not have to be calculated or updated at all if the move is not accepted and, as an example, updating the inverse Slater determinant takes $O(N^2)$ instead of $O(N^3)$ when the inverse is calculated. 
