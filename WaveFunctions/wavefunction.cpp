@@ -12,22 +12,10 @@ WaveFunction::WaveFunction(System* system) {
 void WaveFunction::setOneBodyDensityBins(int numberOfBins, double densityLength){
     m_densityLength = densityLength;
 
-    // Making sure that the sum of positive and negative values are correct
-    if (numberOfBins % 2 == 0){
-        m_numberOfBins = numberOfBins;
-    }else{
-        std::cout << "Number of bins must be able to be divided by 2" << std::endl;
-    }
-    
-    // int numberOfDimensions = m_system->getNumberOfDimensions();
     std::vector<double> bins(m_numberOfBins);
     double binStartValue = 0;
     m_oneBodyDensityRadial = std::vector<std::vector<double> >(2, std::vector<double>(numberOfBins/2,0)); 
 
-    // for (int n3 = 0; n3<numberOfBins; n3++){
-    //     bins[n3] = 0;
-    //     // (-m_numberOfBins/2+n3)*(densityLength/(double)numberOfBins);
-    // }
 
     for (int n4 = 0; n4 < numberOfBins/2; n4++){
         binStartValue = n4*(m_densityLength/(double) m_numberOfBins);
@@ -35,17 +23,11 @@ void WaveFunction::setOneBodyDensityBins(int numberOfBins, double densityLength)
         m_oneBodyDensityRadial[1][n4] = 0;
     }
 
-    // std::cout << m_oneBodyDensityRadial[0][0] << "\n";
-
-    // for (int n6 = 0; n6<m_numberOfBins; n6++){
-    //     m_oneBodyDensity.push_back(bins);
-    // }
-
 
 }
 
 void WaveFunction::updateOneBodyDensity(){
-    /* This function collects the data needed to get the the one-body density.*/
+    /* This function collects the data needed to get the radial one-body density.*/
     
     auto m_particles = m_system->getParticles();
 
@@ -53,26 +35,6 @@ void WaveFunction::updateOneBodyDensity(){
     int numberOfDimensions = m_system->getNumberOfDimensions();
 
     double binLength = m_densityLength/(double) m_numberOfBins;
-
-    //     for (int l = 0; l < numberOfParticles; l++){
-
-    //     auto r = m_particles[l]->getPosition();
-    //     double rLength = 0;
-
-    //     for (int j4 = 0; j4 < numberOfDimensions; j4++){
-    //         rLength += r[j4]*r[j4];
-    //     }
-    //     rLength = sqrt(rLength);
-
-    //     for (int j6 = 0; j6 < m_numberOfBins; j6++){
-    //         if (rLength > (j6)*binLength && rLength <= (j6+1)*binLength){    
-    //             m_oneBodyDensity[0][j6] += 1;
-    //         }
-            
-    //     }
-        
-    // }
-
 
     for (int l = 0; l < numberOfParticles; l++){
 
@@ -90,47 +52,8 @@ void WaveFunction::updateOneBodyDensity(){
                 m_oneBodyDensityRadial[1][j6] += 1;
             }
         }
-
-              
-        // for (int j5 = -m_numberOfBins/2; j5 < m_numberOfBins/2; j5++){
-        //     if (j5 < 0){
-        //         if (r[0] > (j5)*binLength && r[0] <= (j5+1)*binLength){
-
-        //             for (int j3 = -m_numberOfBins/2; j3 < m_numberOfBins/2; j3++){
-        //                 if (j3 < 0){
-        //                     if (r[1] > (j3)*binLength && r[1] <= (j3+1)*binLength){
-        //                         m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
-        //                     }
-        //                 }else{
-        //                     if (r[1] >= (j3)*binLength && r[1] < (j3+1)*binLength){
-        //                         m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }else{
-        //         if (r[0] > (j5)*binLength && r[0] <= (j5+1)*binLength){
-        //             for (int j3 = -m_numberOfBins/2; j3 < m_numberOfBins/2; j3++){
-        //                 if (j3 < 0){
-        //                     if (r[1] > (j3)*binLength && r[1] <= (j3+1)*binLength){
-        //                         m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
-        //                     }
-        //                 }else{
-        //                     if (r[1] >= (j3)*binLength && r[1] < (j3+1)*binLength){
-        //                         m_oneBodyDensity[j3+m_numberOfBins/2][j5+m_numberOfBins/2] += 1;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
-       
     
     }
-
-
-
 
 }
 

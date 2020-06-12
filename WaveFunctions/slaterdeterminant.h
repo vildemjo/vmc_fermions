@@ -13,7 +13,7 @@ public:
     double computeRatio(double oldWaveFunction, double newWaveFunction);
     void updateSlaterRelatedThings(int particleNumber);
     void setupSlaterRelatedThings();
-    std::vector<double> computeQuantumForce(int particleIndex, bool oldOrNew);
+    std::vector<double> computeQuantumForce(int particleIndex);
 
 private:
     double m_omega = 1;
@@ -24,8 +24,6 @@ private:
 
     std::vector<std::vector<double>> m_slaterMatrixSpinUp = std::vector<std::vector<double>>();
     std::vector<std::vector<double>> m_slaterMatrixSpinDown = std::vector<std::vector<double>>();
-    std::vector<std::vector<double>> m_oldSlaterMatrixSpinUp = std::vector<std::vector<double>>();
-    std::vector<std::vector<double>> m_oldSlaterMatrixSpinDown = std::vector<std::vector<double>>();
     std::vector<std::vector<double>> m_inverseSlaterMatrixSpinUp = std::vector<std::vector<double>>();
     std::vector<std::vector<double>> m_inverseSlaterMatrixSpinDown = std::vector<std::vector<double>>();
     std::vector<std::vector<double>> m_oldInverseSlaterMatrixSpinUp = std::vector<std::vector<double>>();
@@ -49,7 +47,7 @@ private:
     double phi_11_double_der(int particleNumber);
 
     void calculateInverseSlaterMatrix();
-    void updateInverseSlaterMatrix(int particleNumber);
+    void updateInverseSlaterMatrix();
 
     double m_metropolisRatio = 1;
 };

@@ -37,9 +37,6 @@ bool System::metropolisStep() {
     double   oldWaveFunction      = m_waveFunction->evaluate();
     int      randomParticleIndex  = m_random->nextInt(0, m_numberOfParticles-1);
 
-    // std::cout << "\n ------------- \n Particle index: " << randomParticleIndex << "\n ------------ " << endl;
-    // std::cout << "Old wavefunction: " << oldWaveFunction << endl;
-
 
     for(int m1=0;m1<m_numberOfDimensions; m1++){
         randomAmount[m1] = m_stepLength*(m_random->nextDouble()-0.5);
@@ -48,17 +45,12 @@ bool System::metropolisStep() {
 
     m_waveFunction->updateSlaterRelatedThings(randomParticleIndex);
 
-    // cout << "ok after update \n";
 
     double newWaveFunction = m_waveFunction->evaluate();
-    
-    // std::cout << "New wavefunction: " << newWaveFunction << endl;
-    
 
 
     // Determening if step is accepted (return true) or not (move particle back and return false)
     if (m_random->nextDouble() <= m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction)){
-                                    // cout << "ok" << endl;
         return true;
         }
 
@@ -67,7 +59,7 @@ bool System::metropolisStep() {
     }
 
     m_waveFunction->updateSlaterRelatedThings(randomParticleIndex);
-    // cout << "no move" << endl;
+
     return false;
 }
 
@@ -90,12 +82,8 @@ bool System::metropolisStepImportance() {
     int particleIndex = m_random->nextInt(m_numberOfParticles-1);
 
 
-
-    // cout << "----- \n new test \n -----\n";
-    // std::cout << "Particle index: " << particleIndex << endl;
-
     double oldWaveFunction    = m_waveFunction->evaluate();
-    auto   oldQuantumForce    = m_waveFunction->computeQuantumForce(particleIndex, true); // true = old quantum force
+    auto   oldQuantumForce    = m_waveFunction->computeQuantumForce(particleIndex);
     auto   oldPosition        = m_particles[particleIndex]->getPosition();
 
     for(int m1=0;m1<m_numberOfDimensions; m1++){
@@ -105,22 +93,19 @@ bool System::metropolisStepImportance() {
  
     m_waveFunction->updateSlaterRelatedThings(particleIndex);
     double newWaveFunction  = m_waveFunction->evaluate();
-    auto   newQuantumForce  = m_waveFunction->computeQuantumForce(particleIndex, false); // false = new quantum force
+    auto   newQuantumForce  = m_waveFunction->computeQuantumForce(particleIndex);
     auto   newPosition      = m_particles[particleIndex]->getPosition();
     
 
     double greensFunctionFrac = greensFunctionFraction(newPosition, oldPosition, newQuantumForce, oldQuantumForce);
 
-    // cout << greensFunctionFrac << "\t" << m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction) << "\t" << oldWaveFunction << "\t" << newWaveFunction << "\n";
     // Determening if step is accepted (return true) or not (move particle back and return false)
     if (m_random->nextDouble() <= greensFunctionFrac*m_waveFunction->computeRatio(oldWaveFunction, newWaveFunction)){
                 // cout << "move accepted \n";
 
         return true;
         }
-    // cout << "move not accepted \n";
-                // std::cout << "Particle index: " << particleIndex << endl;
-    
+
     for(int m4=0;m4<m_numberOfDimensions; m4++){
         m_particles[particleIndex]->adjustPosition(-importanceAmount[m4], m4);
     }
@@ -148,11 +133,8 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
     setImportance                           (importanceOrNot);
     setAllEnergies                          (allEnergiesOrNot);
     setSpinFactor();
-    //  std::cout << "ok before setup";
-    m_waveFunction->setupSlaterRelatedThings();
-    //  std::cout << "ok after setup"<< " \n";
- 
 
+    m_waveFunction->setupSlaterRelatedThings();
 
 
     for (int i = 0; i < m_numberOfMetropolisSteps; i++) {
@@ -176,21 +158,19 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int firstCriteria, 
             m_sampler->sampleAllEnergies(acceptedStep);
         }else{
             m_sampler->sample(acceptedStep);
-            // std::cout << "sample ok: " << m_hamiltonian->computeLocalEnergy() << " \n";
+
         }
     }
-    // std::cout << "finished MC loop for alpha "<< getWaveFunction()->getParameters()[0] << std::endl;
     
     m_sampler->computeAverages();
 
-    //  std::cout << "computes averages" << std::endl;
 
     if (getAllEnergies() == true){
         m_sampler->printOutputToEnergyFile();
         m_sampler->printOneBodyDensityToFile();
-        // m_sampler->printOutputToTerminal();
+        m_sampler->printOutputToTerminal();
     }else{
-        // m_sampler->printOutputToTerminal();
+        m_sampler->printOutputToTerminal();
     }
 
 }
@@ -213,7 +193,6 @@ void System::setStepLength(double stepLength) {
 void System::setEquilibration(double equilibration) {
     assert(equilibration >= 0);
     m_equilibration = equilibration;
-            // std::cout << "eq:" << m_equilibration <<" \n";
 }
 
 void System::setHamiltonian(Hamiltonian* hamiltonian) {
@@ -249,30 +228,20 @@ double System::greensFunctionFraction(std::vector<double> posNew, std::vector<do
     from the old state to the new and the transition from the new to the old. This expression
     is used to determine wether a move is accepted or not when importance sampling is used. */
     
-    // double exponentTop = 0;
-    // double exponentLow = 0;
     double exponent = 0;
-    double sigma = m_diffConstant*m_timeStep;
 
     for (int n10=0; n10<m_numberOfDimensions; n10++){
-        // auto posChange = posOld[n10]-posNew[n10];
-        // exponentTop += -(posOld[n10]-posNew[n10]-sigma*forceNew[n10])*(posOld[n10]-posNew[n10]-sigma*forceNew[n10])/(4.0*sigma);
-        // exponentLow += -(posNew[n10]-posOld[n10]-sigma*forceOld[n10])*(posNew[n10]-posOld[n10]-sigma*forceOld[n10])/(4.0*sigma);
 
         exponent += 0.5*(forceOld[n10]+forceNew[n10])*
-	            (m_diffConstant*m_timeStep*0.5*(forceOld[n10]-forceNew[n10])-posNew[n10]+posOld[n10]); // fra lecture notes
-        // exponent += 0.5*(forceOld[n10]-forceNew[n10])*(posNew[n10]-posOld[n10]); // Fra Evens master (+ legg til number of dim)
-        // exponent += 0.25*m_diffConstant*m_timeStep*(forceNew[n10]*forceNew[n10]+forceOld[n10]*forceOld[n10]) 
-        //             + 0.5*(posOld[n10]-posNew[n10])*(forceOld[n10]+forceNew[n10]); // Fra meg selv
+	            (m_diffConstant*m_timeStep*0.5*(forceOld[n10]-forceNew[n10])-posNew[n10]+posOld[n10]);
+
     }
-    return exp(exponent);///exp(exponentLow);// + m_numberOfDimensions;
+    return exp(exponent);
 }
 
 void System::setSpinFactor(){
     
-    
     std::vector <std::vector <double> > spinFactor(m_numberOfParticles, std::vector<double>(m_numberOfParticles, (double) 0));
-    // m_spinFactor = spinFactor;
 
     for (int k5 = 0; k5 < m_numberOfParticles; k5++){
         for (int k6 = 0; k6 < m_numberOfParticles; k6++){
@@ -285,7 +254,6 @@ void System::setSpinFactor(){
             }if (k6 >= m_numberOfParticles/2 && k5 < m_numberOfParticles/2){
                 spinFactor[k5][k6] = 1;
             }
-            // cout << "a_" <<k5 << k6 << ": " << spinFactor[k5][k6] << "\n";
         }
     }
     

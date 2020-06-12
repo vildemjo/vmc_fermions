@@ -35,13 +35,13 @@ void Sampler::sample(bool acceptedStep) {
     }
 
     double localEnergy = 0;
-        // std::cout << "in sample \n";
+
     // Sampling if the equilibrium stage is passed
     if (m_stepNumber > m_system->getEquilibration()){
 
         // Counting number of accepted steps
         if (acceptedStep == 1) { m_numberOfAcceptedSteps += 1; }
-        // std::cout << "until localEnergy ok \n";
+
         localEnergy = m_system->getHamiltonian()->computeLocalEnergy();
         m_cumulativeDistance += m_system->getWaveFunction()->getDistance();
 
@@ -173,7 +173,7 @@ void Sampler::printOutputToEnergyAlphaFile(){
         myfile << m_energy << "\t" << alpha << "\t" << 100.0*(double)m_numberOfAcceptedSteps/(double)m_numberOfMetropolisSteps <<"\n";
         myfile.close(); 
     }else{
-        // std::cout << "printing" << std::endl;
+
     myfile.open (filename, ios::out | ios::app);
         
     myfile << m_energy << "\t" << alpha << "\t" << 100.0*(double)m_numberOfAcceptedSteps/(double)m_numberOfMetropolisSteps <<"\n";
@@ -210,7 +210,6 @@ void Sampler::printOneBodyDensityToFile(){
     /* This function prints the one-body density data to file for 
     the runs where all local energies are saved to file */
 
-    // std::vector <std::vector <double>> oneBodyDensity = m_system->getWaveFunction()->getOneBodyDensity();
     std::vector <std::vector <double>> oneBodyDensityRadial = m_system->getWaveFunction()->getOneBodyDensityRadial();
     
     
@@ -219,24 +218,10 @@ void Sampler::printOneBodyDensityToFile(){
     // update m_numberOfCyclesIncluded which is used to normalize the data.
     evaluateNumberOfCyclesIncluded();
 
-    ofstream myfile2;//, myfile;
+    ofstream myfile2;
 
-    // string filename = m_system->getFileName() + "_density.txt";
+
     string filename2 = m_system->getFileName() + "_densityRadial.txt";
-
-    // myfile.open (filename, ios::out | ios::trunc);
-
-    // // int numberOfParticles = (double) m_system->getNumberOfParticles();
-
-    // for (int n5 = 0; n5 < (int)oneBodyDensity[0].size(); n5++){
-    //     myfile << oneBodyDensity[0][n5] << "\t";
-    //     for (int m5 = 0; m5 < (int)oneBodyDensity[0].size() ; m5++){
-    //         myfile << oneBodyDensity[m5][n5] << "\t";
-    //     }
-    //     myfile << "\n";
-    // }
-
-    // myfile.close();
 
     auto dr = oneBodyDensityRadial[0][1];
 

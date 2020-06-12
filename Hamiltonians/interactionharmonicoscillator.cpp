@@ -14,16 +14,14 @@ InteractionHarmonicOscillator::InteractionHarmonicOscillator(System* system, dou
     assert(omega > 0);
     m_system->setFrequency(omega);
     m_omega  = omega;
-    // cout << m_omega;
+
 }
 
 double InteractionHarmonicOscillator::computePotentialEnergy() {
-    /* This function calculated the local energy for the wavefunction with particles 
-    in the positions given by the input. The potential energy is always calculated the 
-    same way, but the kinetic energy can be calcualted both analytically and numerically.
-    This is determined by a bool statement parameter in the System class. */
+    /* This function calculates the potential energy from the 
+    external harmonic oscillator potential. */
 
-    double m = 1.0;           // The boson mass, but in natural units
+
     double rSum2 = 0.0;
     double potentialEnergy = 0;
 
@@ -41,22 +39,17 @@ double InteractionHarmonicOscillator::computePotentialEnergy() {
             rSum2 += particlePosition[p2]*particlePosition[p2];
         }
     }
-// cout << "calcu pot" << endl;
 
-    potentialEnergy = 0.5*m*m_omega*m_omega*rSum2;
+
+    potentialEnergy = 0.5*m_omega*m_omega*rSum2; // Mass is in atomic units i.e. = 1. 
 
     return potentialEnergy;
 }
 
 
 double InteractionHarmonicOscillator::computeKineticEnergy() {
-    /* This function calculated the local energy for the wavefunction with particles 
-    in the positions given by the input. The potential energy is always calculated the 
-    same way, but the kinetic energy can be calcualted both analytically and numerically.
+    /* This function calculates the kinetic energy. It can be calculated both analytically and numerically.
     This is determined by a bool statement parameter in the System class. */
-
-    double hbar = 1.0;        // Planck's constant, but in natural units
-    double m = 1.0;           // The boson mass, but in natural units
 
     double doubleDerivative = 0.0;
     double kineticEnergy = 0;
@@ -70,20 +63,16 @@ double InteractionHarmonicOscillator::computeKineticEnergy() {
         doubleDerivative = computeDoubleDerivativeNumerically();
     }
 
-
-    kineticEnergy = -0.5*(hbar*hbar/m)*doubleDerivative;
-
-// cout << "calcu kin" << endl;
+    kineticEnergy = -0.5*doubleDerivative; // Plack's constant and mass are in atomic units i.e. = 1. 
 
     return kineticEnergy;
 }
 
 
 double InteractionHarmonicOscillator::computeInteractionEnergy() {
-    /* This function calculated the local energy for the wavefunction with particles 
-    in the positions given by the input. The potential energy is always calculated the 
-    same way, but the kinetic energy can be calcualted both analytically and numerically.
-    This is determined by a bool statement parameter in the System class. */
+    /* This function calculates the interaction energy from a
+    Coloumbic interaction between the particles. */
+
     int     numberOfParticles       = m_system->getNumberOfParticles();
     auto distances = calculateInterparticleDistances();
     double  distanceInverted        = 0;
@@ -92,11 +81,8 @@ double InteractionHarmonicOscillator::computeInteractionEnergy() {
     for (int j5 = 0; j5 < numberOfParticles-1; j5++){
         for (int j6 = j5+1; j6 <numberOfParticles; j6++){
             distanceInverted += 1/distances[j5][j6];
-
         }
     }
-
-    // cout << "calcu int" << endl;
 
     return distanceInverted;
 }
@@ -112,10 +98,13 @@ double InteractionHarmonicOscillator::computeLocalEnergy(){
 
 
 std::vector <std::vector <double> >  InteractionHarmonicOscillator::calculateInterparticleDistances(){
+    /* This function calculates the distance between the particles, thus the output is a
+    matrix which contains the distance between each and every particle. */
+
     int numberOfParticles = m_system->getNumberOfParticles();
     int numberOfDimensions = m_system->getNumberOfDimensions();
 
-    std::vector <std::vector <double> > distances(numberOfParticles, std::vector<double>(numberOfParticles, (double) 0)); // a matrix of the distance between all particles 
+    std::vector <std::vector <double> > distances(numberOfParticles, std::vector<double>(numberOfParticles, (double) 0));
     
     std::vector <class Particle*> m_particles = m_system->getParticles();
 

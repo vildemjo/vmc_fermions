@@ -34,18 +34,17 @@ double SlaterDeterminant::computeDoubleDerivative() {
     int         numberOfParticles   = m_system->getNumberOfParticles();
     double      doubleDerivative    = 0;
 
-
-
-        // std::cout << "until double deriv ok \n";
-
-    for(int p0 = 0; p0 < numberOfParticles/2; p0++){
+    for(int p0 = 0; p0 < numberOfParticles/2; p0++){ // Loop over the different particles
         
-        int p0_ = p0 + numberOfParticles/2;
-        auto phi_00_p0 = phi_00(p0);
+        int p0_ = p0 + numberOfParticles/2; // Particle number for the spin down particles
+        
+        // Calculate first the exponential term of the single-particle wavefunction 
+        // that is the same for all of them
+        auto phi_00_p0 = phi_00(p0); 
         auto phi_00_p0_ = phi_00(p0_);
 
-        for (int p1 = 0; p1 < numberOfParticles/2; p1++){
-            if (p1 == 0){
+        for (int p1 = 0; p1 < numberOfParticles/2; p1++){ // Loop over the different states
+            if (p1 == 0){ // test to get the correct single-particle function
                 doubleDerivative += phi_00_double_der(p0)*phi_00_p0*m_inverseSlaterMatrixSpinUp[p0][p1];
                 doubleDerivative += phi_00_double_der(p0_)*phi_00_p0_*m_inverseSlaterMatrixSpinDown[p0][p1];
             }if (p1 == 1){
@@ -64,20 +63,16 @@ double SlaterDeterminant::computeDoubleDerivative() {
                 doubleDerivative += phi_20_double_der(p0, 1)*phi_00_p0*m_inverseSlaterMatrixSpinUp[p0][p1];
                 doubleDerivative += phi_20_double_der(p0_,1)*phi_00_p0_*m_inverseSlaterMatrixSpinDown[p0][p1];
             }
-            // std::cout << doubleDerivative << " p1 = "<< p1 << " p0 = "<< p0 << "\n";
         }
     }
 
-    // std::cout << "double deriv ok \n";
-
     return doubleDerivative;
-
 
 }
 
 std::vector<double> SlaterDeterminant::computeDerivative(int particleIndex){
     /* This function calculates the derivative of the wavefunction with 
-    regards to one spesific particle. This is used to calcualte the drift
+    regards to one spesific particle. This is used to calculate the drift
     force used in importance sampling. */
     
     int numberOfDimensions = m_system->getNumberOfDimensions();
@@ -88,11 +83,12 @@ std::vector<double> SlaterDeterminant::computeDerivative(int particleIndex){
 
     std::vector<double> vectorSum(numberOfDimensions, 0);
 
-
+    // Using test to see if it is a spin up or a spin down particle that is being moved.
+    // It is nesessary because the Slater deterimant is seperated into a spin up 
+    // determinant and a spin down determinant.
         if(particleIndex < numberOfParticles/2){
-        // std::cout << "spin up particle derivative calced \n";
             for (int p3 = 0; p3<numberOfDimensions; p3++){
-                for (int p1 = 0; p1 < numberOfParticles/2; p1++){
+                for (int p1 = 0; p1 < numberOfParticles/2; p1++){ // Loop over the different states
                     auto phi_00_pI = phi_00(pI);
                     if (p1 == 0){
                         vectorSum[p3] += phi_00_der(pI)[p3]*phi_00_pI*m_inverseSlaterMatrixSpinUp[pI][p1];
@@ -112,12 +108,13 @@ std::vector<double> SlaterDeterminant::computeDerivative(int particleIndex){
 
         }if (particleIndex >= numberOfParticles/2){
             pI = particleIndex - numberOfParticles/2;
-            cor = numberOfParticles/2;
-            // std::cout << "spin down particle derivative calced \n";
+            cor = numberOfParticles/2; // Using a correction number to get the correct particle number for the
+                                       // calculation of the gradient of the single particle wave function. This
+                                       // is necessary because the spin down electrons are the upper half of the 
+                                       // particles, but they have their own Slater determinant.
             for (int p3 = 0; p3<numberOfDimensions; p3++){
-                for (int p1 = 0; p1 < numberOfParticles/2; p1++){
+                for (int p1 = 0; p1 < numberOfParticles/2; p1++){ // Loop over the different states
                     auto phi_00_pI = phi_00(pI+cor);
-            
                     if (p1 == 0){
                         vectorSum[p3] += phi_00_der(pI+cor)[p3]*phi_00_pI*m_inverseSlaterMatrixSpinDown[pI][p1];
                     }if (p1 == 1){
@@ -145,21 +142,16 @@ double SlaterDeterminant::computeAlphaDerivative(){
     by the use of gradient descent methods.*/
 
     auto vectorSumSquared = calculatePositionSumSquared();
-    // double wf = 0;
-    // int numberOfParticles = m_system->getNumberOfParticles();
 
-    // for (int k3 = 0; k3<numberOfParticles; k3++){
-    //     wf *= phi_00(k3);
-    // }
-
-
-    return (-0.5)*m_omega*vectorSumSquared;//*m_slaterDeterminantSpinDown*m_slaterDeterminantSpinUp/wf;
+    return (-0.5)*m_omega*vectorSumSquared;
 
 }
 
 double SlaterDeterminant::getDistance(){
+    /* This function calculates distance between particle one and two. This 
+    function is used to evaluate the mean distance in a two-particle system.*/
+
     auto m_particles = m_system->getParticles();
-    // std::vector<double> r0 = {0.0,0.0};//
     
     auto r0 = m_particles[0]->getPosition();
     auto r1 = m_particles[1]->getPosition();
@@ -170,25 +162,29 @@ double SlaterDeterminant::getDistance(){
 }
 
 void SlaterDeterminant::setupSlaterMatrix(){
+    /* This function sets up the Slater determinants. One for the spin up electrons
+     (first half) and one for the spin down electrons (last half).*/
+
     int numberOfParticles = m_system->getNumberOfParticles();
 
     std::vector <std::vector <double> > slaterMatrixSpinUp(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
     std::vector <std::vector <double> > slaterMatrixSpinDown(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
-    // Test if number of particles are 2, 6 or 12?
 
-    // std::cout << "calc wf: " << phi_00(0) <<"\n";
 
     for (int m1 = 0; m1 < numberOfParticles/2; m1++){ // going through the different states (single particle wavefunctions)
         for (int m2 = 0; m2 < numberOfParticles/2; m2++){ // going through the different particles
             
-            int m3 = m2 + numberOfParticles/2;
-            auto phi_00_m2 = phi_00(m2);
+            int m3 = m2 + numberOfParticles/2; // The particle number of the spin down particles.
+            
+            // Calculate first the exponential term of the single-particle wavefunction 
+            // that is the same for all of them
+            auto phi_00_m2 = phi_00(m2); 
             auto phi_00_m3 = phi_00(m3);
             
             if (m1 == 0){
                 slaterMatrixSpinUp[m1][m2] = phi_00_m2;
                 slaterMatrixSpinDown[m1][m2] = phi_00_m3;
-            }if(m1 == 1){
+            }if(m1 == 1){ // test to get the correct Hermite polynomial
                 slaterMatrixSpinUp[m1][m2] = phi_10(m2, 0)*phi_00_m2;
                 slaterMatrixSpinDown[m1][m2] = phi_10(m3, 0)*phi_00_m3;
             }if(m1 == 2){
@@ -207,41 +203,35 @@ void SlaterDeterminant::setupSlaterMatrix(){
         }
     }
 
-    // std::cout << "ok here \n";
-
     m_slaterMatrixSpinDown = slaterMatrixSpinDown;
     m_slaterMatrixSpinUp = slaterMatrixSpinUp;
 }
 
 void SlaterDeterminant::updateSlaterMatrix(int particleNumber){
+    /* This function updates the row in the Slater determinant 
+    that represents the particle that was moved.*/
+
     int numberOfParticles = m_system->getNumberOfParticles();
     std::vector <std::vector <double> > m_slaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
     int correction = 0;
     int pN = particleNumber;
-    double determinant = 0;
 
-
-
+    // A test to find out if it is the spin up or the spin down Slater determinant
+    // that is being updated
     if(particleNumber < numberOfParticles/2){
         m_slaterMatrix = m_slaterMatrixSpinUp;
-        m_oldSlaterMatrixSpinUp = m_slaterMatrixSpinUp; // saving the "old" one to calculate the inverse
         correction = 0;
     }else{
         m_slaterMatrix = m_slaterMatrixSpinDown;
-        m_oldSlaterMatrixSpinDown = m_slaterMatrixSpinDown; // saving the "old" one to calculate the inverse
         pN = particleNumber - numberOfParticles/2;
-        correction = numberOfParticles/2;
+        correction = numberOfParticles/2; // A correction term i used to get the 
+                                          // correct particel number if it is a spin 
+                                          // down particle that is moved.
     }
 
-    // std::cout << "particle number: " << particleNumber << "\n";
-
-    // std::cout << "pN: " << pN << "\n";
-    
-    // std::cout << "correction: " << correction << "\n";
 
     for (int m3 = 0; m3 < numberOfParticles/2; m3++){ // going through the different states (for particle pN)
         auto phi_00_pN = phi_00(pN+correction);
-        // std::cout << "particle number: "<< pN+correction << "\n";
         if (m3 == 0){
             m_slaterMatrix[m3][pN] = phi_00_pN;
         }if(m3 == 1){
@@ -255,52 +245,33 @@ void SlaterDeterminant::updateSlaterMatrix(int particleNumber){
         }if(m3 == 5){
             m_slaterMatrix[m3][pN] = phi_20(pN+correction,1)*phi_00_pN;
         }
-        // std::cout << m_slaterMatrix[m3][pN] << "\t";
     }
-
-            // std::cout << "update ok \n";
-
-        for(int i_ = 0; i_ < numberOfParticles/2; i_++)
-            if (numberOfParticles == 6){
-                determinant += (m_slaterMatrix[0][i_] * (m_slaterMatrix[1][(i_+1)%3] * m_slaterMatrix[2][(i_+2)%3] - m_slaterMatrix[1][(i_+2)%3] * m_slaterMatrix[2][(i_+1)%3]));
-            }if (numberOfParticles == 2){
-                determinant = m_slaterMatrix[0][0];
-            }
-    // std::cout << "In update matrix: " << "\n ---------- \n";
-    // std::cout << "determinant before: "<< m_slaterDeterminantSpinDown << " \n";
 
     if(particleNumber < numberOfParticles/2){
         m_slaterMatrixSpinUp = m_slaterMatrix;
-        m_slaterDeterminantSpinUp = determinant;
     }else{
         m_slaterMatrixSpinDown = m_slaterMatrix;
-        m_slaterDeterminantSpinDown = determinant;
     }
-        // std::cout << "determinant after: "<< m_slaterDeterminantSpinDown << " \n  -------\n";
 
 }
 
 void SlaterDeterminant::updateSlaterRelatedThings(int particleNumber){
     updateSlaterMatrix(particleNumber);
-    updateInverseSlaterMatrix(particleNumber);
+    updateInverseSlaterMatrix();
 }
 
 void SlaterDeterminant::setupSlaterRelatedThings(){
     setupSlaterMatrix();
-    // std::cout << "Slater matrix ok" << std::endl;
     calculateInverseSlaterMatrix();
-    // std::cout << "Slater matrix inverse ok" << std::endl;
 }
 
 void SlaterDeterminant::calculateInverseSlaterMatrix(){
-    // Need to find out how to calculate this.
-    // Should I do this in the initiation of this class?
-    // Should I have another class for the slater determinant parts?
+    /* This function calculates the inverse of the Slater determinants and
+    evaluate their determinant. */
     const int numberOfParticles = m_system->getNumberOfParticles();
 
     std::vector <std::vector <double> > m_slaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
     std::vector <std::vector <double> > m_inverseSlaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
-	// double determinant = 0;
 
     MatrixXd m(numberOfParticles/2, numberOfParticles/2);
     MatrixXd m_inv(numberOfParticles/2, numberOfParticles/2);
@@ -310,16 +281,12 @@ void SlaterDeterminant::calculateInverseSlaterMatrix(){
 
         if (s == 0){
             m_slaterMatrix = m_slaterMatrixSpinUp;
-        //     typedef Eigen::Matrix<int, -1, -1, Eigen::ColMajor> Cm;
-        //     Eigen::Map<Cm> m_slaterMatrix(m_slaterMatrixSpinUp.data(), numberOfParticles/2, numberOfParticles/2);
         }if(s == 1){
             m_slaterMatrix = m_slaterMatrixSpinDown;
-        //     typedef Eigen::Matrix<int, -1, -1, Eigen::ColMajor> Cm;
-        //     Eigen::Map<Cm> m_slaterMatrix(m_slaterMatrixSpinUp.data(), numberOfParticles/2, numberOfParticles/2);
         }
 
         
-        
+        // Coverting into Eigen library matrix
         for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
             for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
                 m(i_i,j_i) = m_slaterMatrix[i_i][j_i];
@@ -329,33 +296,7 @@ void SlaterDeterminant::calculateInverseSlaterMatrix(){
         // Inverse:
         m_inv = m.inverse();
 
-
-        // finding determinant
-        // for(i_ = 0; i_ < numberOfParticles/2; i_++)
-        //     if (numberOfParticles == 6){
-        //         determinant += (m_slaterMatrix[0][i_] * (m_slaterMatrix[1][(i_+1)%3] * m_slaterMatrix[2][(i_+2)%3] - m_slaterMatrix[1][(i_+2)%3] * m_slaterMatrix[2][(i_+1)%3]));
-        //     }if (numberOfParticles == 2){
-        //         determinant = m_slaterMatrix[0][0];
-        //     }
-        // // std::cout << "\n ------- \n determinant: " << determinant << "\n ---------- \n";
-
-        // for(i_ = 0; i_ < numberOfParticles/2; i_++){
-        //     // std::cout << "\n";
-        //     for(j_ = 0; j_ < numberOfParticles/2; j_++){
-        //         if (numberOfParticles == 6){
-        //             m_inverseSlaterMatrix[i_][j_] = ((m_slaterMatrix[(j_+1)%3][(i_+1)%3] * m_slaterMatrix[(j_+2)%3][(i_+2)%3]) - (m_slaterMatrix[(j_+1)%3][(i_+2)%3] * m_slaterMatrix[(j_+2)%3][(i_+1)%3]))/ determinant;
-        //         // std::cout << m_inverseSlaterMatrix[i_][j_] << "\t";
-        //         }if (numberOfParticles == 2){
-        //             m_inverseSlaterMatrix[i_][j_] = 1/m_slaterMatrix[i_][j_];
-        //         }
-        //     }
-        // }
-    
-      
-    
-            // std::cout << "In inverse matrix: " << "\n ---------- \n";
-            // std::cout << "determinant before: "<< m_slaterDeterminantSpinDown << " \n";
-
+        // Coverting back to std::vector
         for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
             for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
                 m_inverseSlaterMatrix[i_i][j_i] = m_inv(i_i,j_i);
@@ -365,87 +306,24 @@ void SlaterDeterminant::calculateInverseSlaterMatrix(){
 
         if (s == 0){
             m_inverseSlaterMatrixSpinUp = m_inverseSlaterMatrix;
-            m_slaterDeterminantSpinUp = m.determinant(); //m_slaterMatrix.determinant();
+            m_slaterDeterminantSpinUp = m.determinant();
             m_oldInverseSlaterMatrixSpinUp = m_inverseSlaterMatrixSpinUp;
         }else{
             m_inverseSlaterMatrixSpinDown = m_inverseSlaterMatrix;
-            m_slaterDeterminantSpinDown = m.determinant(); //m_slaterMatrix.determinant();
+            m_slaterDeterminantSpinDown = m.determinant();
             m_oldInverseSlaterMatrixSpinDown = m_inverseSlaterMatrixSpinDown;
         }
     
-            // std::cout << "determinant after: "<< m_slaterDeterminantSpinDown << " \n ------------ \n";
-
-
     }
 
 
 }
 
-void SlaterDeterminant::updateInverseSlaterMatrix(int particleNumber){
-    // Need to find out how to calculate this.
-    // Should I do this in the initiation of this class?
-    // Should I have another class for the slater determinant parts?
-    int numberOfParticles = m_system->getNumberOfParticles();
-    // int i_, j_;
+void SlaterDeterminant::updateInverseSlaterMatrix(){
+    /* This function should ideally just update the inverse Slater determinant 
+    using the old inverse Slater determinant, but for now it just calculates it. */
 
-    double correction = 0;
-    int pN = particleNumber;
-	
-    // double determinant = 0;
-    std::vector <std::vector <double> > slaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
-    std::vector <std::vector <double> > inverseSlaterMatrix(numberOfParticles/2, std::vector<double>(numberOfParticles/2, (double) 0));
-
-
-    if(particleNumber < numberOfParticles/2){
-            slaterMatrix = m_slaterMatrixSpinUp;
-            m_oldSlaterMatrixSpinUp = m_slaterMatrixSpinUp; // saving the "old" one to calculate the inverse
-            correction = 0;
-            // determinant = m_slaterDeterminantSpinUp;
-            
-        }else{
-            slaterMatrix = m_slaterMatrixSpinDown;
-            m_oldSlaterMatrixSpinDown = m_slaterMatrixSpinDown; // saving the "old" one to calculate the inverse
-            pN = particleNumber - numberOfParticles/2;
-            correction = numberOfParticles/2;
-            // determinant = m_slaterDeterminantSpinDown;
-        }
-
-
-        MatrixXd m(numberOfParticles/2, numberOfParticles/2);
-        MatrixXd m_inv(numberOfParticles/2, numberOfParticles/2);
-        
-        for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
-            for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
-                m(i_i,j_i) = slaterMatrix[i_i][j_i];
-            }
-        }
-
-        // Inverse:
-        m_inv = m.inverse();
-
-        for (int i_i = 0; i_i < numberOfParticles/2; i_i++){
-            for (int j_i = 0; j_i < numberOfParticles/2; j_i++){
-                inverseSlaterMatrix[i_i][j_i] = m_inv(i_i,j_i);
-            }
-        }
-
-
-    
-            // std::cout << "In inverse matrix: " << "\n ---------- \n";
-            // std::cout << "determinant before: "<< m_slaterDeterminantSpinDown << " \n";
-
-        if(particleNumber < numberOfParticles/2){
-            m_slaterMatrixSpinUp = slaterMatrix;
-            m_inverseSlaterMatrixSpinUp = inverseSlaterMatrix;
-            m_slaterDeterminantSpinUp = m.determinant();
-        }else{
-            m_slaterMatrixSpinDown = slaterMatrix;
-            m_inverseSlaterMatrixSpinDown = inverseSlaterMatrix;
-            m_slaterDeterminantSpinDown = m.determinant();
-        }
-    
-            // std::cout << "determinant after: "<< m_slaterDeterminantSpinDown << " \n ------------ \n";
-
+    calculateInverseSlaterMatrix();
 
 }
 
@@ -456,26 +334,15 @@ double SlaterDeterminant::computeRatio(double oldWaveFunction, double newWaveFun
 }
 
 
-std::vector<double> SlaterDeterminant::computeQuantumForce(int particleIndex, bool oldOrNew){
+std::vector<double> SlaterDeterminant::computeQuantumForce(int particleIndex){
     /* This function calculates the quantum force/drift force with is used for importance
         sampling. The quantum force is given by the derivative of the wavefunction. */
-        
-    double R_inv = 1;
-
-    if (oldOrNew == true){
-        R_inv = 1;
-    }if(oldOrNew == false){
-        R_inv = 1;// /m_metropolisRatio;
-    }
-
   
     auto derivative = computeDerivative(particleIndex);
 
     for (int m=0;m<m_system->getNumberOfDimensions();m++){
         derivative[m] *= 2;
-        // std::cout << derivative[m] << "\n";
     }
-
 
     return derivative;
 }
@@ -485,7 +352,7 @@ std::vector<double> SlaterDeterminant::computeQuantumForce(int particleIndex, bo
 // -----------------------------------
 
 double SlaterDeterminant::phi_00(int particleNumber){
-    double A = 1;
+    
     double factor = 0;
     int numberOfDimensions = m_system->getNumberOfDimensions();
     double rSquared = 0;
@@ -500,7 +367,7 @@ double SlaterDeterminant::phi_00(int particleNumber){
 
     factor = -0.5*m_alpha*m_omega*rSquared;
 
-    return A*exp(factor);
+    return exp(factor);
 }
 
 double SlaterDeterminant::phi_10(int particleNumber, int dimension){
